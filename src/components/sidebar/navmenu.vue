@@ -50,6 +50,14 @@
         </router-link>
       </li>
       <li class="sidebar-list">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title" to="/group">
+          <img class="courses" src="@/assets/svg/users.svg" alt="">
+          <!-- <i class="icofont icofont-user"></i> -->
+          <span class="lan-3"> Group</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list">
         <a class="sidebar-link sidebar-title" href="https://pixelstrap.freshdesk.com/support/home" target="_blank">
           <svg class="stroke-icon">
             <use href="@/assets/svg/icon-sprite.svg#stroke-social"></use>

@@ -8,6 +8,8 @@ import isUserValid from "./authChecker";
 import courses from '@/pages/course/courses.vue'
 import branches from "@/pages/branche/branches.vue"
 import schedule from '@/pages/schedul/schedule.vue'
+import group from '@/pages/group/group.vue'
+
 const routes = [
   {
     path: "/",
@@ -29,6 +31,10 @@ const routes = [
       {
         path:'/schedule',
         component:schedule,
+      },
+      {
+        path:'/group',
+        component:group,
       }
     ],
 

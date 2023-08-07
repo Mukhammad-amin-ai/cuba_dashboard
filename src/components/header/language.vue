@@ -14,7 +14,6 @@
                      <i class="flag-icon" :class="l.icon"></i><span class="lang-txt" @click="changeLocale(l)">{{l.name}}<span>{{l.short}} </span></span>
                 </div>
             </div>
-        
     </div>
     </div>
   </li>

@@ -6,7 +6,7 @@ import auth from "./modules/auth";
 import branche from "./modules/branche";
 import course from "./modules/course";
 import schedule from '@/store/modules/schedule'
-
+import group from "./modules/group";
 
 export default createStore({
   state: { langIcon: "", langLangauge: "", isActive: false },
@@ -41,6 +41,7 @@ export default createStore({
     auth,
     branche,
     course,
-    schedule
+    schedule,
+    group
   },
 });

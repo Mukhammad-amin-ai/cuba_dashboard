@@ -3,8 +3,7 @@
      <div class="col-sm-12">
     <div class="card">
      <div class="card-header">
-        <h3>Basic Table With Border Bottom Color</h3><span>Use a class<code>table</code> to any table, and
-          <code>.border-bottom-*</code>class for Border bottom color</span>
+        <h3>Basic Table With Border Bottom Color</h3>
       </div>
       <div class="table-responsive">
         <table class="table">
