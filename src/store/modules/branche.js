@@ -15,8 +15,8 @@ const actions = {
       let response = await axios.get("http://tulibayev.uz/api/branch", {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data)
-      commit("setBranch", response.data);
+      console.log(response.data);
+      commit("setBranch", response.data.data);
     } catch (error) {
       console.error("error find", error);
     }
@@ -24,7 +24,7 @@ const actions = {
 };
 
 export default {
-    namespaced: true,
+  namespaced: true,
   state,
   mutations,
   actions,

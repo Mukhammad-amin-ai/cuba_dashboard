@@ -4,6 +4,10 @@ import layout from "./modules/layout";
 import menu from "./modules/menu";
 import auth from "./modules/auth";
 import branche from './modules/branche'
+import course from "./modules/course";
+
+
+
 export default createStore({
   state: { langIcon: "", langLangauge: "", isActive: false },
   getters: {
@@ -35,6 +39,7 @@ export default createStore({
     layout,
     menu,
     auth,
-    branche
+    branche,
+    course
   },
 });
