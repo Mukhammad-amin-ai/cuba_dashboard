@@ -7,6 +7,7 @@ import notfoound from "@/auth/404.vue"
 import isUserValid from "./authChecker";
 import courses from '@/pages/course/courses.vue'
 import branches from "@/pages/branche/branches.vue"
+import schedule from '@/pages/schedul/schedule.vue'
 const routes = [
   {
     path: "/",
@@ -24,6 +25,10 @@ const routes = [
       {
         path:'/branches',
         component:branches,
+      },
+      {
+        path:'/schedule',
+        component:schedule,
       }
     ],
 
@@ -33,14 +38,10 @@ const routes = [
   {
     path: "/login",
     component: login,
-    // meta:{requireAuth:true},
-
   },
   {
     path: "/register",
     component: register,
-    // meta:{requireAuth:true},
-
   },
   {
     path: "/:pathMatch(.*)*",
@@ -54,7 +55,6 @@ const router = createRouter({
 router.beforeEach((to,from,next)=>{
   if(to.meta.requirAuth && !isUserValid()){
     next('/login')
-    // console.log(to);
   }else{
     next()
   }

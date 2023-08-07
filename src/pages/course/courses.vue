@@ -1,5 +1,13 @@
 <template>
     <div class="container">
+        <!-- <div class="card" style="width: 18rem;" >
+            <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
+            <div class="card-body">
+                <h5 class="card-title">{{ courseData[0].name }}</h5>
+                <p class="card-text">Price :SUM</p>
+                <a href="#" class="btn btn-primary">About course</a>
+            </div>
+        </div> -->
         <div class="card" style="width: 18rem;" v-for="item in courseData " :key="item">
             <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
             <div class="card-body">
@@ -32,8 +40,9 @@ export default {
     width: 100%;
     height: auto;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    padding: 50px;
+    padding-top: 20px;
     gap: 10px
 }
 

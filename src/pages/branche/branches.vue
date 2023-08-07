@@ -3,11 +3,6 @@
         <div class="card">
             <div class="blog-box blog-shadow">
                 <img src="@/assets/images/it-park.jpg" class="img-fluid bg-img-cover" alt="#">
-                <!-- <div class="blog-details">
-                    <h5 class="card-title" style="color:white;">Programmer uz </h5>
-                    <p class="card-text">Our main office</p>
-                    <a href="#" class="btn btn-primary">Find it in Google map</a>
-                </div> -->
                 <div class="blog-details">
                     <p>25 July 2018</p>
                     <h4>Main office</h4>

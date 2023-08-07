@@ -1,7 +1,5 @@
 <template>
   <div id="sidebar-menu">
-    <!-- {{layoutobject}}	
-          fdsfdsf{{[layoutobject.split(' ').includes('horizontal-wrapper')]}} -->
     <ul class="sidebar-links custom-scrollbar" id="myDIV"
       :style="[layoutobject.split(' ').includes('horizontal-wrapper') ? layout.settings.layout_type == 'rtl' ? { '  -right': margin + 'px' } : { 'margin-left': margin + 'px' } : { margin: '0px' }]">
       <li class="back-btn">
@@ -18,9 +16,7 @@
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <!-- <a class="sidebar-link sidebar-title" href="#"> -->
         <router-link class="sidebar-link sidebar-title" to="/">
-
           <svg class="stroke-icon">
             <use href="@/assets/svg/icon-sprite.svg#stroke-home"></use>
           </svg>
@@ -29,40 +25,30 @@
           </svg>
           <span class="lan-3">Dashboard</span>
         </router-link>
-        <!-- </a> -->
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <!-- <a class="sidebar-link sidebar-title" href="# "> -->
         <router-link class="sidebar-link sidebar-title" to='/branches'>
-          <!-- <svg class="stroke-icon">
-                    <use href="@/assets/svg/book-open.svg"></use>
-                  </svg>
-                  <svg class="fill-icon">
-                    <use href="@/assets/svg/book-open.svg"></use>
-                  </svg> -->
-          <!-- <img src="@/assets/svg/book-open.svg" alt="#"> -->
+
           <img class="courses" src="@/assets/svg/map-pin.svg" alt="">
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <!-- <a class="sidebar-link sidebar-title" href="# "> -->
         <router-link class="sidebar-link sidebar-title" to="/courses">
-          <!-- <svg class="stroke-icon">
-                    <use href="@/assets/svg/book-open.svg"></use>
-                  </svg>
-                  <svg class="fill-icon">
-                    <use href="@/assets/svg/book-open.svg"></use>
-                  </svg> -->
-          <!-- <img src="@/assets/svg/book-open.svg" alt="#"> -->
           <img class="courses" src="@/assets/svg/book-open.svg" alt="">
           <span class="lan-3"> Courses</span>
         </router-link>
-        <!-- </a> -->
       </li>
-
+      <li class="sidebar-list">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title" to="/schedule">
+          <img class="courses" src="@/assets/svg/table.svg" alt="">
+          <!-- <i class="icofont icofont-user"></i> -->
+          <span class="lan-3"> Schedule</span>
+        </router-link>
+      </li>
       <li class="sidebar-list">
         <a class="sidebar-link sidebar-title" href="https://pixelstrap.freshdesk.com/support/home" target="_blank">
           <svg class="stroke-icon">

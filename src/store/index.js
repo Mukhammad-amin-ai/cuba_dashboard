@@ -3,9 +3,9 @@ import { createStore } from "vuex";
 import layout from "./modules/layout";
 import menu from "./modules/menu";
 import auth from "./modules/auth";
-import branche from './modules/branche'
+import branche from "./modules/branche";
 import course from "./modules/course";
-
+import schedule from '@/store/modules/schedule'
 
 
 export default createStore({
@@ -40,6 +40,7 @@ export default createStore({
     menu,
     auth,
     branche,
-    course
+    course,
+    schedule
   },
 });
