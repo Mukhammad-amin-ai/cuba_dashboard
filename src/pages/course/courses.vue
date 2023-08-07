@@ -11,7 +11,7 @@ export default {
 <style scoped>
     .maniki{
         width:100%;
-        height:100px;
-        background-color:aqua;
+        height:100vh;
+        /* background-color:aqua; */
     }
 </style>

@@ -6,7 +6,7 @@ import register from "@/auth/register.vue";
 import notfoound from "@/auth/404.vue"
 import isUserValid from "./authChecker";
 import courses from '@/pages/course/courses.vue'
-
+import branches from "@/pages/branche/branches.vue"
 const routes = [
   {
     path: "/",
@@ -20,7 +20,11 @@ const routes = [
       {
         path:'/courses',
         component:courses,
-      },  
+      },
+      {
+        path:'/branches',
+        component:branches,
+      }
     ],
 
     meta:{requireAuth:true},
