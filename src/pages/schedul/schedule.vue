@@ -56,8 +56,8 @@ export default {
 .container {
   padding: 30px
 }
-
+/* 
 th {
-  align-text: center
-}
+  text-align: center;
+} */
 </style>

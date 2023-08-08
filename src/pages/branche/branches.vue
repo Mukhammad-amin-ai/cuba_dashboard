@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <RouterLink to="/">
+        <!-- <RouterLink :to="{ path: branchData[0].id + '/schedule' }"> -->
             <div class="card">
                 <spiner />
                 <div class="blog-box blog-shadow">
@@ -16,9 +16,9 @@
                     </div>
                 </div>
             </div>
-        </RouterLink>
+        <!-- </RouterLink> -->
         <div class="flex">
-            <RouterLink to="/" v-for='item in branchData' :key="item">
+            <RouterLink :to="{ path: '/branchSchedule/' + item.id }" v-for='item in branchData' :key="item">
                 <div class="card" style="width: 18rem;">
                     <img src="@/assets/images/it-park.jpg" class="card-img-top" alt="#">
                     <div class="card-body">
@@ -43,6 +43,7 @@ export default {
     },
     mounted() {
         this.branch()
+    
     },
     methods: {
         branch() {
