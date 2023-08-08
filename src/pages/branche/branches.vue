@@ -1,21 +1,21 @@
 <template>
     <div class="container">
         <!-- <RouterLink :to="{ path: branchData[0].id + '/schedule' }"> -->
-            <div class="card">
-                <spiner />
-                <div class="blog-box blog-shadow">
-                    <img src="@/assets/images/it-park.jpg" class="img-fluid bg-img-cover" alt="#">
-                    <div class="blog-details">
-                        <p>25 July 2018</p>
-                        <h4>Main office</h4>
-                        <ul class="blog-social">
-                            <li><i class="icofont icofont-user"></i>Muhammdamin</li>
-                            <li><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
-                            <li><i class="icofont icofont-ui-chat"></i>598 Comments</li>
-                        </ul>   
-                    </div>
+        <div class="card">
+            <spiner />
+            <div class="blog-box blog-shadow">
+                <img src="@/assets/images/it-park.jpg" class="img-fluid bg-img-cover" alt="#">
+                <div class="blog-details">
+                    <p>25 July 2018</p>
+                    <h4>Main office</h4>
+                    <ul class="blog-social">
+                        <li><i class="icofont icofont-user"></i>Muhammdamin</li>
+                        <li><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
+                        <li><i class="icofont icofont-ui-chat"></i>598 Comments</li>
+                    </ul>
                 </div>
             </div>
+        </div>
         <!-- </RouterLink> -->
         <div class="flex">
             <RouterLink :to="{ path: '/branchSchedule/' + item.id }" v-for='item in branchData' :key="item">
@@ -28,6 +28,12 @@
                     </div>
                 </div>
             </RouterLink>
+            <RouterLink to="branch/create" class="card hover">
+            <div class="hover"  style="width: 18rem;">
+                    <i class='bx bx-plus-circle'></i>
+                </div>
+            </RouterLink>
+
         </div>
     </div>
 </template>
@@ -43,7 +49,7 @@ export default {
     },
     mounted() {
         this.branch()
-    
+
     },
     methods: {
         branch() {
@@ -63,7 +69,20 @@ export default {
     width: 100%;
     height: auto;
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 10px
+}
+
+.hover:hover {
+
+    transform: scale(1.050);
+}
+
+.hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
 }
 </style>

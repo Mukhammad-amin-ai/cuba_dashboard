@@ -39,7 +39,7 @@
     </div>
 </template>
 <script >
-import calendar from "@/pages/branche/calendarv2.vue"
+import calendar from "@/pages/branche/calendar.vue"
 export default {
    components:{
     calendar
@@ -51,13 +51,14 @@ export default {
     width: 100%;
     height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
 }
 
 
 
 .list {
-    width: 500px;
+    width: 100%;
     height: auto;
 }
 

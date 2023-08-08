@@ -10,6 +10,8 @@ import branches from "@/pages/branche/branches.vue";
 import schedule from "@/pages/schedul/schedule.vue";
 import group from "@/pages/group/group.vue";
 import braanchSchedule from "@/pages/branche/braanchSchedule.vue";
+import branchCreate from '@/pages/branche/create.vue'
+
 
 const routes = [
   {
@@ -32,6 +34,10 @@ const routes = [
       {
         path: "branchSchedule/:id",
         component: braanchSchedule,
+      },
+      {
+        path: "branch/create",
+        component: branchCreate,
       },
       {
         path: "/schedule",

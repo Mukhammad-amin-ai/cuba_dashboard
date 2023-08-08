@@ -1,8 +1,9 @@
 <template lang="">
     <div class='container'>
+      <calendar/>
      <div class="col-sm-12">
     <div class="card">
-      <spiner/>
+      <!-- <spiner/> -->
      <div class="card-header">
         <h3>Basic Table With Border Bottom Color</h3>
       </div>
@@ -28,16 +29,28 @@
           </tbody>
         </table>
       </div>
+      
     </div>
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
   </div>
     </div>
 </template>
 <script>
 import spiner from '@/components/ui/spiner.vue'
+import calendar from '../branche/calendar.vue'
 import { mapState } from 'vuex'
 export default {
   components: {
     spiner,
+    calendar
   },
   computed: {
     ...mapState('schedule', ['schedule'])
@@ -56,6 +69,7 @@ export default {
 .container {
   padding: 30px
 }
+
 /* 
 th {
   text-align: center;
