@@ -10,15 +10,17 @@ const mutations = {
 };
 const actions = {
   async getSchedule({ commit }) {
+    commit("setLoading", true, { root: true });
     const token = localStorage.getItem("token");
     try {
       const responce = await axios.get("http://tulibayev.uz/api/schedule", {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(responce.data);
-      commit('setSchedule',responce.data)
+      commit("setSchedule", responce.data);
+      commit("setLoading", false, { root: true });
     } catch (error) {
-        console.error('there is problem ',error);
+      console.error("there is problem ", error);
     }
   },
 };

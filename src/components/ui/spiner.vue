@@ -1,5 +1,5 @@
 <template>
-        <div class="spinner_cover" v-if="this.$store.state.auth.loading">
+        <div class="spinner_cover" v-if="this.$store.state.loading">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>

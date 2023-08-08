@@ -2,6 +2,7 @@
     <div class='container'>
      <div class="col-sm-12">
     <div class="card">
+      <spiner/>
      <div class="card-header">
         <h3>Basic Table With Border Bottom Color</h3>
       </div>
@@ -32,27 +33,31 @@
     </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import spiner from '@/components/ui/spiner.vue'
+import { mapState } from 'vuex'
 export default {
-    computed: {
-        ...mapState('schedule', ['schedule'])
-    },
-    mounted() {
-        this.getschedule()
-    },
-    methods: {
-        getschedule() {
-            this.$store.dispatch('schedule/getSchedule')
-        }
+  components: {
+    spiner,
+  },
+  computed: {
+    ...mapState('schedule', ['schedule'])
+  },
+  mounted() {
+    this.getschedule()
+  },
+  methods: {
+    getschedule() {
+      this.$store.dispatch('schedule/getSchedule')
     }
+  }
 }
 </script>
 <style scoped >
 .container {
-    padding: 30px
+  padding: 30px
 }
 
 th {
-    align-text: center
+  align-text: center
 }
 </style>

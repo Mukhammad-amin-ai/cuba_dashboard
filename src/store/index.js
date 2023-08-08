@@ -5,11 +5,11 @@ import menu from "./modules/menu";
 import auth from "./modules/auth";
 import branche from "./modules/branche";
 import course from "./modules/course";
-import schedule from '@/store/modules/schedule'
+import schedule from "@/store/modules/schedule";
 import group from "./modules/group";
 
 export default createStore({
-  state: { langIcon: "", langLangauge: "", isActive: false },
+  state: { langIcon: "", langLangauge: "", isActive: false, loading: false },
   getters: {
     langIcon: (state) => {
       return state.langIcon;
@@ -29,6 +29,9 @@ export default createStore({
     change(state) {
       state.isActive = !state.isActive;
     },
+    setLoading(state, payload) {
+      state.loading = payload;
+    },
   },
   actions: {
     setLang({ commit }, payload) {
@@ -42,6 +45,6 @@ export default createStore({
     branche,
     course,
     schedule,
-    group
+    group,
   },
 });

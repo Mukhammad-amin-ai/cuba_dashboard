@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="container-fluid">
     <Breadcrumbs main="Starter Kit" />
 
@@ -229,4 +229,27 @@
     </div>
   </div>
 </div>
-<!-- </div> --></template>
+ </div> -->
+<!-- /template> --> 
+<template>
+  <div> 
+    <center>
+      <!-- {{ test }} -->
+    </center>
+  </div>
+</template>
+<script>
+
+const text = 'hello world'
+export default {
+  data(){
+    return{
+      test : text,
+    }
+  }
+}
+</script>
+<style>
+
+
+</style>
