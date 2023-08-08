@@ -1,20 +1,65 @@
-<template>
-    <div>
-        <center>
-            hello world {{ id }}
-        </center>
+<template >
+    <div class="container p-10">
+        <calendar/>
+        <div class="list">
+            <div class='container'>
+                <div class="col-sm-12">
+                    <div class="card">
+                        <spiner />
+                        <div class="card-header">
+                            <h3> Table </h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr class="border-bottom-primary">
+                                        <th scope='col'>id</th>
+                                        <th scope="col">Group</th>
+                                        <th scope="col">Session</th>
+                                        <th scope="col">Room</th>
+                                        <th scope="col">Weekday</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
-<script>
+<script >
+import calendar from "@/pages/branche/calendarv2.vue"
 export default {
-    data(){
-return{
-    id:this.$route.params.id,
-}
-
-    }
+   components:{
+    calendar
+   }
 }
 </script>
-<style>
+<style scoped>
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.list {
+    width: 500px;
+    height: auto;
+}
 
 </style>
+ 

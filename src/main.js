@@ -13,6 +13,7 @@ import es from "./locales/es.json";
 import { defaultLocale, localeOptions } from "./constants/config";
 import Breadcrumbs from "./components/bread_crumbs";
 
+
 const messages = { en: en, es: es, pt: pt, fr: fr };
 const locale =
   localStorage.getItem("currentLanguage") &&
