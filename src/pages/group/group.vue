@@ -7,12 +7,14 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Group id {{ item.id }}</h5>
+                        <h5 class="card-title">Group No/{{ item.id }}</h5>
                         <p> Group name : {{ item.name }}</p>
-                        <p> Teacher : {{item.teacher  }}</p>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        <p> Teacher : <span class="red"> {{item.teacher  }}</span>  Assistent-teacher : <span class="red">{{ item.assistant_teacher }} </span> </p>
+
+                        <p >Course name :<span class="green">{{ item.course }}</span></p>
+                        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p> -->
+                        <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
                     </div>
                 </div>
             </div>
@@ -21,6 +23,7 @@
 </template>
 <script>
 import {mapState} from 'vuex'
+
 export default {
     computed: {
         ...mapState('group', ['groupData'])
@@ -43,5 +46,11 @@ export default {
     display:flex;
     align-items:center;
     justify-content:center
+}
+.red{
+    color:red
+}
+.green{
+    color:rgb(9, 132, 9)
 }
 </style>
