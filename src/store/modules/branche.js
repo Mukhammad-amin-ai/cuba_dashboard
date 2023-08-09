@@ -46,7 +46,7 @@ const actions = {
   },
   async createBreanch({ commit },option) {
     try {
-      const response = await axios.post("https://tulibayev.uz/api/branch", option,{
+      const response = await axios.post("http://tulibayev.uz/api/branch", option,{
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);
@@ -60,7 +60,7 @@ const actions = {
   async delete({commit},option){
     if(window.confirm('O\'chiraymi')){
       try {
-        const response = await axios.delete(`https://tulibayev.uz/api/branch/${option}`,{
+        const response = await axios.delete(`http://tulibayev.uz/api/branch/${option}`,{
           headers: { Authorization: "Bearer " + token },
         });
         console.log(response.data);
@@ -75,7 +75,7 @@ const actions = {
   },
   async editBranch({commit},{id,option}){
     try {
-      const response = await axios.put(`https://tulibayev.uz/api/branch/${id}`, option,{
+      const response = await axios.put(`http://tulibayev.uz/api/branch/${id}`, option,{
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);

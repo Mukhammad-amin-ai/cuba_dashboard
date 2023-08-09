@@ -80,22 +80,25 @@
                     </RouterLink>
                 </div>
                 <div class="col-md-6 col-xl-3 box-col-6 " v-for='item in branchData' :key="item">
-                    <div class="card">
-                        <div class="blog-box blog-grid text-center">
-                            <div class="blog-wrraper"><a href="blog-single.html">
-                                    <img class="img-fluid top-radius-blog" src="@/assets/images/it-park.jpg" alt=""></a>
-                            </div>
-                            <div class="blog-details-main">
-                                <ul class="blog-social">
-                                    <li>9 April 2018</li>
-                                    <li>by: Admin</li>
-                                    <li>Hits</li>
-                                </ul>
-                                <hr>
-                                <h6 class="blog-bottom-details">Perspiciatis unde omnis iste natus error sit.Dummy text</h6>
+                    <RouterLink :to="{ path: 'branchInfo/' + item.id }">
+
+                        <div class="card">
+                            <div class="blog-box blog-grid text-center">
+                                <div class="blog-wrraper">
+                                    <img class="img-fluid top-radius-blog" src="@/assets/images/it-park.jpg" alt="">
+                                </div>
+                                <div class="blog-details-main">
+                                    <ul class="blog-social">
+                                        <li>9 April 2018</li>
+                                        <li>by: Admin</li>
+                                        <li>Hits</li>
+                                    </ul>
+                                    <hr>
+                                    <h6 class="blog-bottom-details">{{ item.name }}</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </RouterLink>
                 </div>
                 <div class="col-md-6 col-xl-3 box-col-6  select">
                     <RouterLink to="branch/create">
@@ -143,7 +146,7 @@ export default {
 }
 
 .hover {
-    height: 340px;
+    height: 310px;
     line-height: 340px;
     font-size: 50px;
 }

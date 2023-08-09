@@ -1,5 +1,5 @@
 <template >
-    <Breadcrumbs title="Blog Single" main="Blog" />
+    <Breadcrumbs title="Blog Single" main="Information about Branch" />
     <div class="container-fluid" v-if="this.$store.state.branche.handler" >
         <div class="row">
             <div class="col-sm-12">
@@ -14,7 +14,7 @@
                                 <li><i class="icofont icofont-ui-chat"></i>598 Comments</li>
                             </ul>
                             <h4>
-                                This braanch located in {{ branchData.name }}
+                                This branch located at the {{ branchData.name }}
                             </h4>
                             <div class="single-blog-content-top">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia beatae dolorem id illo!
