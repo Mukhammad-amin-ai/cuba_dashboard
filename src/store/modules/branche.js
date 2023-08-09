@@ -3,11 +3,15 @@ const token = localStorage.getItem("token");
 
 let state = {
   branchData: [],
+  handler:true
 };
 const mutations = {
   setBranch(state, branchData) {
     state.branchData = branchData;
   },
+  setHandle(state,hendler){
+    state.handler=hendler
+  }
 };
 const actions = {
   async getBranches({ commit }) {
@@ -64,6 +68,22 @@ const actions = {
       }
       // console.log(`https://tulibayev.uz/api/branch/${option}`);
     }
+  },
+  async editBranch({commit},{id,option}){
+    try {
+      const response = await axios.put(`https://tulibayev.uz/api/branch/${id}`, option,{
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      if (response.data.message ==='Branch updated successfully'){
+        window.location.href='branches'
+      }
+    } catch (error) {
+      console.error("error find", error);
+    }
+  },
+  handler({commit}){
+    commit('setHandle',!state.handler)
   }
 };
 
