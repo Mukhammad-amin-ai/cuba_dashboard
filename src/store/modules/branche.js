@@ -21,11 +21,15 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(response.data);
-      commit("setBranch", response.data.data);
+      // commit("setBranch", response.data.data);
+      if (response.data && response.data.data) {
+        commit("setBranch", response.data.data);
+    }
       commit("setLoading", false, { root: true });
     } catch (error) {
       console.error("error find", error);
     }
+
   },
   async getBranche({ commit },option) {
     commit("setLoading", true, { root: true });

@@ -1,39 +1,92 @@
 <template>
-    <div class="container">
-        <!-- <RouterLink :to="{ path: branchData[0].id + '/schedule' }"> -->
-        <div class="card">
-            <!-- <spiner /> -->
-            <div class="blog-box blog-shadow">
-                <img src="@/assets/images/it-park.jpg" class="img-fluid bg-img-cover" alt="#">
-                <div class="blog-details">
-                    <p>25 July 2018</p>
-                    <h4>Main office</h4>
-                    <ul class="blog-social">
-                        <li><i class="icofont icofont-user"></i>Muhammdamin</li>
-                        <li><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
-                        <li><i class="icofont icofont-ui-chat"></i>598 Comments</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- </RouterLink> -->
-        <div class="flex">
-            <RouterLink :to="{ path: '/branchInfo/' + item.id }" v-for='item in branchData' :key="item">
-                <div class="card" style="width: 18rem;">
-                    <img src="@/assets/images/it-park.jpg" class="card-img-top" alt="#">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.name }}</h5>
-                        <p class="card-text">Some quick example description about branch</p>
-                        <a href="#" class="btn btn-primary">Find it in Google map</a>
+    <Breadcrumbs title="Blog Detail" main="Branches" />
+    <div class="wrapper">
+        <spiner />
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-xl-6 set-col-12 box-col-12">
+                    <div class="card" style="height: 93%;">
+                        <div class="blog-box blog-shadow" style="height: 100%;">
+                            <img class="img-fluid bg-img-cover" style="height: 100%;" src="@/assets/images/it-park.jpg"
+                                alt="">
+                            <div class="blog-details">
+                                <p v-if="branchData && branchData.length">{{ branchData[0].name }}</p>
+                                <p v-else>No branch data available.</p>
+                                <h4>Main Office</h4>
+                                <ul class="blog-social">
+                                    <li><i class="icofont icofont-user"></i>Mark Jecno</li>
+                                    <li><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
+                                    <li><i class="icofont icofont-ui-chat"></i>598 Comments</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </RouterLink>
-            <RouterLink to="branch/create" class="card hover">
-            <div class="hover"  style="width: 18rem;">
-                    <i class='bx bx-plus-circle'></i>
+                <div class="col-xl-6 set-col-12 box-col-12">
+                    <div class="card">
+                        <div class="blog-box blog-list row">
+                            <div class="col-sm-5"><img class="img-fluid sm-100-w" src="@/assets/images/it-park.jpg" alt="">
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="blog-details">
+                                    <div class="blog-date"><span>02</span> January 2018</div>
+                                    <p v-if="branchData && branchData.length">{{ branchData[1].name }}</p>
+                                    <p v-else>No branch data available.</p>
+                                    <div class="blog-bottom-content">
+                                        <ul class="blog-social">
+                                            <li>by: Admin</li>
+                                            <li>0 Hits</li>
+                                        </ul>
+                                        <hr>
+                                        <p class="mt-0">inventore veritatis et quasi architecto beatae vitae dicta sunt
+                                            explicabo. Nemo enim ipsam voluptatem quia voluptas sit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="blog-box blog-list row">
+                            <div class="col-sm-5"><img class="img-fluid sm-100-w" src="@/assets/images/it-park.jpg" alt="">
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="blog-details">
+                                    <div class="blog-date"><span>03</span> January 2018</div>
+                                    <p v-if="branchData && branchData.length">{{ branchData[2].name }}</p>
+                                    <p v-else>No branch data available.</p>
+                                    <div class="blog-bottom-content">
+                                        <ul class="blog-social">
+                                            <li>by: Admin</li>
+                                            <li>02 Hits</li>
+                                        </ul>
+                                        <hr>
+                                        <p class="mt-0">inventore veritatis et quasi architecto beatae vitae dicta sunt
+                                            explicabo. Nemo enim ipsam voluptatem quia voluptas sit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </RouterLink>
-
+                <div class="col-md-6 col-xl-3 box-col-6 "  v-for='item in branchData' :key="item" >
+                    <div class="card">
+                        <div class="blog-box blog-grid text-center">
+                            <div class="blog-wrraper"><a href="blog-single.html">
+                                    <img class="img-fluid top-radius-blog" src="@/assets/images/it-park.jpg" alt=""></a>
+                            </div>
+                            <div class="blog-details-main">
+                                <ul class="blog-social">
+                                    <li>9 April 2018</li>
+                                    <li>by: Admin</li>
+                                    <li>Hits</li>
+                                </ul>
+                                <hr>
+                                <h6 class="blog-bottom-details">Perspiciatis unde omnis iste natus error sit.Dummy text</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -59,30 +112,10 @@ export default {
 }
 </script>
 <style scoped>
-.container {
-    width: 100%;
-    height: 100%;
-    padding-top: 30px
-}
-
-.flex {
+.wrapper {
     width: 100%;
     height: auto;
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 10px
-}
-
-.hover:hover {
-
-    transform: scale(1.050);
-}
-
-.hover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
+    flex-direction: column;
 }
 </style>
