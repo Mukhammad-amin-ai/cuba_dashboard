@@ -32,7 +32,7 @@ const routes = [
         component: branches,
       },
       {
-        path: "branchSchedule/:id",
+        path: "branchInfo/:id",
         component: braanchSchedule,
       },
       {
@@ -61,7 +61,7 @@ const routes = [
   {
     path: "/:pathMatch(.*)*",
     component: notfoound,
-    meta: { requiredAuth: true },
+    // meta: { requiredAuth: true },
   },
 ];
 const router = createRouter({
@@ -69,11 +69,12 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiredAuth && !isUserValid()) {
-    next("/login");
-  } else {
-    next();
-  }
+  // if (to.meta.requiredAuth && !isUserValid()) {
+  //   next("/login");
+  // } else {
+  //   next();
+  // }
+  next();
 });
 
 export default router;

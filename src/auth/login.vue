@@ -51,15 +51,15 @@ export default {
   },
   data(){
     return{
-      email:'',
-      password:""
+      email:'aminahmadov123@gmail.com',
+      password:"12345678"
     }
   },
   methods:{
   async  login(){
       const option = {
         password:this.password,
-        email:this.email
+        email:this.email,
       }
       this.$store.dispatch('login',option)
     }

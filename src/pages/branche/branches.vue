@@ -2,7 +2,7 @@
     <div class="container">
         <!-- <RouterLink :to="{ path: branchData[0].id + '/schedule' }"> -->
         <div class="card">
-            <spiner />
+            <!-- <spiner /> -->
             <div class="blog-box blog-shadow">
                 <img src="@/assets/images/it-park.jpg" class="img-fluid bg-img-cover" alt="#">
                 <div class="blog-details">
@@ -18,7 +18,7 @@
         </div>
         <!-- </RouterLink> -->
         <div class="flex">
-            <RouterLink :to="{ path: '/branchSchedule/' + item.id }" v-for='item in branchData' :key="item">
+            <RouterLink :to="{ path: '/branchInfo/' + item.id }" v-for='item in branchData' :key="item">
                 <div class="card" style="width: 18rem;">
                     <img src="@/assets/images/it-park.jpg" class="card-img-top" alt="#">
                     <div class="card-body">

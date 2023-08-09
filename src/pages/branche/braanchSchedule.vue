@@ -1,66 +1,82 @@
 <template >
-    <div class="container p-10">
-        <calendar/>
-        <div class="list">
-            <div class='container'>
-                <div class="col-sm-12">
-                    <div class="card">
-                        <spiner />
-                        <div class="card-header">
-                            <h3> Table </h3>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr class="border-bottom-primary">
-                                        <th scope='col'>id</th>
-                                        <th scope="col">Group</th>
-                                        <th scope="col">Session</th>
-                                        <th scope="col">Room</th>
-                                        <th scope="col">Weekday</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <Breadcrumbs title="Blog Single" main="Branches" />
+    <div class="container-fluid  p-20">
+        <div>
+            <div class="container-fluid ">
+                <h1>{{ branchData.name }}</h1>
+            </div>
+            <div class="card p-10">
+                <div class="flex">
+                    <div class="container-fluid custom p-10">
+                        <img src="@/assets/images/it-park.jpg" class="img-fluid bg-img-cover" style="width: 100%;" alt="#">
+                    </div>
+                    <div class="text-box">
+                        hello
                     </div>
                 </div>
+
             </div>
         </div>
 
+        <!-- <button type="button" class="btn btn-success">Edit</button>
+
+        <button type="button" class="btn btn-danger" @click="deleteBranch">Delete</button> -->
     </div>
 </template>
 <script >
 import calendar from "@/pages/branche/calendar.vue"
+import { mapState } from "vuex"
 export default {
-   components:{
-    calendar
-   }
+    components: {
+        calendar
+    },
+    data() {
+        return {
+            id: this.$route.params.id
+        }
+    },
+    computed: {
+        ...mapState('branche', ['branchData'])
+    },
+    mounted() {
+        this.getbranch()
+    },
+    methods: {
+        deleteBranch() {
+            // console.log(this.id);
+            this.$store.dispatch('branche/delete', this.id)
+        },
+        getbranch() {
+            this.$store.dispatch('branche/getBranche', this.id)
+        }
+    }
+
 }
 </script>
 <style scoped>
-.container {
+
+
+.flex{
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
 }
-
-
+.custom{
+    width: 50%;
+    height: auto;
+    /* background-color: aqua; */
+}
 
 .list {
     width: 100%;
     height: auto;
 }
 
+.text-box{
+    width: 50%;
+    height: auto;
+    /* background-color: red; */
+}
 </style>
  

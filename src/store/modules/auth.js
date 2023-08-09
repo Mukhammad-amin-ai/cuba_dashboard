@@ -85,23 +85,24 @@ const actions = {
     }
   },
   async login({ commit }, option) {
-    commit("setLoading", true, { root: true });
+    // commit("setLoading", true, { root: true });
     try {
+      console.log('hello world');
       const response = await axios.post(
         "http://tulibayev.uz/api/user/login",
         option
       );
-      // console.log(response.data);
-      commit("setLoading", false, { root: true });
+      console.log(response.data);
+      // commit("setLoading", false, { root: true });
       const token = response.data.token;
       localStorage.setItem("token", token);
-      if (token === !null) {
+      if (token) {
         window.location.href = "/";
       }
     } catch (error) {
       console.error(error);
       if (error.response.data.error === "Unauthorized") {
-        commit("setLoading", false, { root: true });
+        // commit("setLoading", false, { root: true });
         commit("setError", true);
         commit(
           "setText",
@@ -109,7 +110,7 @@ const actions = {
         );
       }
       if (error.request.status === 422) {
-        commit("setLoading", false, { root: true });
+        // commit("setLoading", false, { root: true });
         commit("setError", true);
         commit(
           "setText",
