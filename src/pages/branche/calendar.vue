@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="container-fluid calendar-basic">
-            <div class="card">
+            <div class="card" style="width: 100%;">
                 <div class="card-body">
                     <div class="row" id="wrap">
                         <div class="col-xxl-9 box-col-70">
-                            <div class="calendar-default" id="calendar-container">
+                            <div class="calendar-default" id="calendar-container" >
                                 <FullCalendar id="calendar" :options="calendarOptions" />
                             </div>
                         </div>
@@ -24,7 +24,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 export default {
     components: {
         FullCalendar,
-
     },
     data() {
         return {

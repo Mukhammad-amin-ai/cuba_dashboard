@@ -1,7 +1,7 @@
 <template lang="">
     <div class='container'>
       <calendar/>
-     <div class="col-sm-12">
+     <div class="col-sm-12" style="width: 50%;">
     <div class="card">
       <!-- <spiner/> -->
      <div class="card-header">
@@ -32,12 +32,14 @@
       
     </div>
     <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <ul class="pagination" v-for='item in schedule.link' :key='item'>
+    <li class="page-item">
+      <a class="page-link" href="#">{{item.name}}</a>
+    </li>
+    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
   </ul>
 </nav>
   </div>
@@ -67,11 +69,8 @@ export default {
 </script>
 <style scoped >
 .container {
+  display: flex;
+  justify-content: center;
   padding: 30px
 }
-
-/* 
-th {
-  text-align: center;
-} */
 </style>

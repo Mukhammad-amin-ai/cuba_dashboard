@@ -48,10 +48,8 @@ const routes = [
         component: group,
       },
     ],
-
-    meta: { requireAuth: true },
+    meta: { requiredAuth: true },
   },
-
   {
     path: "/login",
     component: login,
@@ -63,6 +61,7 @@ const routes = [
   {
     path: "/:pathMatch(.*)*",
     component: notfoound,
+    meta: { requiredAuth: true },
   },
 ];
 const router = createRouter({
@@ -70,7 +69,7 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  if (to.meta.requirAuth && !isUserValid()) {
+  if (to.meta.requiredAuth && !isUserValid()) {
     next("/login");
   } else {
     next();

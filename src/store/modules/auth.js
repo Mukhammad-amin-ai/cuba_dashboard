@@ -37,7 +37,6 @@ const actions = {
       console.log(response.data);
       if (response.data.message === "Email sent") {
         commit("setLoading", false, { root: true });
-
       }
       const a = JSON.parse(response.config.data);
       commit("setEmail", a.email);
@@ -92,11 +91,11 @@ const actions = {
         "http://tulibayev.uz/api/user/login",
         option
       );
-      console.log(response.data);
+      // console.log(response.data);
       commit("setLoading", false, { root: true });
       const token = response.data.token;
       localStorage.setItem("token", token);
-      if (token) {
+      if (token === !null) {
         window.location.href = "/";
       }
     } catch (error) {
@@ -104,12 +103,18 @@ const actions = {
       if (error.response.data.error === "Unauthorized") {
         commit("setLoading", false, { root: true });
         commit("setError", true);
-        commit("setText","Sorry, wrong email address or password. Please try again");
+        commit(
+          "setText",
+          "Sorry, wrong email address or password. Please try again"
+        );
       }
-      if(error.request.status === 422){
+      if (error.request.status === 422) {
         commit("setLoading", false, { root: true });
         commit("setError", true);
-        commit("setText","Sorry, wrong email address or password. Please try again");
+        commit(
+          "setText",
+          "Sorry, wrong email address or password. Please try again"
+        );
       }
     }
   },
