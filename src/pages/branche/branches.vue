@@ -13,11 +13,10 @@
                                 <div class="blog-details">
                                     <p v-if="branchData && branchData.length">{{ branchData[0].name }}</p>
                                     <p v-else>No branch data available.</p>
-                                    <h4>Main Office</h4>
+                                    <h4>Latest opened Branch</h4>
                                     <ul class="blog-social">
                                         <li><i class="icofont icofont-user"></i>Mark Jecno</li>
-                                        <li><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
-                                        <li><i class="icofont icofont-ui-chat"></i>598 Comments</li>
+                                        
                                     </ul>
                                 </div>
                             </div>

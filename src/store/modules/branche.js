@@ -3,7 +3,8 @@ const token = localStorage.getItem("token");
 
 let state = {
   branchData: [],
-  handler:true
+  handler:true,
+  room:[]
 };
 const mutations = {
   setBranch(state, branchData) {
@@ -11,6 +12,9 @@ const mutations = {
   },
   setHandle(state,hendler){
     state.handler=hendler
+  },
+  setRoom(state,room){
+    state.room=room
   }
 };
 const actions = {
@@ -29,7 +33,6 @@ const actions = {
     } catch (error) {
       console.error("error find", error);
     }
-
   },
   async getBranche({ commit },option) {
     commit("setLoading", true, { root: true });
@@ -43,6 +46,20 @@ const actions = {
     } catch (error) {
       console.error("error find", error);
     }
+  },
+  async getRoom({commit},option){
+    commit("setLoading", true, { root: true });
+    try {
+      let response = await axios.get(`http://tulibayev.uz/api/branch/${option}/rooms`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      commit("setRoom", response.data.total);
+      commit("setLoading", false, { root: true });
+    } catch (error) {
+      console.error("error find", error);
+    }
+
   },
   async createBreanch({ commit },option) {
     try {
@@ -70,7 +87,6 @@ const actions = {
       } catch (error) {
         console.error("error find", error);
       }
-      // console.log(`https://tulibayev.uz/api/branch/${option}`);
     }
   },
   async editBranch({commit},{id,option}){
