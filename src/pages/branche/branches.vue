@@ -14,10 +14,10 @@
                                     <p v-if="branchData && branchData.length">{{ branchData[0].name }}</p>
                                     <p v-else>No branch data available.</p>
                                     <h4>Latest opened Branch</h4>
-                                    <ul class="blog-social">
+                                    <!-- <ul class="blog-social">
                                         <li><i class="icofont icofont-user"></i>Mark Jecno</li>
                                         
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                         </div>

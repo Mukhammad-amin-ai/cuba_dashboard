@@ -53,7 +53,7 @@ const actions = {
       let response = await axios.get(`http://tulibayev.uz/api/branch/${option}/rooms`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data);
+      console.log(response.data); 
       commit("setRoom", response.data.total);
       commit("setLoading", false, { root: true });
     } catch (error) {
@@ -96,7 +96,7 @@ const actions = {
       });
       console.log(response.data);
       if (response.data.message ==='Branch updated successfully'){
-        window.location.href='branches'
+        window.location.href='/branches'
       }
     } catch (error) {
       console.error("error find", error);

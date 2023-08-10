@@ -69,8 +69,11 @@
         </div>
     </div>
     <div class="flex">
-        <button type="button" class="btn btn-success" @click="changer">Edit</button>
-        <button type="button" class="btn btn-danger" @click="deleteBranch">Delete</button>
+        <button type="button" class="btn btn-success" @click="changer"> 
+        <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
+        <h6 v-else>Go From Edit</h6>
+        </button>
+        <button type="button" class="btn btn-danger" @click="deleteBranch"><h6>Delete</h6></button>
     </div>
     <div class="col-sm-12" style="width: 100%;">
         <div class="card">
@@ -180,7 +183,9 @@ export default {
     height: auto;
     /* background-color: aqua; */
 }
-
+h6{
+    margin-top: 10px;
+}
 .list {
     width: 100%;
     height: auto;

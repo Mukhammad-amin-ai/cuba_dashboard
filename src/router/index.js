@@ -11,6 +11,8 @@ import schedule from "@/pages/schedul/schedule.vue";
 import group from "@/pages/group/group.vue";
 import branchInfo from "@/pages/branche/branchInfo.vue";
 import branchCreate from '@/pages/branche/create.vue'
+import createCourse from "@/pages/course/create.vue";
+import courseEdit from '@/pages/course/courseEdit.vue'
 // import beforeRouteUpdate from "./mixin/RouteReloadingMixin";
 
 const routes = [
@@ -26,6 +28,14 @@ const routes = [
       {
         path: "courses",
         component: courses,
+      },
+      {
+        path: "courses/create",
+        component: createCourse,
+      },
+      {
+        path: "courseInfo/:id",
+        component: courseEdit,
       },
       {
         path: "branches",

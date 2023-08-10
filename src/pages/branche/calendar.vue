@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container-fluid calendar-basic">
-            <div class="card" style="width: 100%;">
+            <div class="card"  style="width: 100%;" >
                 <div class="card-body">
                     <div class="row" id="wrap">
                         <div class="col-xxl-9 box-col-70">
@@ -36,11 +36,11 @@ export default {
                 selectMirror: true,
                 dayMaxEvents: true,
                 weekends: true,
-                headerToolbar: {
-                    left: "prev,next today",
-                    center: "title",
-                    right: "dayGridMonth,timeGridWeek,timeGridDay",
-                },
+                // headerToolbar: {
+                //     left: "prev,next today",
+                //     center: "title",
+                //     right: "dayGridMonth,timeGridWeek,timeGridDay",
+                // },
             },
         };
     },

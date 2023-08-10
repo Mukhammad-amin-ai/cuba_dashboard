@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <!-- <div class="card" style="width: 18rem;" >
             <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
             <div class="card-body">
@@ -8,14 +8,32 @@
                 <a href="#" class="btn btn-primary">About course</a>
             </div>
         </div> -->
-        <div class="card" style="width: 18rem;" v-for="item in courseData " :key="item">
-            <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">Price : {{ item.price }} SUM</p>
-                <a href="#" class="btn btn-primary">About course</a>
+        <div class="row ">
+            <div class="col-md-6 col-xl-3 box-col-6" v-for="item in courseData " :key="item">
+                <RouterLink :to="{ path: 'courseInfo/' + item.id }">
+                    <div class="card  p-10 " style="width: 18rem;">
+                        <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">Price : {{ item.price }} SUM</p>
+                            <a href="#" class="btn btn-primary">About course</a>
+                        </div>
+                    </div>
+                </RouterLink>
             </div>
         </div>
+        <RouterLink to="courses/create">
+            <div class="card " style="width: 18rem;">
+                <!-- <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#"> -->
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                    <div class="box">
+                        <i class='bx bx-plus-circle'></i>
+                    </div>
+                </div>
+            </div>
+        </RouterLink>
     </div>
 </template>
 <script>
@@ -48,5 +66,11 @@ export default {
 
 .card:hover {
     transform: scale(1.050)
+}
+
+.box {
+    padding: 50px;
+    text-align: center;
+    font-size: 50px;
 }
 </style>

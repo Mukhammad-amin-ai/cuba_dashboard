@@ -1,17 +1,20 @@
 <template lang="">
-    <div class='container'>
-      <calendar/>
-     <div class="col-sm-12" style="width: 50%;">
-    <div class="card">
+  <div class='container-fluid '>
+    <!-- <div class="row">
+      </div> -->
+
+        <calendar/>
+        <div class="col-sm-12" style="width: 70%;">
+          <div class="card">
       <!-- <spiner/> -->
-     <div class="card-header">
+      <div class="card-header">
         <h3>Basic Table With Border Bottom Color</h3>
       </div>
       <div class="table-responsive">
         <table class="table">
           <thead>
             <tr class="border-bottom-primary">
-            <th scope='col'>id</th>
+              <!-- <th scope='col'>id</th> -->
               <th scope="col">Group</th>
               <th scope="col">Session</th>
               <th scope="col">Room</th>
@@ -20,8 +23,8 @@
           </thead>
           <tbody>
             <tr v-for='item in schedule.data' :key="item">
-            <td >{{item.id}}</td>
-            <td >Group: {{item.group_id}}</td>
+            <!-- <td >{{item.id}}</td> -->
+            <td >{{item.group}}</td>
             <td >{{item.session}}</td>
             <td >{{item.room}}</td>
             <td >{{item.weekday}}</td>
@@ -32,7 +35,7 @@
       
     </div>
     <!-- <nav aria-label="Page navigation example">
-  <ul class="pagination" >
+      <ul class="pagination" >
     <li class="page-item">
       <a class="page-link" href="#">\ previous</a>
     </li>
@@ -68,9 +71,9 @@ export default {
 }
 </script>
 <style scoped >
-.container {
+/* .container-fluid {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 30px
-}
+} */
 </style>
