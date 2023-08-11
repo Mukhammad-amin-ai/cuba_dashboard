@@ -57,6 +57,13 @@
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title" to="/teachers">
+          <i class="icofont icofont-user"></i>
+          <span class="lan-3"> Teachers</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list">
+        <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/student">
           <i class="icofont icofont-user"></i>
           <span class="lan-3"> Students</span>

@@ -16,6 +16,9 @@ import courseEdit from '@/pages/course/courseEdit.vue'
 // import beforeRouteUpdate from "./mixin/RouteReloadingMixin";
 import student from '@/pages/student/students.vue'
 import createGroup from '@/pages/group/create.vue'
+import teachers from '@/pages/teachers/teachers.vue'
+
+
 
 const routes = [
   {
@@ -42,12 +45,10 @@ const routes = [
       {
         path: "branches",
         component: branches,
-        // mixins: [beforeRouteUpdate]
       },
       {
         path: "branchInfo/:id",
         component: branchInfo,
-        // mixins: [beforeRouteUpdate]
       },
       {
         path: "branch/create",
@@ -68,6 +69,10 @@ const routes = [
       {
         path: "/student",
         component: student,
+      },
+      {
+        path: "/teachers",
+        component: teachers,
       }
     ],
     meta: { requiredAuth: true },

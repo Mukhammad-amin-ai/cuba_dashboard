@@ -17,7 +17,7 @@ const actions = {
           Authorization: "Bearer " + token,
         },
       });
-      console.log(response.data.data);
+    //   console.log(response.data.data);
       if (response.data) {
         commit("setTeacher", response.data.data);
       }

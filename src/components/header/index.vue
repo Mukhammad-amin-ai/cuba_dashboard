@@ -3,8 +3,8 @@
     <SearchBar />
     <Logo />
 
-    <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
-      <!-- <div class="notification-slider"> -->
+    <!-- <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
+      <div class="notification-slider">
       <swiper :slidesPerView="1" :autoplay="{
         delay: 2500,
         disableOnInteraction: false,
@@ -28,8 +28,8 @@
         </swiper-slide>
       </swiper>
 
-      <!-- </div> -->
-    </div>
+      </div>
+    </div> -->
     <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
       <ul class="nav-menus">
         <li>
@@ -39,18 +39,18 @@
           </span>
         </li>
 
-        <li class="onhover-dropdown">
+        <!-- <li class="onhover-dropdown">
           <svg @click="bookmark_open()">
             <use href="@/assets/svg/icon-sprite.svg#star"></use>
           </svg>
 
           <Bookmark v-bind:activeclass="bookmark" />
-        </li>
+        </li> -->
         <li>
           <Mode />
         </li>
-        <Cart />
-        <Notifications />
+        <!-- <Cart />
+        <Notifications /> -->
 
         <Profile />
       </ul>

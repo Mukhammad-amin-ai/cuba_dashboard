@@ -15,7 +15,7 @@ const actions = {
         let responce = await axios.get("http://tulibayev.uz/api/course", {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       commit("setCourseData", responce.data.data);
     } catch (error) {
       console.error("error find there", error);
