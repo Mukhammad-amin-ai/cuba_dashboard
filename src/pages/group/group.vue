@@ -1,5 +1,14 @@
 <template >
     <div class="container">
+        <RouterLink to="group/create">
+            <div class="card mb-3 hover" style="width: 100%;">
+                <div class="row g-0" style="text-align: center; padding: 30px;">
+                    <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
+                </div>
+            </div>
+        </RouterLink>
+
+
         <div class="card mb-3" style="max-width: 100vw;" v-for="item in groupData.data" :key="item">
             <div class="row g-0">
                 <div class="col-md-4" style="max-width: 20vw;">
@@ -9,12 +18,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Group No/{{ item.id }}</h5>
                         <p> Group name : {{ item.name }}</p>
-                        <p> Teacher : <span class="red"> {{item.teacher  }}</span>  Assistent-teacher : <span class="red">{{ item.assistant_teacher }} </span> </p>
-
-                        <p >Course name :<span class="green">{{ item.course }}</span></p>
-                        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p> -->
-                        <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                        <p> Teacher : <span class="red"> {{ item.teacher }}</span> Assistent-teacher : <span class="red">{{
+                            item.assistant_teacher }} </span> </p>
+                        <p>Course name :<span class="green">{{ item.course }}</span></p>
                     </div>
                 </div>
             </div>
@@ -22,7 +28,7 @@
     </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
     computed: {
@@ -42,15 +48,21 @@ export default {
 .container {
     padding-top: 20px
 }
-.col-md-4{
-    display:flex;
-    align-items:center;
-    justify-content:center
+
+.col-md-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
-.red{
-    color:red
+
+.red {
+    color: red
 }
-.green{
-    color:rgb(9, 132, 9)
+
+.hover:hover {
+    transform: scale(1.050);
 }
-</style>
+
+.green {
+    color: rgb(9, 132, 9)
+}</style>

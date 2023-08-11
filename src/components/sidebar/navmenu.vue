@@ -45,7 +45,6 @@
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/schedule">
           <img class="courses" src="@/assets/svg/table.svg" alt="">
-          <!-- <i class="icofont icofont-user"></i> -->
           <span class="lan-3"> Schedule</span>
         </router-link>
       </li>
@@ -53,8 +52,14 @@
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/group">
           <img class="courses" src="@/assets/svg/users.svg" alt="">
-          <!-- <i class="icofont icofont-user"></i> -->
           <span class="lan-3"> Group</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title" to="/student">
+          <i class="icofont icofont-user"></i>
+          <span class="lan-3"> Students</span>
         </router-link>
       </li>
       <li class="sidebar-list">

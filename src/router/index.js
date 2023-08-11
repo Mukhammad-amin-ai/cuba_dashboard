@@ -14,6 +14,8 @@ import branchCreate from '@/pages/branche/create.vue'
 import createCourse from "@/pages/course/create.vue";
 import courseEdit from '@/pages/course/courseEdit.vue'
 // import beforeRouteUpdate from "./mixin/RouteReloadingMixin";
+import student from '@/pages/student/students.vue'
+import createGroup from '@/pages/group/create.vue'
 
 const routes = [
   {
@@ -56,9 +58,17 @@ const routes = [
         component: schedule,
       },
       {
-        path: "/group",
+        path: "group",
         component: group,
       },
+      {
+        path: "group/create",
+        component: createGroup,
+      },
+      {
+        path: "/student",
+        component: student,
+      }
     ],
     meta: { requiredAuth: true },
   },

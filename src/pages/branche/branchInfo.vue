@@ -5,8 +5,7 @@
             <div class="col-sm-12">
                 <div class="blog-single">
                     <div class="blog-box blog-details">
-                        <img class="img-fluid w-100 size" src="@/assets/images/it-park.jpg"
-                            alt="#">
+                        <img class="img-fluid w-100 size" src="@/assets/images/it-park.jpg" alt="#">
                         <div class="blog-details">
                             <ul class="blog-social">
                                 <li>10 August 2023</li>
@@ -46,8 +45,8 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label>Branche Name</label>
-                                            <input class="form-control" type="text" :placeholder="branchData.name"
-                                                v-model="name">
+                                            <input class="form-control" type="text" v-model="branchData.name">
+                                            <!-- v-model="name" -->
                                         </div>
                                     </div>
                                 </div>
@@ -55,8 +54,8 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label>Location</label>
-                                            <input class="form-control" type="text" :placeholder="branchData.location"
-                                                v-model="location">
+                                            <input class="form-control" type="text" v-model="branchData.location">
+                                            <!-- v-model="location" -->
                                         </div>
                                     </div>
                                 </div>
@@ -69,11 +68,13 @@
         </div>
     </div>
     <div class="flex">
-        <button type="button" class="btn btn-success" @click="changer"> 
-        <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
-        <h6 v-else>Go From Edit</h6>
+        <button type="button" class="btn btn-success" @click="changer">
+            <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
+            <h6 v-else>Go From Edit</h6>
         </button>
-        <button type="button" class="btn btn-danger" @click="deleteBranch"><h6>Delete</h6></button>
+        <button type="button" class="btn btn-danger" @click="deleteBranch">
+            <h6>Delete</h6>
+        </button>
     </div>
     <div class="col-sm-12" style="width: 100%;">
         <div class="card">
@@ -104,7 +105,7 @@
                 </table>
             </div>
         </div>
-        <branchCousesVue/>
+        <branchCousesVue />
     </div>
 </template>
 <script >
@@ -119,8 +120,12 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
-            name: "",
-            location: "",
+            // name: branchData.name,
+            // location: branchData.location,
+            // branchData: {
+            //     name: '',
+            //     location: ''
+            // }
         }
     },
     computed: {
@@ -152,8 +157,10 @@ export default {
         },
         editBranch() {
             let option = {
-                name: this.name,
-                location: this.location
+                name: branchData.name,
+                location: branchData.location
+                // name: this.branchData.name,
+                // location: this.branchData.location
             }
             this.$store.dispatch('branche/editBranch', { id: this.id, option: option })
         }
@@ -169,23 +176,28 @@ export default {
     display: flex;
     justify-content: space-between;
 }
-.size{
-    width: 80%  !important;
-    
+
+.size {
+    width: 80% !important;
+
 }
-.blog-box{
+
+.blog-box {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .custom {
     width: 50%;
     height: auto;
     /* background-color: aqua; */
 }
-h6{
+
+h6 {
     margin-top: 10px;
 }
+
 .list {
     width: 100%;
     height: auto;
@@ -195,6 +207,5 @@ h6{
     width: 50%;
     height: auto;
     /* background-color: red; */
-}
-</style>
+}</style>
  
