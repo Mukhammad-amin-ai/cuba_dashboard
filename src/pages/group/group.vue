@@ -8,8 +8,8 @@
             </div>
         </RouterLink>
 
-
-        <div class="card mb-3" style="max-width: 100vw;" v-for="item in groupData.data" :key="item">
+        <RouterLink :to="{ path:'group/'+ item.id }" v-for="item in groupData.data" :key="item">
+            <div class="card mb-3" style="max-width: 100vw;" >
             <div class="row g-0">
                 <div class="col-md-4" style="max-width: 20vw;">
                     <img src="../../assets/images/Students-Wallpaper.jpg" class="img-fluid rounded-start" alt="#">
@@ -25,6 +25,10 @@
                 </div>
             </div>
         </div>
+
+
+        </RouterLink>
+       
     </div>
 </template>
 <script>

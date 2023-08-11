@@ -1,19 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
+// import isUserValid from "./authChecker";
 import Body from "../components/body";
 import Default from "../pages/dashboard/defaultPage.vue";
 import login from "@/auth/login.vue";
 import register from "@/auth/register.vue";
 import notfoound from "@/auth/404.vue";
-// import isUserValid from "./authChecker";
 import courses from "@/pages/course/courses.vue";
 import branches from "@/pages/branche/branches.vue";
 import schedule from "@/pages/schedul/schedule.vue";
 import group from "@/pages/group/group.vue";
+import groupInfo from "@/pages/group/groupInfo.vue";
+
 import branchInfo from "@/pages/branche/branchInfo.vue";
 import branchCreate from '@/pages/branche/create.vue'
 import createCourse from "@/pages/course/create.vue";
 import courseEdit from '@/pages/course/courseEdit.vue'
-// import beforeRouteUpdate from "./mixin/RouteReloadingMixin";
 import student from '@/pages/student/students.vue'
 import createGroup from '@/pages/group/create.vue'
 import teachers from '@/pages/teachers/teachers.vue'
@@ -61,6 +62,10 @@ const routes = [
       {
         path: "group",
         component: group,
+      },
+      {
+        path: "group/:id",
+        component: groupInfo,
       },
       {
         path: "group/create",
