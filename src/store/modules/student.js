@@ -15,7 +15,18 @@ const actions = {
       const responce = await axios.get("http://tulibayev.uz/api/student", {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
+      commit("setStudent", responce.data.data);
+    } catch (e) {
+        console.error('error in get student', e);
+    }
+  },
+  async getStudentById({ commit },option) {
+    try {
+      const responce = await axios.get(`http://tulibayev.uz/api/student/${option}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      // console.log(responce.data.data);
       commit("setStudent", responce.data.data);
     } catch (e) {
         console.error('error in get student', e);
@@ -32,6 +43,34 @@ const actions = {
       }
     } catch (e) {
         console.error('error in get student', e);
+    }
+  },
+   async editStudent({commit},{id,option}){
+    try {
+      const response = await axios.put(`http://tulibayev.uz/api/student/${id}`, option,{
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      if (response.data.message ==='Student updated successfully'){
+        window.location.href='/student'
+      }
+    } catch (error) {
+      console.error("error find", error);
+    }
+  },
+  async deleteStudent({commit},option){
+    if(window.confirm('O\'chiraymi')){
+      try {
+        const response = await axios.delete(`http://tulibayev.uz/api/student/${option}`,{
+          headers: { Authorization: "Bearer " + token },
+        });
+        console.log(response.data);
+        if (response.data.message ==='Student deleted successfully'){
+          window.location.href='/student'
+        }
+      } catch (error) {
+        console.error("error find", error);
+      }
     }
   }
 };

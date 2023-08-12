@@ -19,7 +19,7 @@ import student from '@/pages/student/students.vue'
 import createGroup from '@/pages/group/create.vue'
 import teachers from '@/pages/teachers/teachers.vue'
 import studentCreate from '@/pages/student/create.vue'
-
+import studentInfo from '@/pages/student/studentInfo.vue'
 
 const routes = [
   {
@@ -78,6 +78,10 @@ const routes = [
       {
         path: "student/create",
         component: studentCreate,
+      },
+      {
+        path: "student/:id",
+        component: studentInfo,
       },
       {
         path: "teachers",
