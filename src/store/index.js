@@ -8,7 +8,7 @@ import course from "./modules/course";
 import schedule from "@/store/modules/schedule";
 import group from "./modules/group";
 import teacher from "./modules/teacher";
-
+import student from './modules/student';
 
 
 export default createStore({
@@ -49,6 +49,7 @@ export default createStore({
     course,
     schedule,
     group,
-    teacher
+    teacher,
+    student
   },
 });

@@ -45,6 +45,7 @@ export default {
         this.getTeachers()
         this.getCourse()
     },
+    
     methods:{
         getGroupStudents(){
             this.$store.dispatch('group/getGroupStudents', this.id)

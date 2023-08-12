@@ -1,5 +1,5 @@
 import axios from "axios";
-const token = localStorage.get("token");
+const token = localStorage.getItem("token");
 
 const state = {
   students: [],
@@ -15,12 +15,25 @@ const actions = {
       const responce = await axios.get("http://tulibayev.uz/api/student", {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data);
-      commit("setStudent", responce.data);
+      console.log(responce.data.data);
+      commit("setStudent", responce.data.data);
     } catch (e) {
         console.error('error in get student', e);
     }
   },
+  async createStudent({commit},option){
+    try {
+      const responce = await axios.post("http://tulibayev.uz/api/student",option ,{
+        headers: { Authorization: "Bearer " + token },
+      });
+      // console.log(responce.data);
+      if (responce.data.message ==='Student created successfully'){
+        window.location.href='/student'
+      }
+    } catch (e) {
+        console.error('error in get student', e);
+    }
+  }
 };
 
 export default {

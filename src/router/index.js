@@ -18,7 +18,7 @@ import courseEdit from '@/pages/course/courseEdit.vue'
 import student from '@/pages/student/students.vue'
 import createGroup from '@/pages/group/create.vue'
 import teachers from '@/pages/teachers/teachers.vue'
-
+import studentCreate from '@/pages/student/create.vue'
 
 
 const routes = [
@@ -56,7 +56,7 @@ const routes = [
         component: branchCreate,
       },
       {
-        path: "/schedule",
+        path: "schedule",
         component: schedule,
       },
       {
@@ -72,11 +72,15 @@ const routes = [
         component: createGroup,
       },
       {
-        path: "/student",
+        path: "student",
         component: student,
       },
       {
-        path: "/teachers",
+        path: "student/create",
+        component: studentCreate,
+      },
+      {
+        path: "teachers",
         component: teachers,
       }
     ],
