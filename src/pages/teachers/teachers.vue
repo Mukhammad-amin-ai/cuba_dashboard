@@ -20,7 +20,7 @@
                         </div>
                     </RouterLink>
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
 </template>
