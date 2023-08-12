@@ -23,6 +23,21 @@ const actions = {
       console.error("there is problem ", error);
     }
   },
+  async getScheduleById({ commit },option) {
+    // commit("setLoading", true, { root: true });
+    const token = localStorage.getItem("token");
+    try {
+      const responce = await axios.get(`http://tulibayev.uz/api/schedule/${option}`, {
+        headers: { Authorization: "Bearer" + token },
+      });
+      console.log(responce.data.data);
+      commit("setSchedule", responce.data.data);
+      // commit("setLoading", false, { root: true });
+    } catch (error) {
+      console.error("there is problem ", error);
+    }
+  },
+
 };
 export default {
   namespaced: true,

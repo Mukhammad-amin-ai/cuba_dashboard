@@ -4,6 +4,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-body">
+                    <!-- <button type="button" class="btn btn-danger">Danger</button> -->
                     <div class="form theme-form">
                         <div class="row">
                             <div class="col">
@@ -38,6 +39,7 @@
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-success">Create Group</button>
     </div>
 </template>
 <script>
