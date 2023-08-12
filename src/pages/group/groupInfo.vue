@@ -2,7 +2,7 @@
     <div class="container-fluid p-20">
         <div class="user-profile">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" v-if="this.$store.state.group.editHandler">
                     <div class="card hovercard text-center">
                         <div class="cardheader" style="background-size: cover;
                         background-position: 10%;
@@ -11,7 +11,7 @@
                         </div>
                         <div class="user-image">
                             <div class="icon-wrapper">
-                                <i id="update-profile-tour" class="icofont icofont-pencil-alt-5"
+                                <i id="update-profile-tour" class="icofont icofont-pencil-alt-5" @click="chenger"
                                     data-intro="Change Profile image here"></i>
                             </div>
                         </div>
@@ -62,6 +62,44 @@
                         </div>
                     </div>
                 </div>
+                <div class="card" v-else>
+                    <div class="card-body">
+                        <!-- <button type="button" class="btn btn-danger">Danger</button> -->
+                        <div class="form theme-form">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label>Group Name</label>
+                                        <input class="form-control" type="text" placeholder="Group Name *">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label class="col-form-label">Choose Teacher</label>
+                                <!-- selectedId for catching id of teachers  -->
+                                <select class="form-select" aria-label="Default select example" v-model="selectedTeacher">
+                                    <option :value="item.id" v-for="item in teachers" :key="item">{{ item.firstname }} {{
+                                        item.lastname }}</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="col-form-label">Choose Course</label>
+                                <select class="form-select" aria-label="Default select example" v-model="selectedCourse">
+                                    <option :value="item.id" v-for="item in courseData" :key="item">{{ item.name }}</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label>Student Name</label>
+                                        <input class="form-control" type="text" placeholder="Student Name *">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-danger" @click="chenger">Close Edit</button>
+                    </div>
+                </div>
                 <div class="col-sm-12" style="width: 100%;">
                     <div class="card">
                         <div class="card-header">
@@ -89,9 +127,10 @@
                         </div>
                     </div>
                 </div>
-                <TableOfStudents/>
+                <TableOfStudents />
             </div>
         </div>
+        <button type="button" class="btn btn-danger" @click="deleteGroup">Delete Group</button>
     </div>
 </template>
 <script>
@@ -108,7 +147,9 @@ export default {
     },
     computed: {
         ...mapState('group', ['groupData']),
-        ...mapState('schedule', ['schedule'])
+        ...mapState('schedule', ['schedule']),
+        ...mapState('teacher', ['teachers']),
+        ...mapState('course', ['courseData'])
     },
     mounted() {
         this.getGroupById()
@@ -119,7 +160,13 @@ export default {
             this.$store.dispatch('group/getGroupDataWithId', this.id)
         },
         getschedule() {
-            this.$store.dispatch('schedule/getScheduleById',this.id)
+            this.$store.dispatch('schedule/getScheduleById', this.id)
+        },
+        chenger() {
+            this.$store.dispatch('group/editHandler')
+        },
+        deleteGroup(){
+            this.$store.dispatch('group/groupDelete', this.id)
         }
 
     }

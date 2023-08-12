@@ -42,11 +42,21 @@ export default {
     },
     mounted(){
         this.getGroupStudents()
+        this.getTeachers()
+        this.getCourse()
     },
     methods:{
         getGroupStudents(){
             this.$store.dispatch('group/getGroupStudents', this.id)
-        }
+        },
+        getTeachers() {
+            this.$store.dispatch('teacher/getTeachers');
+
+        },
+        getCourse() {
+            this.$store.dispatch('course/getCourseData');
+        },
+      
     }
 }
 </script>
