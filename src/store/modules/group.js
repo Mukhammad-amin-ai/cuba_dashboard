@@ -60,6 +60,32 @@ const actions = {
       console.error("problem with getting group students", error);
     }
   },
+  async createGroup({ commit }, option) {
+    try {
+      let responce = await axios.put("http://tulibayev.uz/api/group", option, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(responce.data);
+      if (responce.data.message === "Group created successfully") {
+        window.location.href = "/group";
+      }
+    } catch (e) {
+      console.error('error in creating Group', e);
+    }
+  },
+  async editGroup({commit},{id,option}){
+    try{
+      let response = await axios.put(`http://tulibayev.uz/api/group/${id}`,option,{
+        headers:{Authorization:'Bearer'+token}
+      })
+      console.log(response.data);
+      if (response.data.message ==='Group updated successfully'){
+        window.location.href='/group'
+      }
+    }catch(e){
+      console.error('error in editing group',e);
+    }
+  },
   async groupDelete({ commit }, option) {
     if (window.confirm("Are you sure you want to delete")) {
       try {
@@ -70,8 +96,8 @@ const actions = {
           }
         );
         console.log(responce.data);
-        if (responce.data.message ==='Group deleted successfully'){
-          window.location.href='/group'
+        if (responce.data.message === "Group deleted successfully") {
+          window.location.href = "/group";
         }
       } catch (error) {
         console.error("there is problem with group", error);

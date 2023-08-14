@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid p-20">
+        <spiner/>
         <div class="row " style="gap: 40px;">
             <RouterLink to="courses/create">
                 <div class="card " style="width: 18rem;">
@@ -29,8 +30,12 @@
     </div>
 </template>
 <script>
+import spiner from '@/components/ui/spiner.vue'
 import { mapState } from 'vuex'
 export default {
+    components:{
+        spiner,
+    },
     computed: {
         ...mapState('course', ['courseData'])
     },

@@ -1,5 +1,6 @@
 <template >
     <Breadcrumbs title="Blog Single" main="Information about Branch" />
+    <spiner/>
     <div class="container-fluid" v-if="this.$store.state.branche.handler">
         <div class="row">
             <div class="col-sm-12">
@@ -67,6 +68,7 @@
             </div>
         </div>
     </div>
+    <spiner/>
     <div class="flex">
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
@@ -76,6 +78,7 @@
             <h6>Delete</h6>
         </button>
     </div>
+    <spiner/>
     <div class="col-sm-12" style="width: 100%;">
         <div class="card">
             <!-- <spiner/> -->
@@ -111,9 +114,11 @@
 <script >
 import calendar from "@/pages/branche/calendar.vue"
 import branchCousesVue from "@/pages/branche/branchCouses.vue"
+import spiner from "@/components/ui/spiner.vue"
 import { mapState } from "vuex"
 export default {
     components: {
+        spiner,
         calendar,
         branchCousesVue
     },
