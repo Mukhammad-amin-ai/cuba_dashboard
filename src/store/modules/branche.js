@@ -24,8 +24,6 @@ const actions = {
       let response = await axios.get("http://tulibayev.uz/api/branch", {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(response.data);
-      // commit("setBranch", response.data.data);
       if (response.data && response.data.data) {
         commit("setBranch", response.data.data);
     }

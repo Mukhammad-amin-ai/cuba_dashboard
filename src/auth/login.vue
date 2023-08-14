@@ -51,7 +51,7 @@ export default {
   },
   data(){
     return{
-      email:'aminahmadov123@gmail.com',
+      email:'user@gmail.com',
       password:"12345678"
     }
   },

@@ -27,6 +27,21 @@ const actions = {
       console.error("error find there", error);
     }
   },
+  async getCourseDataById({ commit },option) {
+    commit("setLoading", true, { root: true });
+    try {
+      let responce = await axios.get(`http://tulibayev.uz/api/course/${option}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(responce.data);
+      commit("setCourseData", responce.data.data);
+      commit("setLoading", false, { root:true });
+    } catch (error) {
+      commit("setLoading", false, { root: true });
+
+      console.error("error find there", error);
+    }
+  },
   async createCourse({ commit }, option) {
     try {
       let response = await axios.post(
@@ -59,6 +74,21 @@ const actions = {
       }
     } catch (error) {
       console.error("error find", error);
+    }
+  },
+  async delete({commit},option){
+    if(window.confirm('O\'chiraymi')){
+      try {
+        const response = await axios.delete(`http://tulibayev.uz/api/course/${option}`,{
+          headers: { Authorization: "Bearer " + token },
+        });
+        console.log(response.data);
+        if (response.data.message ==='Course deleted successfully'){
+          window.location.href='/courses'
+        }
+      } catch (error) {
+        console.error("error find", error);
+      }
     }
   },
 };
