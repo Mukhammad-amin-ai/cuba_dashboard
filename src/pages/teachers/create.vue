@@ -31,12 +31,11 @@
                             <option :value=false>Inactive</option>
                         </select>
                     </div>
-                  
-                    <button type="submit" class="btn btn-primary" @click.prevent="createStudent">Create Teacher</button>
+
+                    <button type="submit" class="btn btn-primary" @click.prevent="creatingTeacher">Create Teacher</button>
                 </form>
             </div>
         </div>
-
     </div>
 </template>
 <script>
@@ -48,6 +47,18 @@ export default {
             email: "",
             contact_no: "",
             is_assistant: Boolean
+        }
+    },
+    methods: {
+        creatingTeacher() {
+            const option = {
+                firstname: this.firstname,
+                lastname: this.lastname,
+                email: this.email,
+                contact_no: this.contact_no,
+                is_assistant: this.is_assistant
+            }
+            this.$store.dispatch('teacher/createTeacher',option)
         }
     }
 

@@ -35,9 +35,9 @@ const actions = {
           },
         }
       );
-      console.log(response.data.data);
+      console.log(response.data);
       if (response.data) {
-        commit("setTeacher", response.data.data);
+        commit("setTeacher", response.data);
       }
     } catch (e) {
       console.error("teacher error", e);
@@ -58,6 +58,19 @@ const actions = {
       console.error("problem with creating treacher", e);
     }
   },
+  async editTeacher({commit},{id,option}){
+    try {
+      const response = await axios.put(`http://tulibayev.uz/api/teacher/${id}`, option,{
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      if (response.data.message ==='Teacher updated successfully'){
+        window.location.href='/teacher'
+      }
+    } catch (error) {
+      console.error("error find", error);
+    }
+  }
 };
 
 export default {
