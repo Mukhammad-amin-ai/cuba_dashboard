@@ -33,7 +33,7 @@ const actions = {
       let responce = await axios.get(`http://tulibayev.uz/api/course/${option}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data);
+      // console.log(responce.data);
       commit("setCourseData", responce.data.data);
       commit("setLoading", false, { root:true });
     } catch (error) {

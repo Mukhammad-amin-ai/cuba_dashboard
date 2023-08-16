@@ -91,8 +91,8 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label>Student Name</label>
-                                        <input class="form-control" type="text" placeholder="Student Name *">
+                                        <label>Student Name {{ students }}</label>
+                                        <input class="form-control" type="text" placeholder="Student Name *" v-model="search" @change="getStudents">
                                     </div>
                                 </div>
                             </div>
@@ -143,17 +143,20 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
+            search:''
         }
     },
     computed: {
         ...mapState('group', ['groupData']),
         ...mapState('schedule', ['schedule']),
         ...mapState('teacher', ['teachers']),
-        ...mapState('course', ['courseData'])
+        ...mapState('course', ['courseData']),
+        ...mapState('student',['students'])
     },
     mounted() {
         this.getGroupById()
         this.getschedule()
+        // this.getStudents()
     },
     methods: {
         getGroupById() {
@@ -162,12 +165,15 @@ export default {
         getschedule() {
             this.$store.dispatch('schedule/getScheduleById', this.id)
         },
+        getStudents(){
+            this.$store.dispatch('student/searchStudent',this.search)
+        },
         chenger() {
             this.$store.dispatch('group/editHandler')
         },
         deleteGroup(){
             this.$store.dispatch('group/groupDelete', this.id)
-        }
+        },
 
     }
 }

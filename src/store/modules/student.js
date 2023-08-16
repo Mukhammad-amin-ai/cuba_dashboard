@@ -72,6 +72,17 @@ const actions = {
         console.error("error find", error);
       }
     }
+  },
+  async searchStudent({commit},option){
+    try{
+      let responce = await axios.post('http://tulibayev.uz/api/student/search',option,{
+        headers:{Authorization:'Bearer'+token}
+      })
+      console.log(responce.data);
+      commit('setStudent',responce.data)
+    }catch(e){
+      console.error('problem in searching student',e);
+    }
   }
 };
 
