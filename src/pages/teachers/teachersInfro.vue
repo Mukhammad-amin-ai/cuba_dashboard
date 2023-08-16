@@ -16,6 +16,7 @@
                         <div class="card-body">
                             <div class="product-page-details">
                                 <h3>{{ teachers.firstname  }} {{ teachers.lastname }}</h3>
+                                <!-- <p>Loading...</p> -->
                             </div>
                             <div class="product-price">
                             </div>
@@ -60,7 +61,7 @@ export default {
     methods:{
         getTeacherByid(){
             this.$store.dispatch('teacher/getTeachersById',this.id)
-            console.log(this.teachers);
+            //console.log(this.teachers);
         }
     }
     

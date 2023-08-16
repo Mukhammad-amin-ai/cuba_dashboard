@@ -1,6 +1,13 @@
 <template >
     <div class="container-fluid p-20">
         <div class="card p-20 ">
+            <RouterLink to="teachers/create" class="select">
+                <div class="card social-profile  ">
+                    <div class="card-body">
+                        <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
+                    </div>
+                </div>
+            </RouterLink>
             <div class="row ">
                 <div class="col-12 col-sm-6 col-lg-3" v-for="item in teachers" :key="item">
                     <RouterLink :to="{ path: 'teachers/' + item.id }">
@@ -19,8 +26,10 @@
                             </div>
                         </div>
                     </RouterLink>
+
                 </div>
-            </div>  
+
+            </div>
         </div>
     </div>
 </template>
@@ -46,7 +55,14 @@ body {
     margin-top: 20px;
     background: #eee;
 }
-
+.select {
+    transition: .3s all linear;
+    transform: scale(1);
+}
+.select:hover {
+    /* transition: .3s all linear; */
+    transform: scale(1.050);
+}
 .single_advisor_profile {
     position: relative;
     margin-bottom: 50px;
