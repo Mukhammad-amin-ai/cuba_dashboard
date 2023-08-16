@@ -18,10 +18,10 @@
           </thead>
           <tbody>
             <tr v-for='item in schedule.data' :key="item">
-            <td >{{item.group}}</td>
-            <td >{{item.session}}</td>
-            <td >{{item.room}}</td>
-            <td >{{item.weekday}}</td>
+            <td >{{item.group.name}}</td>
+            <td >{{item.session.duration}}</td>
+            <td >{{item.room.name}}</td>
+            <td >{{item.weekday.name}}</td>
             </tr>
           </tbody>
         </table>

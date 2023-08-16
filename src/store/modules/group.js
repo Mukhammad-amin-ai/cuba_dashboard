@@ -40,7 +40,7 @@ const actions = {
           headers: { Authorization: "Bearer" + token },
         }
       );
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       commit("setGroup", responce.data.data);
     } catch (error) {
       console.error("there is problem ", error);
@@ -62,7 +62,7 @@ const actions = {
   },
   async createGroup({ commit }, option) {
     try {
-      let responce = await axios.put("http://tulibayev.uz/api/group", option, {
+      let responce = await axios.post("http://tulibayev.uz/api/group", option, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(responce.data);

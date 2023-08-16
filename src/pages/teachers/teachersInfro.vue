@@ -36,7 +36,10 @@
                             <hr />
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success" @click="isChange">Go To Edit</button>
+                    <div class="d-flex  ">
+                        <button type="button" class="btn btn-success" @click="isChange">Go To Edit</button>
+                        <button type="button" class="btn btn-danger" @click="deleteTeacher">Delete</button>
+                    </div>
                 </div>
             </div>
             <div class="container" v-else>
@@ -86,12 +89,26 @@ export default {
         return {
             id: this.$route.params.id,
             isChanger: true,
-            // firstname: "",
-            // lastname: "",
-            // email: "",
-            // contact_no: "",
-            // is_assistant: Boolean
+            firstname: "",
+            lastname: "",
+            email: "",
+            contact_no: "",
+            is_assistant: Boolean
         }
+    },
+    watch: {
+        teachers: {
+            immediate: true,
+            handler(newTeachers) {
+                if (newTeachers) {
+                    this.firstname = newTeachers.firstname;
+                    this.lastname = newTeachers.lastname;
+                    this.email = newTeachers.email;
+                    this.contact_no = newTeachers.contact_no;
+                    this.is_assistant = newTeachers.is_assistant;
+                }
+            }
+        },
     },
     computed: {
         ...mapState('teacher', ['teachers'])
@@ -102,20 +119,24 @@ export default {
     },
     methods: {
         getTeacherByid() {
-            const option = {
-                // firstname: this.firstname,
-                // lastname: this.lastname,
-                // email: this.email,
-                // contact_no: this.contact_no,
-                // is_assistant: this.is_assistant
-            }
-            // this.$store.dispatch('teacher/getTeachersById', { id: this.id, option: option })
+
+            this.$store.dispatch('teacher/getTeachersById', this.id,)
         },
         isChange() {
             this.isChanger = !this.isChanger
         },
         editTeacher() {
-
+            const option = {
+                firstname: this.firstname,
+                lastname: this.lastname,
+                email: this.email,
+                contact_no: this.contact_no,
+                is_assistant: this.is_assistant
+            }
+            this.$store.dispatch('teacher/editTeacher',{id:this.id,option:option})
+        },
+        deleteTeacher(){
+            this.$store.dispatch("teacher/deleteTeacher",this.id)
         }
     }
 

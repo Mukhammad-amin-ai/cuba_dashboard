@@ -65,12 +65,12 @@
                 <div class="card" v-else>
                     <div class="card-body">
                         <!-- <button type="button" class="btn btn-danger">Danger</button> -->
-                        <div class="form theme-form">
+                        <div class="form theme-form p-50">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
                                         <label>Group Name</label>
-                                        <input class="form-control" type="text" placeholder="Group Name *">
+                                        <input class="form-control" type="text" placeholder="Group Name *" v-model="groupname">
                                     </div>
                                 </div>
                             </div>
@@ -91,13 +91,23 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label>Student Name {{ students }}</label>
-                                        <input class="form-control" type="text" placeholder="Student Name *" v-model="search" @change="getStudents">
+                                        <label>Student Name </label>
+                                        <!-- <input class="form-control" type="text" placeholder="Student Name *" v-model="search" @change="getStudents"> -->
+                                        <select class="form-select" aria-label="Default select example" v-model="student">
+                                            <option :value="item.id" v-for="item in students" :key="item">{{
+                                                item.firstname }}{{ item.lastname }}{{ item.fullname }}
+                                            </option>
+                                        </select>
+                                        <br>
+                                        <input class="form-control" type="text" placeholder="Student Name *"
+                                            @change="searchStudent" v-model="searchText">
                                     </div>
                                 </div>
+                                <button type="button" class="btn btn-success" @click="choosedStudent">Add student</button>
                             </div>
                         </div>
                         <button type="button" class="btn btn-danger" @click="chenger">Close Edit</button>
+                        <button type="button" class="btn btn-success" @click="editGroup">Edit student</button>
                     </div>
                 </div>
                 <div class="col-sm-12" style="width: 100%;">
@@ -143,7 +153,12 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
-            search:''
+            searchText: '',
+            student: "",
+            selectedTeacher: "",
+            selectedCourse: "",
+            groupname: "",
+            studentsList: []
         }
     },
     computed: {
@@ -151,12 +166,11 @@ export default {
         ...mapState('schedule', ['schedule']),
         ...mapState('teacher', ['teachers']),
         ...mapState('course', ['courseData']),
-        ...mapState('student',['students'])
+        ...mapState('student', ['students'])
     },
     mounted() {
         this.getGroupById()
         this.getschedule()
-        // this.getStudents()
     },
     methods: {
         getGroupById() {
@@ -165,16 +179,41 @@ export default {
         getschedule() {
             this.$store.dispatch('schedule/getScheduleById', this.id)
         },
-        getStudents(){
-            this.$store.dispatch('student/searchStudent',this.search)
+        getStudents() {
+            this.$store.dispatch('student/searchStudent', this.search)
         },
         chenger() {
             this.$store.dispatch('group/editHandler')
         },
-        deleteGroup(){
+        searchStudent() {
+            let option = {
+                data: this.searchText
+            }
+            this.$store.dispatch('student/searchStudent', option)
+        },
+        deleteGroup() {
             this.$store.dispatch('group/groupDelete', this.id)
         },
-
+        choosedStudent() {
+            this.studentsList.push(this.student)
+            if (this.studentsList.length > 0) {
+                this.student = '',
+                this.searchText = ''
+                
+            }
+        },
+        editGroup() {
+            const option = {
+                name: this.groupname,
+                teacher_id: this.selectedTeacher,
+                assistant_teacher_id: this.selectedTeacher,
+                course_id: this.selectedCourse,
+                students: this.studentsList,
+                status:true,
+                completed_lessons:5
+            }
+            this.$store.dispatch('group/editGroup', { id: this.id, option: option })
+        }
     }
 }
 </script>

@@ -16,7 +16,7 @@ const actions = {
       const responce = await axios.get("http://tulibayev.uz/api/schedule", {
         headers: { Authorization: "Bearer" + token },
       });
-      console.log(responce.data);
+      // console.log(responce.data);
       commit("setSchedule", responce.data);
       commit("setLoading", false, { root: true });
     } catch (error) {
@@ -30,8 +30,8 @@ const actions = {
       const responce = await axios.get(`http://tulibayev.uz/api/schedule/${option}`, {
         headers: { Authorization: "Bearer" + token },
       });
-      console.log(responce.data.data);
-      commit("setSchedule", responce.data.data);
+      // console.log(responce.data);
+      commit("setSchedule", responce.data);
       // commit("setLoading", false, { root: true });
     } catch (error) {
       console.error("there is problem ", error);

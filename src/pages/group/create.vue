@@ -10,7 +10,7 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label>Group Name</label>
-                                    <input class="form-control" type="text" placeholder="Group Name *">
+                                    <input class="form-control" type="text" placeholder="Group Name *" v-model="groupname">
                                 </div>
                             </div>
                         </div>
@@ -18,7 +18,8 @@
                             <label class="col-form-label">Choose Teacher</label>
                             <!-- selectedId for catching id of teachers  -->
                             <select class="form-select" aria-label="Default select example" v-model="selectedTeacher">
-                                <option :value="item.id" v-for="item in teachers" :key="item">{{ item.firstname }} {{ item.lastname }}</option>
+                                <option :value="item.id" v-for="item in teachers" :key="item">{{ item.firstname }} {{
+                                    item.lastname }}</option>
                             </select>
                         </div>
                         <div class="mb-2">
@@ -31,15 +32,23 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label>Student Name</label>
-                                    <input class="form-control" type="text" placeholder="Student Name *">
+                                    <select class="form-select" aria-label="Default select example" v-model="student">
+                                        <option :value="item.id" v-for="item in students" :key="item">{{ item.firstname }}{{
+                                            item.lastname }}{{ item.fullname }}
+                                        </option>
+                                    </select>
+                                    <br>
+                                    <input class="form-control" type="text" placeholder="Student Name *"
+                                        @change="searchStudent" v-model="searchText">
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-success" @click="choosedStudent">Add student</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-success">Create Group</button>
+        <button type="button" class="btn btn-success" @click="createGroup">Create Group</button>
     </div>
 </template>
 <script>
@@ -48,25 +57,59 @@ export default {
     data() {
         return {
             selectedTeacher: "",
-            selectedCourse: ""
+            selectedCourse: "",
+            searchText: '',
+            student: "",
+            groupname: "",
+            studentsList: []
         }
     },
     computed: {
         ...mapState('teacher', ['teachers']),
-        ...mapState('course', ['courseData'])
+        ...mapState('course', ['courseData']),
+        ...mapState("student", ['students'])
 
     },
     mounted() {
         this.getTeachers()
         this.getCourse()
+        this.getStudents()
     },
     methods: {
         getTeachers() {
             this.$store.dispatch('teacher/getTeachers');
-
         },
         getCourse() {
             this.$store.dispatch('course/getCourseData');
+        },
+        getStudents() {
+            this.$store.dispatch('student/getStudent')
+        },
+        searchStudent() {
+            let option = {
+                data: this.searchText
+            }
+            this.$store.dispatch('student/searchStudent', option)
+        },
+        createGroup() {
+            let option = {
+                name: this.groupname,
+                teacher_id: this.selectedTeacher,
+                assistant_teacher_id: this.selectedTeacher,
+                course_id: this.selectedCourse,
+                students: this.studentsList
+            }
+            // this.$store.dispatch('group/createGroup', option)
+            console.log(option);
+        },
+        choosedStudent() {
+            this.studentsList.push(this.student)
+            if (this.studentsList.length > 0) {
+                this.student = '',
+                this.searchText = ''
+                this.getStudents()
+            }
+            // console.log(this.studentsList.length <=0);
         }
     }
 }
