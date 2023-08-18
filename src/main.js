@@ -12,6 +12,8 @@ import fr from "./locales/pt.json";
 import es from "./locales/es.json";
 import { defaultLocale, localeOptions } from "./constants/config";
 import Breadcrumbs from "./components/bread_crumbs";
+import Multiselect from "vue-multiselect";
+import "vue-multiselect/dist/vue-multiselect.css";
 
 
 const messages = { en: en, es: es, pt: pt, fr: fr };
@@ -27,4 +29,5 @@ createApp(App)
   .use(store)
   .component(VueFeather.name, VueFeather)
   .component("Breadcrumbs", Breadcrumbs)
+  .component("multiselect", Multiselect)
   .mount("#app");

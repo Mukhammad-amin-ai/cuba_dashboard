@@ -3,16 +3,20 @@ import axios from "axios";
 const token = localStorage.getItem("token");
 const state = {
   teachers: [],
+  assistants:[]
 };
 const mutations = {
   setTeacher(state, teachers) {
     state.teachers = teachers;
   },
+  setAssistants(state,assistants){
+    state.assistants = assistants
+  }
 };
 const actions = {
   async getTeachers({ commit }) {
     try {
-      const response = await axios.get("http://tulibayev.uz/api/teacher", {
+      const response = await axios.get(`http://tulibayev.uz/api/teacher`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -85,12 +89,24 @@ const actions = {
         console.log(response.data);
         if (response.data.message === "success") {
           window.location.href = "/teachers";
-        }else if (response.data.status === 400){
+        } else if (response.data.status === 400) {
           window.location.href = `/group/${response.data.data[0].id}`;
         }
       } catch (e) {
         console.error("error of deleting teacher", e);
       }
+    }
+  },
+  async getAssistants({ commit }) {
+    try {
+      const response = await axios.get(
+        "http://tulibayev.uz/api/teacher?role=assistant",
+        { headers: { Authorization: "Bearer" + token } }
+      );
+      console.log(response.data);
+      commit('setAssistants',response.data.data)
+    } catch (e) {
+      console.error("error with getting assistants");
     }
   },
 };
