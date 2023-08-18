@@ -54,7 +54,7 @@ const actions = {
           headers: { Authorization: "Bearer" + token },
         }
       );
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       commit("setGroupStudents", responce.data.data);
     } catch (error) {
       console.error("problem with getting group students", error);

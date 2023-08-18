@@ -103,7 +103,7 @@ const actions = {
         "http://tulibayev.uz/api/teacher?role=assistant",
         { headers: { Authorization: "Bearer" + token } }
       );
-      console.log(response.data);
+      // console.log(response.data);
       commit('setAssistants',response.data.data)
     } catch (e) {
       console.error("error with getting assistants");

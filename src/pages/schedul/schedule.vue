@@ -1,6 +1,6 @@
 <template lang="">
   <div class='container-fluid '>
-        <calendar/>
+        <calendar />
         <div class="col-sm-12" style="width: 70%;">
           <div class="card">
       <div class="card-header">
