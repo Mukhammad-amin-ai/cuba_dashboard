@@ -64,7 +64,6 @@
                 </div>
                 <div class="card" v-else>
                     <div class="card-body">
-                        <!-- <button type="button" class="btn btn-danger">Danger</button> -->
                         <div class="form theme-form p-50">
                             <div class="row">
                                 <div class="col">
@@ -77,7 +76,6 @@
                             </div>
                             <div class="mb-2">
                                 <label class="col-form-label">Choose Teacher</label>
-                                <!-- selectedId for catching id of teachers  -->
                                 <select class="form-select" aria-label="Default select example" v-model="selectedTeacher">
                                     <option :value="item.id" v-for="item in teachers" :key="item">{{ item.firstname }} {{
                                         item.lastname }}</option>
@@ -98,24 +96,13 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <!-- <div class="mb-3">
-                                        <label>Student Name </label>
-                                        <select class="form-select" aria-label="Default select example" v-model="student">
-                                            <option :value="item.id" v-for="item in students" :key="item">{{
-                                                item.firstname }}{{ item.lastname }}{{ item.fullname }}
-                                            </option>
-                                        </select>
-                                        <br>
-                                        <input class="form-control" type="text" placeholder="Student Name *"
-                                            @change="searchStudent" v-model="searchText">
-                                    </div> -->
                                 </div>
                                 <button type="button" class="btn btn-success" @click="choosedStudent">Add student</button>
                             </div>
                         </div>
                         <div class="row" v-if="showHide">
                             <div class="col d-flex justify-content-between">
-                                <div class="col-sm-12 " style="width: 40vw;">
+                                <div class="col-sm-12 " style="width: 35vw;">
                                     <div class="card">
                                         <div class="card-header">
                                             <input class="form-control" type="text" placeholder="Student Name *"
@@ -147,7 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 ps-3" style="width: 40vw;" >
+                                <div class="col-sm-12 ps-3" style="width: 35vw;">
                                     <div class="card">
                                         <div class="card-header">
                                             <h4>
@@ -163,7 +150,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr v-for="(item, index) in groupStudents" :key="item">
+                                                    <tr v-for="(item, index) in choosedStudents" :key="item">
                                                         <td>
                                                             {{ item.firstname }} {{ item.lastname }} {{ item.fullname }}
                                                         </td>
@@ -182,7 +169,7 @@
                         <button type="button" class="btn btn-success" @click="editGroup">Edit student</button>
                     </div>
                 </div>
-                <div class="col-sm-12" style="width: 100%;">
+                <div class="col-sm-12" style="width: 100%;" v-if="scheTeble">
                     <div class="card">
                         <div class="card-header">
                             <h3>Schedul</h3>
@@ -209,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                <TableOfStudents />
+                <TableOfStudents :scheTeble="scheTeble" />
             </div>
         </div>
         <button type="button" class="btn btn-danger" @click="deleteGroup">Delete Group</button>
@@ -234,7 +221,7 @@ export default {
             studentsList: [],
             choosedStudents: [],
             showHide: false,
-
+            scheTeble: true
         }
     },
     computed: {
@@ -244,8 +231,19 @@ export default {
         ...mapState('course', ['courseData']),
         ...mapState('student', ['students']),
         ...mapState('teacher', ['assistants']),
-        ...mapState('group', ['groupStudents'])
+        ...mapState('group', ['groupStudents']),
 
+
+    },
+    watch: {
+        groupData: {
+            immediate: true,
+            handler(newGroupData) {
+                if (newGroupData) {
+                    this.groupname = newGroupData.name
+                }
+            }
+        },
 
     },
     mounted() {
@@ -257,7 +255,12 @@ export default {
 
     },
     methods: {
-        getGroupStudents(){
+        concatination() {
+            this.choosedStudents = JSON.parse(JSON.stringify(this.groupStudents));
+            this.studentsList = this.choosedStudents.map(student => student.id)
+            console.log(this.studentsList);
+        },
+        getGroupStudents() {
             this.$store.dispatch('group/getGroupStudents', this.id)
         },
         getAssistants() {
@@ -274,6 +277,8 @@ export default {
         },
         chenger() {
             this.$store.dispatch('group/editHandler')
+            this.scheTeble = !this.scheTeble
+            this.concatination()
         },
         searchStudent() {
             let option = {
@@ -288,12 +293,6 @@ export default {
             this.$store.dispatch('student/getStudent')
         },
         choosedStudent() {
-            // this.studentsList.push(this.student)
-            // if (this.studentsList.length > 0) {
-            //     this.student = '',
-            //         this.searchText = ''
-
-            // }
             this.showHide = !this.showHide
 
         },
@@ -301,7 +300,7 @@ export default {
             const option = {
                 name: this.groupname,
                 teacher_id: this.selectedTeacher,
-                assistant_teacher_id: this.selectedTeacher,
+                assistant_teacher_id: this.selectAssistant,
                 course_id: this.selectedCourse,
                 students: this.studentsList,
                 status: true,
@@ -314,13 +313,14 @@ export default {
                 this.showAddedList = true
             }
             //choosed
-            this.groupStudents.push(this.students[index])
-            // this.studentsList.push(this.students[index].id)
+            this.choosedStudents.push(this.students[index])
+            this.studentsList.push(this.students[index].id)
             // console.log(this.studentsList);
         },
         deleteStudent(index) {
-            this.groupStudents.splice(index, 1)
-            // this.studentsList.splice(index,1)
+            this.choosedStudents.splice(index, 1)
+            this.studentsList.splice(index, 1)
+            // console.log(this.studentsList);
             // console.log(this.studentsList);
 
         }

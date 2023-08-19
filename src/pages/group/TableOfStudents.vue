@@ -1,5 +1,5 @@
 <template>
-        <div class="col-sm-12" style="width: 100%;">
+        <div class="col-sm-12" style="width: 100%;" v-if="scheTeble">
             <div class="card">
                 <div class="card-header">
                     <h3>Table of Students</h3>
@@ -32,6 +32,9 @@ import { mapState } from 'vuex';
 
 
 export default {
+    props:{
+        scheTeble:Boolean
+    },
     data(){
         return {
            id: this.$route.params.id
