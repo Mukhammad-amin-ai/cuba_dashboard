@@ -19,6 +19,9 @@ const actions = {
       commit("setStudent", responce.data.data);
     } catch (e) {
         console.error('error in get student', e);
+        if(e.request.status=== 401){
+          window.location.href='/login'
+          }
     }
   },
   async getStudentById({ commit },option) {
@@ -30,6 +33,9 @@ const actions = {
       commit("setStudent", responce.data.data);
     } catch (e) {
         console.error('error in get student', e);
+        if(e.request.status=== 401){
+          window.location.href='/login'
+          }
     }
   },
   async createStudent({commit},option){
@@ -82,6 +88,9 @@ const actions = {
       commit('setStudent',responce.data.data)
     }catch(e){
       console.error('problem in searching student',e);
+      if(e.request.status=== 401){
+        window.location.href='/login'
+        }
     }
   }
 };

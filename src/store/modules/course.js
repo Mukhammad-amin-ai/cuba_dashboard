@@ -1,5 +1,5 @@
 import axios from "axios";
-import Api from './Base_Url'
+import Api from "./Base_Url";
 
 const token = localStorage.getItem("token");
 
@@ -20,26 +20,33 @@ const actions = {
       });
       // console.log(responce.data.data);
       commit("setCourseData", responce.data.data);
-      commit("setLoading", false, { root:true });
+      commit("setLoading", false, { root: true });
     } catch (error) {
       commit("setLoading", false, { root: true });
-
       console.error("error find there", error);
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
-  async getCourseDataById({ commit },option) {
+  async getCourseDataById({ commit }, option) {
     commit("setLoading", true, { root: true });
     try {
-      let responce = await axios.get(`http://tulibayev.uz/api/course/${option}`, {
-        headers: { Authorization: "Bearer " + token },
-      });
+      let responce = await axios.get(
+        `http://tulibayev.uz/api/course/${option}`,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
       // console.log(responce.data);
       commit("setCourseData", responce.data.data);
-      commit("setLoading", false, { root:true });
+      commit("setLoading", false, { root: true });
     } catch (error) {
       commit("setLoading", false, { root: true });
-
       console.error("error find there", error);
+      if(error.request.status=== 401){
+        window.location.href='/login'
+        }
     }
   },
   async createCourse({ commit }, option) {
@@ -76,15 +83,18 @@ const actions = {
       console.error("error find", error);
     }
   },
-  async delete({commit},option){
-    if(window.confirm('O\'chiraymi')){
+  async delete({ commit }, option) {
+    if (window.confirm("O'chiraymi")) {
       try {
-        const response = await axios.delete(`http://tulibayev.uz/api/course/${option}`,{
-          headers: { Authorization: "Bearer " + token },
-        });
+        const response = await axios.delete(
+          `http://tulibayev.uz/api/course/${option}`,
+          {
+            headers: { Authorization: "Bearer " + token },
+          }
+        );
         console.log(response.data);
-        if (response.data.message ==='Course deleted successfully'){
-          window.location.href='/courses'
+        if (response.data.message === "Course deleted successfully") {
+          window.location.href = "/courses";
         }
       } catch (error) {
         console.error("error find", error);

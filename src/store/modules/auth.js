@@ -87,14 +87,14 @@ const actions = {
   async login({ commit }, option) {
     // commit("setLoading", true, { root: true });
     try {
-      console.log('hello world');
+      // console.log('hello world');
       const response = await axios.post(
         "http://tulibayev.uz/api/user/login",
         option
       );
       console.log(response.data);
       // commit("setLoading", false, { root: true });
-      const token = response.data.token;
+      let token = response.data.token;
       localStorage.setItem("token", token);
       if (token) {
         window.location.href = "/";

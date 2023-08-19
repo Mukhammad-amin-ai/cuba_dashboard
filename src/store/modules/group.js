@@ -30,6 +30,9 @@ const actions = {
       commit("setGroup", responce.data);
     } catch (error) {
       console.error("there is problem ", error);
+      if(error.request.status=== 401){
+        window.location.href='/login'
+        }
     }
   },
   async getGroupDataWithId({ commit }, option) {
@@ -44,6 +47,9 @@ const actions = {
       commit("setGroup", responce.data.data);
     } catch (error) {
       console.error("there is problem ", error);
+      if(error.request.status=== 401){
+        window.location.href='/login'
+        }
     }
   },
   async getGroupStudents({ commit }, option) {
@@ -58,6 +64,9 @@ const actions = {
       commit("setGroupStudents", responce.data.data);
     } catch (error) {
       console.error("problem with getting group students", error);
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async createGroup({ commit }, option) {
@@ -70,20 +79,24 @@ const actions = {
         window.location.href = "/group";
       }
     } catch (e) {
-      console.error('error in creating Group', e);
+      console.error("error in creating Group", e);
     }
   },
-  async editGroup({commit},{id,option}){
-    try{
-      let response = await axios.put(`http://tulibayev.uz/api/group/${id}`,option,{
-        headers:{Authorization:'Bearer'+token}
-      })
+  async editGroup({ commit }, { id, option }) {
+    try {
+      let response = await axios.put(
+        `http://tulibayev.uz/api/group/${id}`,
+        option,
+        {
+          headers: { Authorization: "Bearer" + token },
+        }
+      );
       console.log(response.data);
-      if (response.data.message ==='Group updated successfully'){
-        window.location.href='/group'
+      if (response.data.message === "Group updated successfully") {
+        window.location.href = "/group";
       }
-    }catch(e){
-      console.error('error in editing group',e);
+    } catch (e) {
+      console.error("error in editing group", e);
     }
   },
   async groupDelete({ commit }, option) {

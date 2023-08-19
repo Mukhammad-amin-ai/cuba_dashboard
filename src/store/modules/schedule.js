@@ -21,6 +21,9 @@ const actions = {
       commit("setLoading", false, { root: true });
     } catch (error) {
       console.error("there is problem ", error);
+      if(error.request.status=== 401){
+        window.location.href='/login'
+        }
     }
   },
   async getScheduleById({ commit },option) {
@@ -32,6 +35,9 @@ const actions = {
       commit("setSchedule", responce.data);
     } catch (error) {
       console.error("there is problem ", error);
+      if(error.request.status=== 401){
+        window.location.href='/login'
+        }
     }
   },
 

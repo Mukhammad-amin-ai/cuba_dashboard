@@ -3,15 +3,15 @@ import axios from "axios";
 const token = localStorage.getItem("token");
 const state = {
   teachers: [],
-  assistants:[]
+  assistants: [],
 };
 const mutations = {
   setTeacher(state, teachers) {
     state.teachers = teachers;
   },
-  setAssistants(state,assistants){
-    state.assistants = assistants
-  }
+  setAssistants(state, assistants) {
+    state.assistants = assistants;
+  },
 };
 const actions = {
   async getTeachers({ commit }) {
@@ -27,6 +27,9 @@ const actions = {
       }
     } catch (e) {
       console.error("teacher error", e);
+      if (e.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async getTeachersById({ commit }, option) {
@@ -45,6 +48,9 @@ const actions = {
       }
     } catch (e) {
       console.error("teacher error", e);
+      if (e.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async createTeacher({ commit }, option) {
@@ -104,9 +110,12 @@ const actions = {
         { headers: { Authorization: "Bearer" + token } }
       );
       // console.log(response.data);
-      commit('setAssistants',response.data.data)
+      commit("setAssistants", response.data.data);
     } catch (e) {
-      console.error("error with getting assistants");
+      console.error("error with getting assistants", e);
+      if (e.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
 };

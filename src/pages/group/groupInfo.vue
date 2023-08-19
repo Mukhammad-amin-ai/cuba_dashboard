@@ -76,7 +76,7 @@
                             </div>
                             <div class="mb-2">
                                 <label class="col-form-label">Choose Teacher</label>
-                                <select class="form-select" aria-label="Default select example" v-model="selectedTeacher">
+                                    <select class="form-select" aria-label="Default select example" v-model="selectedTeacher">
                                     <option :value="item.id" v-for="item in teachers" :key="item">{{ item.firstname }} {{
                                         item.lastname }}</option>
                                 </select>
