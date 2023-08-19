@@ -148,6 +148,21 @@ export default {
     computed: {
         ...mapState('student', ['students'])
     },
+    watch:{
+        students:{
+            immediate:true,
+            handler(newStudents){
+                if(newStudents){
+                    this.firstname = newStudents.firstname,
+                    this.lastname = newStudents.lastname,
+                    this.email = newStudents.email,
+                    this.password = newStudents.password
+                    this.password_confirmation = newStudents.password_confirmation,
+                    this.contact_no = newStudents.contact_no
+                }
+            }
+        } 
+    },
     mounted() {
         this.getById()
     },

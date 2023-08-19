@@ -46,7 +46,7 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label>Branche Name</label>
-                                            <input class="form-control" type="text" v-model="branchData.name">
+                                            <input class="form-control" type="text" v-model="name">
                                             <!-- v-model="name" -->
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                     <div class="col">
                                         <div class="mb-3">
                                             <label>Location</label>
-                                            <input class="form-control" type="text" v-model="branchData.location">
+                                            <input class="form-control" type="text" v-model="location">
                                             <!-- v-model="location" -->
                                         </div>
                                     </div>
@@ -125,8 +125,8 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
-            // name: branchData.name,
-            // location: branchData.location,
+            name:"",
+            location: "",
             // branchData: {
             //     name: '',
             //     location: ''
@@ -143,12 +143,22 @@ export default {
             this.getRoom(),
             this.getschedule()
     },
+    watch:{
+        branchData:{
+            immediate:true,
+            handler(newBranchData){
+                if(newBranchData){
+                    this.name = newBranchData.name,
+                    this.location = newBranchData.location
+                }
+            }
+        }
+    },
     methods: {
         getschedule() {
             this.$store.dispatch('schedule/getSchedule')
         },
         deleteBranch() {
-            // console.log(this.id);
             this.$store.dispatch('branche/delete', this.id)
         },
         getbranch() {
@@ -162,8 +172,8 @@ export default {
         },
         editBranch() {
             let option = {
-                name: branchData.name,
-                location: branchData.location
+                name: this.name,
+                location: this.location
                 // name: this.branchData.name,
                 // location: this.branchData.location
             }

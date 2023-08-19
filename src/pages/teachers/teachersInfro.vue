@@ -119,7 +119,6 @@ export default {
     },
     methods: {
         getTeacherByid() {
-
             this.$store.dispatch('teacher/getTeachersById', this.id,)
         },
         isChange() {

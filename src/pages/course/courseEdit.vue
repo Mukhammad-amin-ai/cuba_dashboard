@@ -94,6 +94,17 @@ export default {
     computed: {
         ...mapState('course', ['courseData'])
     },
+    watch:{
+        courseData:{
+            immediate:true,
+            handler(newCourseData){
+                if(newCourseData){
+                    this.name = newCourseData.name,
+                    this.price = newCourseData.price
+                }
+            }
+        }
+    },
     mounted() {
         this.getCourseById()
     },
