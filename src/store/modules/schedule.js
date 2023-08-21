@@ -16,7 +16,7 @@ const actions = {
       const responce = await axios.get("http://tulibayev.uz/api/schedule", {
         headers: { Authorization: "Bearer" + token },
       });
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       commit("setSchedule", responce.data);
       commit("setLoading", false, { root: true });
     } catch (error) {

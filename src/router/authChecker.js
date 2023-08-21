@@ -1,8 +1,8 @@
-const verify = "https://tulibayev.uz/api/user/emailverification";
-const login = "https://tulibayev.uz/api/user/login";
+const verify = "http://tulibayev.uz/api/user/emailverification";
+const login = "http://tulibayev.uz/api/user/login";
+const token = localStorage.getItem("token");
 
 function isUserValid() {
-  const token = localStorage.getItem("token");
   if (!token) {
     return false;
   }
@@ -18,4 +18,5 @@ function isUserValid() {
     return false;
   }
 }
+
 export default isUserValid;

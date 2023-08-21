@@ -32,7 +32,7 @@
 </template>
 <script>
 import spiner from '@/components/ui/spiner.vue'
-import calendar from '../branche/calendar.vue'
+import calendar from "@/advance/calendar.vue"
 import { mapState } from 'vuex'
 export default {
   components: {
@@ -53,9 +53,5 @@ export default {
 }
 </script>
 <style scoped >
-/* .container-fluid {
-  display: flex;
-  justify-content: space-between;
-  padding: 30px
-} */
+
 </style>

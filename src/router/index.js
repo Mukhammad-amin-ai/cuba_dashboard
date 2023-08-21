@@ -22,17 +22,17 @@ import studentInfo from "@/pages/student/studentInfo.vue";
 import teachersInfo from "@/pages/teachers/teachersInfro.vue";
 import teachersCreate from "@/pages/teachers/create.vue";
 
-
-
 const routes = [
   {
     path: "/",
     component: Body,
+    meta: { requiredAuth: true },
     children: [
       {
         path: "",
         name: "defaultRoot",
         component: Default,
+        meta: { requiredAuth: true },
       },
       {
         path: "courses",
@@ -115,12 +115,11 @@ const routes = [
         meta: { requiredAuth: true },
       },
     ],
-    meta: { requiredAuth: true },
   },
   {
     path: "/login",
+    name: "login page",
     component: login,
-    
   },
   {
     path: "/register",
@@ -136,17 +135,15 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  console.log( to.meta.requiredAuth);
   if (to.meta.requiredAuth) {
-    if(!isUserValid){
+    if ( !isUserValid()) {
       next("/login");
+    } else {
+      next();
     }
-  } 
+  } else {
     next();
-    // window.location.href='/'
-  
-    // next();
-
-})
+  }
+});
 
 export default router;

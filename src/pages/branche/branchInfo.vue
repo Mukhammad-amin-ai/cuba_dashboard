@@ -112,7 +112,7 @@
     </div>
 </template>
 <script >
-import calendar from "@/pages/branche/calendar.vue"
+import calendar from "@/advance/calendar.vue"
 import branchCousesVue from "@/pages/branche/branchCouses.vue"
 import spiner from "@/components/ui/spiner.vue"
 import { mapState } from "vuex"
