@@ -154,7 +154,11 @@ export default {
     },
     methods: {
         getschedule() {
-            this.$store.dispatch('schedule/getSchedule')
+            let option = {
+                branch_id:this.id,
+                weekday_id:this.$store.state.schedule.idDay
+            }
+            this.$store.dispatch('schedule/getBranchSchedule',option)
         },
         deleteBranch() {
             this.$store.dispatch('branche/delete', this.id)

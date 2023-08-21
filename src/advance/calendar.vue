@@ -20,7 +20,7 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
     components: {
         FullCalendar,
@@ -38,19 +38,20 @@ export default {
                 weekends: true,
                 events: [],
             },
-            id:this.$route.params.id,
             thisWillEmmit:'hello world',
-            idDay:''
         };
     },
     methods: {
+        ...mapMutations('schedule',[
+            'setId'
+        ]),
         handleDateClick(info) {
             const selectedDate = new Date(info.date)
             const dayOfWeek = selectedDate.getDay()
-            this.idDay =dayOfWeek
+            this.setId(dayOfWeek) 
+            // console.log(this.$store.state.schedule.idDay);
         },
     },
-    // some have need to emmit 
 };
 </script>
 <style scoped>

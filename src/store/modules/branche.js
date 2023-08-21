@@ -64,7 +64,7 @@ const actions = {
           headers: { Authorization: "Bearer " + token },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       commit("setRoom", response.data.total);
       commit("setLoading", false, { root: true });
     } catch (error) {
