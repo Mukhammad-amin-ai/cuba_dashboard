@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <div class="container-fluid calendar-basic">
-            <div class="card" style="width: 100%;">
+    <div class="half">
+        <div class="container-fluid calendar-basic" style="width: 100%;">
+            <div class="card">
                 <div class="card-body">
                     <div class="row" id="wrap">
                         <div class="col-xxl-9 box-col-70">
@@ -31,7 +31,6 @@ export default {
                 plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
                 initialView: "dayGridMonth",
                 dateClick: this.handleDateClick,
-                // dayContent: this.processBackendData,
                 editable: true,
                 selectable: true,
                 selectMirror: true,
@@ -39,21 +38,23 @@ export default {
                 weekends: true,
                 events: [],
             },
-
+            id:this.$route.params.id,
+            thisWillEmmit:'hello world',
+            idDay:''
         };
     },
-    computed: {
-        ...mapState('schedule', ['schedule'])
-    },
-    mounted() {
-        this.getschedule()
-
-    },
     methods: {
-        getschedule() {
-            this.$store.dispatch('schedule/getSchedule')
-        }
-    }
+        handleDateClick(info) {
+            const selectedDate = new Date(info.date)
+            const dayOfWeek = selectedDate.getDay()
+            this.idDay =dayOfWeek
+        },
+    },
+    // some have need to emmit 
 };
 </script>
-<style scoped></style>
+<style scoped>
+.half {
+    width: 50%
+}
+</style>

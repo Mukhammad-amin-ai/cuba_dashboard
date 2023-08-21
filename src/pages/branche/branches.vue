@@ -11,7 +11,7 @@
                                 <img class="img-fluid bg-img-cover" style="height: 100%;" src="@/assets/images/it-park.jpg"
                                     alt="">
                                 <div class="blog-details">
-                                    <p v-if="branchData && branchData.length">{{ branchData[0].name }}</p>
+                                    <p v-if="branchData && branchData.length">{{ branchData[branchData.length - branchData.length].name }}</p>
                                     <p v-else>No branch data available.</p>
                                     <h4>Latest opened Branch</h4>
                                     <!-- <ul class="blog-social">
@@ -35,7 +35,7 @@
                                 <div class="col-sm-7">
                                     <div class="blog-details">
                                         <div class="blog-date"><span>02</span> January 2018</div>
-                                        <p v-if="branchData && branchData.length">{{ branchData[1].name }}</p>
+                                        <p v-if="branchData && branchData.length">{{ branchData[branchData.length - (branchData.length - 1)].name }}</p>
                                         <p v-else>No branch data available.</p>
                                         <div class="blog-bottom-content">
                                             <ul class="blog-social">
@@ -61,7 +61,7 @@
                                 <div class="col-sm-7">
                                     <div class="blog-details">
                                         <div class="blog-date"><span>03</span> January 2018</div>
-                                        <p v-if="branchData && branchData.length">{{ branchData[2].name }}</p>
+                                        <p v-if="branchData && branchData.length">{{ branchData[branchData.length - (branchData.length - 2)].name }}</p>
                                         <p v-else>No branch data available.</p>
                                         <div class="blog-bottom-content">
                                             <ul class="blog-social">
@@ -113,8 +113,12 @@
     </div>
 </template>
 <script>
+
 import { mapState } from 'vuex';
 import spiner from '@/components/ui/spiner.vue';
+
+
+
 export default {
     components: {
         spiner,

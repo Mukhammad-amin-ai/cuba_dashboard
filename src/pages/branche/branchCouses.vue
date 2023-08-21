@@ -6,10 +6,7 @@
                     <h3> Available Courses</h3>
                 </div>
                 <div class="row p-20">
-
                     <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in courseData " :key="item">
-                        <!-- <RouterLink :to="{ path: 'branchInfo/' + item.id }"> -->
-        
                         <div class="card" >
                             <div class="blog-box blog-grid text-center">
                                 <div class="blog-wrraper">

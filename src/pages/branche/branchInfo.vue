@@ -1,6 +1,6 @@
 <template >
     <Breadcrumbs title="Blog Single" main="Information about Branch" />
-    <spiner/>
+    <spiner />
     <div class="container-fluid" v-if="this.$store.state.branche.handler">
         <div class="row">
             <div class="col-sm-12">
@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-    <spiner/>
+    <spiner />
     <div class="flex">
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
@@ -78,38 +78,40 @@
             <h6>Delete</h6>
         </button>
     </div>
-    <spiner/>
-    <div class="col-sm-12" style="width: 100%;">
-        <div class="card">
-            <!-- <spiner/> -->
-            <div class="card-header">
-                <h3>{{ branchData.name }} Schedule of courses</h3>
-            </div>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr class="border-bottom-primary">
-                            <th scope='col'>id</th>
-                            <th scope="col">Group</th>
-                            <th scope="col">Session</th>
-                            <th scope="col">Room</th>
-                            <th scope="col">Weekday</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for='item in schedule.data' :key="item">
-                            <td>{{ item.id }}</td>
-                            <td>Group: {{ item.group_id }}</td>
-                            <td>{{ item.session }}</td>
-                            <td>{{ item.room }}</td>
-                            <td>{{ item.weekday }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <spiner />
+    <div class="container-fluid d-flex">
+        <calendar />
+        <div class="col-sm-12" style="width: 50%;">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Basic Table With Border Bottom Color</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="border-bottom-primary">
+                                <th scope="col">Group</th>
+                                <th scope="col">Session</th>
+                                <th scope="col">Room</th>
+                                <th scope="col">Weekday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for='item in schedule.data' :key="item">
+                                <td>{{ item.group.name }}</td>
+                                <td>{{ item.session.duration }}</td>
+                                <td>{{ item.room.name }}</td>
+                                <td>{{ item.weekday.name }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <branchCousesVue />
+
+
     </div>
+    <branchCousesVue />
 </template>
 <script >
 import calendar from "@/advance/calendar.vue"
@@ -125,12 +127,8 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
-            name:"",
+            name: "",
             location: "",
-            // branchData: {
-            //     name: '',
-            //     location: ''
-            // }
         }
     },
     computed: {
@@ -143,13 +141,13 @@ export default {
             this.getRoom(),
             this.getschedule()
     },
-    watch:{
-        branchData:{
-            immediate:true,
-            handler(newBranchData){
-                if(newBranchData){
+    watch: {
+        branchData: {
+            immediate: true,
+            handler(newBranchData) {
+                if (newBranchData) {
                     this.name = newBranchData.name,
-                    this.location = newBranchData.location
+                        this.location = newBranchData.location
                 }
             }
         }
@@ -174,8 +172,6 @@ export default {
             let option = {
                 name: this.name,
                 location: this.location
-                // name: this.branchData.name,
-                // location: this.branchData.location
             }
             this.$store.dispatch('branche/editBranch', { id: this.id, option: option })
         }
@@ -222,5 +218,6 @@ h6 {
     width: 50%;
     height: auto;
     /* background-color: red; */
-}</style>
+}
+</style>
  
