@@ -4,6 +4,7 @@ const token = localStorage.getItem("token");
 const state = {
   scheduleData: [],
   idDay: "",
+  day:''
 };
 const mutations = {
   setSchedule(state, scheduleData) {
@@ -12,6 +13,9 @@ const mutations = {
   setId(state, idDay) {
     state.idDay = idDay;
   },
+  setDay(state,day){
+    state.day =day
+  }
 };
 const actions = {
   async getSchedule({ commit }) {
@@ -54,20 +58,23 @@ const actions = {
         option,
         { headers: { Authorization: "Bearer " + token } }
       );
-      console.log(response.data);
+      // console.log(response.data);
       commit("setSchedule", response.data);
-      if(response.data.data){
-    commit("setSmallLoading", false, { root: true });
+      if (response.data.data) {
+        commit("setSmallLoading", false, { root: true });
       }
     } catch (e) {
       console.error("error with getingBranchSchedul", e);
     }
   },
-  getIdofDay({commit},info) {
-    console.log(info.dateStr);
+  getIdofDay({ commit }, info) {
+    commit("setChoose", false, { root: true });
+    
+    // console.log(info.dateStr);
+    commit('setDay',info.dateStr)
     const selectedDate = new Date(info.date);
     const setId = selectedDate.getDay();
-    commit('setId',setId)
+    commit("setId", setId);
   },
 };
 export default {

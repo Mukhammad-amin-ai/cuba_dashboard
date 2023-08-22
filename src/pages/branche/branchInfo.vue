@@ -81,8 +81,10 @@
         <div class="col-sm-12" style="width: 50%; ">
             <div class="card" >
                 <smallSpinner />
+                <choose/>
                 <div class="card-header">
                     <h3>Table of Schedule</h3>
+                    <p>{{ this.$store.state.schedule.day }}</p>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -116,13 +118,15 @@ import calendar from "@/pages/advance/calendar.vue"
 import branchCousesVue from "@/pages/branche/branchCouses.vue"
 import spiner from "@/components/ui/spiner.vue"
 import smallSpinner from "@/components/ui/smallSpinner.vue"
+import choose from "@/components/ui/choose.vue"
 import { mapState } from "vuex"
 export default {
     components: {
         spiner,
         calendar,
         branchCousesVue,
-        smallSpinner
+        smallSpinner,
+        choose
     },
     data() {
         return {

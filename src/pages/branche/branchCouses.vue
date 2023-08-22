@@ -10,7 +10,7 @@
                         <div class="card" >
                             <div class="blog-box blog-grid text-center">
                                 <div class="blog-wrraper">
-                                    <img class="img-fluid top-radius-blog" src="@/assets/images/it-park.jpg" alt="">
+                                    <img class="img-fluid top-radius-blog" src="@/assets/images/19362653-Converted-min.png" alt="">
                                 </div>
                                 <div class="blog-details-main">
                                     <ul class="blog-social">
