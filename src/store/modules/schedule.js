@@ -1,10 +1,11 @@
 import axios from "axios";
 const token = localStorage.getItem("token");
 
-const state = {
+let state = {
   scheduleData: [],
   idDay: "",
   day: "",
+  handler: true,
 };
 const mutations = {
   setSchedule(state, scheduleData) {
@@ -15,6 +16,9 @@ const mutations = {
   },
   setDay(state, day) {
     state.day = day;
+  },
+  setHandler(state, handler) {
+    state.handler = handler;
   },
 };
 const actions = {
@@ -67,14 +71,12 @@ const actions = {
       console.error("error with getingBranchSchedul", e);
     }
   },
-  async getIdofDay({ commit }, info) {
+  getIdofDay({ commit }, info) {
     commit("setChoose", false, { root: true });
-
-    // console.log(info.dateStr);
     commit("setDay", info.dateStr);
     const selectedDate = new Date(info.date);
     const setId = selectedDate.getDay();
-    await commit("setId", setId);
+    commit("setId", setId);
     let dayOfWeekString;
     switch (setId) {
       case 0:
@@ -102,9 +104,7 @@ const actions = {
         dayOfWeekString = "unknown";
         break;
     }
-
-    // Выводим день недели в консоль
-    console.log(setId);
+    // console.log(setId);
     console.log("Выбран день недели:", dayOfWeekString);
   },
   async createSchedul({ commit }, option) {
@@ -151,6 +151,9 @@ const actions = {
     } catch (e) {
       console.error("error find in deleting schedul", e);
     }
+  },
+  change({ commit }) {
+    commit("setHandler", !state.handler);
   },
 };
 export default {

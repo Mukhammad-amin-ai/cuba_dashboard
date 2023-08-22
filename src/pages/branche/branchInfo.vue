@@ -76,7 +76,8 @@
             <h6>Delete</h6>
         </button>
     </div>
-    <div class="container-fluid d-flex">
+    
+    <div class="container-fluid d-flex" v-if="this.$store.state.schedule.handler">
         <calendar />
         <div class="col-sm-12" style="width: 50%; ">
             <div class="card" >
@@ -105,11 +106,16 @@
                             </tr>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
+            <button type="button" class="btn btn-success" @click="change">Create Schedule</button>
         </div>
-
-
+    </div>
+    <div class="container-fluid  height" v-else>
+        <createSchedulVue/>
+        <br>
+        <button type="button" class="btn btn-success" @click="change">Create Schedule</button>
     </div>
     <branchCousesVue />
 </template>
@@ -119,6 +125,7 @@ import branchCousesVue from "@/pages/branche/branchCouses.vue"
 import spiner from "@/components/ui/spiner.vue"
 import smallSpinner from "@/components/ui/smallSpinner.vue"
 import choose from "@/components/ui/choose.vue"
+import createSchedulVue from "../schedul/createSchedul.vue"
 import { mapState } from "vuex"
 export default {
     components: {
@@ -126,7 +133,8 @@ export default {
         calendar,
         branchCousesVue,
         smallSpinner,
-        choose
+        choose,
+        createSchedulVue
     },
     data() {
         return {
@@ -174,12 +182,20 @@ export default {
                 location: this.location
             }
             this.$store.dispatch('branche/editBranch', { id: this.id, option: option })
+        },
+        change(){
+            this.$store.dispatch('schedule/change')
         }
     }
 
 }
 </script>
 <style scoped>
+.height{
+    height: auto;
+    padding: 30px;
+    /* background-color: aqua; */
+}
 .flex {
     width: 100%;
     height: auto;

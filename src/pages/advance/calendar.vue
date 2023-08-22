@@ -45,12 +45,12 @@ export default {
         }
     },
     methods: {
-        handleDateClick(info) {
+      async  handleDateClick(info) {
             let option = {
                 branch_id:this.id,
                 weekday_id:this.$store.state.schedule.idDay
             }
-            this.$store.dispatch('schedule/getBranchSchedule',option)
+           await this.$store.dispatch('schedule/getBranchSchedule',option)
             this.$store.dispatch('schedule/getIdofDay',info)
         },
     },
