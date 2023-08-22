@@ -1,6 +1,6 @@
 <template>
     <div class="half">
-        <div class="container-fluid calendar-basic" style="width: 100%;">
+        <div class="container-fluid calendar-basic"  >
             <div class="card">
                 <div class="card-body">
                     <div class="row" id="wrap">
@@ -20,7 +20,9 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { mapMutations, mapState } from "vuex";
+// import { mapMutations, mapState } from "vuex";
+// import schedule from "@/store/modules/schedule";
+// import { parseClassNames } from "@fullcalendar/core/internal";
 export default {
     components: {
         FullCalendar,
@@ -39,17 +41,17 @@ export default {
                 events: [],
             },
             thisWillEmmit:'hello world',
-        };
+            id:this.$route.params.id,
+        }
     },
     methods: {
-        ...mapMutations('schedule',[
-            'setId'
-        ]),
         handleDateClick(info) {
-            const selectedDate = new Date(info.date)
-            const dayOfWeek = selectedDate.getDay()
-            this.setId(dayOfWeek) 
-            // console.log(this.$store.state.schedule.idDay);
+            let option = {
+                branch_id:this.id,
+                weekday_id:this.$store.state.schedule.idDay
+            }
+            this.$store.dispatch('schedule/getBranchSchedule',option)
+            this.$store.dispatch('schedule/getIdofDay',info)
         },
     },
 };

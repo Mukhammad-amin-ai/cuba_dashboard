@@ -47,7 +47,6 @@
                                         <div class="mb-3">
                                             <label>Branche Name</label>
                                             <input class="form-control" type="text" v-model="name">
-                                            <!-- v-model="name" -->
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +55,6 @@
                                         <div class="mb-3">
                                             <label>Location</label>
                                             <input class="form-control" type="text" v-model="location">
-                                            <!-- v-model="location" -->
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +95,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for='item in schedule.data' :key="item">
+                            <tr v-for='item in scheduleData.data' :key="item">
                                 <td>{{ item.group.name }}</td>
                                 <td>{{ item.session.duration }}</td>
                                 <td>{{ item.room.name }}</td>
@@ -114,7 +112,7 @@
     <branchCousesVue />
 </template>
 <script >
-import calendar from "@/advance/calendar.vue"
+import calendar from "@/pages/advance/calendar.vue"
 import branchCousesVue from "@/pages/branche/branchCouses.vue"
 import spiner from "@/components/ui/spiner.vue"
 import { mapState } from "vuex"
@@ -134,12 +132,11 @@ export default {
     computed: {
         ...mapState('branche', ['branchData']),
         ...mapState('branche', ['room']),
-        ...mapState('schedule', ['schedule'])
+        ...mapState('schedule', ['scheduleData'])
     },
     mounted() {
         this.getbranch(),
-            this.getRoom(),
-            this.getschedule()
+            this.getRoom()
     },
     watch: {
         branchData: {
@@ -153,13 +150,6 @@ export default {
         }
     },
     methods: {
-        getschedule() {
-            let option = {
-                branch_id:this.id,
-                weekday_id:this.$store.state.schedule.idDay
-            }
-            this.$store.dispatch('schedule/getBranchSchedule',option)
-        },
         deleteBranch() {
             this.$store.dispatch('branche/delete', this.id)
         },
@@ -206,7 +196,6 @@ export default {
 .custom {
     width: 50%;
     height: auto;
-    /* background-color: aqua; */
 }
 
 h6 {
@@ -221,7 +210,6 @@ h6 {
 .text-box {
     width: 50%;
     height: auto;
-    /* background-color: red; */
 }
 </style>
  

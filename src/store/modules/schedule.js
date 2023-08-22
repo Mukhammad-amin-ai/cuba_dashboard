@@ -2,12 +2,12 @@ import axios from "axios";
 const token = localStorage.getItem("token");
 
 const state = {
-  schedule: [],
+  scheduleData: [],
   idDay: "",
 };
 const mutations = {
-  setSchedule(state, schedule) {
-    state.schedule = schedule;
+  setSchedule(state, scheduleData) {
+    state.scheduleData = scheduleData;
   },
   setId(state, idDay) {
     state.idDay = idDay;
@@ -54,10 +54,15 @@ const actions = {
         { headers: { Authorization: "Bearer " + token } }
       );
       console.log(response.data);
-      commit('schedule',response.data.data)
+      commit("setSchedule", response.data);
     } catch (e) {
       console.error("error with getingBranchSchedul", e);
     }
+  },
+  getIdofDay({commit},info) {
+    const selectedDate = new Date(info.date);
+    const setId = selectedDate.getDay();
+    commit('setId',setId)
   },
 };
 export default {

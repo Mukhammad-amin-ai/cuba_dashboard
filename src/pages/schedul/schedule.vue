@@ -32,7 +32,7 @@
 </template>
 <script>
 import spiner from '@/components/ui/spiner.vue'
-import calendar from '@/advance/calendar.vue'
+import calendar from "@/pages/advance/calendar.vue"
 import { mapState } from 'vuex'
 export default {
   components: {
