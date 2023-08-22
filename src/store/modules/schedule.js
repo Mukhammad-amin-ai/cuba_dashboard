@@ -6,6 +6,7 @@ let state = {
   idDay: "",
   day: "",
   handler: true,
+  checker:true
 };
 const mutations = {
   setSchedule(state, scheduleData) {
@@ -20,6 +21,9 @@ const mutations = {
   setHandler(state, handler) {
     state.handler = handler;
   },
+  setCheck(state,checker){
+    state.checker = checker
+  }
 };
 const actions = {
   async getSchedule({ commit }) {
@@ -66,6 +70,9 @@ const actions = {
       commit("setSchedule", response.data);
       if (response.data.data) {
         commit("setSmallLoading", false, { root: true });
+      }
+      if(response.data.data >=0){
+        commit('setCheck', !state.checker)
       }
     } catch (e) {
       console.error("error with getingBranchSchedul", e);

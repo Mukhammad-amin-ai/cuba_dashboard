@@ -66,7 +66,6 @@
             </div>
         </div>
     </div>
-    <!-- <spiner /> -->
     <div class="flex">
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
@@ -76,13 +75,12 @@
             <h6>Delete</h6>
         </button>
     </div>
-    
     <div class="container-fluid d-flex" v-if="this.$store.state.schedule.handler">
         <calendar />
         <div class="col-sm-12" style="width: 50%; ">
-            <div class="card" >
+            <div class="card">
                 <smallSpinner />
-                <choose/>
+                <choose />
                 <div class="card-header">
                     <h3>Table of Schedule</h3>
                     <p>{{ this.$store.state.schedule.day }}</p>
@@ -98,22 +96,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for='item in scheduleData.data' :key="item">
+                            <tr v-for='item in scheduleData.data' :key="item" v-if="this.$store.state.schedule.checker">
                                 <td>{{ item.group.name }}</td>
                                 <td>{{ item.session.duration }}</td>
                                 <td>{{ item.room.name }}</td>
                                 <td>{{ item.weekday.name }}</td>
                             </tr>
+                            <tr v-else>
+                                <td>No data</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
             <button type="button" class="btn btn-success" @click="change">Create Schedule</button>
         </div>
     </div>
     <div class="container-fluid  height" v-else>
-        <createSchedulVue/>
+        <createSchedulVue />
         <br>
         <button type="button" class="btn btn-success" @click="change">Create Schedule</button>
     </div>
@@ -141,6 +144,7 @@ export default {
             id: this.$route.params.id,
             name: "",
             location: "",
+            checker: true
         }
     },
     computed: {
@@ -151,6 +155,7 @@ export default {
     mounted() {
         this.getbranch(),
             this.getRoom()
+        //    this.checker()
     },
     watch: {
         branchData: {
@@ -183,19 +188,20 @@ export default {
             }
             this.$store.dispatch('branche/editBranch', { id: this.id, option: option })
         },
-        change(){
+        change() {
             this.$store.dispatch('schedule/change')
-        }
+        },
+
     }
 
 }
 </script>
 <style scoped>
-.height{
+.height {
     height: auto;
     padding: 30px;
-    /* background-color: aqua; */
 }
+
 .flex {
     width: 100%;
     height: auto;

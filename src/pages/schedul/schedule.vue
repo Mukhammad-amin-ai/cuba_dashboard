@@ -1,5 +1,5 @@
 <template lang="">
-  <div class='container-fluid '>
+  <!-- <div class='container-fluid '>
         <calendar />
         <div class="col-sm-12" style="width: 70%;">
           <div class="card">
@@ -28,28 +28,28 @@
       </div>
     </div>
   </div>
-    </div>
+    </div> -->
 </template>
 <script>
-import spiner from '@/components/ui/spiner.vue'
-import calendar from "@/pages/advance/calendar.vue"
-import { mapState } from 'vuex'
+// import spiner from '@/components/ui/spiner.vue'
+// import calendar from "@/pages/advance/calendar.vue"
+// import { mapState } from 'vuex'
 export default {
-  components: {
-    spiner,
-    calendar
-  },
-  computed: {
-    ...mapState('schedule', ['schedule'])
-  },
-  mounted() {
-    this.getschedule()
-  },
-  methods: {
-    getschedule() {
-      this.$store.dispatch('schedule/getSchedule')
-    }
-  }
+  // components: {
+  //   spiner,
+  //   calendar
+  // },
+  // computed: {
+  //   ...mapState('schedule', ['schedule'])
+  // },
+  // mounted() {
+  //   this.getschedule()
+  // },
+  // methods: {
+  //   getschedule() {
+  //     this.$store.dispatch('schedule/getSchedule')
+  //   }
+  // }
 }
 </script>
 <style scoped >

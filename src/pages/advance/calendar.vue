@@ -20,10 +20,6 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { mapMutations } from "vuex";
-// import { mapMutations, mapState } from "vuex";
-// import schedule from "@/store/modules/schedule";
-// import { parseClassNames } from "@fullcalendar/core/internal";
 export default {
     components: {
         FullCalendar,
