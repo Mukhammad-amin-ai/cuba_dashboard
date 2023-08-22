@@ -62,7 +62,7 @@ const actions = {
         option,
         { headers: { Authorization: "Bearer " + token } }
       );
-      console.log(response.data);
+      // console.log(response.data);
       commit("setSchedule", response.data);
       if (response.data.data) {
         commit("setSmallLoading", false, { root: true });
@@ -74,38 +74,6 @@ const actions = {
   getIdofDay({ commit }, info) {
     commit("setChoose", false, { root: true });
     commit("setDay", info.dateStr);
-    const selectedDate = new Date(info.date);
-    const setId = selectedDate.getDay();
-    commit("setId", setId);
-    let dayOfWeekString;
-    switch (setId) {
-      case 0:
-        dayOfWeekString = "Sunday";
-        break;
-      case 1:
-        dayOfWeekString = "Monday";
-        break;
-      case 2:
-        dayOfWeekString = "Tuesday";
-        break;
-      case 3:
-        dayOfWeekString = "Wensday";
-        break;
-      case 4:
-        dayOfWeekString = "Thursday";
-        break;
-      case 5:
-        dayOfWeekString = "Friday";
-        break;
-      case 6:
-        dayOfWeekString = "Saturday";
-        break;
-      default:
-        dayOfWeekString = "unknown";
-        break;
-    }
-    // console.log(setId);
-    console.log("Выбран день недели:", dayOfWeekString);
   },
   async createSchedul({ commit }, option) {
     try {
