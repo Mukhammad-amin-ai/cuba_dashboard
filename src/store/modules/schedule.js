@@ -47,6 +47,7 @@ const actions = {
     }
   },
   async getBranchSchedule({ commit }, option) {
+    commit("setSmallLoading", true, { root: true });
     try {
       let response = await axios.post(
         "http://tulibayev.uz/api/branch/schedule",
@@ -55,11 +56,15 @@ const actions = {
       );
       console.log(response.data);
       commit("setSchedule", response.data);
+      if(response.data.data){
+    commit("setSmallLoading", false, { root: true });
+      }
     } catch (e) {
       console.error("error with getingBranchSchedul", e);
     }
   },
   getIdofDay({commit},info) {
+    console.log(info.dateStr);
     const selectedDate = new Date(info.date);
     const setId = selectedDate.getDay();
     commit('setId',setId)

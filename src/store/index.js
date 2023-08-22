@@ -12,7 +12,7 @@ import student from './modules/student';
 
 
 export default createStore({
-  state: { langIcon: "", langLangauge: "", isActive: false, loading: false },
+  state: { langIcon: "", langLangauge: "", isActive: false, loading: false,smallLoading:false },
   getters: {
     langIcon: (state) => {
       return state.langIcon;
@@ -35,6 +35,9 @@ export default createStore({
     setLoading(state, payload) {
       state.loading = payload;
     },
+    setSmallLoading(state,loading){
+      state.smallLoading = loading
+    }
   },
   actions: {
     setLang({ commit }, payload) {

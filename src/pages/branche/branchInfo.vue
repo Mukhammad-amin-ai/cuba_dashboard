@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    <spiner />
+    <!-- <spiner /> -->
     <div class="flex">
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
@@ -76,13 +76,13 @@
             <h6>Delete</h6>
         </button>
     </div>
-    <spiner />
     <div class="container-fluid d-flex">
         <calendar />
-        <div class="col-sm-12" style="width: 50%;">
-            <div class="card">
+        <div class="col-sm-12" style="width: 50%; ">
+            <div class="card" >
+                <smallSpinner />
                 <div class="card-header">
-                    <h3>Basic Table With Border Bottom Color</h3>
+                    <h3>Table of Schedule</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -115,12 +115,14 @@
 import calendar from "@/pages/advance/calendar.vue"
 import branchCousesVue from "@/pages/branche/branchCouses.vue"
 import spiner from "@/components/ui/spiner.vue"
+import smallSpinner from "@/components/ui/smallSpinner.vue"
 import { mapState } from "vuex"
 export default {
     components: {
         spiner,
         calendar,
-        branchCousesVue
+        branchCousesVue,
+        smallSpinner
     },
     data() {
         return {
