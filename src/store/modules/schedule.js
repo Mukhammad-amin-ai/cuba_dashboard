@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 const state = {
   scheduleData: [],
   idDay: "",
-  day:''
+  day: "",
 };
 const mutations = {
   setSchedule(state, scheduleData) {
@@ -13,9 +13,9 @@ const mutations = {
   setId(state, idDay) {
     state.idDay = idDay;
   },
-  setDay(state,day){
-    state.day =day
-  }
+  setDay(state, day) {
+    state.day = day;
+  },
 };
 const actions = {
   async getSchedule({ commit }) {
@@ -58,7 +58,7 @@ const actions = {
         option,
         { headers: { Authorization: "Bearer " + token } }
       );
-      // console.log(response.data);
+      console.log(response.data);
       commit("setSchedule", response.data);
       if (response.data.data) {
         commit("setSmallLoading", false, { root: true });
@@ -67,14 +67,90 @@ const actions = {
       console.error("error with getingBranchSchedul", e);
     }
   },
-  getIdofDay({ commit }, info) {
+  async getIdofDay({ commit }, info) {
     commit("setChoose", false, { root: true });
-    
+
     // console.log(info.dateStr);
-    commit('setDay',info.dateStr)
+    commit("setDay", info.dateStr);
     const selectedDate = new Date(info.date);
     const setId = selectedDate.getDay();
-    commit("setId", setId);
+    await commit("setId", setId);
+    let dayOfWeekString;
+    switch (setId) {
+      case 0:
+        dayOfWeekString = "Sunday";
+        break;
+      case 1:
+        dayOfWeekString = "Monday";
+        break;
+      case 2:
+        dayOfWeekString = "Tuesday";
+        break;
+      case 3:
+        dayOfWeekString = "Wensday";
+        break;
+      case 4:
+        dayOfWeekString = "Thursday";
+        break;
+      case 5:
+        dayOfWeekString = "Friday";
+        break;
+      case 6:
+        dayOfWeekString = "Saturday";
+        break;
+      default:
+        dayOfWeekString = "unknown";
+        break;
+    }
+
+    // Выводим день недели в консоль
+    console.log(setId);
+    console.log("Выбран день недели:", dayOfWeekString);
+  },
+  async createSchedul({ commit }, option) {
+    try {
+      let response = await axios.post(
+        "http://tulibayev.uz/api/branch/schedule",
+        option,
+        { headers: { Authorization: "Bearer" + token } }
+      );
+      console.log(response.data);
+      if (response.data.message === "Schedule created successfully") {
+        window.location.href = "/schedul";
+      }
+    } catch (e) {
+      console.error("error find in creation of schedul", e);
+    }
+  },
+  async editSchedul({ commit }, { id, option }) {
+    try {
+      let response = await axios.post(
+        `http://tulibayev.uz/api/branch/schedule/${{ id }}`,
+        option,
+        { headers: { Authorization: "Bearer" + token } }
+      );
+      console.log(response.data);
+      if (response.data.message === "Schedule updated successfully") {
+        window.location.href = "/schedul";
+      }
+    } catch (e) {
+      console.error("error find in creation of schedul", e);
+    }
+  },
+  async deleteSchedul({ commit }, id) {
+    try {
+      let response = await axios.delete(
+        `http://tulibayev.uz/api/branch/schedule/${{ id }}`,
+        option,
+        { headers: { Authorization: "Bearer" + token } }
+      );
+      console.log(response.data);
+      if (response.data.message === "Schedul deleted successfully") {
+        window.location.href = "/schedul";
+      }
+    } catch (e) {
+      console.error("error find in deleting schedul", e);
+    }
   },
 };
 export default {
