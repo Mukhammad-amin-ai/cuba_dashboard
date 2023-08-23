@@ -13,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 99;
+    z-index: 1;
     border-radius: 15px 15px 0px 0px !important;
 }
 

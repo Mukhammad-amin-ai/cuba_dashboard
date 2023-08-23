@@ -16,6 +16,7 @@ const mutations = {
   setEditHnadler(state, editHandler) {
     state.editHandler = editHandler;
   },
+ 
 };
 const actions = {
   editHandler({ commit }) {
@@ -26,8 +27,8 @@ const actions = {
       let responce = await axios.get("http://tulibayev.uz/api/group", {
         headers: { Authorization: "Bearer" + token },
       });
-      console.log(responce.data);
-      commit("setGroup", responce.data);
+      // console.log(responce.data);
+      commit("setGroup", responce.data.data);
     } catch (error) {
       console.error("there is problem ", error);
       if(error.request.status=== 401){

@@ -50,6 +50,7 @@ const actions = {
           headers: { Authorization: "Bearer" + token },
         }
       );
+      console.log(responce.data.data);
       commit("setSchedule", responce.data);
     } catch (error) {
       console.error("there is problem ", error);
@@ -85,13 +86,13 @@ const actions = {
   async createSchedul({ commit }, option) {
     try {
       let response = await axios.post(
-        "http://tulibayev.uz/api/branch/schedule",
+        "http://tulibayev.uz/api/schedule",
         option,
         { headers: { Authorization: "Bearer" + token } }
       );
       console.log(response.data);
       if (response.data.message === "Schedule created successfully") {
-        window.location.href = "/schedul";
+        window.location.href = "/branches";
       }
     } catch (e) {
       console.error("error find in creation of schedul", e);

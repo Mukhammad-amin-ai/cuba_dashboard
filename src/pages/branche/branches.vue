@@ -4,9 +4,9 @@
         <spiner />
         <div class="container-fluid ">
             <div class="row">
-                <div class="col-xl-6 set-col-12 box-col-12">
+                <div class="col-xl-6 set-col-12 box-col-12 " style="padding-bottom: 30px;">
                     <RouterLink v-if="hasBranchData" :to="{ path: 'branchInfo/' + branchData[0].id }">
-                        <div class="card" style="height: 93%;">
+                        <div class="card  "  style="height: 100%; ">
                             <div class="blog-box blog-shadow" style="height: 100%;">
                                 <img class="img-fluid bg-img-cover" style="height: 100%;" src="@/assets/images/it-park.jpg"
                                     alt="">
@@ -14,10 +14,6 @@
                                     <p v-if="branchData && branchData.length">{{ branchData[branchData.length - branchData.length].name }}</p>
                                     <p v-else>No branch data available.</p>
                                     <h4>Latest opened Branch</h4>
-                                    <!-- <ul class="blog-social">
-                                        <li><i class="icofont icofont-user"></i>Mark Jecno</li>
-                                        
-                                    </ul> -->
                                 </div>
                             </div>
                         </div>

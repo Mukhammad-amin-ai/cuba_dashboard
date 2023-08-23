@@ -5,6 +5,7 @@ let state = {
   branchData: [],
   handler: true,
   room: [],
+  total: "",
 };
 const mutations = {
   setBranch(state, branchData) {
@@ -15,6 +16,9 @@ const mutations = {
   },
   setRoom(state, room) {
     state.room = room;
+  },
+  setTotal(state, total) {
+    state.total = total;
   },
 };
 const actions = {
@@ -27,12 +31,12 @@ const actions = {
       if (response.data && response.data.data) {
         commit("setBranch", response.data.data);
       }
-    
+
       commit("setLoading", false, { root: true });
     } catch (error) {
       console.error("error find", error);
-      if(error.request.status=== 401){
-      window.location.href='/login'
+      if (error.request.status === 401) {
+        window.location.href = "/login";
       }
     }
   },
@@ -50,9 +54,9 @@ const actions = {
       commit("setLoading", false, { root: true });
     } catch (error) {
       console.error("error find", error);
-      if(error.request.status=== 401){
-        window.location.href='/login'
-        }
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async getRoom({ commit }, option) {
@@ -64,14 +68,34 @@ const actions = {
           headers: { Authorization: "Bearer " + token },
         }
       );
-      // console.log(response.data);
-      commit("setRoom", response.data.total);
+      // console.log(response.data.total);
+      commit("setTotal", response.data.total);
       commit("setLoading", false, { root: true });
     } catch (error) {
       console.error("error find", error);
-      if(error.request.status=== 401){
-        window.location.href='/login'
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
+    }
+  },
+  async getRoomFloor({ commit }, { id, option }) {
+    // commit("setLoading", true, { root: true });
+    try {
+      let response = await axios.get(
+        `http://tulibayev.uz/api/branch/${id}/rooms?page=${option}`,
+        {
+          headers: { Authorization: "Bearer " + token },
         }
+      );
+      console.log(response.data.data);
+      commit("setRoom", response.data);
+      console.log(option);
+      // commit("setLoading", false, { root: true });
+    } catch (error) {
+      console.error("error find", error);
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async createBreanch({ commit }, option) {

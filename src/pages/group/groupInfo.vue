@@ -185,12 +185,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr v-for="item in schedule" :key="item">
+                                    <tr v-for="item in scheduleData.data" :key="item" v-if="this.$store.state.schedule.checker">
                                         <td>{{ item.group.name }}</td>
                                         <td>{{ item.session.duration }}</td>
                                         <td>{{ item.room.name }}</td>
                                         <td>{{ item.weekday.name }}</td>
-                                    </tr> -->
+                                    </tr>
+                                    <tr v-else>    
+                                        <td>
+                                            No data 
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -221,12 +226,13 @@ export default {
             studentsList: [],
             choosedStudents: [],
             showHide: false,
-            scheTeble: true
+            scheTeble: true,
+            // checker:true
         }
     },
     computed: {
         ...mapState('group', ['groupData']),
-        ...mapState('schedule', ['schedule']),
+        ...mapState('schedule', ['scheduleData']),
         ...mapState('teacher', ['teachers']),
         ...mapState('course', ['courseData']),
         ...mapState('student', ['students']),
@@ -312,17 +318,12 @@ export default {
             if (this.showAddedList === false) {
                 this.showAddedList = true
             }
-            //choosed
             this.choosedStudents.push(this.students[index])
             this.studentsList.push(this.students[index].id)
-            // console.log(this.studentsList);
         },
         deleteStudent(index) {
             this.choosedStudents.splice(index, 1)
             this.studentsList.splice(index, 1)
-            // console.log(this.studentsList);
-            // console.log(this.studentsList);
-
         }
     }
 }

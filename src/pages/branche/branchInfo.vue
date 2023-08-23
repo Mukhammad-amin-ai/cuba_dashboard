@@ -7,11 +7,11 @@
                 <div class="blog-single">
                     <div class="blog-box blog-details">
                         <img class="img-fluid w-100 size" src="@/assets/images/it-park.jpg" alt="#">
-                        <div class="blog-details">
+                        <div class="blog-details p-20">
                             <ul class="blog-social">
                                 <li>10 August 2023</li>
                                 <li><i class="icofont icofont-user"></i>Muhammadamin <span>Ahmadov </span></li>
-                                <li><i class="icofont icofont-home"></i> Rooms:{{ room }}</li>
+                                <li><i class="icofont icofont-home"></i> Rooms:{{ total }}</li>
                             </ul>
                             <h4>
                                 This branch located at the {{ branchData.name }} region
@@ -149,7 +149,7 @@ export default {
     },
     computed: {
         ...mapState('branche', ['branchData']),
-        ...mapState('branche', ['room']),
+        ...mapState('branche', ['total']),
         ...mapState('schedule', ['scheduleData'])
     },
     mounted() {
@@ -205,13 +205,13 @@ export default {
 .flex {
     width: 100%;
     height: auto;
-    padding: 50px;
+    padding: 25px;
     display: flex;
     justify-content: space-between;
 }
 
 .size {
-    width: 80% !important;
+    width: 97% !important;
 
 }
 

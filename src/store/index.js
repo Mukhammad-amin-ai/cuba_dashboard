@@ -9,8 +9,7 @@ import schedule from "@/store/modules/schedule";
 import group from "./modules/group";
 import teacher from "./modules/teacher";
 import student from './modules/student';
-
-
+import session from "./modules/session";
 export default createStore({
   state: { langIcon: "", langLangauge: "", isActive: false, loading: false,smallLoading:false,choose:true },
   getters: {
@@ -27,7 +26,6 @@ export default createStore({
       localStorage.setItem("currentLanguageIcon", payload.icon);
       state.langIcon = payload.icon || "flag-icon-us";
       state.langLangauge = payload.id || "EN";
-      // window.location.reload();
     },
     change(state) {
       state.isActive = !state.isActive;
@@ -56,6 +54,7 @@ export default createStore({
     schedule,
     group,
     teacher,
-    student
+    student,
+    session,
   },
 });

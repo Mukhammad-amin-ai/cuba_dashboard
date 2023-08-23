@@ -48,7 +48,7 @@ export default {
             const setId = selectedDate.getDay();
             let option = {
                 branch_id: this.id,
-                weekday_id: setId + 1
+                weekday_id: setId 
             }
             await this.$store.dispatch('schedule/getBranchSchedule', option)
         },

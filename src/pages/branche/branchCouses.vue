@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid p-35">
         <div class="row">
             <div class="card">
                 <div class="card-header">

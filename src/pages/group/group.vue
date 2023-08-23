@@ -8,7 +8,7 @@
             </div>
         </RouterLink>
 
-        <RouterLink :to="{ path:'group/'+ item.id }" v-for="item in groupData.data" :key="item">
+        <RouterLink :to="{ path:'group/'+ item.id }" v-for="item in groupData" :key="item">
             <div class="card mb-3" style="max-width: 100vw;" >
             <div class="row g-0">
                 <div class="col-md-4" style="max-width: 20vw;">
