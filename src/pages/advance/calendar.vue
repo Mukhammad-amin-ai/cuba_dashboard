@@ -20,6 +20,7 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import { mapMutations } from "vuex";
 export default {
     components: {
         FullCalendar,
@@ -43,12 +44,19 @@ export default {
         }
     },
     methods: {
+        ...mapMutations('schedule',['setCheck']),
+        ...mapMutations(['setSmallLoading']),
+
         async handleDateClick(info) {
             this.$store.dispatch('schedule/getIdofDay', info)
             const selectedDate = new Date(info.date);
             const setId = selectedDate.getDay();
             if(setId === 0){
-                this.$store.state.schedule.checker = false
+                // this.$store.commit("setSmallLoading", false)
+                // this.$store.commit("setCheck",false)
+                this.setCheck(false)
+                this.setSmallLoading(false)
+                // console.log(this.$store.state.smallLoading);
             }
             let option = {
                 branch_id: this.id,

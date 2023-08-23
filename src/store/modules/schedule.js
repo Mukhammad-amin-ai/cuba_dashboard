@@ -69,8 +69,8 @@ const actions = {
       );
       console.log(response.data);
       commit("setSchedule", response.data);
-      if (response.data.data) {
-        // commit('setCheck', !state.checker )
+      if (response.data) {
+        commit('setCheck', state.checker = true )
         commit("setSmallLoading", false, { root: true });
       }
       if (response.data.data >= 0) {
@@ -87,12 +87,6 @@ const actions = {
   },
   getIdofDay({ commit }, info) {
     commit("setChoose", false, { root: true });
-    // const selectedDate = new Date(info.date);
-    // const setId = selectedDate.getDay();
-    // if (setId === 0) {
-    //   commit("setSmallLoading", false, { root: true });
-    //   state.checker = false;
-    // }
     commit("setDay", info.dateStr);
   },
   async createSchedul({ commit }, option) {
