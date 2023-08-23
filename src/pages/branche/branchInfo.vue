@@ -118,7 +118,7 @@
     <div class="container-fluid  height" v-else>
         <createSchedulVue />
         <br>
-        <button type="button" class="btn btn-success" @click="change">Create Schedule</button>
+        <button type="button" class="btn btn-danger" @click="change">Go To Schedule</button>
     </div>
     <branchCousesVue />
 </template>

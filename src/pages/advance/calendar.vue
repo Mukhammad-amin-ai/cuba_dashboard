@@ -34,6 +34,7 @@ export default {
                 selectable: true,
                 selectMirror: true,
                 dayMaxEvents: true,
+                firstDay: 1,
                 weekends: true,
                 events: [],
             },
@@ -46,6 +47,9 @@ export default {
             this.$store.dispatch('schedule/getIdofDay', info)
             const selectedDate = new Date(info.date);
             const setId = selectedDate.getDay();
+            if(setId === 0){
+                this.$store.state.schedule.checker = false
+            }
             let option = {
                 branch_id: this.id,
                 weekday_id: setId 

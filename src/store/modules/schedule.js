@@ -6,7 +6,7 @@ let state = {
   idDay: "",
   day: "",
   handler: true,
-  checker:true
+  checker: true,
 };
 const mutations = {
   setSchedule(state, scheduleData) {
@@ -21,9 +21,9 @@ const mutations = {
   setHandler(state, handler) {
     state.handler = handler;
   },
-  setCheck(state,checker){
-    state.checker = checker
-  }
+  setCheck(state, checker) {
+    state.checker = checker;
+  },
 };
 const actions = {
   async getSchedule({ commit }) {
@@ -67,20 +67,32 @@ const actions = {
         option,
         { headers: { Authorization: "Bearer " + token } }
       );
-      // console.log(response.data);
+      console.log(response.data);
       commit("setSchedule", response.data);
       if (response.data.data) {
+        // commit('setCheck', !state.checker )
         commit("setSmallLoading", false, { root: true });
       }
-      if(response.data.data >=0){
-        commit('setCheck', !state.checker)
+      if (response.data.data >= 0) {
+        commit("setCheck", !state.checker);
       }
+      // if(response.data.weekday_id[0] ==="The selected weekday id is invalid."){
+      //   commit('setCheck', state.checker =false)
+      //   commit("setSmallLoading", false, { root: true });
+
+      // }
     } catch (e) {
       console.error("error with getingBranchSchedul", e);
     }
   },
   getIdofDay({ commit }, info) {
     commit("setChoose", false, { root: true });
+    // const selectedDate = new Date(info.date);
+    // const setId = selectedDate.getDay();
+    // if (setId === 0) {
+    //   commit("setSmallLoading", false, { root: true });
+    //   state.checker = false;
+    // }
     commit("setDay", info.dateStr);
   },
   async createSchedul({ commit }, option) {
