@@ -21,7 +21,7 @@ import studentCreate from "@/pages/student/create.vue";
 import studentInfo from "@/pages/student/studentInfo.vue";
 import teachersInfo from "@/pages/teachers/teachersInfro.vue";
 import teachersCreate from "@/pages/teachers/create.vue";
-
+import Decode from "./experitionChecker";
 const routes = [
   {
     path: "/",
@@ -144,6 +144,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+  Decode()
 });
 
 export default router;

@@ -29,47 +29,46 @@
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to='/branches'>
-
-          <img class="courses" src="@/assets/svg/map-pin.svg" alt="">
+          <i class="icofont icofont-building-alt"></i>
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/courses">
-          <img class="courses" src="@/assets/svg/book-open.svg" alt="">
+          <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/schedule">
-          <img class="courses" src="@/assets/svg/table.svg" alt="">
-          <span class="lan-3"> Schedule</span>
+          <i class="icofont icofont-ui-calendar"></i>
+           <span class="lan-3"> Schedule</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/group">
-          <img class="courses" src="@/assets/svg/users.svg" alt="">
+          <i class="icofont icofont-group-students"></i>
           <span class="lan-3"> Group</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/teachers">
-          <i class="icofont icofont-user"></i>
+          <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> Teachers</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/student">
-          <i class="icofont icofont-user"></i>
+          <i class="icofont icofont-student-alt"></i>
           <span class="lan-3"> Students</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <!-- <li class="sidebar-list">
         <a class="sidebar-link sidebar-title" href="https://pixelstrap.freshdesk.com/support/home" target="_blank">
           <svg class="stroke-icon">
             <use href="@/assets/svg/icon-sprite.svg#stroke-social"></use>
@@ -85,7 +84,7 @@
           </svg>
           <svg class="fill-icon">
             <use href="@/assets/svg/icon-sprite.svg#fill-form"></use>
-          </svg><span>Documentation </span></a></li>
+          </svg><span>Documentation </span></a></li> -->
     </ul>
   </div>
 </template>
