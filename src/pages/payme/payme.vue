@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="card ">
+        <div class="card " v-if="this.$store.state.payme.showHide">
             <div class="cover p-20">
                 <div class="inner2">
                     <div class="mb-3">
@@ -52,15 +52,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="numeric-input no-spinners">Number of card</label>
-                        <input type="text" class="form-control" maxlength="19" id="numeric-input"
-                            v-model="formattedNumber" />
+                        <input type="text" class="form-control" maxlength="16" id="numeric-input" v-model="number" />
                     </div>
                     <div class="mb-3 d-flex gap">
                         <div>
                             <label for="expiration-date">Expiration Date</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="expiration-date" placeholder="MM/YY"
-                                    v-model="expirationDate" @input="formatExpirationDate" />
+                                    v-model="expirationDate" @input="formatNumber" />
                             </div>
                         </div>
                         <div>
@@ -74,6 +73,40 @@
                 </div>
             </div>
         </div>
+        <div class="card " v-else>
+            <div class="cover2 p-20">
+                <div class="inner3">
+                    <!-- <div class="mb-3">
+                        <label calss="form-label">Name </label>
+                        <input class="form-control" type="text" aria-label="default input example" v-model="firstname">
+                    </div> -->
+                    <!-- <div class="mb-3">
+                        <label calss="form-label">Lastname </label>
+                        <input class="form-control" type="text" aria-label="default input example" v-model="lastname">
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="numeric-input no-spinners">Number of card</label>
+                        <input type="text" class="form-control" maxlength="16" id="numeric-input" v-model="number" />
+                    </div>
+                    <!-- <div class="mb-3 d-flex gap">
+                        <div>
+                            <label for="expiration-date">Expiration Date</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="expiration-date" placeholder="MM/YY"
+                                    v-model="expirationDate" @input="formatNumber" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="expiration-date">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" v-model="password" />
+                            </div>
+                        </div>
+                    </div> -->
+                    <button type="button" class="btn btn-primary" style="width: 100%;" @click="getCard">Sent</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -81,11 +114,11 @@ export default {
     data() {
         return {
             expirationDate: "",
-            formattedNumber: "",
+            number: "",
             password: "",
             firstname: "",
             lastname: "",
-            inputText: ""
+            numberwithoutspace:""
         };
     },
     computed: {
@@ -95,17 +128,9 @@ export default {
         uppercaseTextTo() {
             return this.lastname.toUpperCase();
         },
-        formattedNumber: {
-            get() {
-                return this.inputText;
-            },
-            set(newValue) {
-                let numericValue = newValue.replace(/\D/g, '');
-                numericValue = numericValue.replace(/(\d{4})(?=\d)/g, "$1 ");
-                this.inputText = numericValue;
-            },
-        },
-
+        formattedNumber() {
+            return this.number.replace(/\s/g, "").replace(/(\d{4})(?=\d)/g, "$1 ");
+        }
     },
     methods: {
         formatExpirationDate() {
@@ -115,16 +140,19 @@ export default {
                     this.expirationDate.slice(0, 2) + '/' + this.expirationDate.slice(2);
             }
         },
+        formatNumber() {
+            this.numberwithoutspace = this.number.replace(/\s/g, "");
+        },
         getCard() {
+
+            // 8600069195406311
             let option = {
-                id: 123,
                 method: "cards.create",
                 params: {
-                    card: { number: "8600069195406311", expire: "0399" },
+                    card: { number:  this.number, expire: "0399" },
                     save: true
                 }
             }
-
             this.$store.dispatch('payme/getCard', option)
         }
     },
@@ -216,7 +244,7 @@ p {
     width: 561px;
     height: 420px;
     flex-shrink: 0;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     display: flex;
     justify-content: center;
     /* align-items: stretch; */
@@ -236,9 +264,13 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
-/* Firefox */
-/* input[type=number] {
-  -moz-appearance: textfield;
-} */
+.cover2{
+    width: 561px;
+    height: 160px;
+    flex-shrink: 0;
+}
+.inner3{
+    width: 520px;
+    height: auto;
+}
 </style>

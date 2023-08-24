@@ -1,7 +1,13 @@
 import axios from "axios";
 
-const state = {};
-const mutations = {};
+const state = {
+    showHide:true
+};
+const mutations = {
+    setShow(state,showHide){
+        state.showHide =showHide
+    }
+};
 
 const actions = {
   async getCard({ commit },option) {
@@ -12,6 +18,10 @@ const actions = {
         },
       });
       console.log(response.data);
+    //   console.log(response.data.result.card.token);
+      if(response.data.result.card.token){
+        commit('setShow',false)
+      }
     } catch (e) {
       console.error("error there", e);
     }
