@@ -68,23 +68,13 @@
           <span class="lan-3"> Students</span>
         </router-link>
       </li>
-      <!-- <li class="sidebar-list">
-        <a class="sidebar-link sidebar-title" href="https://pixelstrap.freshdesk.com/support/home" target="_blank">
-          <svg class="stroke-icon">
-            <use href="@/assets/svg/icon-sprite.svg#stroke-social"></use>
-          </svg>
-          <svg class="fill-icon">
-            <use href="@/assets/svg/icon-sprite.svg#fill-social"></use>
-          </svg><span>Raise Support</span>
-        </a>
+      <li class="sidebar-list">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title" to="/payme">
+          <i class="icofont icofont-bill-alt"></i>
+          <span class="lan-3"> Payme</span>
+        </router-link>
       </li>
-      <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#" target="_blank">
-          <svg class="stroke-icon">
-            <use href="@/assets/svg/icon-sprite.svg#stroke-form"></use>
-          </svg>
-          <svg class="fill-icon">
-            <use href="@/assets/svg/icon-sprite.svg#fill-form"></use>
-          </svg><span>Documentation </span></a></li> -->
     </ul>
   </div>
 </template>

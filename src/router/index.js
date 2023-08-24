@@ -22,6 +22,9 @@ import studentInfo from "@/pages/student/studentInfo.vue";
 import teachersInfo from "@/pages/teachers/teachersInfro.vue";
 import teachersCreate from "@/pages/teachers/create.vue";
 import Decode from "./experitionChecker";
+import payme from '@/pages/payme/payme.vue'
+
+
 const routes = [
   {
     path: "/",
@@ -114,6 +117,11 @@ const routes = [
         component: teachersInfo,
         meta: { requiredAuth: true },
       },
+      {
+        path:'payme',
+        component:payme,
+        meta: { requiredAuth: true },
+      }
     ],
   },
   {

@@ -10,6 +10,9 @@ import group from "./modules/group";
 import teacher from "./modules/teacher";
 import student from './modules/student';
 import session from "./modules/session";
+import payme from "./modules/payme";
+
+
 export default createStore({
   state: { langIcon: "", langLangauge: "", isActive: false, loading: false,smallLoading:false,choose:true },
   getters: {
@@ -56,5 +59,6 @@ export default createStore({
     teacher,
     student,
     session,
+    payme
   },
 });
