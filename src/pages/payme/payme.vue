@@ -41,7 +41,7 @@
         </div>
         <div class="card ">
             <div class="cover p-20">
-                <div class="inner">
+                <div class="inner2">
                     <div class="mb-3">
                         <label calss="form-label">Name </label>
                         <input class="form-control" type="text" aria-label="default input example" v-model="firstname">
@@ -52,7 +52,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="numeric-input no-spinners">Number of card</label>
-                        <input type="text" class="form-control"  maxlength="19"  id="numeric-input"  v-model="formattedNumber"/>
+                        <input type="text" class="form-control" maxlength="19" id="numeric-input"
+                            v-model="formattedNumber" />
                     </div>
                     <div class="mb-3 d-flex gap">
                         <div>
@@ -69,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary" style="width: 100%;">Sent</button>
+                    <button type="button" class="btn btn-primary" style="width: 100%;" @click="getCard">Sent</button>
                 </div>
             </div>
         </div>
@@ -84,7 +85,7 @@ export default {
             password: "",
             firstname: "",
             lastname: "",
-            inputText:""
+            inputText: ""
         };
     },
     computed: {
@@ -99,12 +100,12 @@ export default {
                 return this.inputText;
             },
             set(newValue) {
-                let numericValue = newValue.replace(/\D/g,'');
+                let numericValue = newValue.replace(/\D/g, '');
                 numericValue = numericValue.replace(/(\d{4})(?=\d)/g, "$1 ");
                 this.inputText = numericValue;
             },
         },
-        
+
     },
     methods: {
         formatExpirationDate() {
@@ -114,6 +115,18 @@ export default {
                     this.expirationDate.slice(0, 2) + '/' + this.expirationDate.slice(2);
             }
         },
+        getCard() {
+            let option = {
+                id: 123,
+                method: "cards.create",
+                params: {
+                    card: { number: "8600069195406311", expire: "0399" },
+                    save: true
+                }
+            }
+
+            this.$store.dispatch('payme/getCard', option)
+        }
     },
 
 }
@@ -135,8 +148,10 @@ export default {
     height: 355px;
     flex-shrink: 0;
     border-radius: 30px;
-    background: #16084C;
-    fill: #080E1D;
+    /* background: #16084C;
+    fill: #080E1D; */
+    background: rgb(22, 8, 76);
+    background: linear-gradient(54deg, rgba(22, 8, 76, 1) 14%, rgba(9, 9, 121, 1) 31%, rgba(12, 129, 153, 1) 89%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -205,6 +220,11 @@ p {
     display: flex;
     justify-content: center;
     /* align-items: stretch; */
+}
+
+.inner2 {
+    width: 97%;
+    height: 80%;
 }
 
 .gap {
