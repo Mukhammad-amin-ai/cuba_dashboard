@@ -14,9 +14,6 @@ const mutations = {
   setChanger(state, changer) {
     state.changer = changer;
   },
-  // setLoading(state, loading) {
-  //   state.loading = loading;
-  // },
   setError(state, error) {
     state.error = error;
   },
@@ -84,15 +81,14 @@ const actions = {
       console.error("An error occurred:", error);
     }
   },
-  async login({ commit }, option) {
+  async login({ commit }, {role,option}) {
     // commit("setLoading", true, { root: true });
     try {
-      // console.log('hello world');
       const response = await axios.post(
-        "http://tulibayev.uz/api/user/login",
+        `http://tulibayev.uz/api/${role}/login`,
         option
       );
-      console.log(response.data);
+      console.log(response.data); 
       // commit("setLoading", false, { root: true });
       let token = response.data.token;
       localStorage.setItem("token", token);

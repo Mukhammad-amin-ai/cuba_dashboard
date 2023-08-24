@@ -52,11 +52,8 @@ export default {
             const selectedDate = new Date(info.date);
             const setId = selectedDate.getDay();
             if(setId === 0){
-                // this.$store.commit("setSmallLoading", false)
-                // this.$store.commit("setCheck",false)
                 this.setCheck(false)
                 this.setSmallLoading(false)
-                // console.log(this.$store.state.smallLoading);
             }
             let option = {
                 branch_id: this.id,

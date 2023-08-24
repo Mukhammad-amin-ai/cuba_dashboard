@@ -93,6 +93,8 @@
                                 <th scope="col">Session</th>
                                 <th scope="col">Room</th>
                                 <th scope="col">Weekday</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,6 +103,16 @@
                                 <td>{{ item.session.duration }}</td>
                                 <td>{{ item.room.name }}</td>
                                 <td>{{ item.weekday.name }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" @click="change">
+                                        <i class="icofont icofont-pencil-alt-5"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" @click="deleteSchedule(item.id)">
+                                        <i class="icofont icofont-ui-delete"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <tr v-else>
                                 <td>No data</td>
@@ -191,7 +203,9 @@ export default {
         change() {
             this.$store.dispatch('schedule/change')
         },
-
+        deleteSchedule(id){
+            this.$store.dispatch('schedule/deleteSchedul',id)
+        }
     }
 
 }
@@ -238,6 +252,9 @@ h6 {
 .text-box {
     width: 50%;
     height: auto;
+}
+.icofont{
+    font-size: 10px;
 }
 </style>
  

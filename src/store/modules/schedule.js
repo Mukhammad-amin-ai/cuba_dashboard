@@ -70,17 +70,12 @@ const actions = {
       console.log(response.data);
       commit("setSchedule", response.data);
       if (response.data) {
-        commit('setCheck', state.checker = true )
+        commit("setCheck", (state.checker = true));
         commit("setSmallLoading", false, { root: true });
       }
       if (response.data.data >= 0) {
         commit("setCheck", !state.checker);
       }
-      // if(response.data.weekday_id[0] ==="The selected weekday id is invalid."){
-      //   commit('setCheck', state.checker =false)
-      //   commit("setSmallLoading", false, { root: true });
-
-      // }
     } catch (e) {
       console.error("error with getingBranchSchedul", e);
     }
@@ -122,13 +117,12 @@ const actions = {
   async deleteSchedul({ commit }, id) {
     try {
       let response = await axios.delete(
-        `http://tulibayev.uz/api/branch/schedule/${{ id }}`,
-        option,
+        `http://tulibayev.uz/api/branch/schedule/${id}`,
         { headers: { Authorization: "Bearer" + token } }
       );
       console.log(response.data);
       if (response.data.message === "Schedul deleted successfully") {
-        window.location.href = "/schedul";
+        window.location.href = "/branche";
       }
     } catch (e) {
       console.error("error find in deleting schedul", e);

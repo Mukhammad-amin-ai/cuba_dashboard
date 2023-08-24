@@ -87,6 +87,9 @@ export default {
             floor: ""
         }
     },
+    watch:{
+        
+    },
     computed: {
         ...mapState('group', ['groupData']),
         ...mapState('session', ['sessionData']),
