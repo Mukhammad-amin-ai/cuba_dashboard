@@ -1,12 +1,8 @@
 <template>
     <Breadcrumbs title="Blog Single" main="Pay me" />
-
     <div class="container-fluid p-10 ">
-
         <div class="wrap">
-
             <div class="inner">
-
                 <div class="header">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="38" viewBox="0 0 50 38" fill="none">
                         <g opacity="0.7">
@@ -102,13 +98,6 @@
                                     v-model="formattedExpirationDate" @input="updateExpirationDate" />
                             </div>
                         </div>
-
-                        <!-- <div>
-                            <label for="expiration-date">Password</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="password" v-model="password" />
-                            </div>
-                        </div> -->
                     </div>
                     <button type="button" class="btn btn-primary" style="width: 100%;" @click="getCard">Sent</button>
                 </div>
@@ -193,7 +182,7 @@ export default {
         },
         sendVerificationCode() {
             this.sentVerify = !this.sentVerify
-            this.timer = setInterval(this.updateTimer, 100)
+            this.timer = setInterval(this.updateTimer, 1000)
         },
         updateTimer() {
             if (this.minutes === 0 && this.seconds === 0) {

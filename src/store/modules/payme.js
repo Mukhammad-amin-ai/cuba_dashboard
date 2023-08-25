@@ -15,7 +15,7 @@ const mutations = {
 
 async function sendToken(option) {
   try {
-    let responce = await axios.post("http://tulibayev.uz/api/payme", option, {
+    let responce = await axios.post("http://192.168.0.137:8000/api/payment", option, {
       headers: { Authorization: "Bearer" + token },
     });
     console.log(responce.data);
@@ -37,7 +37,6 @@ const actions = {
         }
       );
       console.log(response.data);
-      //   console.log(response.data.result.card.token);
       if (response.data.result.card.token) {
         let token = response.data.result.card.token;
         localStorage.setItem("tokenPayme", token);
@@ -59,9 +58,6 @@ const actions = {
         }
       );
       console.log(response.data);
-      // if (response.data) {
-      //   commit("setShowVerify", false);
-      // }
     } catch (e) {
       console.error("error there", e);
     }
@@ -80,7 +76,12 @@ const actions = {
       console.log(response.data);
       if (response.data) {
         let tokenPayme = localStorage.getItem("tokenPayme");
-        sendToken(tokenPayme);
+        let sentoption = {
+            type: "student",
+            id: 1,
+            payment_token: tokenPayme
+        }
+        sendToken(sentoption);
       }
     } catch (e) {
       console.error("error there", e);
