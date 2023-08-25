@@ -59,9 +59,9 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data) {
-        commit("setShowVerify", false);
-      }
+      // if (response.data) {
+      //   commit("setShowVerify", false);
+      // }
     } catch (e) {
       console.error("error there", e);
     }

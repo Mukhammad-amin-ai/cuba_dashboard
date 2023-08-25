@@ -89,11 +89,12 @@
                         <label calss="form-label">Lastname </label>
                         <input class="form-control" type="text" aria-label="default input example" v-model="lastname">
                     </div>
-                    <div class="mb-3">
-                        <label for="numeric-input no-spinners">Number of card</label>
-                        <input type="text" class="form-control" maxlength="16" id="numeric-input" v-model="number" />
-                    </div>
+
                     <div class="mb-3 d-flex gap">
+                        <div class="mb-3">
+                            <label for="numeric-input no-spinners">Number of card</label>
+                            <input type="text" class="form-control" maxlength="16" id="numeric-input" v-model="number" />
+                        </div>
                         <div>
                             <label for="expiration-date">Expiration Date</label>
                             <div class="input-group">
@@ -101,12 +102,13 @@
                                     v-model="formattedExpirationDate" @input="updateExpirationDate" />
                             </div>
                         </div>
-                        <div>
+
+                        <!-- <div>
                             <label for="expiration-date">Password</label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="password" v-model="password" />
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <button type="button" class="btn btn-primary" style="width: 100%;" @click="getCard">Sent</button>
                 </div>
@@ -118,7 +120,7 @@
                     <div class="mb-3">
                         <div class="d-flex gap">
                             <label for="numeric-input no-spinners">Verification Code</label>
-                            <h5 v-if="!sentVerify"> {{ minut }}:{{ second }}</h5>
+                            <h5 v-if="!sentVerify"> {{ minutes }}:{{ seconds }}</h5>
                         </div>
                         <input type="text" class="form-control" maxlength="16" id="numeric-input" v-model="verification" />
                     </div>
@@ -127,7 +129,7 @@
                         <button type="button" class="btn btn-primary" @click="sendVerificationCode">Sent</button>
                     </div>
                     <!-- .d-flex -->
-                    <button v-else type="button" class="btn btn-primary" style="width: 100%;">Sent</button>
+                    <button v-else type="button" class="btn btn-primary" @click="verify" style="width: 100%;">Sent</button>
                 </div>
             </div>
         </div>
@@ -146,8 +148,8 @@ export default {
             verification: "",
             formattedExpirationDate: "",
             sentVerify: true,
-            minut: 1,
-            second: 0,
+            minutes: 1,
+            seconds: 0,
             intervalId: null,
         };
     },
@@ -191,25 +193,20 @@ export default {
         },
         sendVerificationCode() {
             this.sentVerify = !this.sentVerify
-            let option = {
-                method: "cards.get_verify_code",
-                params: {
-                    token: localStorage.getItem('tokenPayme')
+            this.timer = setInterval(this.updateTimer, 100)
+        },
+        updateTimer() {
+            if (this.minutes === 0 && this.seconds === 0) {
+                clearInterval(this.timer);
+                this.seconds = '00'
+            } else {
+                if (this.seconds === 0) {
+                    this.minutes--;
+                    this.seconds = 59;
+                } else {
+                    this.seconds--;
                 }
             }
-            this.$store.dispatch('payme/getCardVerify', option)
-            this.intervalId = setInterval(() => {
-                if (this.second === 0) {
-                    if (this.minut === 0) {
-                        clearInterval(this.intervalId);
-                        return;
-                    }
-                    this.minut -= 1;
-                    this.second = 59;
-                } else {
-                    this.second -= 1;
-                }
-            }, 1000);
         },
         verify() {
             let option = {
@@ -305,7 +302,7 @@ p {
 
 .cover {
     width: 561px;
-    height: 440px;
+    height: 380px;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -335,4 +332,5 @@ input::-webkit-inner-spin-button {
 .inner3 {
     width: 520px;
     height: auto;
-}</style>
+}
+</style>
