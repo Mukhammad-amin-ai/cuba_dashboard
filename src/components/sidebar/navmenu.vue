@@ -98,7 +98,7 @@ export default {
       togglesidebar: (state) => state.menu.togglesidebar,
       width: (state) => state.menu.width,
       height: (state) => state.menu.height,
-      margin: (state) => state.menu.margin,
+      // margin: (state) => state.menu.margin,
       menuWidth: (state) => state.menu.menuWidth,
     }),
     layoutobject: {
