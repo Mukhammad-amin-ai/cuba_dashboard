@@ -14,7 +14,8 @@ import { defaultLocale, localeOptions } from "./constants/config";
 import Breadcrumbs from "./components/bread_crumbs";
 import Multiselect from "vue-multiselect";
 import "vue-multiselect/dist/vue-multiselect.css";
-
+import Vue3VideoPlayer from '@cloudgeek/vue3-video-player'
+import '@cloudgeek/vue3-video-player/dist/vue3-video-player.css'
 
 const messages = { en: en, es: es, pt: pt, fr: fr };
 const locale =
@@ -27,6 +28,7 @@ const locale =
 createApp(App)
   .use(router)
   .use(store)
+  .use(Vue3VideoPlayer)
   .component(VueFeather.name, VueFeather)
   .component("Breadcrumbs", Breadcrumbs)
   .component("multiselect", Multiselect)
