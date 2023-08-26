@@ -23,19 +23,24 @@
                       <div class="show-hide"><span class="show"> </span></div>
                     </div>
                   </div>
-                  <div class="d-flex gap">
+                  <div class="d-flex gap mt-3">
                     <button type="button" class="btn btn-primary student" :style="getStyleObjectf" @click='student'>Student</button>
                     <button type="button" class="btn btn-primary teacher" :style='setBgforTeacher' @click='teacher'>Teacher</button>
                     <button type="button" class="btn btn-primary user" :style='setBgforUser' @click='user'>Admin</button>
                   </div>
-                  <div class="form-group mb-0">
-                    <div class="checkbox p-0">
+                  <div class="form-group  mt-3">
+                    <div class="checkbox p-0 ms-1">
                       <input id="checkbox1" type="checkbox">
                       <label class="text-muted" for="checkbox1">Remember me</label>
                     </div>
-                    <router-link class="link" to="/authentication/forgetpassword"> Forgot password?</router-link>
-                    <div class="text-end mt-3">
+                    <router-link class="link" to="/forgotpassword"> Forgot password?</router-link>
+                    <div class="text-end mt-2">
                       <button class="btn btn-primary btn-block w-100"  type="submit" @click.prevent="login">Sign in</button>
+                    </div>
+                    <div class="mt-3">
+                      <p>Don't have accaunt <span>
+                        <router-link to="/register" > Register</router-link>
+                      </span> </p>
                     </div>
                   </div>
                 </form>
@@ -60,24 +65,29 @@ export default {
       role: '',
       bgColorS: '',
       bgColorT: '',
-      bgColorU: ''
-
+      bgColorU: '',
+      color: "",
+      color1: "",
+      color2: ""
     }
   },
   computed: {
     getStyleObjectf() {
       return {
-        backgroundColor: `${this.bgColorS} !important`
+        backgroundColor: `${this.bgColorS} !important`,
+        color: `${this.color}`
       };
     },
     setBgforTeacher() {
       return {
-        backgroundColor: `${this.bgColorT} !important`
+        backgroundColor: `${this.bgColorT} !important`,
+        color: `${this.color1}`
       }
     },
     setBgforUser() {
       return {
-        backgroundColor: `${this.bgColorU} !important`
+        backgroundColor: `${this.bgColorU} !important`,
+        color: `${this.color2}`
       }
     }
   },
@@ -91,21 +101,30 @@ export default {
     },
     student() {
       this.role = 'student',
-        this.bgColorS = 'red',
+        this.bgColorS = '#f8f9fe',
         this.bgColorU = '',
-        this.bgColorT = ''
+        this.bgColorT = '',
+        this.color = '#000',
+        this.color1 = '',
+        this.color2 = ''
     },
     user() {
       this.role = 'user',
         this.bgColorS = '',
-        this.bgColorU = 'red',
-        this.bgColorT = ''
+        this.bgColorU = '#f8f9fe',
+        this.bgColorT = '',
+        this.color = '',
+        this.color1 = '',
+        this.color2 = '#000'
     },
     teacher() {
       this.role = 'teacher',
         this.bgColorS = '',
         this.bgColorU = '',
-        this.bgColorT = 'red'
+        this.bgColorT = '#f8f9fe',
+        this.color = '',
+        this.color1 = '#000',
+        this.color2 = ''
     }
   }
 
@@ -116,5 +135,4 @@ export default {
 .gap {
   justify-content: space-between;
 }
-
 </style>

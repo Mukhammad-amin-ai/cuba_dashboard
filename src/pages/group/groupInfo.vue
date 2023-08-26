@@ -185,7 +185,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="item in scheduleData.data" :key="item" v-if="this.$store.state.schedule.checker">
+                                    <!-- <tr v-for="item in scheduleData.data" :key="item" v-if="this.$store.state.schedule.checker">
                                         <td>{{ item.group.name }}</td>
                                         <td>{{ item.session.duration }}</td>
                                         <td>{{ item.room.name }}</td>
@@ -195,7 +195,7 @@
                                         <td>
                                             No data 
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

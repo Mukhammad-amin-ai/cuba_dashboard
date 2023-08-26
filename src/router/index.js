@@ -23,7 +23,7 @@ import teachersInfo from "@/pages/teachers/teachersInfro.vue";
 import teachersCreate from "@/pages/teachers/create.vue";
 import Decode from "./experitionChecker";
 import payme from '@/pages/payme/payme.vue'
-
+import forgot from '@/auth/forgot.vue'
 
 const routes = [
   {
@@ -132,6 +132,10 @@ const routes = [
   {
     path: "/register",
     component: register,
+  },
+  {
+    path:"/forgotpassword",
+    component:forgot
   },
   {
     path: "/:pathMatch(.*)*",

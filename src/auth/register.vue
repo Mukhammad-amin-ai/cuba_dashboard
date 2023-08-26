@@ -64,12 +64,16 @@
                    <div class="show-hide"><span class="show"> </span></div>
                  </div>
                </div>
-               <div class="form-group mb-0">
+               <div class="form-group mt-3">
                  <div class="text-end mt-3">
                    <button class="btn btn-primary btn-block w-100" type="submit" @click.prevent="register">Register</button>
                  </div>
                </div>
-             </form>
+               <div class="mt-3">
+                 <p>Allready have accaunt ? <span> <router-link to="/login">Log-in</router-link></span></p>
+
+               </div>
+              </form>
            </div>
          </div>
        </div>
@@ -163,6 +167,6 @@ export default {
 
 }
 </script>
-<style lang="">
+<style >
      
  </style>
