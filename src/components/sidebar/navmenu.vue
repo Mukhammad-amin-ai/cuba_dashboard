@@ -75,6 +75,13 @@
           <span class="lan-3"> Payme</span>
         </router-link>
       </li>
+      <li class="sidebar-list">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title" to="/live">
+          <i class="icofont icofont-video-cam"></i>
+          <span class="lan-3"> Live</span>
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>

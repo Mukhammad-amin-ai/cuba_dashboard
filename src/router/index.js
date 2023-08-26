@@ -24,6 +24,7 @@ import teachersCreate from "@/pages/teachers/create.vue";
 import Decode from "./experitionChecker";
 import payme from '@/pages/payme/payme.vue'
 import forgot from '@/auth/forgot.vue'
+import live from '@/pages/live/live.vue'
 
 const routes = [
   {
@@ -120,6 +121,11 @@ const routes = [
       {
         path:'payme',
         component:payme,
+        meta: { requiredAuth: true },
+      },
+      {
+        path:'live',
+        component:live,
         meta: { requiredAuth: true },
       }
     ],
