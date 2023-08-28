@@ -5,6 +5,7 @@ const state = {
   showVerify: true,
   addCardComponent: true,
   cashierId: "",
+  showInput:false
 };
 const mutations = {
   setShow(state, showHide) {
@@ -19,6 +20,9 @@ const mutations = {
   getId(state, cashierId) {
     state.cashierId = cashierId;
   },
+  setShowIput(state,showInput){
+    state.showInput = showInput
+  }
 };
 
 const actions = {
@@ -70,6 +74,8 @@ const actions = {
         }
       );
       console.log(response.data);
+     
+
     } catch (e) {
       console.error("error there", e);
     }

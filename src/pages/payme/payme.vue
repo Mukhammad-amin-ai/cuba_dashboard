@@ -111,7 +111,7 @@
                             <label for="numeric-input no-spinners">Verification Code</label>
                             <h5 v-if="!sentVerify"> {{ minutes }}:{{ seconds }}</h5>
                         </div>
-                        <input type="text" class="form-control" maxlength="16" id="numeric-input" v-model="verification" />
+                        <input type="text" class="form-control" maxlength="16" id="numeric-input" v-if="this.$store.state.payme.showInput" v-model="verification" />
                     </div>
                     <div class="d-flex gap" v-if="sentVerify">
                         <h6>Press button to sent verification code</h6>
@@ -195,6 +195,8 @@
     </div>
 </template>
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
     data() {
         return {
@@ -224,6 +226,7 @@ export default {
         },
     },
     methods: {
+        ...mapMutations('payme',['setShowIput']),
         updateExpirationDate() {
             this.expirationDate = this.formattedExpirationDate.replace(/\//g, '');
             this.formattedExpirationDate = this.formattedExpirationDate.replace(/\D/g, '');
@@ -250,8 +253,10 @@ export default {
             this.$store.dispatch('payme/getCard', option)
         },
         sendVerificationCode() {
+            this.setShowIput(true)
             this.sentVerify = !this.sentVerify
             this.timer = setInterval(this.updateTimer, 1000)
+            
         },
         updateTimer() {
             if (this.minutes === 0 && this.seconds === 0) {
@@ -393,11 +398,15 @@ input::-webkit-inner-spin-button {
     width: 561px;
     height: 160px;
     flex-shrink: 0;
+ 
 }
 
 .inner3 {
     width: 520px;
-    height: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 
