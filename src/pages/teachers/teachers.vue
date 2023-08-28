@@ -1,4 +1,5 @@
 <template >
+  <Breadcrumbs title="Blog Detail" main="Teachers" />
     <div class="container-fluid p-20">
         <div class="card p-20 ">
             <RouterLink to="teachers/create" class="select">

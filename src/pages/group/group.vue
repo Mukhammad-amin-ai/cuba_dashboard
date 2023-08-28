@@ -1,4 +1,5 @@
 <template >
+  <Breadcrumbs title="Blog Detail" main="Groups" />
     <div class="container">
         <RouterLink to="group/create">
             <div class="card mb-3 hover" style="width: 100%;">

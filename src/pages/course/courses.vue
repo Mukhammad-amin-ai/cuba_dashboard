@@ -1,4 +1,5 @@
 <template>
+  <Breadcrumbs title="Blog Detail" main="Courses" />
     <div class="container-fluid p-20">
         <spiner/>
         <div class="row " style="gap: 40px;">

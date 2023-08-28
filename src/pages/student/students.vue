@@ -1,4 +1,5 @@
 <template >
+    <Breadcrumbs title="Blog Detail" main="Students" />
     <div class="container-fluid p-20">
         <div class="row d-flex">
             <RouterLink to="student/create" class="select">
@@ -7,7 +8,6 @@
                         <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
                     </div>
                 </div>
-
             </RouterLink>
             <div class="col-xl-4 col-sm-6 col-xxl-3 col-ed-4 box-col-4" v-for="item in students" :key="item">
                 <RouterLink :to="{ path: 'student/' + item.id }">
@@ -25,7 +25,6 @@
                             </div>
                             <div class="social-details">
                                 <h5 class="mb-1">
-                                    <!-- <router-link to="/app/socialPage"></router-link> -->
                                     {{ item.firstname }} {{ item.lastname }}
                                 </h5>
                                 <span class="f-light"></span>
@@ -34,10 +33,6 @@
                                         <h5 class="mb-0">Contact</h5>
                                         <span class="f-light">{{ item.contact_no }}</span>
                                     </li>
-                                    <!-- <li>
-                                        <h5 class="mb-0"> </h5>
-                                        <span class="f-light">  </span>
-                                    </li> -->
                                     <li class=" d-grid">
                                         <h5 class="mb-0">Email</h5>
                                         <span class="f-light">{{ item.email }}</span>
@@ -72,6 +67,10 @@ export default {
     background-image: none !important;
 }
 
+.select {
+    transition: .3s all linear;
+    transform: scale(1);
+}
 .select:hover {
     transform: scale(1.050);
 }
