@@ -28,56 +28,56 @@
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to='/branches'>
-          <i class="icofont icofont-building-alt"></i>
+        <router-link class="sidebar-link sidebar-title hover" to='/branches'>
+          <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/courses">
+        <router-link class="sidebar-link sidebar-title hover" to="/courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/schedule">
+        <router-link class="sidebar-link sidebar-title hover" to="/schedule">
           <i class="icofont icofont-ui-calendar"></i>
-           <span class="lan-3"> Schedule</span>
+          <span class="lan-3"> Schedule</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/group">
+        <router-link class="sidebar-link sidebar-title hover" to="/group">
           <i class="icofont icofont-group-students"></i>
           <span class="lan-3"> Group</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/teachers">
+        <router-link class="sidebar-link sidebar-title hover" to="/teachers">
           <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> Teachers</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/student">
+        <router-link class="sidebar-link sidebar-title hover" to="/student">
           <i class="icofont icofont-student-alt"></i>
           <span class="lan-3"> Students</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/payme">
+        <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> Payme</span>
         </router-link>
       </li>
       <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/live">
+        <router-link class="sidebar-link sidebar-title hover" to="/live">
           <i class="icofont icofont-video-cam"></i>
           <span class="lan-3"> Live</span>
         </router-link>
@@ -220,5 +220,9 @@ export default {
 <style>
 .courses {
   width: 8%;
+}
+
+.hover:hover {
+  color: #7366ff !important;
 }
 </style>

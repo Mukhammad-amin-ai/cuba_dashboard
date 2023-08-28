@@ -3,6 +3,7 @@ const token = localStorage.getItem("token");
 const state = {
   showHide: true,
   showVerify: true,
+  addCardComponent:true
 };
 const mutations = {
   setShow(state, showHide) {
@@ -11,18 +12,12 @@ const mutations = {
   setShowVerify(state, showVerify) {
     state.showVerify = showVerify;
   },
+  cardComponent(state,addCardComponent){
+    state.addCardComponent = addCardComponent
+  }
 };
 
-async function sendToken(option) {
-  try {
-    let responce = await axios.post("http://192.168.0.137:8000/api/payment", option, {
-      headers: { Authorization: "Bearer" + token },
-    });
-    console.log(responce.data);
-  } catch (e) {
-    console.error("error in sending token ", e);
-  }
-}
+
 
 const actions = {
   async getCard({ commit }, option) {
@@ -37,6 +32,7 @@ const actions = {
         }
       );
       console.log(response.data);
+      // commit('cardComponent',false)
       if (response.data.result.card.token) {
         let token = response.data.result.card.token;
         localStorage.setItem("tokenPayme", token);
@@ -74,19 +70,30 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data) {
-        let tokenPayme = localStorage.getItem("tokenPayme");
-        let sentoption = {
-            type: "student",
-            id: 1,
-            payment_token: tokenPayme
-        }
-        sendToken(sentoption);
-      }
+      // if (response.data) {
+      //   let tokenPayme = localStorage.getItem("tokenPayme");
+      //   let sentoption = {
+      //       type: "student",
+      //       id: 1,
+      //       payment_token: tokenPayme
+      //   }
+      //   sendToken(sentoption);
+      // }
     } catch (e) {
       console.error("error there", e);
     }
   },
+  async sendToken({commit},option) {
+    try {
+      let responce = await axios.post("http://tulibayev.uz/api/payment/addcard", option, {
+        headers: { Authorization: "Bearer" + token },
+      });
+      console.log(responce.data);
+      commit('cardComponent',false)
+    } catch (e) {
+      console.error("error in sending token ", e);
+    }
+  }
 };
 
 export default {
