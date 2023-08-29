@@ -23,11 +23,11 @@
                       <div class="show-hide"><span class="show"> </span></div>
                     </div>
                   </div>
-                  <div class="d-flex gap mt-3">
+                  <!-- <div class="d-flex gap mt-3">
                     <button type="button" class="btn btn-primary student" :style="getStyleObjectf" @click='student'>Student</button>
                     <button type="button" class="btn btn-primary teacher" :style='setBgforTeacher' @click='teacher'>Teacher</button>
                     <button type="button" class="btn btn-primary user" :style='setBgforUser' @click='user'>Admin</button>
-                  </div>
+                  </div> -->
                   <div class="form-group  mt-3">
                     <div class="checkbox p-0 ms-1">
                       <input id="checkbox1" type="checkbox">
@@ -62,70 +62,70 @@ export default {
     return {
       email: "",
       password: "12345678",
-      role: '',
-      bgColorS: '',
-      bgColorT: '',
-      bgColorU: '',
-      color: "",
-      color1: "",
-      color2: ""
+      // role: '',
+      // bgColorS: '',
+      // bgColorT: '',
+      // bgColorU: '',
+      // color: "",
+      // color1: "",
+      // color2: ""
     }
   },
-  computed: {
-    getStyleObjectf() {
-      return {
-        backgroundColor: `${this.bgColorS} !important`,
-        color: `${this.color}`
-      };
-    },
-    setBgforTeacher() {
-      return {
-        backgroundColor: `${this.bgColorT} !important`,
-        color: `${this.color1}`
-      }
-    },
-    setBgforUser() {
-      return {
-        backgroundColor: `${this.bgColorU} !important`,
-        color: `${this.color2}`
-      }
-    }
-  },
+  // computed: {
+  //   getStyleObjectf() {
+  //     return {
+  //       backgroundColor: `${this.bgColorS} !important`,
+  //       color: `${this.color}`
+  //     };
+  //   },
+  //   setBgforTeacher() {
+  //     return {
+  //       backgroundColor: `${this.bgColorT} !important`,
+  //       color: `${this.color1}`
+  //     }
+  //   },
+  //   setBgforUser() {
+  //     return {
+  //       backgroundColor: `${this.bgColorU} !important`,
+  //       color: `${this.color2}`
+  //     }
+  //   }
+  // },
   methods: {
     async login() {
       const option = {
         password: this.password,
         email: this.email,
       }
-      this.$store.dispatch('login', { role: this.role, option: option })
+      this.$store.dispatch('login',option)
     },
-    student() {
-      this.role = 'student',
-        this.bgColorS = '#f8f9fe',
-        this.bgColorU = '',
-        this.bgColorT = '',
-        this.color = '#000',
-        this.color1 = '',
-        this.color2 = ''
-    },
-    user() {
-      this.role = 'user',
-        this.bgColorS = '',
-        this.bgColorU = '#f8f9fe',
-        this.bgColorT = '',
-        this.color = '',
-        this.color1 = '',
-        this.color2 = '#000'
-    },
-    teacher() {
-      this.role = 'teacher',
-        this.bgColorS = '',
-        this.bgColorU = '',
-        this.bgColorT = '#f8f9fe',
-        this.color = '',
-        this.color1 = '#000',
-        this.color2 = ''
-    }
+    // student() {
+    //   this.role = 'student',
+    //     this.bgColorS = '#f8f9fe',
+    //     this.bgColorU = '',
+    //     this.bgColorT = '',
+    //     this.color = '#000',
+    //     this.color1 = '',
+    //     this.color2 = ''
+    // },
+    // user() {
+    //   this.role = 'user',
+    //     this.bgColorS = '',
+    //     this.bgColorU = '#f8f9fe',
+    //     this.bgColorT = '',
+    //     this.color = '',
+    //     this.color1 = '',
+    //     this.color2 = '#000'
+    // },
+    // teacher() {
+    //   this.role = 'teacher',
+    //     this.bgColorS = '',
+    //     this.bgColorU = '',
+    //     this.bgColorT = '#f8f9fe',
+    //     this.color = '',
+    //     this.color1 = '#000',
+    //     this.color2 = ''
+    // }
   }
 
 

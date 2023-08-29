@@ -81,11 +81,11 @@ const actions = {
       console.error("An error occurred:", error);
     }
   },
-  async login({ commit }, {role,option}) {
+  async login({ commit }, option) {
     // commit("setLoading", true, { root: true });
     try {
       const response = await axios.post(
-        `http://tulibayev.uz/api/${role}/login`,
+        `http://tulibayev.uz/api/auth/login`,
         option
       );
       console.log(response.data); 
