@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import isUserValid from "./authChecker";
 import Body from "../components/body";
-import Default from "../pages/dashboard/defaultPage.vue";
+import Default from "../pages/dashboard/view.vue";
 import login from "@/auth/login.vue";
 import register from "@/auth/register.vue";
 import notfoound from "@/auth/404.vue";

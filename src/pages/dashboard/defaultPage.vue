@@ -1,295 +1,95 @@
-<!-- <template>
-  <div class="container-fluid">
-    <Breadcrumbs main="Starter Kit" />
-
-    <div class="row starter-main">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>Kick start your project development !</h5>
-            <div class="card-header-right">
-              <ul class="list-unstyled card-option">
-                <li><i class="fa fa-spin fa-cog"></i></li>
-                <li><i class="view-html fa fa-code"></i></li>
-                <li><i class="icofont icofont-maximize full-card"></i></li>
-                <li><i class="icofont icofont-minus minimize-card"></i></li>
-                <li><i class="icofont icofont-refresh reload-card"></i></li>
-                <li><i class="icofont icofont-error close-card"></i></li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-body">
-            <p>Getting start with your project custom requirements using a ready template which is quite difficult and
-              time taking process, Cuba Admin provides useful features to kick start your project development with no
-              efforts !</p>
-            <ul>
-              <li>
-                <p>Cuba Admin provides you getting start pages with different layouts, use the layout as per your custom
-                  requirements and just change the branding, menu & content.</p>
-              </li>
-              <li>
-                <p>Every components in Cuba Admin are decoupled, it means use only components you actually need! Remove
-                  unnecessary and extra code easily just by excluding the path to specific SCSS, JS file.</p>
-              </li>
-              <li>
-                <p>It use PUG as template engine to generate pages and whole template quickly using node js. Save your
-                  time for doing the common changes for each page (i.e menu, branding and footer) by generating template
-                  with pug.</p>
-              </li>
-            </ul>
-            <div class="code-box-copy">
-              <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head" title="Copy"><i
-                  class="icofont icofont-copy-alt"></i></button>
-              <pre><code class="language-html" id="example-head">&lt;!-- Cod Box Copy begin --&gt;
-    &lt;p&gt;Getting start with your project custom requirements using a ready template which is quite difficult and time taking process, Cuba Admin provides useful features to kick start your project development with no efforts !&lt;/p&gt;
-    &lt;ul&gt;
-    &lt;li&gt;&lt;p&gt;Cuba Admin provides you getting start pages with different layouts, use the layout as per your custom requirements and just change the branding, menu & content.&lt;/p&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;p&gt;Every components in Cuba Admin are decoupled, it means use only components you actually need! Remove unnecessary and extra code easily just by excluding the path to specific SCSS, JS file.&lt;/p&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;p&gt;It use PUG as template engine to generate pages and whole template quickly using node js. Save your time for doing the common changes for each page (i.e menu, branding and footer) by generating template with pug.&lt;/p&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;!-- Cod Box Copy end --&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>What is starter kit ?</h5>
-            <div class="card-header-right">
-              <ul class="list-unstyled card-option">
-                <li><i class="fa fa-spin fa-cog"></i></li>
-                <li><i class="view-html fa fa-code"></i></li>
-                <li><i class="icofont icofont-maximize full-card"></i></li>
-                <li><i class="icofont icofont-minus minimize-card"></i></li>
-                <li><i class="icofont icofont-refresh reload-card"></i></li>
-                <li><i class="icofont icofont-error close-card"></i></li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-body">
-            <p>Starter kit is a set of pages with different layouts, useful for your next project to start development
-              process from scratch with no time.</p>
-            <ul>
-              <li>
-                <p>Each layout includes basic components only.</p>
-              </li>
-              <li>
-                <p>Select your choice of layout from starter kit, customize it with optional changes like colors and
-                  branding, add required dependency only.</p>
-              </li>
-              <li>
-                <p>Using template engine to generate whole template quickly with your selected layout and other custom
-                  changes. </p>
-              </li>
-            </ul>
-            <div class="code-box-copy">
-              <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head1" title="Copy"><i
-                  class="icofont icofont-copy-alt"></i></button>
-              <pre><code class="language-html" id="example-head1">&lt;!-- Cod Box Copy begin --&gt;
-    &lt;p&gt;Starter kit is a set of pages with different layouts, useful for your next project to start development process from scratch with no time. &lt;/p&gt;
-    &lt;ul&gt;
-    &lt;li&gt;&lt;p&gt;Each layout includes basic components only.&lt;/p&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;p&gt;Select your choice of layout from starter kit, customize it with optional changes like colors and branding, add required dependency only.&lt;/p&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;p&gt;Using template engine to generate whole template quickly with your selected layout and other custom changes.&lt;/p&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;!-- Cod Box Copy end --&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>How to use starter kit ?</h5>
-            <div class="card-header-right">
-              <ul class="list-unstyled card-option">
-                <li><i class="fa fa-spin fa-cog"></i></li>
-                <li><i class="view-html fa fa-code"></i></li>
-                <li><i class="icofont icofont-maximize full-card"></i></li>
-                <li><i class="icofont icofont-minus minimize-card"></i></li>
-                <li><i class="icofont icofont-refresh reload-card"></i></li>
-                <li><i class="icofont icofont-error close-card"></i></li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-body">
-            <p><span class="f-w-600">HTML</span></p>
-            <p>If you know just HTML, select your choice of layout from starter kit folder, customize it with optional
-              changes like colors and branding, add required dependency only.</p>
-            <p><span class="f-w-600">PUG</span></p>
-            <p>To use PUG it required node.js and basic knowledge of using it. Using PUG as template engine to generate
-              whole template quickly with your selected layout and other custom changes. To getting start with PUG usage &
-              template generating process please refer template documentation.</p>
-            <div class="alert alert-primary inverse" role="alert"><i class="icon-info-alt"></i>
-              <h5>Tips!</h5>
-              <p>Hideable navbar option is available for fixed navbar with static navigation only. Works in top and bottom
-                positions, single and multiple navbars.</p>
-            </div>
-            <div class="code-box-copy">
-              <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head2" title="Copy"><i
-                  class="icofont icofont-copy-alt"></i></button>
-              <pre><code class="language-html" id="example-head2">&lt;!-- Cod Box Copy begin --&gt;
-    &lt;p&gt;&lt;span class="f-w-600"&gt;HTML&lt;/span&gt;&lt;/p&gt;
-    &lt;p&gt;If you know just HTML, select your choice of layout from starter kit folder, customize it with optional changes like colors and branding, add required dependency only.&lt;/p&gt;
-    &lt;p&gt;&lt;span class="f-w-600"&gt;PUG&lt;/span&gt;&lt;/p&gt;
-    &lt;p&gt;To use PUG it required node.js and basic knowledge of using it. Using PUG as template engine to generate whole template quickly with your selected layout and other custom changes. To getting start with PUG usage & template generating process please refer template documentation.&lt;/p&gt;
-    &lt;div class="alert alert-primary inverse" role="alert"&gt;
-    &lt;i class="icon-info-alt"&gt;&lt;/i&gt;
-    &lt;h5&gt;Tips!&lt;/h5&gt;
-    &lt;p&gt;Hideable navbar option is available for fixed navbar with static navigation only. Works in top and bottom positions, single and multiple navbars.&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;!-- Cod Box Copy end --&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>Simple Card</h5>
-          </div>
-          <div class="card-body">
-            <h6>HTML Ipsum Presents</h6>
-            <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis
-              egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
-              amet quam egestas
-              semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien
-              ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet,
-              wisi. Aenean
-              fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a
-                href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.
-            </p>
-            <h6>Header Level 2</h6>
-            <ol>
-              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-              <li>Aliquam tincidunt mauris eu risus.</li>
-            </ol>
-            <div class="figure d-block">
-              <blockquote class="blockquote">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet
-                  congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis
-                  mollis, tellus est malesuada
-                  tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-                </p>
-              </blockquote>
-            </div>
-            <h4>Header Level<span> 3</span></h4>
-            <ul>
-              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-              <li>Aliquam tincidunt mauris eu risus.</li>
-            </ul>
-            <pre>#header h1 a {
-    display: block;
-    width: 300px;
-    height: 80px;
-    }</pre>
-            <dl>
-              <dt>Definition list</dt>
-              <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</dd>
-              <dt>Lorem ipsum dolor sit amet</dt>
-              <dd>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h5>With Header</h5>
-          </div>
-          <div class="card-body">
-            <h5>Content title</h5>
-          <p>Add a heading to card with <code>.card-header</code> class</p>
-          <p>You may also include any &lt;h1&gt;-&lt;h6&gt; with a <code>.card-header </code> & <code>.card-title</code>
-            class to add heading.</p>
-          <p>Jelly beans sugar plum cheesecake cookie oat cake soufflé. Tart lollipop carrot cake sugar plum.
-            Marshmallow wafer tiramisu jelly beans.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header card-no-border">
-          <h5>With Header & No Border</h5>
-        </div>
-        <div class="card-body">
-          <h5>Content title</h5>
-          <p>Add a heading to card with <code>.card-header </code> class & without header
-            border<code>.border-bottom-0</code> class.</p>
-          <p>You may also include any &lt;h1&gt;-&lt;h6&gt; with a <code>.card-header </code> & <code>.card-title</code>
-            class to add heading.</p>
-          <p>Gingerbread brownie sweet roll cheesecake chocolate cake jelly beans marzipan gummies dessert. Jelly beans
-            sugar plum cheesecake cookie oat cake soufflé.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
- </div> -->
-<!-- /template> --> 
 <template>
-  <div class="container-fluid p-10">
-    <div class="col-xxl-4 col-sm-6 box-col-6">
+  <div class="col-xxl-4 col-sm-6 box-col-6 ">
       <div class="card profile-box">
-        <div class="card-body">
-          <div class="media">
-            <div class="media-body">
-              <div class="greeting-user">
-                <h4 class="f-w-600 mb-0">Welcome to cuba</h4>
-                <p>Here whats happing in your account today</p>
-                <div class="whatsnew-btn">
-                  <a class="btn btn-outline-white">Whats New !</a>
-                </div>
+          <div class="card-body">
+              <div class="media">
+                  <div class="media-body">
+                      <div class="greeting-user">
+                          <h4 class="f-w-600 mb-0">Welcome to cuba</h4>
+                          <p>Here whats happing in your account today</p>
+                          <div class="whatsnew-btn">
+                              <a class="btn btn-outline-white">Whats New !</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div>
+                      <div class="clockbox">
+                          <svg id="clock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+                              <g id="face">
+                                  <circle class="circle" cx="300" cy="300" r="253.9"></circle>
+                                  <path class="hour-marks" d="M300.5 94V61M506 300.5h32M300.5 506v33M94 300.5H60M411.3 107.8l7.9-13.8M493 190.2l13-7.4M492.1 411.4l16.5 9.5M411 492.3l8.9 15.3M189 492.3l-9.2 15.9M107.7 411L93 419.5M107.5 189.3l-17.1-9.9M188.1 108.2l-9-15.6"></path>
+                                  <circle class="mid-circle" cx="300" cy="300" r="16.2"></circle>
+                              </g>
+                              <g id="hour">
+                                  <path class="hour-hand" d="M300.5 298V142"></path>
+                                  <circle class="sizing-box" cx="300" cy="300" r="253.9"></circle>
+                              </g>
+                              <g id="minute">
+                                  <path class="minute-hand" d="M300.5 298V67"></path>
+                                  <circle class="sizing-box" cx="300" cy="300" r="253.9"></circle>
+                              </g>
+                              <g id="second">
+                                  <path class="second-hand" d="M300.5 350V55"></path>
+                                  <circle class="sizing-box" cx="300" cy="300" r="253.9"></circle>
+                              </g>
+                          </svg>
+                      </div>
+                      <div class="badge f-10 p-0" id="txt"></div>
+                  </div>
               </div>
-            </div>
-            <div>
-              <div class="clockbox">
-                <svg id="clock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
-                  <g id="face">
-                    <circle class="circle" cx="300" cy="300" r="253.9"></circle>
-                    <path class="hour-marks"
-                      d="M300.5 94V61M506 300.5h32M300.5 506v33M94 300.5H60M411.3 107.8l7.9-13.8M493 190.2l13-7.4M492.1 411.4l16.5 9.5M411 492.3l8.9 15.3M189 492.3l-9.2 15.9M107.7 411L93 419.5M107.5 189.3l-17.1-9.9M188.1 108.2l-9-15.6">
-                    </path>
-                    <circle class="mid-circle" cx="300" cy="300" r="16.2"></circle>
-                  </g>
-                  <g id="hour">
-                    <path class="hour-hand" d="M300.5 298V142"></path>
-                    <circle class="sizing-box" cx="300" cy="300" r="253.9"></circle>
-                  </g>
-                  <g id="minute">
-                    <path class="minute-hand" d="M300.5 298V67"></path>
-                    <circle class="sizing-box" cx="300" cy="300" r="253.9"></circle>
-                  </g>
-                  <g id="second">
-                    <path class="second-hand" d="M300.5 350V55"></path>
-                    <circle class="sizing-box" cx="300" cy="300" r="253.9"></circle>
-                  </g>
-                </svg>
+              <div class="cartoon">
+                  <img class="img-fluid" src="@/assets/images/dashboard/cartoon.svg" alt="vector women with leptop" />
               </div>
-              <div class="badge f-10 p-0" id="txt"></div>
-            </div>
           </div>
-          <div class="cartoon">
-            <img class="img-fluid" src="@/assets/images/dashboard/cartoon.svg" alt="vector women with leptop" />
-          </div>
-        </div>
       </div>
-    </div>
   </div>
-</template>
-<script>
-
-const text = 'hello world'
-export default {
-  data() {
-    return {
-      test: text,
-    }
-  }
-}
-</script>
-<style></style>
+  </template>
+  
+  <script>
+  export default {
+      data() {
+          return {
+              interval: "",
+              greeting: "",
+              time: "",
+          };
+      },
+      mounted() {
+          // gets clock hands and puts them into constants
+          const HOURHAND = document.querySelector("#hour");
+          const MINUTEHAND = document.querySelector("#minute");
+          const SECONDHAND = document.querySelector("#second");
+          // gets the current time and adds hours / mins / secs to individual let varriables
+          var date = new Date();
+          let hr = date.getHours();
+          let min = date.getMinutes();
+          let sec = date.getSeconds();
+          var ampm = hr >= 12 ? "PM" : "AM";
+          // converts current time into degrees of the 360 degree clock
+          // the calculation on hr & min incriments the clock smootly instead of jumping from minuite to minuite or hour to hour it is  percentages of a minuite / hour respectivly
+          let hrPosition = (hr * 360) / 12 + (min * (360 / 60)) / 12;
+          let minPosition = (min * 360) / 60 + (sec * (360 / 60)) / 60;
+          let secPosition = (sec * 360) / 60;
+          // function that sets clock to current time and adds a second to it every time it is called
+          function runClock() {
+              // adds degrees in an hour divide by seconds in an hour to previous time
+              hrPosition += 30 / 3600;
+              // adds degrees in a minuite divide by seconds in an minuite to previous time
+              minPosition += 6 / 60;
+              // adds degrees in a second to previous time
+              secPosition += 6;
+              // position clock hands to degrees values calculated above using transfrom rotate
+              HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
+              MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
+              SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+              document.getElementById("txt").innerHTML = hr + ":" + min + " " + ampm;
+          }
+          // intival that automates the clock by calling the runClock function every second
+          this.interval = setInterval(runClock, 1000);
+      },
+      unmounted() {
+          clearTimeout(this.interval);
+      },
+  };
+  </script>
+  
