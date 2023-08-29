@@ -88,10 +88,13 @@ const actions = {
         `http://tulibayev.uz/api/auth/login`,
         option
       );
-      console.log(response.data); 
+      console.log(response.data);
       // commit("setLoading", false, { root: true });
       let token = response.data.token;
       localStorage.setItem("token", token);
+      if (response.data.role) {
+        localStorage.setItem("role", JSON.stringify(response.data.role));
+      }
       if (token) {
         window.location.href = "/";
       }
@@ -117,10 +120,11 @@ const actions = {
   },
   async logout() {
     const token = localStorage.getItem("token");
-    await axios.get("https://tulibayev.uz/api/user/logout", {
+    await axios.get("https://tulibayev.uz/api/auth/logout", {
       headers: { Authorization: "Bearer" + token },
     });
     localStorage.removeItem("token");
+    localStorage.removeItem('role')
     if (token) {
       window.location.href = "/login";
     }

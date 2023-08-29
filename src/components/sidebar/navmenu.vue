@@ -89,11 +89,15 @@
 import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
 
+let role = JSON.parse(localStorage.getItem('role'))
+let branch = role.babranches
+
 export default {
   name: 'Navmenu',
   data() {
     return {
-      layoutobj: {}
+      layoutobj: {},
+      branch:branch
     };
   },
   computed: {
