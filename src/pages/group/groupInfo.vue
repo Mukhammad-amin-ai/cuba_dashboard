@@ -10,7 +10,7 @@
                             :style="{ backgroundImage: 'url(' + require('@/assets/images/Students-Wallpaper.jpg') + ')' }">
                         </div>
                         <div class="user-image">
-                            <div class="icon-wrapper">
+                            <div class="icon-wrapper" v-if="this.$store.state.role.update">
                                 <i id="update-profile-tour" class="icofont icofont-pencil-alt-5" @click="chenger"
                                     data-intro="Change Profile image here"></i>
                             </div>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="mb-2">
                                 <label class="col-form-label">Choose Teacher</label>
-                                    <select class="form-select" aria-label="Default select example" v-model="selectedTeacher">
+                                <select class="form-select" aria-label="Default select example" v-model="selectedTeacher">
                                     <option :value="item.id" v-for="item in teachers" :key="item">{{ item.firstname }} {{
                                         item.lastname }}</option>
                                 </select>
@@ -124,8 +124,8 @@
                                                             {{ item.fullname }}
                                                         </td>
                                                         <td scope="col"><button type="button" class="btn btn-success"
-                                                                @click="addStudent(index)"><i
-                                                                    class="fa fa-plus-square-o"></i></button>
+                                                                @click="addStudent(index)">
+                                                                <i class="fa fa-plus-square-o"></i></button>
                                                         </td>
                                                         <td></td>
                                                     </tr>
@@ -204,7 +204,8 @@
                 <TableOfStudents :scheTeble="scheTeble" />
             </div>
         </div>
-        <button type="button" class="btn btn-danger" @click="deleteGroup">Delete Group</button>
+        <button type="button" class="btn btn-danger" @click="deleteGroup" v-if="this.$store.state.role.delete">Delete
+            Group</button>
     </div>
 </template>
 <script>
@@ -258,7 +259,7 @@ export default {
         this.getAssistants()
         this.getStudents()
         this.getGroupStudents()
-
+        this.roleChecker()
     },
     methods: {
         concatination() {
@@ -324,6 +325,9 @@ export default {
         deleteStudent(index) {
             this.choosedStudents.splice(index, 1)
             this.studentsList.splice(index, 1)
+        },
+        roleChecker() {
+            this.$store.dispatch('role/roleCheck', 'groups')
         }
     }
 }

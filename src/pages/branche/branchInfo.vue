@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    <div class="flex " v-if="this.$store.state.role.access">
+    <div class="flex " v-if="this.$store.state.role.update">
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
             <h6 v-else>Go From Edit</h6>
@@ -103,12 +103,12 @@
                                 <td>{{ item.session.duration }}</td>
                                 <td>{{ item.room.name }}</td>
                                 <td>{{ item.weekday.name }}</td>
-                                <td v-if="this.$store.state.role.access">
+                                <td v-if="this.$store.state.role.update">
                                     <button type="button" class="btn btn-primary" @click="change">
                                         <i class="icofont icofont-pencil-alt-5"></i>
                                     </button>
                                 </td>
-                                <td v-if="this.$store.state.role.access">
+                                <td v-if="this.$store.state.role.deletee">
                                     <button type="button" class="btn btn-danger" @click="deleteSchedule(item.id)">
                                         <i class="icofont icofont-ui-delete"></i>
                                     </button>
@@ -124,7 +124,8 @@
                     </table>
                 </div>
             </div>
-            <button type="button" class="btn btn-success" @click="change" v-if="this.$store.state.role.access">Create Schedule</button>
+            <button type="button" class="btn btn-success" @click="change" v-if="this.$store.state.role.create">Create
+                Schedule</button>
         </div>
     </div>
     <div class="container-fluid  height" v-else>
@@ -165,9 +166,9 @@ export default {
         ...mapState('schedule', ['scheduleData'])
     },
     mounted() {
-        this.getbranch(),
-            this.getRoom()
-        //    this.checker()
+        this.getbranch()
+        this.getRoom()
+        this.roleChecker()
     },
     watch: {
         branchData: {
@@ -203,8 +204,11 @@ export default {
         change() {
             this.$store.dispatch('schedule/change')
         },
-        deleteSchedule(id){
-            this.$store.dispatch('schedule/deleteSchedul',id)
+        deleteSchedule(id) {
+            this.$store.dispatch('schedule/deleteSchedul', id)
+        },
+        roleChecker() {
+            this.$store.dispatch('role/roleCheck', 'branches')
         }
     }
 
@@ -253,7 +257,8 @@ h6 {
     width: 50%;
     height: auto;
 }
-.icofont{
+
+.icofont {
     font-size: 10px;
 }
 </style>

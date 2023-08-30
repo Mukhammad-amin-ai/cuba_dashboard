@@ -2,21 +2,42 @@ import axios from "axios";
 
 let token = localStorage.getItem("token");
 let roleObj = JSON.parse(localStorage.getItem("role"));
-console.log(roleObj);
+// console.log(roleObj);
+
+
+// rmarvin@example.org student
+
+
 
 const state = {
   role: "",
   roleArray: [],
-  access:false
+  access: true,
+  read: false,
+  update: false,
+  create: false,
+  deletee: false,
 };
 
 const mutations = {
   setRolArray(state, array) {
     state.roleArray = array;
   },
-  setRoleChacker(state,access){
-    state.access = access
-  }
+  setRoleChacker(state, access) {
+    state.access = access;
+  },
+  setRead(state, read) {
+    state.read = read;
+  },
+  setUpdate(state, update) {
+    state.update = update;
+  },
+  setCreate(state, create) {
+    state.create = create;
+  },
+  setDelete(state, deletee) {
+    state.deletee = deletee;
+  },
 };
 const actions = {
   async getRole({ commit }) {
@@ -25,32 +46,30 @@ const actions = {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(responce.data);
-      if(responce.data){
-        commit("setRolArray",responce.data)
+      if (responce.data) {
+        commit("setRolArray", responce.data);
       }
     } catch (e) {
       console.error("error in getting role ", e);
     }
   },
-  roleCheck({commit}){
-    const accessLevels = {
-        read:1,
-        update:2,
-        create:3,
-        delete:4
+  roleCheck({ commit }, option) {
+    // console.log(roleObj[option]);
+    if (roleObj[option] === "1") {
+      commit("setRead", true);
+    } else if (roleObj[option] === "2") {
+      commit("setUpdate", true);
+    } else if (roleObj[option] === "3") {
+      commit("setCreate", true);
+    } else if (roleObj[option] === "4") {
+      commit("setRead", true);
+      commit("setUpdate", true);
+      commit("setCreate", true);
+      commit("setDelete", true);
+    } else {
+      commit("setRoleChacker", false);
     }
-    if(roleObj.name === 'student'){
-
-    }else if (roleObj.name ==='teacher'){
-
-    }else if (roleObj.name === 'parent'){
- 
-    } else if (roleObj.name === 'admin'){
-        commit('setRoleChacker',true )
-    }
-  }
-
-
+  },
 };
 
 export default {

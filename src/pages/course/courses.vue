@@ -1,19 +1,19 @@
 <template>
-  <Breadcrumbs title="Blog Detail" main="Courses" />
+    <Breadcrumbs title="Blog Detail" main="Courses" />
     <div class="container-fluid p-20">
-        <spiner/>
+        <spiner />
         <div class="row " style="gap: 40px;">
-            <div class="card " style="width: 18rem;">
+            <div class="card " style="width: 18rem;" v-if="this.$store.state.role.create">
                 <RouterLink to="courses/create">
                     <!-- <div class="card-body center"> -->
-                        <!-- <h5 class="card-title"></h5>
+                    <!-- <h5 class="card-title"></h5>
                         <p class="card-text"></p> -->
-                        <div class="box">
-                            <i class='bx bx-plus-circle'></i>
-                        </div>
+                    <div class="box">
+                        <i class='bx bx-plus-circle'></i>
+                    </div>
                     <!-- </div> -->
                 </RouterLink>
-                </div>
+            </div>
             <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in courseData " :key="item">
                 <RouterLink :to="{ path: 'courseInfo/' + item.id }">
                     <div class="card " style="width: 18rem;">
@@ -27,14 +27,14 @@
                 </RouterLink>
             </div>
         </div>
-      
+
     </div>
 </template>
 <script>
 import spiner from '@/components/ui/spiner.vue'
 import { mapState } from 'vuex'
 export default {
-    components:{
+    components: {
         spiner,
     },
     computed: {
@@ -42,25 +42,30 @@ export default {
     },
     mounted() {
         this.course()
+        this.roleChecker()
     },
     methods: {
         course() {
             this.$store.dispatch('course/getCourseData')
+        },
+        roleChecker() {
+            this.$store.dispatch('role/roleCheck', 'courses')
         }
     }
 
 }
 </script>
 <style scoped>
-
 .card:hover {
     transform: scale(1.050)
 }
-.card{
+
+.card {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .box {
     width: 100%;
     height: 18rem;
@@ -68,10 +73,11 @@ export default {
     align-items: center;
     justify-content: center;
 }
+
 .box i {
     font-size: 40px;
 }
+
 /* .center{
    
-} */
-</style>
+} */</style>

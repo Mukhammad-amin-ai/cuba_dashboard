@@ -1,7 +1,7 @@
 <template >
   <Breadcrumbs title="Blog Detail" main="Groups" />
     <div class="container">
-        <RouterLink to="group/create">
+        <RouterLink to="group/create" v-if="this.$store.state.role.update">
             <div class="card mb-3 hover" style="width: 100%;">
                 <div class="row g-0" style="text-align: center; padding: 30px;">
                     <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
@@ -38,10 +38,14 @@ export default {
     },
     mounted() {
         this.getGroup()
+        this.roleChecker()
     },
     methods: {
         getGroup() {
             this.$store.dispatch('group/getGroupData')
+        }, 
+         roleChecker() {
+            this.$store.dispatch('role/roleCheck', 'groups')
         }
     }
 }

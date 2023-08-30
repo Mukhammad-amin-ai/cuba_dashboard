@@ -72,9 +72,9 @@
 
 
 
-            <div class="card-fluid d-flex justify-content-between">
-                <button type="button" class="btn btn-success" @click="display">Edit</button>
-                <button type="button" class="btn btn-danger" @click="deleteId">Delete</button>
+            <div class="card-fluid d-flex justify-content-between" >
+                <button type="button" class="btn btn-success" @click="display" v-if="this.$store.state.role.update">Edit</button>
+                <button type="button" class="btn btn-danger" @click="deleteId" v-if="this.$store.state.role.delete">Delete</button>
             </div>
         </div>
     </div>
@@ -107,6 +107,7 @@ export default {
     },
     mounted() {
         this.getCourseById()
+        this.roleChecker()
     },
     methods: {
         getCourseById() {
@@ -125,6 +126,9 @@ export default {
         display() {
             this.handler = !this.handler
         },
+        roleChecker() {
+            this.$store.dispatch('role/roleCheck', 'courses')
+        }
 
     }
 }

@@ -37,8 +37,8 @@
                         </div>
                     </div>
                     <div class="d-flex  ">
-                        <button type="button" class="btn btn-success" @click="isChange">Go To Edit</button>
-                        <button type="button" class="btn btn-danger" @click="deleteTeacher">Delete</button>
+                        <button type="button" class="btn btn-success" @click="isChange" v-if="this.$store.state.role.update">Go To Edit</button>
+                        <button type="button" class="btn btn-danger" @click="deleteTeacher" v-if="this.$store.state.role.delete">Delete</button>
                     </div>
                 </div>
             </div>
@@ -72,9 +72,9 @@
                             <option :value=false>Inactive</option>
                         </select>
                     </div>
-                    <div class="containerBtns-fluid d-flex ">
-                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher">Editing Teacher</button>
-                        <button type="button" class="btn btn-danger" @click="isChange">Go From Edit</button>
+                    <div class="containerBtns-fluid d-flex " >
+                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher" v-if="this.$store.state.role.update">Editing Teacher</button>
+                        <button type="button" class="btn btn-danger" @click="isChange" v-if="this.$store.state.role.delete">Go From Edit</button>
                     </div>
                 </form>
             </div>
@@ -115,7 +115,7 @@ export default {
     },
     mounted() {
         this.getTeacherByid()
-
+        this.roleChecker()
     },
     methods: {
         getTeacherByid() {
@@ -136,6 +136,9 @@ export default {
         },
         deleteTeacher(){
             this.$store.dispatch("teacher/deleteTeacher",this.id)
+        },
+        roleChecker() {
+            this.$store.dispatch('role/roleCheck', 'teachers')
         }
     }
 
