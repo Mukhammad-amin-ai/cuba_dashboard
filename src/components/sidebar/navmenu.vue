@@ -89,18 +89,15 @@
 import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
 
-// let branch =''
-// if(role){
-//   branch = role.branches
-
-// }
+let roleObj = JSON.parse(localStorage.getItem("role"))
 // // console.log(branch);
 export default {
   name: 'Navmenu',
   data() {
     return {
       layoutobj: {},
-      // branch: branch
+      dashboardShow: false,
+      role: roleObj.name
     };
   },
   computed: {
@@ -183,6 +180,8 @@ export default {
         });
       });
     });
+    // this.dashboard()
+
   },
   methods: {
     handleScroll() {
@@ -221,6 +220,7 @@ export default {
     handleResize() {
       this.$store.state.menu.width = window.innerWidth - 450;
     },
+
   }
 };
 </script>

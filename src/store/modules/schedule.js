@@ -26,22 +26,22 @@ const mutations = {
   },
 };
 const actions = {
-  async getSchedule({ commit }) {
-    commit("setLoading", true, { root: true });
-    try {
-      const responce = await axios.get("http://tulibayev.uz/api/schedule", {
-        headers: { Authorization: "Bearer" + token },
-      });
-      // console.log(responce.data.data);
-      commit("setSchedule", responce.data);
-      commit("setLoading", false, { root: true });
-    } catch (error) {
-      console.error("there is problem ", error);
-      if (error.request.status === 401) {
-        window.location.href = "/login";
-      }
-    }
-  },
+  // async getSchedule({ commit }) {
+  //   commit("setLoading", true, { root: true });
+  //   try {
+  //     const responce = await axios.get("http://tulibayev.uz/api/schedule", {
+  //       headers: { Authorization: "Bearer" + token },
+  //     });
+  //     // console.log(responce.data.data);
+  //     commit("setSchedule", responce.data);
+  //     commit("setLoading", false, { root: true });
+  //   } catch (error) {
+  //     console.error("there is problem ", error);
+  //     if (error.request.status === 401) {
+  //       window.location.href = "/login";
+  //     }
+  //   }
+  // },
   async getScheduleById({ commit }, option) {
     try {
       const responce = await axios.get(

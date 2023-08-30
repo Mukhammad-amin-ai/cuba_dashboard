@@ -14,7 +14,7 @@
       </div>
       <div class="container-fluid d-flex p-10">
         
-        <calendar />
+        <calendar  :selectedBranch="choosedBranch" />
         <div class="col-sm-12" style="width: 50%; ">
             <div class="card">
                 <smallSpinner />
@@ -72,15 +72,16 @@
 </template>
 <script>
 // import spiner from '@/components/ui/spiner.vue'
-import calendar from "@/pages/advance/calendar.vue"
+import calendar from "@/pages/schedul/calendar.vue"
 import smallSpinner from "@/components/ui/smallSpinner.vue"
 import choose from "@/components/ui/choose.vue"
 import { mapState } from 'vuex'
+// console.log(choosedBranch);
 export default {
 
   data() {
     return {
-
+      choosedBranch:""
     }
   },
   components:{
@@ -89,18 +90,17 @@ export default {
     choose
   },
   computed: {
-    ...mapState('schedule', ['schedule']),
     ...mapState('branche', ['branchData']),
     ...mapState('schedule', ['scheduleData'])
   },
   mounted() {
-    this.getschedule()
+    // this.getschedule()
     this.branch()
   },
   methods: {
-    getschedule() {
-      this.$store.dispatch('schedule/getSchedule')
-    },
+    // getschedule() {
+    //   this.$store.dispatch('schedule/getSchedule')
+    // },
     branch() {
       this.$store.dispatch('branche/getBranches')
     }
