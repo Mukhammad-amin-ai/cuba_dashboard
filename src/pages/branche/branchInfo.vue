@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    <div class="flex">
+    <div class="flex " v-if="this.$store.state.role.access">
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
             <h6 v-else>Go From Edit</h6>
@@ -93,8 +93,8 @@
                                 <th scope="col">Session</th>
                                 <th scope="col">Room</th>
                                 <th scope="col">Weekday</th>
-                                <th scope="col">Edit</th>
-                                <th scope="col">Delete</th>
+                                <th scope="col" v-if="this.$store.state.role.access">Edit</th>
+                                <th scope="col" v-if="this.$store.state.role.access">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,12 +103,12 @@
                                 <td>{{ item.session.duration }}</td>
                                 <td>{{ item.room.name }}</td>
                                 <td>{{ item.weekday.name }}</td>
-                                <td>
+                                <td v-if="this.$store.state.role.access">
                                     <button type="button" class="btn btn-primary" @click="change">
                                         <i class="icofont icofont-pencil-alt-5"></i>
                                     </button>
                                 </td>
-                                <td>
+                                <td v-if="this.$store.state.role.access">
                                     <button type="button" class="btn btn-danger" @click="deleteSchedule(item.id)">
                                         <i class="icofont icofont-ui-delete"></i>
                                     </button>
@@ -124,7 +124,7 @@
                     </table>
                 </div>
             </div>
-            <button type="button" class="btn btn-success" @click="change">Create Schedule</button>
+            <button type="button" class="btn btn-success" @click="change" v-if="this.$store.state.role.access">Create Schedule</button>
         </div>
     </div>
     <div class="container-fluid  height" v-else>

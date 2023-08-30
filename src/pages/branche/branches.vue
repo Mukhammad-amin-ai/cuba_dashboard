@@ -96,7 +96,7 @@
                     </RouterLink>
                 </div>
                 <div class="col-md-6 col-xl-3 box-col-6  select">
-                    <RouterLink to="branch/create">
+                    <RouterLink to="branch/create" v-if="this.$store.state.role.access">
                         <div class="card">
                             <div class="blog-box blog-grid text-center hover">
                                 <i class='bx bx-plus-circle'></i>
@@ -127,7 +127,6 @@ export default {
     },
     mounted() {
         this.branch()
-
     },
     methods: {
         branch() {

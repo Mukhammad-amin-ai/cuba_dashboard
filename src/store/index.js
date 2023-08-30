@@ -11,7 +11,7 @@ import teacher from "./modules/teacher";
 import student from './modules/student';
 import session from "./modules/session";
 import payme from "./modules/payme";
-
+import role from './modules/role'
 
 export default createStore({
   state: { langIcon: "", langLangauge: "", isActive: false, loading: false,smallLoading:false,choose:true },
@@ -59,6 +59,7 @@ export default createStore({
     teacher,
     student,
     session,
-    payme
+    payme,
+    role
   },
 });
