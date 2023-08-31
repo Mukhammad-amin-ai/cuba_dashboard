@@ -10,9 +10,12 @@
       </div>
     </div>
     <ul class="profile-dropdown onhover-show-div">
-      <li>
-        <vue-feather type="user"></vue-feather><span>Account </span>
-      </li>
+      <router-link to="/profile">
+
+        <li>
+          <vue-feather type="user"></vue-feather><span>Account </span>
+        </li>
+      </router-link>
       <li>
         <vue-feather type="mail"></vue-feather><span>Inbox</span>
       </li>
@@ -38,22 +41,22 @@ import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
 // import UserAuth from '../../auth/js/index';
 
 export default {
-    name: 'Profile',
-    methods: {
-        // logout: function () {
-        //   // firebase
-        //   //   .auth()
-        //   //   .signOut()
-        //   //   .then(() => {
-        //   //     UserAuth.Logout();
-        //   this.$router.replace('/auth/login');
-        //   localStorage.removeItem('User')
-        // }
-        // },
-        logout() {
-            this.$store.dispatch('logout');
-        }
-    },
-    components: { Button }
+  name: 'Profile',
+  methods: {
+    // logout: function () {
+    //   // firebase
+    //   //   .auth()
+    //   //   .signOut()
+    //   //   .then(() => {
+    //   //     UserAuth.Logout();
+    //   this.$router.replace('/auth/login');
+    //   localStorage.removeItem('User')
+    // }
+    // },
+    logout() {
+      this.$store.dispatch('logout');
+    }
+  },
+  components: { Button }
 };
 </script>

@@ -169,7 +169,7 @@
                         <button type="button" class="btn btn-success" @click="editGroup">Edit student</button>
                     </div>
                 </div>
-                <div class="col-sm-12" style="width: 100%;" v-if="scheTeble">
+                <!-- <div class="col-sm-12" style="width: 100%;" v-if="scheTeble">
                     <div class="card">
                         <div class="card-header">
                             <h3>Schedul</h3>
@@ -185,7 +185,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr v-for="item in scheduleData.data" :key="item" v-if="this.$store.state.schedule.checker">
+                                    <tr v-for="item in scheduleData.data" :key="item" v-if="this.$store.state.schedule.checker">
                                         <td>{{ item.group.name }}</td>
                                         <td>{{ item.session.duration }}</td>
                                         <td>{{ item.room.name }}</td>
@@ -195,12 +195,12 @@
                                         <td>
                                             No data 
                                         </td>
-                                    </tr> -->
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <TableOfStudents :scheTeble="scheTeble" />
             </div>
         </div>

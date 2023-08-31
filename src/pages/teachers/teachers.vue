@@ -1,5 +1,5 @@
 <template >
-  <Breadcrumbs title="Blog Detail" main="Teachers" />
+    <Breadcrumbs title="Blog Detail" main="Teachers" />
     <div class="container-fluid p-20">
         <div class="card p-20 ">
             <RouterLink to="teachers/create" class="select" v-if="this.$store.state.role.create">
@@ -10,7 +10,8 @@
                 </div>
             </RouterLink>
             <div class="row ">
-                <div class="col-12 col-sm-6 col-lg-3" v-for="item in teachers" :key="item">
+                <div class="col-12 col-sm-6 col-lg-3" v-for="item in validTeachers" :key="item.id">
+                    <!-- <template  v-if="item.id"> -->
                     <RouterLink :to="{ path: 'teachers/' + item.id }">
                         <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s"
                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
@@ -27,6 +28,7 @@
                             </div>
                         </div>
                     </RouterLink>
+                    <!-- </template> -->
 
                 </div>
 
@@ -39,7 +41,16 @@ import { mapState } from 'vuex';
 
 export default {
     computed: {
-        ...mapState('teacher', ['teachers'])
+        ...mapState('teacher', ['teachers']),
+        validTeachers() {
+            // Check if this.teachers is an array before filtering
+            if (Array.isArray(this.teachers)) {
+                return this.teachers.filter(item => item && item.id);
+            } else {
+                return [];
+            }
+        }
+
     },
     mounted() {
         this.getTeachers()
@@ -60,14 +71,17 @@ body {
     margin-top: 20px;
     background: #eee;
 }
+
 .select {
     transition: .3s all linear;
     transform: scale(1);
 }
+
 .select:hover {
     /* transition: .3s all linear; */
     transform: scale(1.050);
 }
+
 .single_advisor_profile {
     position: relative;
     margin-bottom: 50px;

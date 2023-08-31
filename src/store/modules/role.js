@@ -4,10 +4,7 @@ let token = localStorage.getItem("token");
 let roleObj = JSON.parse(localStorage.getItem("role"));
 // console.log(roleObj);
 
-
 // rmarvin@example.org student
-
-
 
 const state = {
   role: "",
@@ -58,8 +55,11 @@ const actions = {
     if (roleObj[option] === "1") {
       commit("setRead", true);
     } else if (roleObj[option] === "2") {
+      commit("setRead", true);
       commit("setUpdate", true);
     } else if (roleObj[option] === "3") {
+      commit("setRead", true);
+      commit("setUpdate", true);
       commit("setCreate", true);
     } else if (roleObj[option] === "4") {
       commit("setRead", true);

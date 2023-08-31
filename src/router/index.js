@@ -22,9 +22,10 @@ import studentInfo from "@/pages/student/studentInfo.vue";
 import teachersInfo from "@/pages/teachers/teachersInfro.vue";
 import teachersCreate from "@/pages/teachers/create.vue";
 import Decode from "./experitionChecker";
-import payme from '@/pages/payme/payme.vue'
-import forgot from '@/auth/forgot.vue'
-import live from '@/pages/live/live.vue'
+import payme from "@/pages/payme/payme.vue";
+import forgot from "@/auth/forgot.vue";
+import live from "@/pages/live/live.vue";
+import profile from "@/pages/profile/profile.vue";
 
 const routes = [
   {
@@ -119,15 +120,20 @@ const routes = [
         meta: { requiredAuth: true },
       },
       {
-        path:'payme',
-        component:payme,
+        path: "payme",
+        component: payme,
         meta: { requiredAuth: true },
       },
       {
-        path:'live',
-        component:live,
+        path: "live",
+        component: live,
         meta: { requiredAuth: true },
-      }
+      },
+      {
+        path: "profile",
+        component: profile,
+        meta: { requiredAuth: true },
+      },
     ],
   },
   {
@@ -140,8 +146,8 @@ const routes = [
     component: register,
   },
   {
-    path:"/forgotpassword",
-    component:forgot
+    path: "/forgotpassword",
+    component: forgot,
   },
   {
     path: "/:pathMatch(.*)*",
@@ -154,7 +160,7 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
   if (to.meta.requiredAuth) {
-    if ( !isUserValid()) {
+    if (!isUserValid()) {
       next("/login");
     } else {
       next();
@@ -162,7 +168,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-  Decode()
+  Decode();
 });
 
 export default router;
