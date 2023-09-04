@@ -1,4 +1,4 @@
-<template lang="">
+<template >
   <error/>
  <div>
   <div class="container-fluid">
@@ -62,71 +62,16 @@ export default {
     return {
       email: "",
       password: "12345678",
-      
-      // role: '',
-      // bgColorS: '',
-      // bgColorT: '',
-      // bgColorU: '',
-      // color: "",
-      // color1: "",
-      // color2: ""
     }
   },
-  // computed: {
-  //   getStyleObjectf() {
-  //     return {
-  //       backgroundColor: `${this.bgColorS} !important`,
-  //       color: `${this.color}`
-  //     };
-  //   },
-  //   setBgforTeacher() {
-  //     return {
-  //       backgroundColor: `${this.bgColorT} !important`,
-  //       color: `${this.color1}`
-  //     }
-  //   },
-  //   setBgforUser() {
-  //     return {
-  //       backgroundColor: `${this.bgColorU} !important`,
-  //       color: `${this.color2}`
-  //     }
-  //   }
-  // },
   methods: {
     async login() {
       const option = {
         password: this.password,
         email: this.email,
       }
-      this.$store.dispatch('login',option)
+      this.$store.dispatch('login', option)
     },
-    // student() {
-    //   this.role = 'student',
-    //     this.bgColorS = '#f8f9fe',
-    //     this.bgColorU = '',
-    //     this.bgColorT = '',
-    //     this.color = '#000',
-    //     this.color1 = '',
-    //     this.color2 = ''
-    // },
-    // user() {
-    //   this.role = 'user',
-    //     this.bgColorS = '',
-    //     this.bgColorU = '#f8f9fe',
-    //     this.bgColorT = '',
-    //     this.color = '',
-    //     this.color1 = '',
-    //     this.color2 = '#000'
-    // },
-    // teacher() {
-    //   this.role = 'teacher',
-    //     this.bgColorS = '',
-    //     this.bgColorU = '',
-    //     this.bgColorT = '#f8f9fe',
-    //     this.color = '',
-    //     this.color1 = '#000',
-    //     this.color2 = ''
-    // }
   }
 
 

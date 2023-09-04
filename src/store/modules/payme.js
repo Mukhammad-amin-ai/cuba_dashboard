@@ -1,4 +1,5 @@
 import axios from "axios";
+import Api from "./Base_Url";
 const token = localStorage.getItem("token");
 const state = {
   showHide: true,
@@ -29,7 +30,7 @@ const actions = {
   async getCashiersId({ commit }) {
     try {
       let responce = await axios.get(
-        "http://tulibayev.uz/api/payment/cashier",
+        `${Api}/api/payment/cashier`,
         { headers: { Authorization: "Bearer " + token } }
       );
       console.log(responce.data);

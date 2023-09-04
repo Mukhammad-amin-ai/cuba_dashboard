@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-6">
+    <!-- <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-6">
         <div class="row">
             <div class="col-xl-12" v-for="puechaseSales in puechaseSalesDetails3" :key="puechaseSales">
                 <div class="card widget-1">
@@ -104,21 +104,21 @@
                 </div>
             </div>
             <div class="col-xxl-12 col-xl-6 box-col-12">
-            <div class="card widget-1 widget-with-chart">
-                <div class="card-body">
-                    <div>
-                        <h4 class="mb-1">6,90k</h4>
-                        <span class="f-light">Profit</span>
-                    </div>
-                    <div class="profit-chart">
-                        <apexchart height="146" type="line" :options="apexDashboard.options2" :series="apexDashboard.series2"></apexchart>
+                <div class="card widget-1 widget-with-chart" >
+                    <div class="card-body">
+                        <div>
+                            <h4 class="mb-1">6,90k</h4>
+                            <span class="f-light">Profit</span>
+                        </div>
+                        <div class="profit-chart">
+                            <apexchart height="146" type="line" :options="apexDashboard.options2"
+                                :series="apexDashboard.series2"></apexchart>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-    </div>
- 
+    </div> -->
 </template>
     
 <script>

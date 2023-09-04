@@ -1,4 +1,5 @@
 import axios from "axios";
+import Api from "./Base_Url";
 
 const token = localStorage.getItem("token");
 
@@ -13,7 +14,7 @@ const mutations = {
 const actions = {
   async getSession({ commit }) {
     try {
-      let response = await axios.get("http://tulibayev.uz/api/session", {
+      let response = await axios.get(`${Api}/api/session`, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);

@@ -1,4 +1,5 @@
 import axios from "axios";
+import Api from "./Base_Url";
 
 let token = localStorage.getItem("token");
 let roleObj = JSON.parse(localStorage.getItem("role"));
@@ -39,7 +40,7 @@ const mutations = {
 const actions = {
   async getRole({ commit }) {
     try {
-      let responce = await axios.get("http://tulibayev.uz/api/role", {
+      let responce = await axios.get(`${Api}/api/role`, {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(responce.data);

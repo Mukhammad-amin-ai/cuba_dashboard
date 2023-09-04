@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import Api from "./Base_Url";
 const state = {
   email: "",
   changer: true,
@@ -25,12 +26,8 @@ const actions = {
   async register({ commit }, option) {
     // commit("setLoading", true);
     commit("setLoading", true, { root: true });
-
     try {
-      const response = await axios.post(
-        "https://tulibayev.uz/api/user/register",
-        option
-      );
+      const response = await axios.post(`${Api}/api/user/register`, option);
       console.log(response.data);
       if (response.data.message === "Email sent") {
         commit("setLoading", false, { root: true });
@@ -69,7 +66,7 @@ const actions = {
   async verification({ commit }, option) {
     try {
       const response = await axios.post(
-        "https://tulibayev.uz/api/user/emailverification",
+        `${Api}/api/user/emailverification`,
         option
       );
       const token = response.data.token;
@@ -84,10 +81,7 @@ const actions = {
   async login({ commit }, option) {
     // commit("setLoading", true, { root: true });
     try {
-      const response = await axios.post(
-        `http://tulibayev.uz/api/auth/login`,
-        option
-      );
+      const response = await axios.post(`${Api}/api/auth/login`, option);
       console.log(response.data);
       // commit("setLoading", false, { root: true });
       let token = response.data.token;
@@ -120,11 +114,11 @@ const actions = {
   },
   async logout() {
     const token = localStorage.getItem("token");
-    await axios.get("https://tulibayev.uz/api/auth/logout", {
+    await axios.get(`${Api}/api/auth/logout`, {
       headers: { Authorization: "Bearer" + token },
     });
     localStorage.removeItem("token");
-    localStorage.removeItem('role')
+    localStorage.removeItem("role");
     if (token) {
       window.location.href = "/login";
     }

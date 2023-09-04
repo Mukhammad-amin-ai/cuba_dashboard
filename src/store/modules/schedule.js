@@ -1,4 +1,5 @@
 import axios from "axios";
+import Api from "./Base_Url";
 const token = localStorage.getItem("token");
 
 let state = {
@@ -45,7 +46,7 @@ const actions = {
   async getScheduleById({ commit }, option) {
     try {
       const responce = await axios.get(
-        `http://tulibayev.uz/api/schedule/${option}`,
+        `${Api}/api/schedule/${option}`,
         {
           headers: { Authorization: "Bearer" + token },
         }
@@ -63,7 +64,7 @@ const actions = {
     commit("setSmallLoading", true, { root: true });
     try {
       let response = await axios.post(
-        "http://tulibayev.uz/api/branch/schedule",
+        `${Api}/api/branch/schedule`,
         option,
         { headers: { Authorization: "Bearer " + token } }
       );
@@ -87,7 +88,7 @@ const actions = {
   async createSchedul({ commit }, option) {
     try {
       let response = await axios.post(
-        "http://tulibayev.uz/api/schedule",
+        `${Api}/api/schedule`,
         option,
         { headers: { Authorization: "Bearer" + token } }
       );
@@ -102,7 +103,7 @@ const actions = {
   async editSchedul({ commit }, { id, option }) {
     try {
       let response = await axios.post(
-        `http://tulibayev.uz/api/branch/schedule/${{ id }}`,
+        `${Api}/api/branch/schedule/${ id }`,
         option,
         { headers: { Authorization: "Bearer" + token } }
       );
@@ -117,7 +118,7 @@ const actions = {
   async deleteSchedul({ commit }, id) {
     try {
       let response = await axios.delete(
-        `http://tulibayev.uz/api/branch/schedule/${id}`,
+        `${Api}/api/branch/schedule/${id}`,
         { headers: { Authorization: "Bearer" + token } }
       );
       console.log(response.data);

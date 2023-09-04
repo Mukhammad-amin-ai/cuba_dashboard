@@ -1,4 +1,5 @@
 import axios from "axios";
+import Api from "./Base_Url";
 let token = localStorage.getItem("token");
 
 const state = {
@@ -16,7 +17,6 @@ const mutations = {
   setEditHnadler(state, editHandler) {
     state.editHandler = editHandler;
   },
- 
 };
 const actions = {
   editHandler({ commit }) {
@@ -24,43 +24,37 @@ const actions = {
   },
   async getGroupData({ commit }) {
     try {
-      let responce = await axios.get("http://tulibayev.uz/api/group", {
+      let responce = await axios.get(`${Api}/api/group`, {
         headers: { Authorization: "Bearer" + token },
       });
       // console.log(responce.data);
       commit("setGroup", responce.data.data);
     } catch (error) {
       console.error("there is problem ", error);
-      if(error.request.status=== 401){
-        window.location.href='/login'
-        }
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async getGroupDataWithId({ commit }, option) {
     try {
-      let responce = await axios.get(
-        `http://tulibayev.uz/api/group/${option}`,
-        {
-          headers: { Authorization: "Bearer" + token },
-        }
-      );
+      let responce = await axios.get(`${Api}/api/group/${option}`, {
+        headers: { Authorization: "Bearer" + token },
+      });
       // console.log(responce.data.data);
       commit("setGroup", responce.data.data);
     } catch (error) {
       console.error("there is problem ", error);
-      if(error.request.status=== 401){
-        window.location.href='/login'
-        }
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async getGroupStudents({ commit }, option) {
     try {
-      let responce = await axios.get(
-        `http://tulibayev.uz/api/group/${option}/students`,
-        {
-          headers: { Authorization: "Bearer" + token },
-        }
-      );
+      let responce = await axios.get(`${Api}/api/group/${option}/students`, {
+        headers: { Authorization: "Bearer" + token },
+      });
       // console.log(responce.data.data);
       commit("setGroupStudents", responce.data.data);
     } catch (error) {
@@ -72,7 +66,7 @@ const actions = {
   },
   async createGroup({ commit }, option) {
     try {
-      let responce = await axios.post("http://tulibayev.uz/api/group", option, {
+      let responce = await axios.post(`${Api}/api/group`, option, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(responce.data);
@@ -86,7 +80,7 @@ const actions = {
   async editGroup({ commit }, { id, option }) {
     try {
       let response = await axios.put(
-        `http://tulibayev.uz/api/group/${id}`,
+        `${Api}/api/group/${id}`,
         option,
         {
           headers: { Authorization: "Bearer" + token },
@@ -104,7 +98,7 @@ const actions = {
     if (window.confirm("Are you sure you want to delete")) {
       try {
         let responce = await axios.delete(
-          `http://tulibayev.uz/api/group/${option}`,
+          `${Api}/api/group/${option}`,
           {
             headers: { Authorization: "Bearer" + token },
           }

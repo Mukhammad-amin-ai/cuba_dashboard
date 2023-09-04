@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <spiner/>
   <error/>
     <div>
@@ -71,7 +71,6 @@
                </div>
                <div class="mt-3">
                  <p>Allready have accaunt ? <span> <router-link to="/login">Log-in</router-link></span></p>
-
                </div>
               </form>
            </div>

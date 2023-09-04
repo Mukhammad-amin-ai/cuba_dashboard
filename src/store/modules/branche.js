@@ -1,4 +1,5 @@
 import axios from "axios";
+import Api from "./Base_Url";
 const token = localStorage.getItem("token");
 
 let state = {
@@ -25,7 +26,7 @@ const actions = {
   async getBranches({ commit }) {
     commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get("http://tulibayev.uz/api/branch", {
+      let response = await axios.get(`${Api}/api/branch`, {
         headers: { Authorization: "Bearer " + token },
       });
       if (response.data && response.data.data) {
@@ -44,7 +45,7 @@ const actions = {
     commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(
-        `http://tulibayev.uz/api/branch/${option}`,
+        `${Api}/api/branch/${option}`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -63,7 +64,7 @@ const actions = {
     commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(
-        `http://tulibayev.uz/api/branch/${option}/rooms`,
+        `${Api}/api/branch/${option}/rooms`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -82,7 +83,7 @@ const actions = {
     // commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(
-        `http://tulibayev.uz/api/branch/${id}/rooms?page=${option}`,
+        `${Api}/api/branch/${id}/rooms?page=${option}`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -101,7 +102,7 @@ const actions = {
   async createBreanch({ commit }, option) {
     try {
       const response = await axios.post(
-        "http://tulibayev.uz/api/branch",
+        `${Api}/api/branch`,
         option,
         {
           headers: { Authorization: "Bearer " + token },
@@ -119,7 +120,7 @@ const actions = {
     if (window.confirm("O'chiraymi")) {
       try {
         const response = await axios.delete(
-          `http://tulibayev.uz/api/branch/${option}`,
+          `${Api}/api/branch/${option}`,
           {
             headers: { Authorization: "Bearer " + token },
           }
@@ -136,7 +137,7 @@ const actions = {
   async editBranch({ commit }, { id, option }) {
     try {
       const response = await axios.put(
-        `http://tulibayev.uz/api/branch/${id}`,
+        `${Api}/api/branch/${id}`,
         option,
         {
           headers: { Authorization: "Bearer " + token },

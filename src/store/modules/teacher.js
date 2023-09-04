@@ -1,4 +1,5 @@
 import axios from "axios";
+import Api from "./Base_Url";
 
 const token = localStorage.getItem("token");
 const state = {
@@ -16,7 +17,7 @@ const mutations = {
 const actions = {
   async getTeachers({ commit }) {
     try {
-      const response = await axios.get(`http://tulibayev.uz/api/teacher`, {
+      const response = await axios.get(`${Api}/api/teacher`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -34,14 +35,11 @@ const actions = {
   },
   async getTeachersById({ commit }, option) {
     try {
-      const response = await axios.get(
-        `http://tulibayev.uz/api/teacher/${option}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      const response = await axios.get(`${Api}/api/teacher/${option}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       // console.log(response.data);
       if (response.data) {
         commit("setTeacher", response.data.data);
@@ -55,11 +53,9 @@ const actions = {
   },
   async createTeacher({ commit }, option) {
     try {
-      let responce = await axios.post(
-        "http://tulibayev.uz/api/teacher",
-        option,
-        { headers: { Authorization: "Bearer" + token } }
-      );
+      let responce = await axios.post(`${Api}/api/teacher`, option, {
+        headers: { Authorization: "Bearer" + token },
+      });
       console.log(responce.data);
       if (responce.data.message === "Teacher created successfully") {
         window.location.href = "/teachers";
@@ -70,13 +66,9 @@ const actions = {
   },
   async editTeacher({ commit }, { id, option }) {
     try {
-      const response = await axios.put(
-        `http://tulibayev.uz/api/teacher/${id}`,
-        option,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
+      const response = await axios.put(`${Api}/api/teacher/${id}`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
       console.log(response.data);
       if (response.data.message === "Teacher updated successfully") {
         window.location.href = "/teachers";
@@ -88,10 +80,9 @@ const actions = {
   async deleteTeacher({ commit }, option) {
     if (window.confirm("Delete ?")) {
       try {
-        const response = await axios.delete(
-          `http://tulibayev.uz/api/teacher/${option}`,
-          { headers: { Authorization: "Bearer" + token } }
-        );
+        const response = await axios.delete(`${Api}/api/teacher/${option}`, {
+          headers: { Authorization: "Bearer" + token },
+        });
         console.log(response.data);
         if (response.data.message === "success") {
           window.location.href = "/teachers";
@@ -105,10 +96,9 @@ const actions = {
   },
   async getAssistants({ commit }) {
     try {
-      const response = await axios.get(
-        "http://tulibayev.uz/api/teacher?role=assistant",
-        { headers: { Authorization: "Bearer" + token } }
-      );
+      const response = await axios.get(`${Api}/api/teacher?role=assistant`, {
+        headers: { Authorization: "Bearer" + token },
+      });
       // console.log(response.data);
       commit("setAssistants", response.data.data);
     } catch (e) {
