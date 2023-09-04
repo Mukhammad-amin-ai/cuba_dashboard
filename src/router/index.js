@@ -26,6 +26,9 @@ import payme from "@/pages/payme/payme.vue";
 import forgot from "@/auth/forgot.vue";
 import live from "@/pages/live/live.vue";
 import profile from "@/pages/profile/profile.vue";
+import getPropertiesGreaterThanZero from "@/router/roleChecker";
+
+let roleObj = JSON.parse(localStorage.getItem("role"));
 
 const routes = [
   {
@@ -159,6 +162,8 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
+  getPropertiesGreaterThanZero(roleObj);
+  console.log(getPropertiesGreaterThanZero(roleObj));
   if (to.meta.requiredAuth) {
     if (!isUserValid()) {
       next("/login");

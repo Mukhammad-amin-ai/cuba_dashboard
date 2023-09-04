@@ -88,6 +88,8 @@ const actions = {
       localStorage.setItem("token", token);
       if (response.data.role) {
         localStorage.setItem("role", JSON.stringify(response.data.role));
+        localStorage.setItem("show", JSON.stringify(response.data.show));
+
       }
       if (token) {
         window.location.href = "/";

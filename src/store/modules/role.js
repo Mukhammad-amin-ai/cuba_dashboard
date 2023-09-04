@@ -8,8 +8,13 @@ let roleObj = JSON.parse(localStorage.getItem("role"));
 // rmarvin@example.org student
 
 const state = {
-  role: "",
   roleArray: [],
+  branches:true,
+  courses:true,
+  schedule:true,
+  group:true,
+  teachers:true,
+  students:true
   // access: true,
   // read: false,
   // update: false,
@@ -21,6 +26,23 @@ const mutations = {
   setRolArray(state, array) {
     state.roleArray = array;
   },
+  setBrancheShow(state,branche){
+    state.branches = branche
+  },
+  setCourseShow(state,course){
+    state.courses = course
+  },
+  setGroupShow(state,group){
+    state.group = group
+  },
+  setTeacherShow(state,teacher){
+    state.teachers = teacher
+  },
+  setStudentShow(state,student){
+    state.students = student
+  }
+
+
   // setRoleChacker(state, access) {
   //   state.access = access;
   // },
@@ -71,6 +93,9 @@ const actions = {
   //     commit("setRoleChacker", false);
   //   }
   // },
+  
+
+
 };
 
 export default {

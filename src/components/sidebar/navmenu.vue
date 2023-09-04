@@ -14,7 +14,7 @@
           <h6 class="lan-1">General</h6>
         </div>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list"  v-if="role.branches > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/">
           <svg class="stroke-icon">
@@ -23,45 +23,45 @@
           <svg class="fill-icon">
             <use href="@/assets/svg/icon-sprite.svg#fill-home"></use>
           </svg>
-          <span class="lan-3">Dashboard</span>
+          <span class="lan-3" >Dashboard</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="role.branches > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
           <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="role.courses > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list"  v-if="role.schedules > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/schedule">
           <i class="icofont icofont-ui-calendar"></i>
           <span class="lan-3"> Schedule</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="role.groups > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/group">
           <i class="icofont icofont-group-students"></i>
           <span class="lan-3"> Group</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="role.teachers > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/teachers">
           <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> Teachers</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="role.students > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/student">
           <i class="icofont icofont-student-alt"></i>
@@ -88,16 +88,16 @@
 <script>
 import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
-
 let roleObj = JSON.parse(localStorage.getItem("role"))
-// // console.log(branch);
+
+// console.log(roleObj.branches);
 export default {
   name: 'Navmenu',
   data() {
     return {
       layoutobj: {},
       dashboardShow: false,
-      role: roleObj.name
+      role: roleObj
     };
   },
   computed: {
