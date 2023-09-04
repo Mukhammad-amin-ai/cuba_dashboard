@@ -121,6 +121,7 @@ const actions = {
     });
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("show");
     if (token) {
       window.location.href = "/login";
     }

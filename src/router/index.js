@@ -27,6 +27,8 @@ import forgot from "@/auth/forgot.vue";
 import live from "@/pages/live/live.vue";
 import profile from "@/pages/profile/profile.vue";
 import getPropertiesGreaterThanZero from "@/router/roleChecker";
+import courseStudents from "@/pages/course/courseStudent.vue";
+import allCourses from "@/pages/course/allCourses";
 
 let roleObj = JSON.parse(localStorage.getItem("role"));
 
@@ -137,6 +139,14 @@ const routes = [
         component: profile,
         meta: { requiredAuth: true },
       },
+      {
+        path: "My course",
+        component: courseStudents,
+      },
+      {
+        path: "All courses",
+        component: allCourses,
+      },
     ],
   },
   {
@@ -163,7 +173,7 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
   getPropertiesGreaterThanZero(roleObj);
-  console.log(getPropertiesGreaterThanZero(roleObj));
+  // console.log(getPropertiesGreaterThanZero(roleObj));
   if (to.meta.requiredAuth) {
     if (!isUserValid()) {
       next("/login");

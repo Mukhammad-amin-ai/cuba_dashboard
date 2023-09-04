@@ -14,7 +14,7 @@
           <h6 class="lan-1">General</h6>
         </div>
       </li>
-      <li class="sidebar-list"  v-if="role.branches > '0'">
+      <li class="sidebar-list" v-if="role.branches > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/">
           <svg class="stroke-icon">
@@ -23,7 +23,7 @@
           <svg class="fill-icon">
             <use href="@/assets/svg/icon-sprite.svg#fill-home"></use>
           </svg>
-          <span class="lan-3" >Dashboard</span>
+          <span class="lan-3">Dashboard</span>
         </router-link>
       </li>
       <li class="sidebar-list" v-if="role.branches > '0'">
@@ -40,7 +40,7 @@
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list"  v-if="role.schedules > '0'">
+      <li class="sidebar-list" v-if="role.schedules > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/schedule">
           <i class="icofont icofont-ui-calendar"></i>
@@ -68,20 +68,42 @@
           <span class="lan-3"> Students</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="role.cashiers > '0'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> Payme</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="role.name === 'parent'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/live">
           <i class="icofont icofont-video-cam"></i>
-          <span class="lan-3"> Live</span>
+          <span class="lan-3">Live</span>
         </router-link>
       </li>
+      <li class="sidebar-list" v-if="show[0].name === 'My courses'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/My course">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3">My Courses</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="show[2].name === 'All courses'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/All courses">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3">All Courses</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="show[1].name === 'My cards'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/payme">
+          <i class="icofont icofont-bill-alt"></i>
+          <span class="lan-3"> My cards</span>
+        </router-link>
+      </li>
+
     </ul>
   </div>
 </template>
@@ -89,6 +111,7 @@
 import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
 let roleObj = JSON.parse(localStorage.getItem("role"))
+let showObj = JSON.parse(localStorage.getItem("show"))
 
 // console.log(roleObj.branches);
 export default {
@@ -97,7 +120,8 @@ export default {
     return {
       layoutobj: {},
       dashboardShow: false,
-      role: roleObj
+      role: roleObj,
+      show: showObj
     };
   },
   computed: {
