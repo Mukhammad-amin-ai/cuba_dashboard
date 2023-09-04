@@ -72,9 +72,9 @@
 
 
 
-            <div class="card-fluid d-flex justify-content-between" >
-                <button type="button" class="btn btn-success" @click="display" v-if="this.$store.state.role.update">Edit</button>
-                <button type="button" class="btn btn-danger" @click="deleteId" v-if="this.$store.state.role.delete">Delete</button>
+            <div class="card-fluid d-flex justify-content-between">
+                <button type="button" class="btn btn-success" @click="display">Edit</button>
+                <button type="button" class="btn btn-danger" @click="deleteId">Delete</button>
             </div>
         </div>
     </div>
@@ -87,38 +87,38 @@ export default {
         return {
             id: this.$route.params.id,
             handler: true,
-            name:'',
-            price:''
+            name: '',
+            price: ''
         }
     },
     computed: {
         ...mapState('course', ['courseData'])
     },
-    watch:{
-        courseData:{
-            immediate:true,
-            handler(newCourseData){
-                if(newCourseData){
+    watch: {
+        courseData: {
+            immediate: true,
+            handler(newCourseData) {
+                if (newCourseData) {
                     this.name = newCourseData.name,
-                    this.price = newCourseData.price
+                        this.price = newCourseData.price
                 }
             }
         }
     },
     mounted() {
         this.getCourseById()
-        this.roleChecker()
+        // this.roleChecker()
     },
     methods: {
         getCourseById() {
             this.$store.dispatch('course/getCourseDataById', this.id)
         },
-        setEdit(){
+        setEdit() {
             let option = {
-                name:this.name,
-                price:this.price
+                name: this.name,
+                price: this.price
             }
-            this.$store.dispatch('course/editCourse',{id:this.id,option:option})
+            this.$store.dispatch('course/editCourse', { id: this.id, option: option })
         },
         deleteId() {
             this.$store.dispatch('course/delete', this.id)
@@ -126,9 +126,7 @@ export default {
         display() {
             this.handler = !this.handler
         },
-        roleChecker() {
-            this.$store.dispatch('role/roleCheck', 'courses')
-        }
+
 
     }
 }

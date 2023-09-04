@@ -73,8 +73,8 @@
                         </select>
                     </div>
                     <div class="containerBtns-fluid d-flex " >
-                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher" v-if="this.$store.state.role.update">Editing Teacher</button>
-                        <button type="button" class="btn btn-danger" @click="isChange" v-if="this.$store.state.role.delete">Go From Edit</button>
+                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher" >Editing Teacher</button>
+                        <button type="button" class="btn btn-danger" @click="isChange" >Go From Edit</button>
                     </div>
                 </form>
             </div>
@@ -115,7 +115,7 @@ export default {
     },
     mounted() {
         this.getTeacherByid()
-        this.roleChecker()
+        // this.roleChecker()
     },
     methods: {
         getTeacherByid() {
@@ -137,9 +137,7 @@ export default {
         deleteTeacher(){
             this.$store.dispatch("teacher/deleteTeacher",this.id)
         },
-        roleChecker() {
-            this.$store.dispatch('role/roleCheck', 'teachers')
-        }
+      
     }
 
 

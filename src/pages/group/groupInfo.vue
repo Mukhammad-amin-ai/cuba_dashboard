@@ -204,7 +204,7 @@
                 <TableOfStudents :scheTeble="scheTeble" />
             </div>
         </div>
-        <button type="button" class="btn btn-danger" @click="deleteGroup" v-if="this.$store.state.role.delete">Delete
+        <button type="button" class="btn btn-danger" @click="deleteGroup" >Delete
             Group</button>
     </div>
 </template>
@@ -259,7 +259,7 @@ export default {
         this.getAssistants()
         this.getStudents()
         this.getGroupStudents()
-        this.roleChecker()
+        // this.roleChecker()
     },
     methods: {
         concatination() {
@@ -326,9 +326,7 @@ export default {
             this.choosedStudents.splice(index, 1)
             this.studentsList.splice(index, 1)
         },
-        roleChecker() {
-            this.$store.dispatch('role/roleCheck', 'groups')
-        }
+       
     }
 }
 </script>

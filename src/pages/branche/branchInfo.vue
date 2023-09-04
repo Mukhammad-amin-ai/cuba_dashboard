@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    <div class="flex " v-if="this.$store.state.role.update">
+    <div class="flex " >
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
             <h6 v-else>Go From Edit</h6>
@@ -93,8 +93,8 @@
                                 <th scope="col">Session</th>
                                 <th scope="col">Room</th>
                                 <th scope="col">Weekday</th>
-                                <th scope="col" v-if="this.$store.state.role.access">Edit</th>
-                                <th scope="col" v-if="this.$store.state.role.access">Delete</th>
+                                <th scope="col" >Edit</th>
+                                <th scope="col" >Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,7 +124,7 @@
                     </table>
                 </div>
             </div>
-            <button type="button" class="btn btn-success" @click="change" v-if="this.$store.state.role.create">Create
+            <button type="button" class="btn btn-success" @click="change">Create
                 Schedule</button>
         </div>
     </div>
@@ -168,7 +168,7 @@ export default {
     mounted() {
         this.getbranch()
         this.getRoom()
-        this.roleChecker()
+        // this.roleChecker()
     },
     watch: {
         branchData: {
@@ -207,9 +207,6 @@ export default {
         deleteSchedule(id) {
             this.$store.dispatch('schedule/deleteSchedul', id)
         },
-        roleChecker() {
-            this.$store.dispatch('role/roleCheck', 'branches')
-        }
     }
 
 }

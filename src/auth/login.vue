@@ -37,11 +37,11 @@
                     <div class="text-end mt-2">
                       <button class="btn btn-primary btn-block w-100"  type="submit" @click.prevent="login">Sign in</button>
                     </div>
-                    <div class="mt-3">
+                    <!-- <div class="mt-3">
                       <p>Don't have accaunt <span>
                         <router-link to="/register" > Register</router-link>
                       </span> </p>
-                    </div>
+                    </div> -->
                   </div>
                 </form>
               </div>

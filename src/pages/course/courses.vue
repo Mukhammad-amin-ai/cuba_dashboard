@@ -3,7 +3,7 @@
     <div class="container-fluid p-20">
         <spiner />
         <div class="row " style="gap: 40px;">
-            <div class="card " style="width: 18rem;" v-if="this.$store.state.role.create">
+            <div class="card " style="width: 18rem;" >
                 <RouterLink to="courses/create">
                     <!-- <div class="card-body center"> -->
                     <!-- <h5 class="card-title"></h5>
@@ -42,15 +42,13 @@ export default {
     },
     mounted() {
         this.course()
-        this.roleChecker()
+        // this.roleChecker()
     },
     methods: {
         course() {
             this.$store.dispatch('course/getCourseData')
         },
-        roleChecker() {
-            this.$store.dispatch('role/roleCheck', 'courses')
-        }
+     
     }
 
 }

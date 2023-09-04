@@ -2,7 +2,7 @@
     <Breadcrumbs title="Blog Detail" main="Teachers" />
     <div class="container-fluid p-20">
         <div class="card p-20 ">
-            <RouterLink to="teachers/create" class="select" v-if="this.$store.state.role.create">
+            <RouterLink to="teachers/create" class="select" >
                 <div class="card social-profile  ">
                     <div class="card-body">
                         <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
@@ -54,15 +54,13 @@ export default {
     },
     mounted() {
         this.getTeachers()
-        this.roleChecker()
+        // this.roleChecker()
     },
     methods: {
         getTeachers() {
             this.$store.dispatch('teacher/getTeachers')
         },
-        roleChecker() {
-            this.$store.dispatch('role/roleCheck', 'teachers')
-        }
+      
     }
 }
 </script>
