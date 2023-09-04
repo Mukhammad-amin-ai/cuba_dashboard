@@ -82,16 +82,16 @@
           <span class="lan-3">Live</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show[0].name === 'My courses'">
+      <!-- <li class="sidebar-list" v-if="show[0].name === 'My courses'">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/My course">
+        <router-link class="sidebar-link sidebar-title hover" to="/Mycourses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">My Courses</span>
         </router-link>
       </li>
       <li class="sidebar-list" v-if="show[2].name === 'All courses'">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/All courses">
+        <router-link class="sidebar-link sidebar-title hover" to="/Allcourses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">All Courses</span>
         </router-link>
@@ -102,8 +102,28 @@
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> My cards</span>
         </router-link>
+      </li> -->
+      <li class="sidebar-list" v-if="showObj && showObj[0] && showObj[0].name === 'My courses'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/Mycourse">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3">My Courses</span>
+        </router-link>
       </li>
-
+      <li class="sidebar-list" v-if="showObj && showObj[2] && showObj[2].name === 'All courses'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/Allcourses">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3">All Courses</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="showObj && showObj[1] && showObj[1].name === 'My cards'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/payme">
+          <i class="icofont icofont-bill-alt"></i>
+          <span class="lan-3"> My Cards</span>
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>

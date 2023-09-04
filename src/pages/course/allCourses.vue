@@ -1,6 +1,8 @@
 <template >
     <div>
-        
+        <center>
+            hello
+        </center>
     </div>
 </template>
 <script>

@@ -31,6 +31,7 @@ import courseStudents from "@/pages/course/courseStudent.vue";
 import allCourses from "@/pages/course/allCourses";
 
 let roleObj = JSON.parse(localStorage.getItem("role"));
+let showObj = JSON.parse(localStorage.getItem("show"));
 
 const routes = [
   {
@@ -43,6 +44,14 @@ const routes = [
         name: "defaultRoot",
         component: Default,
         meta: { requiredAuth: true },
+        beforeEnter: (to, from, next) => {
+          if (showObj[0].window === "default") {
+            const nameWithoutSpaces = showObj[0].name.replace(/\s+/g, "");
+            next(`/${nameWithoutSpaces}`);
+          } else {
+            next();
+          }
+        },
       },
       {
         path: "courses",
@@ -140,12 +149,19 @@ const routes = [
         meta: { requiredAuth: true },
       },
       {
-        path: "My course",
+        path: "Mycourses",
         component: courseStudents,
+        meta: { requiredAuth: true },
       },
       {
-        path: "All courses",
+        path: "Allcourses",
         component: allCourses,
+        meta: { requiredAuth: true },
+      },
+      {
+        path: "Mygroups",
+        component: courseStudents,
+        meta: { requiredAuth: true },
       },
     ],
   },
@@ -173,7 +189,7 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
   getPropertiesGreaterThanZero(roleObj);
-  // console.log(getPropertiesGreaterThanZero(roleObj));
+  // console.log(showObj[0].window);
   if (to.meta.requiredAuth) {
     if (!isUserValid()) {
       next("/login");
