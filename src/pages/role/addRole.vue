@@ -5,11 +5,11 @@
             <form style="width: 50%;">
                 <div class="mb-3">
                     <label for="firstname" class="form-label">Name of role</label>
-                    <input type="text" class="form-control" id="firstname" required>
+                    <input type="text" class="form-control" id="firstname" required v-model="name">
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Branches</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="branches">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Courses</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="courses">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Teachers</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="teachers">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Students</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="students">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Parents</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="parent">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Sessions</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="sessions">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Rooms</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="rooms">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Schedules</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="schedules">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Cashiers</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="cashiers">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Access for courses</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="access_for_courses">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Student search</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="student_search">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Payment addcard</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="payment_addcard">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Payment Cashier</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="payment_cashier">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Payment pay</label>
-                    <select class="form-select" id="status">
+                    <select class="form-select" id="status" v-model="payment_pay">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
@@ -134,72 +134,73 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="status" class="form-label">users</label>
-                    <select class="form-select" id="status">
+                    <label for="status" class="form-label">Users</label>
+                    <select class="form-select" id="status" v-model="users">
                         <option :value=1>Read</option>
                         <option :value=2>Read+Update</option>
                         <option :value=3>Read+Update+Create</option>
                         <option :value=4>Read+Update+Create+Delete</option>
                     </select>
                 </div>
-                <!-- <div class="mb-3">
-                    <label for="lastname" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Enter last name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="contact_no" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_no" placeholder="Enter contact number" required>
-                </div>
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select class="form-select" id="status" >
-                        <option :value=true>Active</option>
-                        <option :value=false>Inactive</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="group_id" class="form-label">Group ID</label>
-                    <input type="number" class="form-control" id="group_id" placeholder="Enter group ID" required>
-                </div>
-                <div class="contaner">
-                    <div class="d-flex" style="gap: 10px;">
-                        <h4>Parents</h4>
-                        <button type="button" class="btn btn-success" @click="addparent">Add</button>
-                    </div>
-                    <div class="mb-3">
-                        <label for="parent_firstname" class="form-label">Parent First Name</label>
-                        <input type="text" class="form-control" id="parent_firstname"
-                            placeholder="Enter parent's first name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="parent_lastname" class="form-label">Parent Last Name</label>
-                        <input type="text" class="form-control" id="parent_lastname" placeholder="Enter parent's last name"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="parent_email" class="form-label">Parent Email</label>
-                        <input type="email" class="form-control" id="parent_email" placeholder="Enter parent's email"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="parent_contact_no" class="form-label">Parent Contact Number</label>
-                        <input type="tel" class="form-control" id="parent_contact_no"
-                            placeholder="Enter parent's contact number" required>
-                    </div>
-                </div> -->
-                <button type="submit" class="btn btn-primary" @click.prevent="createStudent">Create Student</button>
+                <button type="submit" class="btn btn-primary" @click.prevent="createRole">Create Student</button>
             </form>
 
         </div>
     </div>
 </template>
 <script>
-export default {
+// import student from '@/store/modules/student';
 
+export default {
+    data() {
+        return {
+            name: "",
+            roles: "",
+            users: "",
+            teachers: "",
+            courses: "",
+            lessons: "",
+            groups: "",
+            students: "",
+            stparents: "",
+            sessions: "",
+            branches: "",
+            rooms: "",
+            schedules: "",
+            cashiers: "",
+            access_for_courses: "",
+            student_search: "",
+            payment_addcard: "",
+            payment_cashier: "",
+            payment_pay: ""
+        }
+    },
+    methods: {
+        createRole() {
+            let option = {
+                name: "",
+                roles: 1,
+                users: 1,
+                teachers: 1,
+                courses: 1,
+                lessons: 1,
+                groups: 1,
+                students: 1,
+                stparents: 1,
+                sessions: 1,
+                branches: 1,
+                rooms: 1,
+                schedules: 1,
+                cashiers: 1,
+                access_for_courses: 1,
+                student_search: 1,
+                payment_addcard: 1,
+                payment_cashier: 1,
+                payment_pay: 1
+            }
+            this.$store.dispatch('role/createRole')
+        }
+    }
 }
 </script>
 <style scoped></style>

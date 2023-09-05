@@ -9,12 +9,12 @@ let roleObj = JSON.parse(localStorage.getItem("role"));
 
 const state = {
   roleArray: [],
-  branches:true,
-  courses:true,
-  schedule:true,
-  group:true,
-  teachers:true,
-  students:true
+  branches: true,
+  courses: true,
+  schedule: true,
+  group: true,
+  teachers: true,
+  students: true,
   // access: true,
   // read: false,
   // update: false,
@@ -26,22 +26,21 @@ const mutations = {
   setRolArray(state, array) {
     state.roleArray = array;
   },
-  setBrancheShow(state,branche){
-    state.branches = branche
+  setBrancheShow(state, branche) {
+    state.branches = branche;
   },
-  setCourseShow(state,course){
-    state.courses = course
+  setCourseShow(state, course) {
+    state.courses = course;
   },
-  setGroupShow(state,group){
-    state.group = group
+  setGroupShow(state, group) {
+    state.group = group;
   },
-  setTeacherShow(state,teacher){
-    state.teachers = teacher
+  setTeacherShow(state, teacher) {
+    state.teachers = teacher;
   },
-  setStudentShow(state,student){
-    state.students = student
-  }
-
+  setStudentShow(state, student) {
+    state.students = student;
+  },
 
   // setRoleChacker(state, access) {
   //   state.access = access;
@@ -73,6 +72,18 @@ const actions = {
       console.error("error in getting role ", e);
     }
   },
+  async createRole({ commit }, option) {
+    try {
+      let response = await axios.post(`${Api}/api/manage/role`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      
+    } catch (e) {
+      console.error("error in creating Role", e);
+    }
+  },
+
   // roleCheck({ commit }, option) {
   //   // console.log(roleObj[option]);
   //   if (roleObj[option] === "1") {
@@ -93,9 +104,6 @@ const actions = {
   //     commit("setRoleChacker", false);
   //   }
   // },
-  
-
-
 };
 
 export default {
