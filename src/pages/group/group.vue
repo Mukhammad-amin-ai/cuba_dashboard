@@ -39,7 +39,6 @@ export default {
     },
     mounted() {
         this.getGroup()
-        // this.roleChecker()
     },
     methods: {
         getGroup() {

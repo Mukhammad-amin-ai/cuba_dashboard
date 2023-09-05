@@ -5,6 +5,7 @@ const token = localStorage.getItem("token");
 const state = {
   teachers: [],
   assistants: [],
+  myGroups:[]
 };
 const mutations = {
   setTeacher(state, teachers) {
@@ -13,6 +14,9 @@ const mutations = {
   setAssistants(state, assistants) {
     state.assistants = assistants;
   },
+  setMyGroups(state,myGroups){
+    state.myGroups = myGroups
+  }
 };
 const actions = {
   async getTeachers({ commit }) {
@@ -106,6 +110,17 @@ const actions = {
       if (e.request.status === 401) {
         window.location.href = "/login";
       }
+    }
+  },
+  async getMyGroups({ commit }) {
+    try {
+      let response = await axios.get(`${Api}/api/teacher/groups`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      commit("setMyGroups",response.data.data)
+    } catch (e) {
+      console.error("error in getting my groups", e);
     }
   },
 };
