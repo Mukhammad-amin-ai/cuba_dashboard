@@ -28,6 +28,13 @@
       </li>
       <li class="sidebar-list" v-if="role.branches > '0'">
         <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to='/add-role'>
+          <i class="icofont icofont-business-man"></i>
+          <span class="lan-3"> Add Role</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="role.branches > '0'">
+        <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
           <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> Branches</span>
@@ -261,7 +268,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .courses {
   width: 8%;
 }

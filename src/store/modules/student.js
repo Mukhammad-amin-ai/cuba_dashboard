@@ -1,7 +1,7 @@
 import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
-let roleObj = JSON.parse(localStorage.getItem("role"))
+let roleObj = JSON.parse(localStorage.getItem("role"));
 
 const state = {
   students: [],
@@ -25,13 +25,17 @@ const mutations = {
 };
 const actions = {
   async getStudent({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
       const responce = await axios.get(`${Api}/api/manage/student`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data.data);
+      commit("setLoading", false, { root: true });
       commit("setStudent", responce.data.data);
     } catch (e) {
+      commit("setLoading", false, { root: true });
+
       console.error("error in get student", e);
       if (e.request.status === 401) {
         window.location.href = "/login";

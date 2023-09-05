@@ -1,6 +1,7 @@
 <template >
     <Breadcrumbs title="Blog Detail" main="Groups" />
     <div class="container">
+        <spiner/>
         <RouterLink to="group/create">
             <div class="card mb-3 hover" style="width: 100%;">
                 <div class="row g-0" style="text-align: center; padding: 30px;">
@@ -32,8 +33,11 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-
+import spiner from '@/components/ui/spiner.vue'
 export default {
+    components:{
+        spiner
+    },
     computed: {
         ...mapState('group', ['groupData'])
     },

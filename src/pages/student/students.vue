@@ -1,6 +1,7 @@
 <template >
     <Breadcrumbs title="Blog Detail" main="Students" />
     <div class="container-fluid p-20">
+        <spiner/>
         <div class="row d-flex">
             <RouterLink to="student/create" class="select">
                 <div class="card social-profile ">
@@ -48,7 +49,11 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import spiner from '@/components/ui/spiner.vue'
 export default {
+    components:{
+        spiner
+    },
     computed: {
         ...mapState('student', ['students'])
     },

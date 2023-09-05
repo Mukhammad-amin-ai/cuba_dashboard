@@ -31,7 +31,7 @@ import myCourses from "@/pages/course/myCourses.vue";
 import allCourses from "@/pages/course/allCourses";
 import myChildren from '@/pages/student/myChildren.vue'
 import myGroups from '@/pages/group/myGroups.vue'
-
+import addrole from '@/pages/role/addRole.vue'
 
 let roleObj = JSON.parse(localStorage.getItem("role"));
 let showObj = JSON.parse(localStorage.getItem("show"));
@@ -169,6 +169,11 @@ const routes = [
       {
         path: "my-children",
         component: myChildren,
+        meta: { requiredAuth: true },
+      },
+      {
+        path: "add-role",
+        component: addrole,
         meta: { requiredAuth: true },
       },
     ],

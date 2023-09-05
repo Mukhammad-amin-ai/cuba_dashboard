@@ -23,13 +23,16 @@ const actions = {
     commit("setEditHnadler", !state.editHandler);
   },
   async getGroupData({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
       let responce = await axios.get(`${Api}/api/manage/group`, {
         headers: { Authorization: "Bearer" + token },
       });
       // console.log(responce.data);
+      commit("setLoading", false, { root: true });
       commit("setGroup", responce.data.data);
     } catch (error) {
+      commit("setLoading", false, { root: true });
       console.error("there is problem ", error);
       if (error.request.status === 401) {
         window.location.href = "/login";
@@ -52,9 +55,12 @@ const actions = {
   },
   async getGroupStudents({ commit }, option) {
     try {
-      let responce = await axios.get(`${Api}/api/manage/group/${option}/students`, {
-        headers: { Authorization: "Bearer" + token },
-      });
+      let responce = await axios.get(
+        `${Api}/api/manage/group/${option}/students`,
+        {
+          headers: { Authorization: "Bearer" + token },
+        }
+      );
       // console.log(responce.data.data);
       commit("setGroupStudents", responce.data.data);
     } catch (error) {
@@ -79,13 +85,9 @@ const actions = {
   },
   async editGroup({ commit }, { id, option }) {
     try {
-      let response = await axios.put(
-        `${Api}/api/manage/group/${id}`,
-        option,
-        {
-          headers: { Authorization: "Bearer" + token },
-        }
-      );
+      let response = await axios.put(`${Api}/api/manage/group/${id}`, option, {
+        headers: { Authorization: "Bearer" + token },
+      });
       console.log(response.data);
       if (response.data.message === "Group updated successfully") {
         window.location.href = "/group";
@@ -97,12 +99,9 @@ const actions = {
   async groupDelete({ commit }, option) {
     if (window.confirm("Are you sure you want to delete")) {
       try {
-        let responce = await axios.delete(
-          `${Api}/api/manage/group/${option}`,
-          {
-            headers: { Authorization: "Bearer" + token },
-          }
-        );
+        let responce = await axios.delete(`${Api}/api/manage/group/${option}`, {
+          headers: { Authorization: "Bearer" + token },
+        });
         console.log(responce.data);
         if (responce.data.message === "Group deleted successfully") {
           window.location.href = "/group";
@@ -112,7 +111,6 @@ const actions = {
       }
     }
   },
-  
 };
 export default {
   namespaced: true,
