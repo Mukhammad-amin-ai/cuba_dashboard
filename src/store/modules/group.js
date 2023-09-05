@@ -24,7 +24,7 @@ const actions = {
   },
   async getGroupData({ commit }) {
     try {
-      let responce = await axios.get(`${Api}/api/group`, {
+      let responce = await axios.get(`${Api}/api/manage/group`, {
         headers: { Authorization: "Bearer" + token },
       });
       // console.log(responce.data);
@@ -38,7 +38,7 @@ const actions = {
   },
   async getGroupDataWithId({ commit }, option) {
     try {
-      let responce = await axios.get(`${Api}/api/group/${option}`, {
+      let responce = await axios.get(`${Api}/api/manage/group/${option}`, {
         headers: { Authorization: "Bearer" + token },
       });
       // console.log(responce.data.data);
@@ -52,7 +52,7 @@ const actions = {
   },
   async getGroupStudents({ commit }, option) {
     try {
-      let responce = await axios.get(`${Api}/api/group/${option}/students`, {
+      let responce = await axios.get(`${Api}/api/manage/group/${option}/students`, {
         headers: { Authorization: "Bearer" + token },
       });
       // console.log(responce.data.data);
@@ -66,7 +66,7 @@ const actions = {
   },
   async createGroup({ commit }, option) {
     try {
-      let responce = await axios.post(`${Api}/api/group`, option, {
+      let responce = await axios.post(`${Api}/api/manage/group`, option, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(responce.data);
@@ -80,7 +80,7 @@ const actions = {
   async editGroup({ commit }, { id, option }) {
     try {
       let response = await axios.put(
-        `${Api}/api/group/${id}`,
+        `${Api}/api/manage/group/${id}`,
         option,
         {
           headers: { Authorization: "Bearer" + token },
@@ -98,7 +98,7 @@ const actions = {
     if (window.confirm("Are you sure you want to delete")) {
       try {
         let responce = await axios.delete(
-          `${Api}/api/group/${option}`,
+          `${Api}/api/manage/group/${option}`,
           {
             headers: { Authorization: "Bearer" + token },
           }

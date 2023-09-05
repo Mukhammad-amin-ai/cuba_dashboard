@@ -49,8 +49,8 @@ const routes = [
         meta: { requiredAuth: true },
         beforeEnter: (to, from, next) => {
           if (showObj[0].window === "default") {
-            const nameWithoutSpaces = showObj[0].name.replace(/\s+/g, "");
-            next(`/${nameWithoutSpaces}`);
+            // const nameWithoutSpaces = showObj[0].name.replace(/\s+/g, "");
+            next(`/${showObj[0].name}`);
           } else {
             next();
           }
@@ -152,22 +152,22 @@ const routes = [
         meta: { requiredAuth: true },
       },
       {
-        path: "Mycourses",
+        path: "my-courses",
         component: myCourses,
         meta: { requiredAuth: true },
       },
       {
-        path: "Allcourses",
+        path: "all-courses",
         component: allCourses,
         meta: { requiredAuth: true },
       },
       {
-        path: "Mygroups",
+        path: "my-groups",
         component: myGroups,
         meta: { requiredAuth: true },
       },
       {
-        path: "Mychildren",
+        path: "my-children",
         component: myChildren,
         meta: { requiredAuth: true },
       },

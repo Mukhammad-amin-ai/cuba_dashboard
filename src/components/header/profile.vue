@@ -5,7 +5,7 @@
       <div class="media-body">
         <span>Emay Walter</span>
         <p class="mb-0 font-roboto">
-          Admin <i class="middle fa fa-angle-down"></i>
+          {{ role }} <i class="middle fa fa-angle-down"></i>
         </p>
       </div>
     </div>
@@ -36,12 +36,16 @@
 
 <script>
 import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
+let roleObj = JSON.parse(localStorage.getItem("role"))
 
-// import firebase from 'firebase';
-// import UserAuth from '../../auth/js/index';
 
 export default {
   name: 'Profile',
+  data(){
+    return{
+      role:roleObj.name
+    }
+  },
   methods: {
     // logout: function () {
     //   // firebase

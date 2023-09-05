@@ -6,6 +6,7 @@ const state = {
   students: [],
   mycourses: [],
   myChildren: [],
+  allCourses:[]
 };
 const mutations = {
   setStudent(state, students) {
@@ -17,11 +18,14 @@ const mutations = {
   setMyChildren(state, myChildren) {
     state.myChildren = myChildren;
   },
+  setAllCourses(state,allCourses){
+    state.allCourses = allCourses
+  }
 };
 const actions = {
   async getStudent({ commit }) {
     try {
-      const responce = await axios.get(`${Api}/api/student`, {
+      const responce = await axios.get(`${Api}/api/manage/student`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data.data);
@@ -35,7 +39,7 @@ const actions = {
   },
   async getStudentById({ commit }, option) {
     try {
-      const responce = await axios.get(`${Api}/api/student/${option}`, {
+      const responce = await axios.get(`${Api}/api/manage/student/${option}`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data.data);
@@ -49,7 +53,7 @@ const actions = {
   },
   async createStudent({ commit }, option) {
     try {
-      const responce = await axios.post(`${Api}/api/student`, option, {
+      const responce = await axios.post(`${Api}/api/manage/student`, option, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data);
@@ -62,9 +66,13 @@ const actions = {
   },
   async editStudent({ commit }, { id, option }) {
     try {
-      const response = await axios.put(`${Api}/api/student/${id}`, option, {
-        headers: { Authorization: "Bearer " + token },
-      });
+      const response = await axios.put(
+        `${Api}/api/manage/student/${id}`,
+        option,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
       console.log(response.data);
       if (response.data.message === "Student updated successfully") {
         window.location.href = "/student";
@@ -76,9 +84,12 @@ const actions = {
   async deleteStudent({ commit }, option) {
     if (window.confirm("O'chiraymi")) {
       try {
-        const response = await axios.delete(`${Api}/api/student/${option}`, {
-          headers: { Authorization: "Bearer " + token },
-        });
+        const response = await axios.delete(
+          `${Api}/api/manage/student/${option}`,
+          {
+            headers: { Authorization: "Bearer " + token },
+          }
+        );
         console.log(response.data);
         if (response.data.message === "Student deleted successfully") {
           window.location.href = "/student";
@@ -90,9 +101,13 @@ const actions = {
   },
   async searchStudent({ commit }, option) {
     try {
-      let responce = await axios.post(`${Api}/api/student/search`, option, {
-        headers: { Authorization: "Bearer" + token },
-      });
+      let responce = await axios.post(
+        `${Api}/api/manage/student/search`,
+        option,
+        {
+          headers: { Authorization: "Bearer" + token },
+        }
+      );
       // console.log(responce.data);
       commit("setStudent", responce.data.data);
     } catch (e) {
@@ -122,6 +137,17 @@ const actions = {
       commit("setMyChildren", response.data.data);
     } catch (e) {
       console.error("error in fetching my children", e);
+    }
+  },
+  async getAllCourses({ commit }) {
+    try {
+      let response = await axios.get(`${Api}/api/course`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      commit("setAllCourses",response.data)
+    } catch (e) {
+      console.error("error in getting all courses",e);
     }
   },
 };

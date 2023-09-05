@@ -15,7 +15,7 @@ const actions = {
   async getCourseData({ commit }) {
     commit("setLoading", true, { root: true });
     try {
-      let responce = await axios.get(`${Api}/api/course`, {
+      let responce = await axios.get(`${Api}/api/manage/course`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data.data);
@@ -33,7 +33,7 @@ const actions = {
     commit("setLoading", true, { root: true });
     try {
       let responce = await axios.get(
-        `${Api}/api/course/${option}`,
+        `${Api}/api/manage/course/${option}`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -52,7 +52,7 @@ const actions = {
   async createCourse({ commit }, option) {
     try {
       let response = await axios.post(
-        `${Api}/api/course`,
+        `${Api}/api/manage/course`,
         option,
         {
           headers: { Authorization: "Bearer " + token },
@@ -69,7 +69,7 @@ const actions = {
   async editCourse({ commit }, { id, option }) {
     try {
       const response = await axios.put(
-        `${Api}/api/course/${id}`,
+        `${Api}/api/manage/course/${id}`,
         option,
         {
           headers: { Authorization: "Bearer " + token },
@@ -87,7 +87,7 @@ const actions = {
     if (window.confirm("O'chiraymi")) {
       try {
         const response = await axios.delete(
-          `${Api}/api/course/${option}`,
+          `${Api}/api/manage/course/${option}`,
           {
             headers: { Authorization: "Bearer " + token },
           }
@@ -101,6 +101,7 @@ const actions = {
       }
     }
   },
+  
 };
 export default {
   namespaced: true,

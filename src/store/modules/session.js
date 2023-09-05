@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   async getSession({ commit }) {
     try {
-      let response = await axios.get(`${Api}/api/session`, {
+      let response = await axios.get(`${Api}/api/manage/session`, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);

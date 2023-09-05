@@ -26,7 +26,7 @@ const actions = {
   async getBranches({ commit }) {
     commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get(`${Api}/api/branch`, {
+      let response = await axios.get(`${Api}/api/manage/branch`, {
         headers: { Authorization: "Bearer " + token },
       });
       if (response.data && response.data.data) {
@@ -44,12 +44,9 @@ const actions = {
   async getBranche({ commit }, option) {
     commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get(
-        `${Api}/api/branch/${option}`,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
+      let response = await axios.get(`${Api}/api/manage/branch/${option}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
       // console.log(response.data);
       commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });
@@ -60,11 +57,12 @@ const actions = {
       }
     }
   },
+  // there is no rooms why ?
   async getRoom({ commit }, option) {
     commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(
-        `${Api}/api/branch/${option}/rooms`,
+        `${Api}/api/manage/branch/${option}/rooms`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -79,11 +77,12 @@ const actions = {
       }
     }
   },
+  /////////////////////////
   async getRoomFloor({ commit }, { id, option }) {
     // commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(
-        `${Api}/api/branch/${id}/rooms?page=${option}`,
+        `${Api}/api/manage/branch/${id}/rooms?page=${option}`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -99,15 +98,12 @@ const actions = {
       }
     }
   },
+  ////////////////////////
   async createBreanch({ commit }, option) {
     try {
-      const response = await axios.post(
-        `${Api}/api/branch`,
-        option,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
+      const response = await axios.post(`${Api}/api/manage/branch`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
       console.log(response.data);
       if (response.data.message === "Branch created successfully") {
         window.location.href = "/branches";
@@ -119,12 +115,9 @@ const actions = {
   async delete({ commit }, option) {
     if (window.confirm("O'chiraymi")) {
       try {
-        const response = await axios.delete(
-          `${Api}/api/branch/${option}`,
-          {
-            headers: { Authorization: "Bearer " + token },
-          }
-        );
+        const response = await axios.delete(`${Api}/api/manage/branch/${option}`, {
+          headers: { Authorization: "Bearer " + token },
+        });
         console.log(response.data);
         if (response.data.message === "Branch deleted successfully") {
           window.location.href = "/branches";
@@ -136,13 +129,9 @@ const actions = {
   },
   async editBranch({ commit }, { id, option }) {
     try {
-      const response = await axios.put(
-        `${Api}/api/branch/${id}`,
-        option,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
+      const response = await axios.put(`${Api}/api/manage/branch/${id}`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
       console.log(response.data);
       if (response.data.message === "Branch updated successfully") {
         window.location.href = "/branches";

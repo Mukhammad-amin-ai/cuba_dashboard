@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
   async getTeachers({ commit }) {
     try {
-      const response = await axios.get(`${Api}/api/teacher`, {
+      const response = await axios.get(`${Api}/api/manage/teacher`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -39,7 +39,7 @@ const actions = {
   },
   async getTeachersById({ commit }, option) {
     try {
-      const response = await axios.get(`${Api}/api/teacher/${option}`, {
+      const response = await axios.get(`${Api}/api/manage/teacher/${option}`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -57,7 +57,7 @@ const actions = {
   },
   async createTeacher({ commit }, option) {
     try {
-      let responce = await axios.post(`${Api}/api/teacher`, option, {
+      let responce = await axios.post(`${Api}/api/manage/teacher`, option, {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(responce.data);
@@ -70,7 +70,7 @@ const actions = {
   },
   async editTeacher({ commit }, { id, option }) {
     try {
-      const response = await axios.put(`${Api}/api/teacher/${id}`, option, {
+      const response = await axios.put(`${Api}/api/manage/teacher/${id}`, option, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);
@@ -84,7 +84,7 @@ const actions = {
   async deleteTeacher({ commit }, option) {
     if (window.confirm("Delete ?")) {
       try {
-        const response = await axios.delete(`${Api}/api/teacher/${option}`, {
+        const response = await axios.delete(`${Api}/api/manage/teacher/${option}`, {
           headers: { Authorization: "Bearer" + token },
         });
         console.log(response.data);
@@ -100,7 +100,7 @@ const actions = {
   },
   async getAssistants({ commit }) {
     try {
-      const response = await axios.get(`${Api}/api/teacher?role=assistant`, {
+      const response = await axios.get(`${Api}/api/manage/teacher?role=assistant`, {
         headers: { Authorization: "Bearer" + token },
       });
       // console.log(response.data);
@@ -114,7 +114,7 @@ const actions = {
   },
   async getMyGroups({ commit }) {
     try {
-      let response = await axios.get(`${Api}/api/teacher/groups`, {
+      let response = await axios.get(`${Api}/api/manage/teacher/groups`, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);

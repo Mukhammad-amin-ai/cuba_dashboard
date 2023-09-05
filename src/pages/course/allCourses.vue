@@ -14,7 +14,7 @@
                     <!-- </div> -->
                 </RouterLink>
             </div>
-            <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in courseData " :key="item">
+            <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in allCourses " :key="item">
                 <RouterLink :to="{ path: 'courseInfo/' + item.id }">
                     <div class="card " style="width: 18rem;">
                         <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
@@ -39,14 +39,14 @@ export default {
         spiner,
     },
     computed: {
-        ...mapState('course', ['courseData'])
+        ...mapState('course', ['allCourses'])
     },
     mounted() {
         this.course()
     },
     methods: {
         course() {
-            this.$store.dispatch('course/getCourseData')
+            this.$store.dispatch('student/getAllCourses')
         },
 
     }

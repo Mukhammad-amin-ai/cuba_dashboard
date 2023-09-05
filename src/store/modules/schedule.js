@@ -46,7 +46,7 @@ const actions = {
   async getScheduleById({ commit }, option) {
     try {
       const responce = await axios.get(
-        `${Api}/api/schedule/${option}`,
+        `${Api}/api/manage/schedule/${option}`,
         {
           headers: { Authorization: "Bearer" + token },
         }
@@ -60,6 +60,7 @@ const actions = {
       }
     }
   },
+  // logic was not completed
   async getBranchSchedule({ commit }, option) {
     commit("setSmallLoading", true, { root: true });
     try {
@@ -81,6 +82,7 @@ const actions = {
       console.error("error with getingBranchSchedul", e);
     }
   },
+  /////////////////////////
   getIdofDay({ commit }, info) {
     commit("setChoose", false, { root: true });
     commit("setDay", info.dateStr);
@@ -88,7 +90,7 @@ const actions = {
   async createSchedul({ commit }, option) {
     try {
       let response = await axios.post(
-        `${Api}/api/schedule`,
+        `${Api}/api/manage/schedule`,
         option,
         { headers: { Authorization: "Bearer" + token } }
       );
