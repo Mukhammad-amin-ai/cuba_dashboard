@@ -27,6 +27,7 @@ export default {
     justify-content: center;
     align-items: center;
     background-color: #fff;
+    position: absolute;
     z-index: 1;
 }
 </style>

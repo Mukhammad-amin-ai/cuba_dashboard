@@ -1,14 +1,7 @@
 <template>
-  <Breadcrumbs title="Blog Detail" main="My Groups" />
+    <Breadcrumbs title="Blog Detail" main="My Groups" />
     <div class="container">
-        <RouterLink to="group/create">
-            <div class="card mb-3 hover" style="width: 100%;">
-                <div class="row g-0" style="text-align: center; padding: 30px;">
-                    <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
-                </div>
-            </div>
-        </RouterLink>
-
+        <spiner />
         <RouterLink :to="{ path: 'group/' + item.id }" v-for="item in myGroups" :key="item">
             <div class="card mb-3" style="max-width: 100vw;">
                 <div class="row g-0">
@@ -32,8 +25,11 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-
+import spiner from "@/components/ui/spiner.vue"
 export default {
+    components: {
+        spiner
+    },
     computed: {
         ...mapState('teacher', ['myGroups'])
     },
@@ -48,6 +44,4 @@ export default {
     }
 }
 </script>
-<style scoped>
-    
-</style>
+<style scoped></style>

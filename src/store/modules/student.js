@@ -1,12 +1,13 @@
 import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
+let roleObj = JSON.parse(localStorage.getItem("role"))
 
 const state = {
   students: [],
   mycourses: [],
   myChildren: [],
-  allCourses:[]
+  allCourses: [],
 };
 const mutations = {
   setStudent(state, students) {
@@ -18,9 +19,9 @@ const mutations = {
   setMyChildren(state, myChildren) {
     state.myChildren = myChildren;
   },
-  setAllCourses(state,allCourses){
-    state.allCourses = allCourses
-  }
+  setAllCourses(state, allCourses) {
+    state.allCourses = allCourses;
+  },
 };
 const actions = {
   async getStudent({ commit }) {
@@ -118,36 +119,51 @@ const actions = {
     }
   },
   async getMycourses({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get(`${Api}/api/student/courses`, {
+      let response = await axios.get(`${Api}/api/student/my-courses`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response);
+      // console.log(response.data.data);
+      if (response.data.data) {
+        commit("setLoading", false, { root: true });
+      }
       commit("setMycourses", response.data.data);
     } catch (e) {
+      commit("setLoading", false, { root: true });
       console.error("error in fetching my courses ", e);
     }
   },
   async getMyChildren({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get(`${Api}/api/parent/students`, {
+      let response = await axios.get(`${Api}/api/parent/my-children`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data);
+      // console.log(response.data.data);
+      if (response.data) {
+        commit("setLoading", false, { root: true });
+      }
       commit("setMyChildren", response.data.data);
     } catch (e) {
+      commit("setLoading", false, { root: true });
       console.error("error in fetching my children", e);
     }
   },
   async getAllCourses({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get(`${Api}/api/course`, {
+      let response = await axios.get(`${Api}/api/${roleObj.name}/all-courses`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data);
-      commit("setAllCourses",response.data)
+      console.log(response.data.data.data);
+      if (response.data.data) {
+        commit("setLoading", false, { root: true });
+      }
+      commit("setAllCourses", response.data.data.data);
     } catch (e) {
-      console.error("error in getting all courses",e);
+      commit("setLoading", false, { root: true });
+      console.error("error in getting all courses", e);
     }
   },
 };

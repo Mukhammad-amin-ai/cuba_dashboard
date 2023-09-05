@@ -1,6 +1,7 @@
 <template >
     <Breadcrumbs title="Blog Detail" main="Teachers" />
     <div class="container-fluid p-20">
+        <spiner/>
         <div class="card p-20 ">
             <RouterLink to="teachers/create" class="select" >
                 <div class="card social-profile  ">
@@ -38,12 +39,14 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-
+import spiner from '@/components/ui/spiner.vue';
 export default {
+    components:{
+        spiner
+    },
     computed: {
         ...mapState('teacher', ['teachers']),
         validTeachers() {
-            // Check if this.teachers is an array before filtering
             if (Array.isArray(this.teachers)) {
                 return this.teachers.filter(item => item && item.id);
             } else {
@@ -54,7 +57,6 @@ export default {
     },
     mounted() {
         this.getTeachers()
-        // this.roleChecker()
     },
     methods: {
         getTeachers() {

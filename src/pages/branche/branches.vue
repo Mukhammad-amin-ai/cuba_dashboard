@@ -19,7 +19,6 @@
                         </div>
 
                     </RouterLink>
-
                 </div>
                 <div class="col-xl-6 set-col-12 box-col-12">
                     <RouterLink v-if="hasBranchData" :to="{ path: 'branchInfo/' + branchData[1].id }">

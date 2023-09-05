@@ -1,36 +1,22 @@
 <template>
-    <!-- <div> -->
     <Breadcrumbs title="Blog Detail" main="My Courses" />
     <div class="container-fluid p-20">
         <spiner />
         <div class="row " style="gap: 40px;">
-            <div class="card " style="width: 18rem;">
-                <RouterLink to="courses/create">
-                    <!-- <div class="card-body center"> -->
-                    <!-- <h5 class="card-title"></h5>
-                        <p class="card-text"></p> -->
-                    <div class="box">
-                        <i class='bx bx-plus-circle'></i>
-                    </div>
-                    <!-- </div> -->
-                </RouterLink>
-            </div>
             <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in mycourses " :key="item">
                 <RouterLink :to="{ path: 'courseInfo/' + item.id }">
                     <div class="card " style="width: 18rem;">
                         <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
                         <div class="card-body">
-                            <h5 class="card-title">{{ item.name }}</h5>
-                            <p class="card-text">Price : {{ item.price }} SUM</p>
+                            <h5 class="card-title">{{ item.course.name }}</h5>
+                            <p class="card-text">Payed in : {{ item.pay_time }} </p>
                             <a href="#" class="btn btn-primary">About course</a>
                         </div>
                     </div>
                 </RouterLink>
             </div>
         </div>
-
     </div>
-    <!-- </div> -->
 </template>
 <script>
 import spiner from '@/components/ui/spiner.vue'

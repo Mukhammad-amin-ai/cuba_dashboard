@@ -3,17 +3,6 @@
     <div class="container-fluid p-20">
         <spiner />
         <div class="row " style="gap: 40px;">
-            <div class="card " style="width: 18rem;">
-                <RouterLink to="courses/create">
-                    <!-- <div class="card-body center"> -->
-                    <!-- <h5 class="card-title"></h5>
-                        <p class="card-text"></p> -->
-                    <div class="box">
-                        <i class='bx bx-plus-circle'></i>
-                    </div>
-                    <!-- </div> -->
-                </RouterLink>
-            </div>
             <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in allCourses " :key="item">
                 <RouterLink :to="{ path: 'courseInfo/' + item.id }">
                     <div class="card " style="width: 18rem;">
@@ -27,7 +16,6 @@
                 </RouterLink>
             </div>
         </div>
-
     </div>
 </template>
 <script>
@@ -39,7 +27,7 @@ export default {
         spiner,
     },
     computed: {
-        ...mapState('course', ['allCourses'])
+        ...mapState('student', ['allCourses'])
     },
     mounted() {
         this.course()
@@ -75,6 +63,4 @@ export default {
 .box i {
     font-size: 40px;
 }
-
-
 </style>
