@@ -1,5 +1,6 @@
-<template >
-    <Breadcrumbs title="Blog Detail" main="All Courses" />
+<template>
+    <!-- <div> -->
+    <Breadcrumbs title="Blog Detail" main="My Courses" />
     <div class="container-fluid p-20">
         <spiner />
         <div class="row " style="gap: 40px;">
@@ -14,7 +15,7 @@
                     <!-- </div> -->
                 </RouterLink>
             </div>
-            <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in courseData " :key="item">
+            <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in mycourses " :key="item">
                 <RouterLink :to="{ path: 'courseInfo/' + item.id }">
                     <div class="card " style="width: 18rem;">
                         <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
@@ -29,28 +30,26 @@
         </div>
 
     </div>
+    <!-- </div> -->
 </template>
 <script>
 import spiner from '@/components/ui/spiner.vue'
 import { mapState } from 'vuex';
-
 export default {
     components: {
         spiner,
     },
     computed: {
-        ...mapState('course', ['courseData'])
+        ...mapState('student', ['mycourses'])
     },
     mounted() {
-        this.course()
+        this.getMycourses()
     },
     methods: {
-        course() {
-            this.$store.dispatch('course/getCourseData')
-        },
-
-    }
-
+        getMycourses() {
+            this.$store.dispatch('student/getMycourses')
+        }
+    },
 }
 </script>
 <style scoped>
@@ -75,6 +74,4 @@ export default {
 .box i {
     font-size: 40px;
 }
-
-
 </style>

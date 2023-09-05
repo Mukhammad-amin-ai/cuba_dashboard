@@ -14,7 +14,7 @@
           <h6 class="lan-1">General</h6>
         </div>
       </li>
-      <li class="sidebar-list" v-if="role.branches > '0'">
+      <li class="sidebar-list" v-if="role.name ===  ('admin' || 'superadmin')">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/">
           <svg class="stroke-icon">
@@ -75,53 +75,46 @@
           <span class="lan-3"> Payme</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.name === 'parent'">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/live">
-          <i class="icofont icofont-video-cam"></i>
-          <span class="lan-3">Live</span>
-        </router-link>
-      </li>
-      <!-- <li class="sidebar-list" v-if="show[0].name === 'My courses'">
+      <li class="sidebar-list" v-if="show && show[0] && show[0].name === 'My courses'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/Mycourses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">My Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show[2].name === 'All courses'">
+      <li class="sidebar-list" v-if="show && show[0] && show[0].name === 'My children'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/Mychildren">
+          <i class="icofont icofont-kids-scooter"></i>
+          <span class="lan-3"> My Children</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="show && show[0] && show[0].name === 'My groups'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/Mygroups">
+          <i class="icofont icofont-users-alt-5"></i>
+          <span class="lan-3"> My Groups</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="show && show[2] && show[2].name === 'All courses'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/Allcourses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">All Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show[1].name === 'My cards'">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/payme">
-          <i class="icofont icofont-bill-alt"></i>
-          <span class="lan-3"> My cards</span>
-        </router-link>
-      </li> -->
-      <li class="sidebar-list" v-if="showObj && showObj[0] && showObj[0].name === 'My courses'">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/Mycourse">
-          <i class="icofont icofont-architecture-alt"></i>
-          <span class="lan-3">My Courses</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="showObj && showObj[2] && showObj[2].name === 'All courses'">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/Allcourses">
-          <i class="icofont icofont-architecture-alt"></i>
-          <span class="lan-3">All Courses</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="showObj && showObj[1] && showObj[1].name === 'My cards'">
+      <li class="sidebar-list" v-if="show && show[1] && show[1].name === 'My cards'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> My Cards</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="role.name === 'parent'">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/live">
+          <i class="icofont icofont-video-cam"></i>
+          <span class="lan-3">Live</span>
         </router-link>
       </li>
     </ul>
@@ -133,7 +126,7 @@ import { layoutClasses } from '../../constants/layout';
 let roleObj = JSON.parse(localStorage.getItem("role"))
 let showObj = JSON.parse(localStorage.getItem("show"))
 
-// console.log(roleObj.branches);
+// console.log(roleObj.name );
 export default {
   name: 'Navmenu',
   data() {

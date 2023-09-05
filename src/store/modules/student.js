@@ -4,10 +4,18 @@ const token = localStorage.getItem("token");
 
 const state = {
   students: [],
+  mycourses: [],
+  myChildren: [],
 };
 const mutations = {
   setStudent(state, students) {
     state.students = students;
+  },
+  setMycourses(state, mycourses) {
+    state.mycourses = mycourses;
+  },
+  setMyChildren(state, myChildren) {
+    state.myChildren = myChildren;
   },
 };
 const actions = {
@@ -68,12 +76,9 @@ const actions = {
   async deleteStudent({ commit }, option) {
     if (window.confirm("O'chiraymi")) {
       try {
-        const response = await axios.delete(
-          `${Api}/api/student/${option}`,
-          {
-            headers: { Authorization: "Bearer " + token },
-          }
-        );
+        const response = await axios.delete(`${Api}/api/student/${option}`, {
+          headers: { Authorization: "Bearer " + token },
+        });
         console.log(response.data);
         if (response.data.message === "Student deleted successfully") {
           window.location.href = "/student";
@@ -85,13 +90,9 @@ const actions = {
   },
   async searchStudent({ commit }, option) {
     try {
-      let responce = await axios.post(
-        `${Api}/api/student/search`,
-        option,
-        {
-          headers: { Authorization: "Bearer" + token },
-        }
-      );
+      let responce = await axios.post(`${Api}/api/student/search`, option, {
+        headers: { Authorization: "Bearer" + token },
+      });
       // console.log(responce.data);
       commit("setStudent", responce.data.data);
     } catch (e) {
@@ -99,6 +100,28 @@ const actions = {
       if (e.request.status === 401) {
         window.location.href = "/login";
       }
+    }
+  },
+  async getMycourses({ commit }) {
+    try {
+      let response = await axios.get(`${Api}/api/student/courses`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response);
+      commit("setMycourses", response.data.data);
+    } catch (e) {
+      console.error("error in fetching my courses ", e);
+    }
+  },
+  async getMyChildren({ commit }) {
+    try {
+      let response = await axios.get(`${Api}/api/parent/students`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      commit("setMyChildren", response.data.data);
+    } catch (e) {
+      console.error("error in fetching my children", e);
     }
   },
 };

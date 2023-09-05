@@ -27,8 +27,11 @@ import forgot from "@/auth/forgot.vue";
 import live from "@/pages/live/live.vue";
 import profile from "@/pages/profile/profile.vue";
 import getPropertiesGreaterThanZero from "@/router/roleChecker";
-import courseStudents from "@/pages/course/courseStudent.vue";
+import myCourses from "@/pages/course/myCourses.vue";
 import allCourses from "@/pages/course/allCourses";
+import myChildren from '@/pages/student/myChildren.vue'
+import myGroups from '@/pages/group/myGroups.vue'
+
 
 let roleObj = JSON.parse(localStorage.getItem("role"));
 let showObj = JSON.parse(localStorage.getItem("show"));
@@ -150,7 +153,7 @@ const routes = [
       },
       {
         path: "Mycourses",
-        component: courseStudents,
+        component: myCourses,
         meta: { requiredAuth: true },
       },
       {
@@ -160,7 +163,12 @@ const routes = [
       },
       {
         path: "Mygroups",
-        component: courseStudents,
+        component: myGroups,
+        meta: { requiredAuth: true },
+      },
+      {
+        path: "Mychildren",
+        component: myChildren,
         meta: { requiredAuth: true },
       },
     ],
