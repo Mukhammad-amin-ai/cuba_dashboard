@@ -71,9 +71,9 @@ const actions = {
       let responce = await axios.get(`${Api}/api/manage/role`, {
         headers: { Authorization: "Bearer" + token },
       });
-      console.log(responce.data);
-      if (responce.data) {
-        commit("setRolArray", responce.data);
+      console.log(responce.data.data.data);
+      if (responce.data.data) {
+        commit("setRolArray", responce.data.data.data);
       }
     } catch (e) {
       console.error("error in getting role ", e);

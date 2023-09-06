@@ -172,7 +172,7 @@
                 <option :value=4>Read+Update+Create+Delete</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary" @click.prevent="createRole">Create Student</button>
+        <button type="submit" class="btn btn-primary" @click.prevent="createRole">Create Role</button>
     </form>
 </template>
 <script>

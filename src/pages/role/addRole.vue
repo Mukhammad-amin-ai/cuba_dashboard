@@ -1,21 +1,20 @@
 <template >
     <div>
-        <Breadcrumbs title="Blog Detail" main="New Role" />
+        <Breadcrumbs title="Blog Detail" main="Role" />
         <div class="container-fluid p-20">
-            
-            <addRoleForms/>
-
+            <tableofRoles/>
+            <addRoleForms />
         </div>
     </div>
 </template>
 <script>
 import addRoleForms from './addRoleForms.vue';
+import tableofRoles from './tableofRoles.vue';
 export default {
-   components:{
-    addRoleForms
-   }
+    components: {
+        tableofRoles,
+        addRoleForms
+    }
 }
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

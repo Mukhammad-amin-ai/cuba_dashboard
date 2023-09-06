@@ -110,7 +110,7 @@ export default {
         });
       });
       this.layoutobj = layoutClasses.find((item) => Object.keys(item).pop() === this.layout.settings.layout);
-      console.log("layobj==>", this.layoutobj)
+      // console.log("layobj==>", this.layoutobj) 
 
       if ((window.innerWidth < 991 && this.layout.settings.layout === 'LosAngeles') || (window.innerWidth < 991 && this.layout.settings.layout === 'Singapore') || (window.innerWidth < 991 && this.layout.settings.layout === 'Barcelona')) {
         const newlayout = JSON.parse(JSON.stringify(this.layoutobj).replace('horizontal-wrapper', 'compact-wrapper'));

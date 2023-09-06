@@ -26,7 +26,7 @@
           <span class="lan-3">Dashboard</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.branches > '0'">
+      <li class="sidebar-list" v-if="role.name === 'superadmin'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/add-role'>
           <i class="icofont icofont-business-man"></i>
