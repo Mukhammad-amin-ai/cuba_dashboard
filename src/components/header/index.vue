@@ -2,7 +2,6 @@
   <div class="header-wrapper row m-0">
     <SearchBar />
     <Logo />
-
     <!-- <div class="left-header col-xxl-5 col-xl-6 col-lg-5 col-md-4 col-sm-3 p-0">
       <div class="notification-slider">
       <swiper :slidesPerView="1" :autoplay="{
@@ -27,7 +26,6 @@
           </div>
         </swiper-slide>
       </swiper>
-
       </div>
     </div> -->
     <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
@@ -38,7 +36,6 @@
             </svg>
           </span>
         </li>
-
         <!-- <li class="onhover-dropdown">
           <svg @click="bookmark_open()">
             <use href="@/assets/svg/icon-sprite.svg#star"></use>
@@ -51,8 +48,8 @@
         </li>
         <!-- <Cart />
         <Notifications /> -->
-
-        <Profile />
+        <chackBranch/>
+        <Profile />        
       </ul>
     </div>
   </div>
@@ -69,6 +66,8 @@ import Cart from './cart';
 import Profile from './profile';
 import Logo from './logo.vue';
 import SearchBar from './search';
+import chackBranch from './chackBranch.vue';
+
 
 export default {
   //   name: 'Search',
@@ -82,6 +81,7 @@ export default {
     Swiper,
     SwiperSlide,
     SearchBar,
+    chackBranch
   },
   data() {
     return {

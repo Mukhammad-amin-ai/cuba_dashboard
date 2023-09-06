@@ -1,6 +1,6 @@
 <template >
     <div>
-        <Breadcrumbs title="Blog Detail" main="Add New Role" />
+        <Breadcrumbs title="Blog Detail" main="New Role" />
         <div class="container-fluid p-20">
             
             <addRoleForms/>

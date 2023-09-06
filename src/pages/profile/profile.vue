@@ -7,14 +7,14 @@
                         <div class="cardheader" style="background-size: cover;
                                 background-position: 10%;
                                  height: 470px;"
-                            :style="{ backgroundImage: 'url(' + require('@/assets/images/Students-Wallpaper.jpg') + ')' }">
+                            :style="{ backgroundImage: 'url(' + require('@/assets/images/avtar/16.jpg') + ')' }">
                         </div>
                         <div class="user-image">
                             <div class="avatar">
                                 <img id="profile-tour" alt="" src="../../assets/images/avtar/7.jpg"
                                     data-intro="This is Profile image">
                             </div>
-                            <div class="icon-wrapper" @click="chenger">
+                            <div class="icon-wrapper">
                                 <i id="update-profile-tour" class="icofont icofont-pencil-alt-5"
                                     data-intro="Change Profile image here"></i>
                             </div>

@@ -7,6 +7,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Role</label>
             <select class="form-select" id="status" v-model="roles">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -16,6 +17,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Lessons</label>
             <select class="form-select" id="status" v-model="lessons">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -25,6 +27,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Groups</label>
             <select class="form-select" id="status" v-model="groups">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -34,6 +37,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Branches</label>
             <select class="form-select" id="status" v-model="branches">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -43,6 +47,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Courses</label>
             <select class="form-select" id="status" v-model="courses">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -52,6 +57,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Teachers</label>
             <select class="form-select" id="status" v-model="teachers">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -61,6 +67,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Students</label>
             <select class="form-select" id="status" v-model="students">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -70,6 +77,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Parents</label>
             <select class="form-select" id="status" v-model="stparents">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -79,6 +87,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Sessions</label>
             <select class="form-select" id="status" v-model="sessions">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -88,6 +97,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Rooms</label>
             <select class="form-select" id="status" v-model="rooms">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -97,6 +107,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Schedules</label>
             <select class="form-select" id="status" v-model="schedules">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -106,6 +117,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Cashiers</label>
             <select class="form-select" id="status" v-model="cashiers">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -115,6 +127,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Access for courses</label>
             <select class="form-select" id="status" v-model="access_for_courses">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -124,42 +137,35 @@
         <div class="mb-3">
             <label for="status" class="form-label">Student search</label>
             <select class="form-select" id="status" v-model="student_search">
-                <option :value=1>Read</option>
-                <option :value=2>Read+Update</option>
-                <option :value=3>Read+Update+Create</option>
-                <option :value=4>Read+Update+Create+Delete</option>
+                <option :value=0>False</option>
+                <option :value=1>True</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Payment addcard</label>
             <select class="form-select" id="status" v-model="payment_addcard">
-                <option :value=1>Read</option>
-                <option :value=2>Read+Update</option>
-                <option :value=3>Read+Update+Create</option>
-                <option :value=4>Read+Update+Create+Delete</option>
+                <option :value=0>False</option>
+                <option :value=1>True</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Payment Cashier</label>
             <select class="form-select" id="status" v-model="payment_cashier">
-                <option :value=1>Read</option>
-                <option :value=2>Read+Update</option>
-                <option :value=3>Read+Update+Create</option>
-                <option :value=4>Read+Update+Create+Delete</option>
+                <option :value=0>False</option>
+                <option :value=1>True</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Payment pay</label>
             <select class="form-select" id="status" v-model="payment_pay">
-                <option :value=1>Read</option>
-                <option :value=2>Read+Update</option>
-                <option :value=3>Read+Update+Create</option>
-                <option :value=4>Read+Update+Create+Delete</option>
+                <option :value=0>False</option>
+                <option :value=1>True</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Users</label>
             <select class="form-select" id="status" v-model="users">
+                <option :value=0>Nothing</option>
                 <option :value=1>Read</option>
                 <option :value=2>Read+Update</option>
                 <option :value=3>Read+Update+Create</option>
@@ -219,7 +225,7 @@ export default {
                 payment_cashier: this.cashiers,
                 payment_pay: this.payment_pay
             }
-            this.$store.dispatch('role/createRole',option)
+            this.$store.dispatch('role/createRole', option)
         }
     }
 }

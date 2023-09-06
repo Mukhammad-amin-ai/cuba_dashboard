@@ -16,7 +16,7 @@ const state = {
   group: true,
   teachers: true,
   students: true,
-  addRoleForm: true,
+  addRoleForm: false,
   // access: true,
   // read: false,
   // update: false,
@@ -68,7 +68,7 @@ const mutations = {
 const actions = {
   async getRole({ commit }) {
     try {
-      let responce = await axios.get(`${Api}/api/role`, {
+      let responce = await axios.get(`${Api}/api/manage/role`, {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(responce.data);

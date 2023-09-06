@@ -30,7 +30,7 @@
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/add-role'>
           <i class="icofont icofont-business-man"></i>
-          <span class="lan-3"> Add Role</span>
+          <span class="lan-3"> Role</span>
         </router-link>
       </li>
       <li class="sidebar-list" v-if="role.branches > '0'">
