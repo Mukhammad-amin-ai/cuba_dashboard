@@ -26,12 +26,13 @@ import payme from "@/pages/payme/payme.vue";
 import forgot from "@/auth/forgot.vue";
 import live from "@/pages/live/live.vue";
 import profile from "@/pages/profile/profile.vue";
-import getPropertiesGreaterThanZero from "@/router/roleChecker";
 import myCourses from "@/pages/course/myCourses.vue";
 import allCourses from "@/pages/course/allCourses";
 import myChildren from "@/pages/student/myChildren.vue";
 import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
+// import accessChecker from "@/router/roleChecker";
+
 
 let roleObj = JSON.parse(localStorage.getItem("role"));
 let showObj = JSON.parse(localStorage.getItem("show"));
@@ -46,7 +47,7 @@ const routes = [
         path: "",
         name: "defaultRoot",
         component: Default,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "branches" },
         beforeEnter: (to, from, next) => {
           if (showObj[0].window === "default") {
             next(`/${showObj[0].name}`);
@@ -58,87 +59,87 @@ const routes = [
       {
         path: "courses",
         component: courses,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true },
       },
       {
         path: "courses/create",
         component: createCourse,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true },
       },
       {
         path: "courseInfo/:id",
         component: courseEdit,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true },
       },
       {
         path: "branches",
         component: branches,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "branches" },
       },
       {
         path: "branchInfo/:id",
         component: branchInfo,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "branches" },
       },
       {
         path: "branch/create",
         component: branchCreate,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "branches" },
       },
       {
         path: "schedule",
         component: schedule,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "schedules" },
       },
       {
         path: "group",
         component: group,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "groups" },
       },
       {
         path: "group/:id",
         component: groupInfo,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "groups" },
       },
       {
         path: "group/create",
         component: createGroup,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "groups" },
       },
       {
         path: "student",
         component: student,
-        meta: { requiredAuth: true, role: "superadmin" },
+        meta: { requiredAuth: true, key: "students" },
       },
       {
         path: "student/create",
         component: studentCreate,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "students" },
       },
       {
         path: "student/:id",
         component: studentInfo,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "students" },
       },
       {
         path: "teachers",
         component: teachers,
-        meta: { requiredAuth: true, role: "superadmin" },
+        meta: { requiredAuth: true, key: "teachers" },
       },
       {
         path: "teachers/create",
         component: teachersCreate,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "teachers" },
       },
       {
         path: "teachers/:id",
         component: teachersInfo,
-        meta: { requiredAuth: true, superadmin: true },
+        meta: { requiredAuth: true, key: "teachers" },
       },
       {
         path: "payme",
         component: payme,
-        meta: { requiredAuth: true, student: true },
+        meta: { requiredAuth: true },
       },
       {
         path: "live",
@@ -153,41 +154,27 @@ const routes = [
       {
         path: "my-courses",
         component: myCourses,
-        meta: { requiredAuth: true, role: "student" },
-        // beforeEnter: (to, from, next) => {
-        //   if (roleObj.name === "student") {
-        //     next();
-        //   } else {
-        //     next("/:pathMatch(.*)*");
-        //   }
-        // },
+        meta: { requiredAuth: true, key: "my-courses" },
       },
       {
         path: "all-courses",
         component: allCourses,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, key: "all-courses" },
       },
       {
         path: "my-groups",
         component: myGroups,
-        meta: { requiredAuth: true },
-        // beforeEnter: (to, from, next) => {
-        //   if (roleObj.name === "teacher") {
-        //     next();
-        //   } else {
-        //     next("/:pathMatch(.*)*");
-        //   }
-        // },
+        meta: { requiredAuth: true, key: "my-groups" },
       },
       {
         path: "my-children",
         component: myChildren,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, key: "my-children" },
       },
       {
         path: "add-role",
         component: addrole,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, key: "roles" },
       },
     ],
   },
@@ -214,25 +201,16 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  getPropertiesGreaterThanZero(roleObj);
-  // console.log(showObj[0].window);
   if (to.meta.requiredAuth) {
     if (!isUserValid()) {
       next("/login");
     } else {
-      // next();
-      // console.log(to.meta.role === 'student');
-      switch (to.meta.role) {
-        case "student":
-        case "teacher":
-        case "parent":
-        case "admin":
-        case "superadmin":
-          next();
-          break;
-        default:
-          next("/:pathMatch(.*)*");
-          break;
+      if (roleObj[to.meta.key] >= 1) {
+        next();
+      } else if (roleObj[to.meta.key] === 0) {
+        next();
+      } else {
+        next("/:pathMatch(.*)*");
       }
     }
   } else {
