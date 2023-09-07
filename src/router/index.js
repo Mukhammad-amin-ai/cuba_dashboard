@@ -33,7 +33,6 @@ import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
 // import accessChecker from "@/router/roleChecker";
 
-
 let roleObj = JSON.parse(localStorage.getItem("role"));
 let showObj = JSON.parse(localStorage.getItem("show"));
 
@@ -47,7 +46,7 @@ const routes = [
         path: "",
         name: "defaultRoot",
         component: Default,
-        meta: { requiredAuth: true, key: "branches" },
+        meta: { requiredAuth: true, key: "courses" },
         beforeEnter: (to, from, next) => {
           if (showObj[0].window === "default") {
             next(`/${showObj[0].name}`);
@@ -59,17 +58,17 @@ const routes = [
       {
         path: "courses",
         component: courses,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, key: "courses" },
       },
       {
         path: "courses/create",
         component: createCourse,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, key: "courses" },
       },
       {
         path: "courseInfo/:id",
         component: courseEdit,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, key: "courses" },
       },
       {
         path: "branches",
@@ -205,10 +204,18 @@ router.beforeEach((to, from, next) => {
     if (!isUserValid()) {
       next("/login");
     } else {
-      if (roleObj[to.meta.key] >= 1) {
-        next();
-      } else if (roleObj[to.meta.key] === 0) {
-        next();
+      if (roleObj[to.meta.key]) {
+        if (roleObj[to.meta.key] >= 1) {
+          next();
+        } else {
+          next("/:pathMatch(.*)*");
+        }
+      } else if (roleObj[to.meta.key]) {
+        if (roleObj[to.meta.key] === 0) {
+          next();
+        } else {
+          next("/:pathMatch(.*)*");
+        }
       } else {
         next("/:pathMatch(.*)*");
       }
