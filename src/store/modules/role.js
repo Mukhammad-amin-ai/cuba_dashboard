@@ -2,10 +2,6 @@ import axios from "axios";
 import Api from "./Base_Url";
 
 let token = localStorage.getItem("token");
-// let roleObj = JSON.parse(localStorage.getItem("role"));
-// console.log(roleObj);
-
-// rmarvin@example.org student
 
 const state = {
   roleArray: [],
@@ -17,11 +13,6 @@ const state = {
   teachers: true,
   students: true,
   addRoleForm: false,
-  // access: true,
-  // read: false,
-  // update: false,
-  // create: false,
-  // deletee: false,
 };
 
 const mutations = {
@@ -49,21 +40,6 @@ const mutations = {
   setForm(state, addRoleForm) {
     state.addRoleForm = addRoleForm;
   },
-  // setRoleChacker(state, access) {
-  //   state.access = access;
-  // },
-  // setRead(state, read) {
-  //   state.read = read;
-  // },
-  // setUpdate(state, update) {
-  //   state.update = update;
-  // },
-  // setCreate(state, create) {
-  //   state.create = create;
-  // },
-  // setDelete(state, deletee) {
-  //   state.deletee = deletee;
-  // },
 };
 const actions = {
   async getRole({ commit }) {
@@ -71,7 +47,7 @@ const actions = {
       let responce = await axios.get(`${Api}/api/manage/role`, {
         headers: { Authorization: "Bearer" + token },
       });
-      console.log(responce.data.data.data);
+      // console.log(responce.data.data.data);
       if (responce.data.data) {
         commit("setRolArray", responce.data.data.data);
       }
@@ -97,7 +73,7 @@ const actions = {
       let responese = await axios.get(`${Api}/api/auth/me`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responese.data.data);
+      // console.log(responese.data.data);
       if (responese.data.data) {
         commit("setMyProfile", responese.data.data);
       }
@@ -105,26 +81,6 @@ const actions = {
       console.error("problem with getting user profile ", e);
     }
   },
-  // roleCheck({ commit }, option) {
-  //   // console.log(roleObj[option]);
-  //   if (roleObj[option] === "1") {
-  //     commit("setRead", true);
-  //   } else if (roleObj[option] === "2") {
-  //     commit("setRead", true);
-  //     commit("setUpdate", true);
-  //   } else if (roleObj[option] === "3") {
-  //     commit("setRead", true);
-  //     commit("setUpdate", true);
-  //     commit("setCreate", true);
-  //   } else if (roleObj[option] === "4") {
-  //     commit("setRead", true);
-  //     commit("setUpdate", true);
-  //     commit("setCreate", true);
-  //     commit("setDelete", true);
-  //   } else {
-  //     commit("setRoleChacker", false);
-  //   }
-  // },
 };
 
 export default {

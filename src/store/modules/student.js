@@ -134,7 +134,7 @@ const actions = {
       }
       commit("setMycourses", response.data.data);
     } catch (e) {
-      commit("setLoading", false, { root: true });
+      // commit("setLoading", false, { root: true });
       console.error("error in fetching my courses ", e);
     }
   },
@@ -150,7 +150,7 @@ const actions = {
       }
       commit("setMyChildren", response.data.data);
     } catch (e) {
-      commit("setLoading", false, { root: true });
+      // commit("setLoading", false, { root: true });
       console.error("error in fetching my children", e);
     }
   },
@@ -166,7 +166,7 @@ const actions = {
       }
       commit("setAllCourses", response.data.data.data);
     } catch (e) {
-      commit("setLoading", false, { root: true });
+      // commit("setLoading", false, { root: true });
       console.error("error in getting all courses", e);
     }
   },
