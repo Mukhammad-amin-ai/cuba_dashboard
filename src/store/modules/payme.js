@@ -6,7 +6,7 @@ const state = {
   showVerify: true,
   addCardComponent: true,
   cashierId: "",
-  showInput:false
+  showInput: false,
 };
 const mutations = {
   setShow(state, showHide) {
@@ -21,18 +21,17 @@ const mutations = {
   getId(state, cashierId) {
     state.cashierId = cashierId;
   },
-  setShowIput(state,showInput){
-    state.showInput = showInput
-  }
+  setShowIput(state, showInput) {
+    state.showInput = showInput;
+  },
 };
 
 const actions = {
   async getCashiersId({ commit }) {
     try {
-      let responce = await axios.get(
-        `${Api}/api/payment/cashier`,
-        { headers: { Authorization: "Bearer " + token } }
-      );
+      let responce = await axios.get(`${Api}/api/payment/cashier`, {
+        headers: { Authorization: "Bearer " + token },
+      });
       console.log(responce.data);
       if (responce.data.cashier_id) {
         commit("getId", responce.data.cashier_id);
@@ -42,7 +41,7 @@ const actions = {
     }
   },
   async getCard({ commit, dispatch }, option) {
-    await dispatch('getCashiersId');
+    await dispatch("getCashiersId");
     try {
       let response = await axios.post(
         "https://checkout.test.paycom.uz/api",
@@ -75,8 +74,6 @@ const actions = {
         }
       );
       console.log(response.data);
-     
-
     } catch (e) {
       console.error("error there", e);
     }
@@ -110,6 +107,16 @@ const actions = {
       commit("cardComponent", false);
     } catch (e) {
       console.error("error in sending token ", e);
+    }
+  },
+  async buyProduct({ commit }, option) {
+    try {
+      let response = await axios.post(`${Api}/api/payment/pay`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in buy product", e);
     }
   },
 };

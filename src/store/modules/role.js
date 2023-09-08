@@ -81,6 +81,56 @@ const actions = {
       console.error("problem with getting user profile ", e);
     }
   },
+  async updateMyProfile({ commit }, option) {
+    try {
+      let response = await axios.put(`${Api}/api/auth/update`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in updatingf profile", e);
+    }
+  },
+  async getUserBranch({ commit }) {
+    try {
+      let response = await axios.get(`${Api}/api/auth/branches`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting user branches", e);
+    }
+  },
+  async getRoleId({ commit }, id) {
+    try {
+      let response = await axios.get(`${Api}/api/manage/role/${id}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting role by id", e);
+    }
+  },
+  async updateRole({commit},id){
+    try {
+      let response = await axios.put(`${Api}/api/manage/role/${id}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting role by id", e);
+    }
+  },
+  async deleteRole({commit},id){
+    try {
+      let response = await axios.delete(`${Api}/api/manage/role/${id}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting role by id", e);
+    }
+  }
 };
 
 export default {
