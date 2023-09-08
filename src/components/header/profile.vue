@@ -67,7 +67,7 @@ export default {
     // }
     // },
     getMyInfo() {
-      this.$store.dispatch("roel/getMyProfile")
+      this.$store.dispatch("role/getMyProfile")
     },
     check() {
       if (this.myProfile.firstname && this.myProfile.lastname) {

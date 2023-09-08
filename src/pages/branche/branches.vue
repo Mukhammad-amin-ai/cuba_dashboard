@@ -6,12 +6,13 @@
             <div class="row">
                 <div class="col-xl-6 set-col-12 box-col-12 " style="padding-bottom: 30px;">
                     <RouterLink v-if="hasBranchData" :to="{ path: 'branchInfo/' + branchData[0].id }">
-                        <div class="card  "  style="height: 100%; ">
+                        <div class="card  " style="height: 100%; ">
                             <div class="blog-box blog-shadow" style="height: 100%;">
                                 <img class="img-fluid bg-img-cover" style="height: 100%;" src="@/assets/images/it-park.jpg"
                                     alt="">
                                 <div class="blog-details">
-                                    <p v-if="branchData && branchData.length">{{ branchData[branchData.length - branchData.length].name }}</p>
+                                    <p v-if="branchData && branchData.length">{{ branchData[branchData.length -
+                                        branchData.length].name }}</p>
                                     <p v-else>No branch data available.</p>
                                     <h4>Latest opened Branch</h4>
                                 </div>
@@ -30,7 +31,8 @@
                                 <div class="col-sm-7">
                                     <div class="blog-details">
                                         <div class="blog-date"><span>02</span> January 2018</div>
-                                        <p v-if="branchData && branchData.length">{{ branchData[branchData.length - (branchData.length - 1)].name }}</p>
+                                        <p v-if="branchData && branchData.length">{{ branchData[branchData.length -
+                                            (branchData.length - 1)].name }}</p>
                                         <p v-else>No branch data available.</p>
                                         <div class="blog-bottom-content">
                                             <ul class="blog-social">
@@ -56,7 +58,8 @@
                                 <div class="col-sm-7">
                                     <div class="blog-details">
                                         <div class="blog-date"><span>03</span> January 2018</div>
-                                        <p v-if="branchData && branchData.length">{{ branchData[branchData.length - (branchData.length - 2)].name }}</p>
+                                        <p v-if="branchData && branchData.length">{{ branchData[branchData.length -
+                                            (branchData.length - 2)].name }}</p>
                                         <p v-else>No branch data available.</p>
                                         <div class="blog-bottom-content">
                                             <ul class="blog-social">
@@ -126,13 +129,13 @@ export default {
     },
     mounted() {
         this.branch()
-        // this.roleChecker()
+
     },
     methods: {
         branch() {
             this.$store.dispatch('branche/getBranches')
         },
-      
+
     }
 }
 </script>
@@ -152,5 +155,4 @@ export default {
 
 .select:hover {
     transform: scale(1.050);
-}
-</style>
+}</style>

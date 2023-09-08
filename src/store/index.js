@@ -12,6 +12,9 @@ import student from "./modules/student";
 import session from "./modules/session";
 import payme from "./modules/payme";
 import role from "./modules/role";
+import lesson from "./modules/lesson";
+
+
 
 export default createStore({
   state: {
@@ -108,5 +111,7 @@ export default createStore({
     session,
     payme,
     role,
+    lesson    
+
   },
 });
