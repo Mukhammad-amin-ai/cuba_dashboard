@@ -40,13 +40,13 @@ const routes = [
   {
     path: "/",
     component: Body,
-    meta: { requiredAuth: true },
+    meta: { requiredAuth: true,unique: true },
     children: [
       {
         path: "",
         name: "defaultRoot",
         component: Default,
-        meta: { requiredAuth: true, key: "courses" },
+        meta: { requiredAuth: true, unique: true},
         beforeEnter: (to, from, next) => {
           if (showObj[0].window === "default") {
             next(`/${showObj[0].name}`);
@@ -138,17 +138,17 @@ const routes = [
       {
         path: "payme",
         component: payme,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, unique: true },
       },
       {
         path: "live",
         component: live,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, unique: true },
       },
       {
         path: "profile",
         component: profile,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, unique: true },
       },
       {
         path: "my-courses",
@@ -169,7 +169,7 @@ const routes = [
         path: "my-children",
         component: myChildren,
         meta: { requiredAuth: true, key: "my-children" },
-      },
+      },  
       {
         path: "add-role",
         component: addrole,
@@ -212,6 +212,12 @@ router.beforeEach((to, from, next) => {
         }
       } else if (roleObj[to.meta.key]) {
         if (roleObj[to.meta.key] === 0) {
+          next();
+        } else {
+          next("/:pathMatch(.*)*");
+        }
+      } else if (to.meta.unique) {
+        if (to.meta.unique === true) {
           next();
         } else {
           next("/:pathMatch(.*)*");

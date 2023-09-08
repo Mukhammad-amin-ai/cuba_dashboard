@@ -97,7 +97,7 @@ const actions = {
       let responese = await axios.get(`${Api}/api/auth/me`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(responese.data.data);
+      console.log(responese.data.data);
       if (responese.data.data) {
         commit("setMyProfile", responese.data.data);
       }

@@ -3,7 +3,8 @@
     <div class="media profile-media">
       <img class="b-r-10" src="@/assets/images/dashboard/profile.png" alt="" />
       <div class="media-body">
-        <span>Emay Walter</span>
+        <span v-if="checker">{{ myProfile.firstname }} {{ myProfile.lastname }}</span>
+        <span v-else>Loading...</span>
         <p class="mb-0 font-roboto">
           {{ role }} <i class="middle fa fa-angle-down"></i>
         </p>
@@ -11,7 +12,6 @@
     </div>
     <ul class="profile-dropdown onhover-show-div">
       <router-link to="/profile">
-
         <li>
           <vue-feather type="user"></vue-feather><span>Account </span>
         </li>
@@ -36,15 +36,24 @@
 
 <script>
 import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
+import { mapState } from 'vuex';
 let roleObj = JSON.parse(localStorage.getItem("role"))
 
 
 export default {
   name: 'Profile',
-  data(){
-    return{
-      role:roleObj.name
+  data() {
+    return {
+      role: roleObj.name,
+      checker: false
     }
+  },
+  computed: {
+    ...mapState('role', ['myProfile'])
+  },
+  mounted() {
+    this.getMyInfo()
+    this.check()
   },
   methods: {
     // logout: function () {
@@ -57,9 +66,17 @@ export default {
     //   localStorage.removeItem('User')
     // }
     // },
+    getMyInfo() {
+      this.$store.dispatch("roel/getMyProfile")
+    },
+    check() {
+      if (this.myProfile.firstname && this.myProfile.lastname) {
+        this.checker = !this.checker
+      }
+    },
     logout() {
       this.$store.dispatch('logout');
-    }
+    },
   },
   components: { Button }
 };
