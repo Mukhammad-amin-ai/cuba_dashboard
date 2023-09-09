@@ -71,6 +71,7 @@ export default {
         email: this.email,
       }
       this.$store.dispatch('login', option)
+      this.$store.dispatch('role/getMyProfile')
     },
   }
 

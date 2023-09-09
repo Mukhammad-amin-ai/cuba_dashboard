@@ -3,8 +3,7 @@
     <div class="media profile-media">
       <img class="b-r-10" src="@/assets/images/dashboard/profile.png" alt="" />
       <div class="media-body">
-        <span v-if="checker">{{ myProfile.firstname }} {{ myProfile.lastname }}</span>
-        <span v-else>Loading...</span>
+        <span >{{ profil.firstname }} {{ profil.lastname }}</span>
         <p class="mb-0 font-roboto">
           {{ role }} <i class="middle fa fa-angle-down"></i>
         </p>
@@ -38,42 +37,17 @@
 import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
 import { mapState } from 'vuex';
 let roleObj = JSON.parse(localStorage.getItem("role"))
-
+let profileObj = JSON.parse(localStorage.getItem("profile"))
 
 export default {
   name: 'Profile',
   data() {
     return {
       role: roleObj.name,
-      checker: false
+      profil: profileObj
     }
   },
-  computed: {
-    ...mapState('role', ['myProfile'])
-  },
-  mounted() {
-    this.getMyInfo()
-    this.check()
-  },
   methods: {
-    // logout: function () {
-    //   // firebase
-    //   //   .auth()
-    //   //   .signOut()
-    //   //   .then(() => {
-    //   //     UserAuth.Logout();
-    //   this.$router.replace('/auth/login');
-    //   localStorage.removeItem('User')
-    // }
-    // },
-    getMyInfo() {
-      this.$store.dispatch("role/getMyProfile")
-    },
-    check() {
-      if (this.myProfile.firstname && this.myProfile.lastname) {
-        this.checker = !this.checker
-      }
-    },
     logout() {
       this.$store.dispatch('logout');
     },
@@ -81,3 +55,4 @@ export default {
   components: { Button }
 };
 </script>
+ 

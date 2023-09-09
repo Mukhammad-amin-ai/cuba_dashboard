@@ -22,23 +22,14 @@
                         <div class="info">
                             <div class="row" data-intro="This is the your details" id="info-bar-tour">
                                 <div class="col-sm-6 col-lg-4 order-sm-1 order-xl-0">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="ttl-info text-start">
-                                                <h6><i class="fa fa-user"></i> Role id</h6>
-                                                <span v-if="myProfile && myProfile.role_id">
-                                                    {{ myProfile.role_id }}
+                                    <div class="row content">
+                                        <div class="col-md-6 p-10">
+                                            <div class="ttl-info text-start ttl-xs-mt">
+                                                <h6><i class="fa fa-tasks"></i> Contact Number</h6>
+                                                <span v-if="profil && profil.contact_no">
+                                                    {{ profil.contact_no }}
                                                 </span>
                                                 <span v-else>Loading...</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="ttl-info text-start ttl-sm-mb-0">
-                                                <h6><i class="fa fa-book"></i> Status</h6>
-                                                <span v-if="myProfile.status === '1'">
-                                                    Active
-                                                </span>
-                                                <span v-else>Inactive</span>
                                             </div>
                                         </div>
                                     </div>
@@ -46,28 +37,19 @@
                                 <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
                                     <div class="user-designation">
                                         <div class="title">
-                                            <a target="_blank" href="">{{ myProfile.firstname }} {{ myProfile.lastname
+                                            <a target="_blank" href="">{{ profil.firstname }} {{ profil.lastname
                                             }}</a>
                                         </div>
                                         <div class="desc mt-2">{{ role }}</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="ttl-info text-start ttl-xs-mt">
-                                                <h6><i class="fa fa-tasks"></i> Contact Number</h6>
-                                                <span v-if="myProfile && myProfile.contact_no">
-                                                    {{ myProfile.contact_no }}
-                                                </span>
-                                                <span v-else>Loading...</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                    <div class="row  content">
+                                        <div class="col-md-6 p-10">
                                             <div class="ttl-info text-start ttl-sm-mb-0">
                                                 <h6><i class="fa fa-users"></i> E-mail </h6>
-                                                <span v-if="myProfile && myProfile.email">
-                                                    {{ myProfile.email }}
+                                                <span v-if="profil && profil.email">
+                                                    {{ profil.email }}
                                                 </span>
                                                 <span v-else>Loading...</span>
                                             </div>
@@ -87,25 +69,23 @@
 import { mapState } from 'vuex';
 
 let roleObj = JSON.parse(localStorage.getItem("role"))
+let profileObj = JSON.parse(localStorage.getItem("profile"))
 
 
 export default {
     data() {
         return {
-            role: roleObj.name
+            role: roleObj.name,
+            profil: profileObj
         }
     },
-    computed: {
-        ...mapState('role', ['myProfile'])
-    },
-    mounted() {
-        this.getProfile()
-    },
-    methods: {
-        getProfile() {
-            this.$store.dispatch("role/getMyProfile")
-        }
-    }
+    // computed: { },
+    // mounted() { },
+    // methods: { }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.content {
+    justify-content: center;
+}
+</style>

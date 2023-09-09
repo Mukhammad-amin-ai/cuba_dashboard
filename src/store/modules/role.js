@@ -73,7 +73,7 @@ const actions = {
       let responese = await axios.get(`${Api}/api/auth/me`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(responese.data.data);
+      localStorage.setItem("profile", JSON.stringify(responese.data.data));
       if (responese.data.data) {
         commit("setMyProfile", responese.data.data);
       }
@@ -111,7 +111,7 @@ const actions = {
       console.error("error in geting role by id", e);
     }
   },
-  async updateRole({commit},id){
+  async updateRole({ commit }, id) {
     try {
       let response = await axios.put(`${Api}/api/manage/role/${id}`, {
         headers: { Authorization: "Bearer " + token },
@@ -121,7 +121,7 @@ const actions = {
       console.error("error in geting role by id", e);
     }
   },
-  async deleteRole({commit},id){
+  async deleteRole({ commit }, id) {
     try {
       let response = await axios.delete(`${Api}/api/manage/role/${id}`, {
         headers: { Authorization: "Bearer " + token },
@@ -130,7 +130,7 @@ const actions = {
     } catch (e) {
       console.error("error in geting role by id", e);
     }
-  }
+  },
 };
 
 export default {
