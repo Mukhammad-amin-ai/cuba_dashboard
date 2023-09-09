@@ -35,7 +35,6 @@
 
 <script>
 import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
-import { mapState } from 'vuex';
 let roleObj = JSON.parse(localStorage.getItem("role"))
 let profileObj = JSON.parse(localStorage.getItem("profile"))
 

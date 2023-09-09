@@ -1,7 +1,7 @@
 <template >
-  <error/>
- <div>
-  <div class="container-fluid">
+  <error />
+  <div>
+    <div class="container-fluid">
       <div class="row ">
         <div class="col-12 p-0">
           <div class="login-card">
@@ -19,7 +19,7 @@
                   <div class="form-group">
                     <label class="col-form-label">Password</label>
                     <div class="form-input position-relative">
-                      <input class="form-control" type="password" v-model='password' >
+                      <input class="form-control" type="password" v-model='password'>
                       <div class="show-hide"><span class="show"> </span></div>
                     </div>
                   </div>
@@ -35,7 +35,8 @@
                     </div>
                     <router-link class="link" to="/forgotpassword"> Forgot password?</router-link>
                     <div class="text-end mt-2">
-                      <button class="btn btn-primary btn-block w-100"  type="submit" @click.prevent="login">Sign in</button>
+                      <button class="btn btn-primary btn-block w-100" type="submit" @click.prevent="login">Sign
+                        in</button>
                     </div>
                     <!-- <div class="mt-3">
                       <p>Don't have accaunt <span>
@@ -50,7 +51,7 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
 </template>
 <script>
 import error from '@/components/ui/error.vue'
@@ -71,7 +72,9 @@ export default {
         email: this.email,
       }
       this.$store.dispatch('login', option)
-      this.$store.dispatch('role/getMyProfile')
+      // const loginPromise = this.$store.dispatch('login', option);
+      // const getMyProfilePromise = this.$store.dispatch('role/getMyProfile');
+      // await Promise.all([loginPromise, getMyProfilePromise]);
     },
   }
 

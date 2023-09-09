@@ -78,18 +78,27 @@ const actions = {
       console.error("An error occurred:", error);
     }
   },
-  async login({ commit }, option) {
-    // commit("setLoading", true, { root: true });
+  async getMyProfile({ commit }, token) {
+    try {
+      let response = await axios.get(`${Api}/api/auth/me`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data.data);
+      localStorage.setItem("profile", JSON.stringify(response.data.data));
+    } catch (e) {
+      console.error("problem with getting user profile ", e);
+    }
+  },
+  async login({ commit, dispatch }, option) {
     try {
       const response = await axios.post(`${Api}/api/auth/login`, option);
-      console.log(response.data);
-      // commit("setLoading", false, { root: true });
+      // console.log(response.data);
       let token = response.data.token;
+      await dispatch("getMyProfile", response.data.token);
       localStorage.setItem("token", token);
       if (response.data.role) {
         localStorage.setItem("role", JSON.stringify(response.data.role));
         localStorage.setItem("show", JSON.stringify(response.data.show));
-
       }
       if (token) {
         window.location.href = "/";
@@ -97,7 +106,6 @@ const actions = {
     } catch (error) {
       console.error(error);
       if (error.response.data.error === "Unauthorized") {
-        // commit("setLoading", false, { root: true });
         commit("setError", true);
         commit(
           "setText",
@@ -105,7 +113,6 @@ const actions = {
         );
       }
       if (error.request.status === 422) {
-        // commit("setLoading", false, { root: true });
         commit("setError", true);
         commit(
           "setText",

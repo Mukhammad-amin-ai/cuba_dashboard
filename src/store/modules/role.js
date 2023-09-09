@@ -68,19 +68,17 @@ const actions = {
       console.error("error in creating Role", e);
     }
   },
-  async getMyProfile({ commit }) {
-    try {
-      let responese = await axios.get(`${Api}/api/auth/me`, {
-        headers: { Authorization: "Bearer " + token },
-      });
-      localStorage.setItem("profile", JSON.stringify(responese.data.data));
-      if (responese.data.data) {
-        commit("setMyProfile", responese.data.data);
-      }
-    } catch (e) {
-      console.error("problem with getting user profile ", e);
-    }
-  },
+  // async getMyProfile({ commit }) {
+  //   try {
+  //     let response = await axios.get(`${Api}/api/auth/me`, {
+  //       headers: { Authorization: "Bearer " + token },
+  //     });
+  //     console.log(response.data.data);
+  //     localStorage.setItem("profile", JSON.stringify(response.data.data));
+  //   } catch (e) {
+  //     console.error("problem with getting user profile ", e);
+  //   }
+  // },
   async updateMyProfile({ commit }, option) {
     try {
       let response = await axios.put(`${Api}/api/auth/update`, option, {
