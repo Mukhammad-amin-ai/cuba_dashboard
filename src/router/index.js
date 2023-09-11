@@ -33,20 +33,23 @@ import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
 
 let permObj = JSON.parse(localStorage.getItem("permissions"));
-// console.log(defaultTrueObjects);
+
 const routes = [
+  // let defaultTrueObjects = permObj.filter((item) => item.default === true)
   {
     path: "/",
     component: Body,
-    meta: { requiredAuth: true, unique: true },
+    meta: { requiredAuth: true },
     children: [
       {
         path: "",
         name: "defaultRoot",
         component: Default,
-        meta: { requiredAuth: true },
+        meta: { requiredAuth: true, value: true },
         beforeEnter: (to, from, next) => {
-          let defaultTrueObjects = permObj.filter((item) => item.default === true);
+          var defaultTrueObjects = permObj.filter(
+            (item) => item.default === true
+          );
           if (defaultTrueObjects.length > 0) {
             next(defaultTrueObjects[0].name);
           } else {
@@ -57,127 +60,131 @@ const routes = [
       {
         path: "statistics",
         component: Default,
-        meta: { requiredAuth: true,  },
+        meta: {
+          requiredAuth: true,
+          // key: permObj[0].name,
+          value: permObj[0].value,
+        },
       },
       {
         path: "courses",
         component: courses,
-        meta: { requiredAuth: true, key: "courses" },
+        meta: { requiredAuth: true, value: permObj[9].value },
       },
       {
         path: "courses/create",
         component: createCourse,
-        meta: { requiredAuth: true, key: "courses" },
+        meta: { requiredAuth: true, value: permObj[9].value },
       },
       {
         path: "courseInfo/:id",
         component: courseEdit,
-        meta: { requiredAuth: true, key: "courses" },
+        meta: { requiredAuth: true, value: permObj[9].value },
       },
       {
         path: "branches",
         component: branches,
-        meta: { requiredAuth: true, key: "branches" },
+        meta: { requiredAuth: true, value: permObj[15].value },
       },
       {
         path: "branchInfo/:id",
         component: branchInfo,
-        meta: { requiredAuth: true, key: "branches" },
+        meta: { requiredAuth: true, value: permObj[15].value },
       },
       {
         path: "branch/create",
         component: branchCreate,
-        meta: { requiredAuth: true, key: "branches" },
+        meta: { requiredAuth: true, value: permObj[15].value },
       },
       {
         path: "schedule",
         component: schedule,
-        meta: { requiredAuth: true, key: "schedules" },
+        meta: { requiredAuth: true, value: permObj[17].value },
       },
       {
         path: "group",
         component: group,
-        meta: { requiredAuth: true, key: "groups" },
+        meta: { requiredAuth: true, value: permObj[11].value },
       },
       {
         path: "group/:id",
         component: groupInfo,
-        meta: { requiredAuth: true, key: "groups" },
+        meta: { requiredAuth: true, value: permObj[11].value },
       },
       {
         path: "group/create",
         component: createGroup,
-        meta: { requiredAuth: true, key: "groups" },
+        meta: { requiredAuth: true, value: permObj[11].value },
       },
       {
         path: "student",
         component: student,
-        meta: { requiredAuth: true, key: "students" },
+        meta: { requiredAuth: true, value: permObj[12].value },
       },
       {
         path: "student/create",
         component: studentCreate,
-        meta: { requiredAuth: true, key: "students" },
+        meta: { requiredAuth: true, value: permObj[12].value },
       },
       {
         path: "student/:id",
         component: studentInfo,
-        meta: { requiredAuth: true, key: "students" },
+        meta: { requiredAuth: true, value: permObj[12].value },
       },
       {
         path: "teachers",
         component: teachers,
-        meta: { requiredAuth: true, key: "teachers" },
+        meta: { requiredAuth: true, value: permObj[8].value },
       },
       {
         path: "teachers/create",
         component: teachersCreate,
-        meta: { requiredAuth: true, key: "teachers" },
+        meta: { requiredAuth: true, value: permObj[8].value },
       },
       {
         path: "teachers/:id",
         component: teachersInfo,
-        meta: { requiredAuth: true, key: "teachers" },
+        meta: { requiredAuth: true, value: permObj[8].value },
       },
       {
         path: "payme",
         component: payme,
-        meta: { requiredAuth: true, unique: true },
+        meta: { requiredAuth: true, value: true },
       },
       {
         path: "live",
         component: live,
-        meta: { requiredAuth: true, unique: true },
+        meta: { requiredAuth: true, value: permObj[2].value },
       },
       {
         path: "profile",
         component: profile,
-        meta: { requiredAuth: true, unique: true },
+        meta: { requiredAuth: true, value: true },
       },
       {
         path: "my-courses",
         component: myCourses,
-        meta: { requiredAuth: true, key: "my-courses" },
+        meta: { requiredAuth: true, value: permObj[3].value },
       },
       {
         path: "all-courses",
         component: allCourses,
-        meta: { requiredAuth: true, key: "all-courses" },
+        meta: { requiredAuth: true, value: permObj[5].value },
       },
       {
         path: "my-groups",
         component: myGroups,
-        meta: { requiredAuth: true, key: "my-groups" },
+        meta: { requiredAuth: true, value: permObj[1].value },
       },
       {
         path: "my-children",
         component: myChildren,
-        meta: { requiredAuth: true, key: "my-children" },
+        meta: { requiredAuth: true, value: permObj[2].value },
       },
       {
         path: "add-role",
         component: addrole,
-        meta: { requiredAuth: true, key: "roles" },
+        meta: { requiredAuth: true, value: permObj[6].value },
       },
     ],
   },
@@ -208,8 +215,7 @@ router.beforeEach((to, from, next) => {
     if (!isUserValid()) {
       next("/login");
     } else {
-      next();
-      // console.log(permObj);
+      // next();
       // if (roleObj[to.meta.key]) {
       //   if (roleObj[to.meta.key] >= 1) {
       //     next();
@@ -231,6 +237,18 @@ router.beforeEach((to, from, next) => {
       // } else {
       //   next("/:pathMatch(.*)*");
       // }
+      // console.log(to.meta.value);
+      if (to.meta.value) {
+        if (to.meta.value === true) {
+          next();
+        } else if (to.meta.value > 0) {
+          next();
+        } else {
+          next("/:pathMatch(.*)*");
+        }
+      } else {
+        next("/:pathMatch(.*)*");
+      }
     }
   } else {
     next();
