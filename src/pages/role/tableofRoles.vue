@@ -1,8 +1,8 @@
 <template>
     <div>
-        <select class="form-select" id="status" v-model="status">
+        <select class="form-select" id="status" v-model="status" v-if="this.$store.state.role.choosed">
             <option v-for="user in roleArray" :key="user">
-                {{ user.name }}
+                {{ user.name.toUpperCase() }}
             </option>
         </select>
     </div>
