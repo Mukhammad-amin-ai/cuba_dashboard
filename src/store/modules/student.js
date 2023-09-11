@@ -1,7 +1,7 @@
 import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
-let roleObj = JSON.parse(localStorage.getItem("role"));
+let nameObj = JSON.parse(localStorage.getItem("name"));
 
 const state = {
   students: [],
@@ -166,7 +166,7 @@ const actions = {
   async getAllCourses({ commit }) {
     commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get(`${Api}/api/${roleObj.name}/all-courses`, {
+      let response = await axios.get(`${Api}/api/${nameObj}/all-courses`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(response.data.data.data);

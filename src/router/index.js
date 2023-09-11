@@ -33,7 +33,7 @@ import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
 
 let permObj = JSON.parse(localStorage.getItem("permissions"));
-
+// console.log(defaultTrueObjects);
 const routes = [
   {
     path: "/",
@@ -44,14 +44,20 @@ const routes = [
         path: "",
         name: "defaultRoot",
         component: Default,
-        meta: { requiredAuth: true, unique: true },
+        meta: { requiredAuth: true },
         beforeEnter: (to, from, next) => {
-          // if (showObj[0].window === "default") {
-          //   next(`/${showObj[0].name}`);
-          // } else {
-            next();
-          // }
+          let defaultTrueObjects = permObj.filter((item) => item.default === true);
+          if (defaultTrueObjects.length > 0) {
+            next(defaultTrueObjects[0].name);
+          } else {
+            next("/:pathMatch(.*)*");
+          }
         },
+      },
+      {
+        path: "statistics",
+        component: Default,
+        meta: { requiredAuth: true,  },
       },
       {
         path: "courses",
