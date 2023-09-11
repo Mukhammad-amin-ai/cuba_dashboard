@@ -29,9 +29,10 @@ const actions = {
       let response = await axios.get(`${Api}/api/manage/branch`, {
         headers: { Authorization: "Bearer " + token },
       });
-      if (response.data && response.data.data) {
+      console.log(response.data.data);
+      // if (response.data && response.data.data.data) {
         commit("setBranch", response.data.data);
-      }
+      // }
 
       commit("setLoading", false, { root: true });
     } catch (error) {

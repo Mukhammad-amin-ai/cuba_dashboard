@@ -40,19 +40,19 @@ const routes = [
   {
     path: "/",
     component: Body,
-    meta: { requiredAuth: true,unique: true },
+    meta: { requiredAuth: true, unique: true },
     children: [
       {
         path: "",
         name: "defaultRoot",
         component: Default,
-        meta: { requiredAuth: true, unique: true},
+        meta: { requiredAuth: true, unique: true },
         beforeEnter: (to, from, next) => {
-          if (showObj[0].window === "default") {
-            next(`/${showObj[0].name}`);
-          } else {
+          // if (showObj[0].window === "default") {
+          //   next(`/${showObj[0].name}`);
+          // } else {
             next();
-          }
+          // }
         },
       },
       {
@@ -169,7 +169,7 @@ const routes = [
         path: "my-children",
         component: myChildren,
         meta: { requiredAuth: true, key: "my-children" },
-      },  
+      },
       {
         path: "add-role",
         component: addrole,
@@ -204,27 +204,29 @@ router.beforeEach((to, from, next) => {
     if (!isUserValid()) {
       next("/login");
     } else {
-      if (roleObj[to.meta.key]) {
-        if (roleObj[to.meta.key] >= 1) {
-          next();
-        } else {
-          next("/:pathMatch(.*)*");
-        }
-      } else if (roleObj[to.meta.key]) {
-        if (roleObj[to.meta.key] === 0) {
-          next();
-        } else {
-          next("/:pathMatch(.*)*");
-        }
-      } else if (to.meta.unique) {
-        if (to.meta.unique === true) {
-          next();
-        } else {
-          next("/:pathMatch(.*)*");
-        }
-      } else {
-        next("/:pathMatch(.*)*");
-      }
+      next();
+
+      // if (roleObj[to.meta.key]) {
+      //   if (roleObj[to.meta.key] >= 1) {
+      //     next();
+      //   } else {
+      //     next("/:pathMatch(.*)*");
+      //   }
+      // } else if (roleObj[to.meta.key]) {
+      //   if (roleObj[to.meta.key] === 0) {
+      //     next();
+      //   } else {
+      //     next("/:pathMatch(.*)*");
+      //   }
+      // } else if (to.meta.unique) {
+      //   if (to.meta.unique === true) {
+      //     next();
+      //   } else {
+      //     next("/:pathMatch(.*)*");
+      //   }
+      // } else {
+      //   next("/:pathMatch(.*)*");
+      // }
     }
   } else {
     next();

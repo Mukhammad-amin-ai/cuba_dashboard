@@ -92,9 +92,9 @@ const actions = {
   async login({ commit, dispatch }, option) {
     try {
       const response = await axios.post(`${Api}/api/auth/login`, option);
-      // console.log(response.data);
-      let token = response.data.token;
-      await dispatch("getMyProfile", response.data.token);
+      console.log(response.data.data);
+      let token = response.data.data.token;
+      await dispatch("getMyProfile", response.data.data.token);
       localStorage.setItem("token", token);
       if (response.data.role) {
         localStorage.setItem("role", JSON.stringify(response.data.role));

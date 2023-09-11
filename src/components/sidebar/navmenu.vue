@@ -14,7 +14,7 @@
           <h6 class="lan-1">General</h6>
         </div>
       </li>
-      <li class="sidebar-list" v-if="show && show[0].name === undefined">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/">
           <svg class="stroke-icon">
@@ -26,98 +26,98 @@
           <span class="lan-3">Dashboard</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.name === 'superadmin'">
+      <li class="sidebar-list">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/add-role'>
           <i class="icofont icofont-business-man "></i>
           <span class="lan-3"> Role</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.branches > '0'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
           <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.courses > '0'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.schedules > '0'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/schedule">
           <i class="icofont icofont-ui-calendar"></i>
           <span class="lan-3"> Schedule</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.groups > '0'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/group">
           <i class="icofont icofont-group-students"></i>
           <span class="lan-3"> Group</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.teachers > '0'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/teachers">
           <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> Teachers</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.students > '0'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/student">
           <i class="icofont icofont-student-alt"></i>
           <span class="lan-3"> Students</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.cashiers > '0'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> Payme</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show && show[0] && show[0].name === 'my-courses'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/my-courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">My Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show && show[0] && show[0].name === 'my-children'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/my-children">
           <i class="icofont icofont-kids-scooter"></i>
           <span class="lan-3"> My Children</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show && show[0] && show[0].name === 'my-groups'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/my-groups">
           <i class="icofont icofont-users-alt-5"></i>
           <span class="lan-3"> My Groups</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show && show[2] && show[2].name === 'all-courses'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/all-courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">All Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="show && show[1] && show[1].name === 'my-cards'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> My Cards</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="role.name === 'parent'">
+      <li class="sidebar-list" >
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/live">
           <i class="icofont icofont-video-cam"></i>
@@ -130,8 +130,8 @@
 <script>
 import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
-let roleObj = JSON.parse(localStorage.getItem("role"))
-let showObj = JSON.parse(localStorage.getItem("show"))
+// let roleObj = JSON.parse(localStorage.getItem("role"))
+// let showObj = JSON.parse(localStorage.getItem("show"))
 
 // console.log(showObj && showObj[0].name === undefined );
 export default {
@@ -140,8 +140,8 @@ export default {
     return {
       layoutobj: {},
       dashboardShow: false,
-      role: roleObj,
-      show: showObj
+      // role: roleObj,
+      // show: showObj
     };
   },
   computed: {

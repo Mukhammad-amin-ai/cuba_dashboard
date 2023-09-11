@@ -3,10 +3,12 @@
     <div class="media profile-media">
       <img class="b-r-10" src="@/assets/images/dashboard/profile.png" alt="" />
       <div class="media-body">
-        <span >{{ profil.firstname }} {{ profil.lastname }}</span>
-        <p class="mb-0 font-roboto">
-          {{ role }} <i class="middle fa fa-angle-down"></i>
-        </p>
+        <span >{{ profil.firstname }} {{ profil.lastname }}
+          <!-- <i class="middle fa fa-angle-down"></i> -->
+        </span>
+        <!-- <p class="mb-0 font-roboto"> -->
+          <i class="middle fa fa-angle-down"></i>
+        <!-- </p> -->
       </div>
     </div>
     <ul class="profile-dropdown onhover-show-div">
@@ -35,14 +37,14 @@
 
 <script>
 import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
-let roleObj = JSON.parse(localStorage.getItem("role"))
+// let roleObj = JSON.parse(localStorage.getItem("role"))
 let profileObj = JSON.parse(localStorage.getItem("profile"))
 
 export default {
   name: 'Profile',
   data() {
     return {
-      role: roleObj.name,
+      // role: roleObj.name,
       profil: profileObj
     }
   },
