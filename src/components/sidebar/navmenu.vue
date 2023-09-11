@@ -68,6 +68,13 @@
           <span class="lan-3"> Role</span>
         </router-link>
       </li>
+      <li class="sidebar-list" v-if="permission[6].name === 'roles' && permission[6].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to='/permission'>
+          <i class="icofont icofont-business-man "></i>
+          <span class="lan-3"> Permission</span>
+        </router-link>
+      </li>
       <li class="sidebar-list" v-if="permission[8].name === 'teachers' && permission[8].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/teachers">
