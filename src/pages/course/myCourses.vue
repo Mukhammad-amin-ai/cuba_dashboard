@@ -2,7 +2,7 @@
     <Breadcrumbs title="Blog Detail" main="My Courses" />
     <div class="container-fluid p-20">
         <spiner />
-        <div class="row " style="gap: 40px;">
+        <div class="row " style="gap: 40px;" v-if="this.$store.state.student.moData">
             <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in mycourses " :key="item">
                 <RouterLink :to="{ path: 'courseInfo/' + item.id }">
                     <div class="card " style="width: 18rem;">
@@ -15,6 +15,11 @@
                     </div>
                 </RouterLink>
             </div>
+        </div>
+        <div v-else>
+            <center>
+                no data 
+            </center>
         </div>
     </div>
 </template>

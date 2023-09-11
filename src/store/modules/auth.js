@@ -129,6 +129,8 @@ const actions = {
     localStorage.removeItem("token");
     localStorage.removeItem("permissions");
     localStorage.removeItem("profile");
+    localStorage.removeItem("name");
+
     if (token) {
       window.location.href = "/login";
     }

@@ -14,7 +14,7 @@
           <h6 class="lan-1">General</h6>
         </div>
       </li>
-      <li class="sidebar-list" v-if="permission[0].value === true">
+      <li class="sidebar-list" v-if="permission[0].name === 'statistics' && permission[0].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/">
           <svg class="stroke-icon">
@@ -26,102 +26,95 @@
           <span class="lan-3">Dashboard</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[1].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to='/add-role'>
-          <i class="icofont icofont-business-man "></i>
-          <span class="lan-3"> Role</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="permission[10].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to='/branches'>
-          <i class="icofont   icofont-building-alt"></i>
-          <span class="lan-3"> Branches</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="permission[4].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/courses">
-          <i class="icofont icofont-architecture-alt"></i>
-          <span class="lan-3"> Courses</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="permission[12].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/schedule">
-          <i class="icofont icofont-ui-calendar"></i>
-          <span class="lan-3"> Schedule</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="permission[6].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/group">
-          <i class="icofont icofont-group-students"></i>
-          <span class="lan-3"> Group</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="permission[3].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/teachers">
-          <i class="icofont icofont-teacher"></i>
-          <span class="lan-3"> Teachers</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="permission[7].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/student">
-          <i class="icofont icofont-student-alt"></i>
-          <span class="lan-3"> Students</span>
-        </router-link>
-      </li>
-      <!-- <li class="sidebar-list" v-if="permission[13].value > 0">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/payme">
-          <i class="icofont icofont-bill-alt"></i>
-          <span class="lan-3"> Payme</span>
-        </router-link>
-      </li> -->
-      <li class="sidebar-list" v-if="nameP === 'student'">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/my-courses">
-          <i class="icofont icofont-architecture-alt"></i>
-          <span class="lan-3">My Courses</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="nameP === 'parent'">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/my-children">
-          <i class="icofont icofont-kids-scooter"></i>
-          <span class="lan-3"> My Children</span>
-        </router-link>
-      </li>
-      <li class="sidebar-list" v-if="nameP === 'teacher'">
+      <li class="sidebar-list" v-if="permission[1].name === 'my-groups' && permission[1].value === true">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/my-groups">
           <i class="icofont icofont-users-alt-5"></i>
           <span class="lan-3"> My Groups</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="nameP === 'parent' || nameP === 'student'">
+      <li class="sidebar-list" v-if="permission[2].name === 'my-children' && permission[2].value === true">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/all-courses">
-          <i class="icofont icofont-architecture-alt"></i>
-          <span class="lan-3">All Courses</span>
+        <router-link class="sidebar-link sidebar-title hover" to="/my-children">
+          <i class="icofont icofont-kids-scooter"></i>
+          <span class="lan-3"> My Children</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[13].value > 0">
+      <li class="sidebar-list" v-if="permission[3].name === 'my-courses' && permission[3].value === true">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/my-courses">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3">My Courses</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[4].name === 'my-cards' && permission[4].value === true">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> My Cards</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="nameP === 'parent'">
+      <li class="sidebar-list" v-if="permission[5].name === 'all-courses' && permission[5].value === true">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/live">
-          <i class="icofont icofont-video-cam"></i>
-          <span class="lan-3">Live</span>
+        <router-link class="sidebar-link sidebar-title hover" to="/all-courses">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3">All Courses</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[6].name === 'roles' && permission[6].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to='/add-role'>
+          <i class="icofont icofont-business-man "></i>
+          <span class="lan-3"> Role</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[8].name === 'teachers' && permission[8].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/teachers">
+          <i class="icofont icofont-teacher"></i>
+          <span class="lan-3"> Teachers</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[9].name === 'courses' && permission[9].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/courses">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3"> Courses</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[11].name === 'groups' && permission[11].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/group">
+          <i class="icofont icofont-group-students"></i>
+          <span class="lan-3"> Group</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[12].name === 'students' && permission[12].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/student">
+          <i class="icofont icofont-student-alt"></i>
+          <span class="lan-3"> Students</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[15].name === 'branches' && permission[15].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to='/branches'>
+          <i class="icofont   icofont-building-alt"></i>
+          <span class="lan-3"> Branches</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[17].name === 'schedules' && permission[17].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/schedule">
+          <i class="icofont icofont-ui-calendar"></i>
+          <span class="lan-3"> Schedule</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[18].name === 'cashiers' && permission[18].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/payme">
+          <i class="icofont icofont-bill-alt"></i>
+          <span class="lan-3"> My Cards</span>
         </router-link>
       </li>
     </ul>
@@ -132,8 +125,8 @@ import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 let roleName = JSON.parse(localStorage.getItem("name"))
-// console.log(permObj[13].name);
-// console.log(permObj[10].value);
+// console.log();
+// console.log(permObj);
 
 export default {
   name: 'Navmenu',

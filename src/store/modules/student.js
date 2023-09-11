@@ -8,6 +8,7 @@ const state = {
   mycourses: [],
   myChildren: [],
   allCourses: [],
+  noData:false
 };
 const mutations = {
   setStudent(state, students) {
@@ -22,6 +23,11 @@ const mutations = {
   setAllCourses(state, allCourses) {
     state.allCourses = allCourses;
   },
+  setNodata(state,noData){
+    state.noData = noData
+  }
+
+
 };
 const actions = {
   async getStudent({ commit }) {
@@ -128,9 +134,12 @@ const actions = {
       let response = await axios.get(`${Api}/api/student/my-courses`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(response.data.data);
+      console.log(response.data.data.length === 0);
       if (response.data.data) {
         commit("setLoading", false, { root: true });
+      }
+      if(response.data.data.length ===0){
+        commit('setNodata',true)
       }
       commit("setMycourses", response.data.data);
     } catch (e) {
