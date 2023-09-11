@@ -4,7 +4,6 @@ import Api from "./Base_Url";
 const state = {
   email: "",
   changer: true,
-  // loading: false,
   error: false,
   text: "",
 };
@@ -92,13 +91,14 @@ const actions = {
   async login({ commit, dispatch }, option) {
     try {
       const response = await axios.post(`${Api}/api/auth/login`, option);
-      console.log(response.data.data);
+      // console.log(response.data.data);
       let token = response.data.data.token;
       await dispatch("getMyProfile", response.data.data.token);
       localStorage.setItem("token", token);
-      if (response.data.role) {
-        localStorage.setItem("role", JSON.stringify(response.data.role));
-        localStorage.setItem("show", JSON.stringify(response.data.show));
+      if (response.data.data.permissions) {
+        localStorage.setItem("permissions", JSON.stringify(response.data.data.permissions));
+        localStorage.setItem("name", JSON.stringify(response.data.data.name));
+
       }
       if (token) {
         window.location.href = "/";
@@ -127,8 +127,7 @@ const actions = {
       headers: { Authorization: "Bearer" + token },
     });
     localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("show");
+    localStorage.removeItem("permissions");
     localStorage.removeItem("profile");
     if (token) {
       window.location.href = "/login";

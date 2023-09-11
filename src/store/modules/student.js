@@ -160,7 +160,7 @@ const actions = {
       let response = await axios.get(`${Api}/api/${roleObj.name}/all-courses`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data.data.data);
+      // console.log(response.data.data.data);
       if (response.data.data) {
         commit("setLoading", false, { root: true });
       }

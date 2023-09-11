@@ -31,10 +31,8 @@ import allCourses from "@/pages/course/allCourses";
 import myChildren from "@/pages/student/myChildren.vue";
 import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
-// import accessChecker from "@/router/roleChecker";
 
-let roleObj = JSON.parse(localStorage.getItem("role"));
-let showObj = JSON.parse(localStorage.getItem("show"));
+let permObj = JSON.parse(localStorage.getItem("permissions"));
 
 const routes = [
   {
@@ -205,7 +203,7 @@ router.beforeEach((to, from, next) => {
       next("/login");
     } else {
       next();
-
+      // console.log(permObj);
       // if (roleObj[to.meta.key]) {
       //   if (roleObj[to.meta.key] >= 1) {
       //     next();

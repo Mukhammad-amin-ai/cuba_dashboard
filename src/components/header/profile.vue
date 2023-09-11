@@ -6,9 +6,9 @@
         <span >{{ profil.firstname }} {{ profil.lastname }}
           <!-- <i class="middle fa fa-angle-down"></i> -->
         </span>
-        <!-- <p class="mb-0 font-roboto"> -->
-          <i class="middle fa fa-angle-down"></i>
-        <!-- </p> -->
+        <p class="mb-0 font-roboto">
+       {{ role }}   <i class="middle fa fa-angle-down"></i>
+        </p>
       </div>
     </div>
     <ul class="profile-dropdown onhover-show-div">
@@ -37,14 +37,14 @@
 
 <script>
 import { Button } from 'bootstrap/dist/js/bootstrap.bundle';
-// let roleObj = JSON.parse(localStorage.getItem("role"))
+let roleName = JSON.parse(localStorage.getItem("name"))
 let profileObj = JSON.parse(localStorage.getItem("profile"))
 
 export default {
   name: 'Profile',
   data() {
     return {
-      // role: roleObj.name,
+      role:roleName,
       profil: profileObj
     }
   },

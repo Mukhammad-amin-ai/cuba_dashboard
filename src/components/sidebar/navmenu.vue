@@ -14,7 +14,7 @@
           <h6 class="lan-1">General</h6>
         </div>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[0].value === true">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title" to="/">
           <svg class="stroke-icon">
@@ -26,98 +26,98 @@
           <span class="lan-3">Dashboard</span>
         </router-link>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" v-if="permission[1].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/add-role'>
           <i class="icofont icofont-business-man "></i>
           <span class="lan-3"> Role</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[10].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
           <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[4].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[12].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/schedule">
           <i class="icofont icofont-ui-calendar"></i>
           <span class="lan-3"> Schedule</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[6].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/group">
           <i class="icofont icofont-group-students"></i>
           <span class="lan-3"> Group</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[3].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/teachers">
           <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> Teachers</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[7].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/student">
           <i class="icofont icofont-student-alt"></i>
           <span class="lan-3"> Students</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <!-- <li class="sidebar-list" v-if="permission[13].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> Payme</span>
         </router-link>
-      </li>
-      <li class="sidebar-list" >
+      </li> -->
+      <li class="sidebar-list" v-if="nameP === 'student'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/my-courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">My Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="nameP === 'parent'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/my-children">
           <i class="icofont icofont-kids-scooter"></i>
           <span class="lan-3"> My Children</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="nameP === 'teacher'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/my-groups">
           <i class="icofont icofont-users-alt-5"></i>
           <span class="lan-3"> My Groups</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="nameP === 'parent' || nameP === 'student'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/all-courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3">All Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="permission[13].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3"> My Cards</span>
         </router-link>
       </li>
-      <li class="sidebar-list" >
+      <li class="sidebar-list" v-if="nameP === 'parent'">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/live">
           <i class="icofont icofont-video-cam"></i>
@@ -130,18 +130,19 @@
 <script>
 import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
-// let roleObj = JSON.parse(localStorage.getItem("role"))
-// let showObj = JSON.parse(localStorage.getItem("show"))
+let permObj = JSON.parse(localStorage.getItem("permissions"));
+let roleName = JSON.parse(localStorage.getItem("name"))
+// console.log(permObj[13].name);
+// console.log(permObj[10].value);
 
-// console.log(showObj && showObj[0].name === undefined );
 export default {
   name: 'Navmenu',
   data() {
     return {
       layoutobj: {},
       dashboardShow: false,
-      // role: roleObj,
-      // show: showObj
+      permission: permObj,
+      nameP: roleName
     };
   },
   computed: {
@@ -189,7 +190,6 @@ export default {
     }
   },
   created() {
-
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
     if (this.$store.state.menu.width < 991) {

@@ -2,8 +2,8 @@
   <Breadcrumbs title="Blog Detail" main="Schedule" />
   <div class="container-fluid mb-3">
     <div class="card">
-      <div class="card-header">
-        <!-- <h4>Choosed Branch {{  }}</h4> -->
+      <!-- <div class="card-header">
+        <h4>Choosed Branch {{ branchData.name }}</h4>
         <div class="mb-3" style="width: 30%;">
           <label for="weekday_id" class="form-label">Choose Branch </label>
           <select class="form-select" aria-label="Default select example" v-model="choosedBranch">
@@ -11,7 +11,7 @@
             </option>
           </select>
         </div>
-      </div>
+      </div> -->
       <div class="container-fluid d-flex p-10">
         
         <calendar  :selectedBranch="choosedBranch" />
@@ -62,7 +62,6 @@
                     </table>
                 </div>
             </div>
-            <!-- <button type="button" class="btn btn-success" @click="change">Create Schedule</button> -->
         </div>
     </div>
     </div>
