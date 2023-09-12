@@ -98,7 +98,6 @@ const actions = {
       if (response.data.data.permissions) {
         localStorage.setItem("permissions", JSON.stringify(response.data.data.permissions));
         localStorage.setItem("name", JSON.stringify(response.data.data.name));
-
       }
       if (token) {
         window.location.href = "/";

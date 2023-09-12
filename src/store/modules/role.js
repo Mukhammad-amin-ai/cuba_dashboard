@@ -5,6 +5,7 @@ let token = localStorage.getItem("token");
 
 let state = {
   roleArray: [],
+  tableInfromation: [],
   myProfile: [],
   branches: true,
   courses: true,
@@ -13,7 +14,7 @@ let state = {
   teachers: true,
   students: true,
   addRoleForm: false,
-  choosed:true
+  choosed: true,
 };
 
 const mutations = {
@@ -41,9 +42,12 @@ const mutations = {
   setForm(state, addRoleForm) {
     state.addRoleForm = addRoleForm;
   },
-  setChosed(state,choosed){
-    state.choosed = choosed
-  }
+  setChosed(state, choosed) {
+    state.choosed = choosed;
+  },
+  setTableInfo(state, tableInfromation) {
+    state.tableInfromation = tableInfromation;
+  },
 };
 const actions = {
   async getRole({ commit }) {
@@ -67,8 +71,7 @@ const actions = {
       console.log(response.data);
       if (response.data.name === "role_created") {
         commit("setForm", !state.addRoleForm);
-    commit('setChosed',!state.choosed)
-
+        commit("setChosed", !state.choosed);
       }
     } catch (e) {
       console.error("error in creating Role", e);
@@ -99,7 +102,8 @@ const actions = {
       let response = await axios.get(`${Api}/api/manage/role/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data);
+      console.log(response.data.data);
+      commit('setTableInfo',response.data.data)
     } catch (e) {
       console.error("error in geting role by id", e);
     }
@@ -124,12 +128,10 @@ const actions = {
       console.error("error in geting role by id", e);
     }
   },
-  changetoAdd({commit}){
-    commit('setChosed',!state.choosed)
-    commit('setForm',!state.addRoleForm)
-  }
-
-
+  changetoAdd({ commit }) {
+    commit("setChosed", !state.choosed);
+    commit("setForm", !state.addRoleForm);
+  },
 };
 
 export default {

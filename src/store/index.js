@@ -16,7 +16,6 @@ import lesson from "./modules/lesson";
 import inactiveUser from "./modules/inactiveUser";
 
 
-
 export default createStore({
   state: {
     langIcon: "",
@@ -74,6 +73,6 @@ export default createStore({
     payme,
     role,
     lesson,    
-    inactiveUser
+    inactiveUser,
   },
 });

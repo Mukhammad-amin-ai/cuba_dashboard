@@ -31,11 +31,10 @@ import allCourses from "@/pages/course/allCourses";
 import myChildren from "@/pages/student/myChildren.vue";
 import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
-import permission from '@/pages/permition/permission.vue'
+import user from "@/pages/user/user.vue";
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 
 const routes = [
-  // let defaultTrueObjects = permObj.filter((item) => item.default === true)
   {
     path: "/",
     component: Body,
@@ -62,89 +61,136 @@ const routes = [
         component: Default,
         meta: {
           requiredAuth: true,
-          // key: permObj[0].name,
           value: permObj && permObj.length > 0 ? permObj[0].value : null,
         },
       },
       {
         path: "courses",
         component: courses,
-        meta: { requiredAuth: true, value: permObj && permObj.length > 0 ? permObj[9].value : null },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[9].value : null,
+        },
       },
       {
         path: "courses/create",
         component: createCourse,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[9].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[9].value : null,
+        },
       },
       {
         path: "courseInfo/:id",
         component: courseEdit,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[9].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[9].value : null,
+        },
       },
       {
         path: "branches",
         component: branches,
-        meta: { requiredAuth: true, value: permObj && permObj.length > 0 ? permObj[15].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[15].value : null,
+        },
       },
       {
         path: "branchInfo/:id",
         component: branchInfo,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[15].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[15].value : null,
+        },
       },
       {
         path: "branch/create",
         component: branchCreate,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[15].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[15].value : null,
+        },
       },
       {
         path: "schedule",
         component: schedule,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[17].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[17].value : null,
+        },
       },
       {
         path: "group",
         component: group,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[11].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[11].value : null,
+        },
       },
       {
         path: "group/:id",
         component: groupInfo,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[11].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[11].value : null,
+        },
       },
       {
         path: "group/create",
         component: createGroup,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[11].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[11].value : null,
+        },
       },
       {
         path: "student",
         component: student,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[12].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[12].value : null,
+        },
       },
       {
         path: "student/create",
         component: studentCreate,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[12].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[12].value : null,
+        },
       },
       {
         path: "student/:id",
         component: studentInfo,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[12].value : null },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[12].value : null,
+        },
       },
       {
         path: "teachers",
         component: teachers,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[8].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[8].value : null,
+        },
       },
       {
         path: "teachers/create",
         component: teachersCreate,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[8].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[8].value : null,
+        },
       },
       {
         path: "teachers/:id",
         component: teachersInfo,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[8].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[8].value : null,
+        },
       },
       {
         path: "payme",
@@ -154,7 +200,10 @@ const routes = [
       {
         path: "live",
         component: live,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[2].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[2].value : null,
+        },
       },
       {
         path: "profile",
@@ -164,32 +213,50 @@ const routes = [
       {
         path: "my-courses",
         component: myCourses,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[3].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[3].value : null,
+        },
       },
       {
         path: "all-courses",
         component: allCourses,
-        meta: { requiredAuth: true, value: permObj && permObj.length > 0 ? permObj[5].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[5].value : null,
+        },
       },
       {
         path: "my-groups",
         component: myGroups,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[1].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[1].value : null,
+        },
       },
       {
         path: "my-children",
         component: myChildren,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[2].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[2].value : null,
+        },
       },
       {
         path: "add-role",
         component: addrole,
-        meta: { requiredAuth: true, value: permObj && permObj.length > 0 ? permObj[6].value : null  },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+        },
       },
       {
-        path: "permission",
-        component: permission,
-        meta: { requiredAuth: true, value:  permObj && permObj.length > 0 ? permObj[6].value : null  },
+        path: "user",
+        component: user,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+        },
       },
     ],
   },
@@ -220,29 +287,6 @@ router.beforeEach((to, from, next) => {
     if (!isUserValid()) {
       next("/login");
     } else {
-      // next();
-      // if (roleObj[to.meta.key]) {
-      //   if (roleObj[to.meta.key] >= 1) {
-      //     next();
-      //   } else {
-      //     next("/:pathMatch(.*)*");
-      //   }
-      // } else if (roleObj[to.meta.key]) {
-      //   if (roleObj[to.meta.key] === 0) {
-      //     next();
-      //   } else {
-      //     next("/:pathMatch(.*)*");
-      //   }
-      // } else if (to.meta.unique) {
-      //   if (to.meta.unique === true) {
-      //     next();
-      //   } else {
-      //     next("/:pathMatch(.*)*");
-      //   }
-      // } else {
-      //   next("/:pathMatch(.*)*");
-      // }
-      // console.log(to.meta.value);
       if (to.meta.value) {
         if (to.meta.value === true) {
           next();
