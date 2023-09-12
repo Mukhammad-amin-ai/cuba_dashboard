@@ -7,14 +7,15 @@ let state = {
   roleArray: [],
   tableInfromation: [],
   myProfile: [],
-  branches: true,
-  courses: true,
-  schedule: true,
-  group: true,
-  teachers: true,
-  students: true,
+  // branches: true,
+  // courses: true,
+  // schedule: true,
+  // group: true,
+  // teachers: true,
+  // students: true,
   addRoleForm: false,
   choosed: true,
+  permission:false
 };
 
 const mutations = {
@@ -24,21 +25,21 @@ const mutations = {
   setMyProfile(state, myProfile) {
     state.myProfile = myProfile;
   },
-  setBrancheShow(state, branche) {
-    state.branches = branche;
-  },
-  setCourseShow(state, course) {
-    state.courses = course;
-  },
-  setGroupShow(state, group) {
-    state.group = group;
-  },
-  setTeacherShow(state, teacher) {
-    state.teachers = teacher;
-  },
-  setStudentShow(state, student) {
-    state.students = student;
-  },
+  // setBrancheShow(state, branche) {
+  //   state.branches = branche;
+  // },
+  // setCourseShow(state, course) {
+  //   state.courses = course;
+  // },
+  // setGroupShow(state, group) {
+  //   state.group = group;
+  // },
+  // setTeacherShow(state, teacher) {
+  //   state.teachers = teacher;
+  // },
+  // setStudentShow(state, student) {
+  //   state.students = student;
+  // },
   setForm(state, addRoleForm) {
     state.addRoleForm = addRoleForm;
   },
@@ -48,15 +49,20 @@ const mutations = {
   setTableInfo(state, tableInfromation) {
     state.tableInfromation = tableInfromation;
   },
+  setPermissionSHow(state,permission){
+    state.permission = permission
+  }
+
 };
 const actions = {
   async getRole({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
       let responce = await axios.get(`${Api}/api/manage/role`, {
         headers: { Authorization: "Bearer" + token },
       });
-      // console.log(responce.data.data);
       if (responce.data.data) {
+        commit("setLoading", false, { root: true });
         commit("setRolArray", responce.data.data);
       }
     } catch (e) {
@@ -71,7 +77,8 @@ const actions = {
       console.log(response.data);
       if (response.data.name === "role_created") {
         commit("setForm", !state.addRoleForm);
-        commit("setChosed", !state.choosed);
+        window.location.href = "/add-role";
+        // commit("setChosed", !state.choosed);
       }
     } catch (e) {
       console.error("error in creating Role", e);
@@ -103,7 +110,7 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data.data);
-      commit('setTableInfo',response.data.data)
+      commit("setTableInfo", response.data.data);
     } catch (e) {
       console.error("error in geting role by id", e);
     }
@@ -119,19 +126,29 @@ const actions = {
     }
   },
   async deleteRole({ commit }, id) {
-    try {
-      let response = await axios.delete(`${Api}/api/manage/role/${id}`, {
-        headers: { Authorization: "Bearer " + token },
-      });
-      console.log(response.data);
-    } catch (e) {
-      console.error("error in geting role by id", e);
+    if (window.confirm("Are you shure you want to delete it ?")) {
+      try {
+        let response = await axios.delete(`${Api}/api/manage/role/${id}`, {
+          headers: { Authorization: "Bearer " + token },
+        });
+        console.log(response.data);
+        if ((response.data.name = "role_deleted")) {
+          window.location.href = "/add-role";
+        }
+      } catch (e) {
+        console.error("error in geting role by id", e);
+      }
     }
   },
   changetoAdd({ commit }) {
     commit("setChosed", !state.choosed);
     commit("setForm", !state.addRoleForm);
   },
+  showPermission({commit}){
+    commit("setChosed", !state.choosed);
+    // commit("setForm", !state.addRoleForm);
+    commit('setPermissionSHow', !state.permission)
+  }
 };
 
 export default {

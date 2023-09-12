@@ -104,7 +104,7 @@ const actions = {
       }
     } catch (error) {
       console.error(error);
-      if (error.response.data.error === "Unauthorized") {
+      if (error.response.data.data.error === "Unauthorized") {
         commit("setError", true);
         commit(
           "setText",

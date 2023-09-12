@@ -1,11 +1,5 @@
 <template >
-    <div class="container">
-        <select class="form-select select" id="status" v-model="idOfRole" v-if="this.$store.state.role.choosed"
-            @change="getRoleByid">
-            <option :value="user.id" v-for="user in roleArray" :key="user">
-                {{ user.name.toUpperCase() }}
-            </option>
-        </select>
+    <div class="container" v-if="this.$store.state.role.permission">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -101,10 +95,8 @@
 <script>
 import { mapState } from 'vuex';
 export default {
-    data() {
-        return {
-            idOfRole: ''
-        }
+    props: {
+        propsedId: String
     },
     computed: {
         ...mapState('role', ['roleArray']),
@@ -112,11 +104,6 @@ export default {
     },
     mounted() {
         this.getAllRole()
-
-    },
-    watch: {
-
-
     },
     methods: {
         changePage() {
@@ -126,8 +113,11 @@ export default {
             this.$store.dispatch("role/getRole")
         },
         async getRoleByid() {
-            await this.$store.dispatch("role/getRoleId", this.idOfRole)
+            await this.$store.dispatch("role/getRoleId", this.propsedId)
         }
+    },
+    watch: {
+        propsedId: 'getRoleByid'
     }
 }
 </script>
