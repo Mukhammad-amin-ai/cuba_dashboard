@@ -172,20 +172,85 @@
                 <option :value=4>Read+Update+Create+Delete</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary" @click.prevent="createRole">Create Role</button>
+        <button type="submit" class="btn btn-primary" @click.prevent="editeRole">Edit Role</button>
+        <button type="submit" class="btn btn-primary" @click.prevent="goToTable">Go to table </button>
     </form>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
     props: {
         propsedId: String
     },
-    computed:{
-        
+    data() {
+        return {
+            id:'',
+            name: "",
+            roles: "",
+            users: "",
+            teachers: "",
+            courses: "",
+            lessons: "",
+            groups: "",
+            students: "",
+            stparents: "",
+            sessions: "",
+            branches: "",
+            rooms: "",
+            schedules: "",
+            cashiers: "",
+            access_for_courses: "",
+            student_search: "",
+            payment_addcard: "",
+            payment_cashier: "",
+            payment_pay: ""
+        }
+    },
+    computed: {
+        ...mapState('role', ['tableInfromation'])
+    },
+    watch: {
+        tableInfromation: {
+            immediate: true,
+            handler(newtableInfromation) {
+                if (newtableInfromation) {
+                    this.name = newtableInfromation.name
+                    this.id = newtableInfromation.id
+
+                }
+            }
+        }
+    },
+    methods: {
+        editeRole() {
+            let option = {
+                name: this.name,
+                roles: this.roles,
+                users: this.users,
+                teachers: this.teachers,
+                courses: this.courses,
+                lessons: this.lessons,
+                groups: this.groups,
+                students: this.students,
+                stparents: this.stparents,
+                sessions: this.sessions,
+                branches: this.branches,
+                rooms: this.rooms,
+                schedules: this.schedules,
+                cashiers: this.cashiers,
+                access_for_courses: this.access_for_courses,
+                student_search: this.student_search,
+                payment_addcard: this.payment_addcard,
+                payment_cashier: this.payment_cashier,
+                payment_pay: this.payment_pay
+            }
+            this.$store.dispatch('role/updateRole',{id:this.id,option:option})
+        },
+        goToTable(){
+            this.$store.dispatch("role/goBackFromedit")
+        }
     }
-}   
+}
 
 </script>
-<style scoped >
-    
-</style>
+<style scoped ></style>

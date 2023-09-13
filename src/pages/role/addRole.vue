@@ -94,7 +94,9 @@ export default {
             this.idRole = idofRole
             this.$store.dispatch('role/showPermission')
         },
-        edit(){
+        edit(idOfRole){
+            // console.log(this.idRole = idOfRole);
+            this.idRole = idOfRole
             this.$store.dispatch('role/showEdit')
         }
     }

@@ -9,8 +9,8 @@ let state = {
   myProfile: [],
   addRoleForm: false,
   choosed: true,
-  permission:false,
-  edit:false
+  permission: false,
+  edit: false,
 };
 
 const mutations = {
@@ -29,13 +29,12 @@ const mutations = {
   setTableInfo(state, tableInfromation) {
     state.tableInfromation = tableInfromation;
   },
-  setPermissionSHow(state,permission){
-    state.permission = permission
+  setPermissionSHow(state, permission) {
+    state.permission = permission;
   },
-  setshowEdit(state,showEdit){
-    state.edit = showEdit
-  }
-
+  setshowEdit(state, showEdit) {
+    state.edit = showEdit;
+  },
 };
 const actions = {
   async getRole({ commit }) {
@@ -92,18 +91,24 @@ const actions = {
       let response = await axios.get(`${Api}/api/manage/role/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data.data);
+      // console.log(response.data.data);
       commit("setTableInfo", response.data.data);
     } catch (e) {
       console.error("error in geting role by id", e);
     }
   },
-  async updateRole({ commit }, id) {
+  async updateRole({ commit }, { id, option }) {
     try {
-      let response = await axios.put(`${Api}/api/manage/role/${id}`, {
+      let response = await axios.put(`${Api}/api/manage/role/${id}`, option, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);
+      if (response.data.name === "role_updated") {
+        commit("setChosed", !state.choosed);
+        commit("setshowEdit", !state.edit);
+        window.location.href = "/add-role";
+        // commit("setChosed", !state.choosed);
+      }
     } catch (e) {
       console.error("error in geting role by id", e);
     }
@@ -127,15 +132,22 @@ const actions = {
     commit("setChosed", !state.choosed);
     commit("setForm", !state.addRoleForm);
   },
-  showPermission({commit}){
+  showPermission({ commit }) {
     commit("setChosed", !state.choosed);
-    // commit("setForm", !state.addRoleForm);
-    commit('setPermissionSHow', !state.permission)
+    commit("setPermissionSHow", !state.permission);
   },
-  showEdit({commit}){
+  backtotable({commit}){
     commit("setChosed", !state.choosed);
-    commit('setshowEdit',!state.edit)
-  }
+    commit("setPermissionSHow", !state.permission);
+  },
+  showEdit({ commit }) {
+    commit("setChosed", !state.choosed);
+    commit("setshowEdit", !state.edit);
+  },
+  goBackFromedit({commit}) {
+    commit("setChosed", !state.choosed);
+    commit("setshowEdit", !state.edit);
+  },
 };
 
 export default {

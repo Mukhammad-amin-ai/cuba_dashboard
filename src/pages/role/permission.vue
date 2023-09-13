@@ -89,6 +89,7 @@
                     </table>
                 </div>
             </div>
+        <button type="submit" class="btn btn-primary" @click.prevent="goToTable">Go to table </button>
         </div>
     </div>
 </template>
@@ -114,6 +115,9 @@ export default {
         },
         async getRoleByid() {
             await this.$store.dispatch("role/getRoleId", this.propsedId)
+        },
+        goToTable(){
+            this.$store.dispatch('role/backtotable')
         }
     },
     watch: {
