@@ -3,34 +3,26 @@ import Api from "./Base_Url";
 
 const token = localStorage.getItem("token");
 const state = {
-  teachers: [],
   assistants: [],
-  myGroups: [],
 };
 const mutations = {
-  setTeacher(state, teachers) {
-    state.teachers = teachers;
-  },
   setAssistants(state, assistants) {
     state.assistants = assistants;
-  },
-  setMyGroups(state, myGroups) {
-    state.myGroups = myGroups;
   },
 };
 const actions = {
   async getTeachers({ commit }) {
     commit("setLoading", true, { root: true });
     try {
-      const response = await axios.get(`${Api}/api/manage/teacher`, {
+      const response = await axios.get(`${Api}/api/manage/teacher/assistant`, {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      //   console.log(response.data.data);
+        console.log(response.data.data);
       if (response.data) {
         commit("setLoading", false, { root: true });
-        commit("setTeacher", response.data.data);
+        commit("setAssistants", response.data.data);
       }
     } catch (e) {
       commit("setLoading", false, { root: true });
@@ -88,11 +80,11 @@ const actions = {
       console.error("error find", error);
     }
   },
-  async deleteTeacher({ commit }, option) {
+  async deleteTeacher({ commit }, id) {
     if (window.confirm("Delete ?")) {
       try {
         const response = await axios.delete(
-          `${Api}/api/manage/teacher/${option}`,
+          `${Api}/api/manage/teacher/assistant/${id}`,
           {
             headers: { Authorization: "Bearer" + token },
           }
@@ -106,39 +98,6 @@ const actions = {
       } catch (e) {
         console.error("error of deleting teacher", e);
       }
-    }
-  },
-  // async getAssistants({ commit }) {
-  //   try {
-  //     const response = await axios.get(
-  //       `${Api}/api/manage/teacher?role=assistant`,
-  //       {
-  //         headers: { Authorization: "Bearer" + token },
-  //       }
-  //     );
-  //     // console.log(response.data);
-  //     commit("setAssistants", response.data.data);
-  //   } catch (e) {
-  //     console.error("error with getting assistants", e);
-  //     if (e.request.status === 401) {
-  //       window.location.href = "/login";
-  //     }
-  //   }
-  // },
-  async getMyGroups({ commit }) {
-    commit("setLoading", true, { root: true });
-    try {
-      let response = await axios.get(`${Api}/api/teacher/my-groups`, {
-        headers: { Authorization: "Bearer " + token },
-      });
-      // console.log(response.data);
-      if (response.data) {
-        commit("setLoading", false, { root: true });
-      }
-      commit("setMyGroups", response.data.data);
-    } catch (e) {
-      commit("setLoading", false, { root: true });
-      console.error("error in getting my groups", e);
     }
   },
 };

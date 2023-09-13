@@ -1,5 +1,5 @@
 <template >
-    <Breadcrumbs title="Blog Detail" main="Students" />
+    <Breadcrumbs title="Blog Detail" main="Users" />
     <div class="container-fluid p-20">
         <spiner />
         <div class="row d-flex">

@@ -60,8 +60,8 @@ const actions = {
       let responce = await axios.put(`${Api}/api/manage/user/${id}`, option, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data);
-      if (responce.data.message === "user_updated") {
+      // console.log(responce.data);
+      if (responce.data.name === "user_updated") {
         window.location.href = "/user";
       }
     } catch (e) {

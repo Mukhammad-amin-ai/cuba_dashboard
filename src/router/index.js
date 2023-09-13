@@ -34,6 +34,10 @@ import addrole from "@/pages/role/addRole.vue";
 import user from "@/pages/user/user.vue";
 import userCrete from '@/pages/user/userCrete.vue'
 import userInfo from '@/pages/user/userInfo.vue'
+import assistant from '@/pages/teachers/assistantTeachers/assistant.vue'
+import assistantCrete from '@/pages/teachers/assistantTeachers/assistantCrete'
+import assistantInfo from '@/pages/teachers/assistantTeachers/assistantInfo.vue'
+
 
 
 
@@ -197,6 +201,30 @@ const routes = [
         meta: {
           requiredAuth: true,
           value: permObj && permObj.length > 0 ? permObj[8].value : null,
+        },
+      },
+      {
+        path: "assistant",
+        component: assistant,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[10].value : null,
+        },
+      },
+      {
+        path: "assistant/create",
+        component: assistantCrete,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[10].value : null,
+        },
+      },
+      {
+        path: "assistant/:id",
+        component: assistantInfo,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[10].value : null,
         },
       },
       {

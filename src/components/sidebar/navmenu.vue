@@ -103,13 +103,13 @@
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[12].name === 'lessons' && permission[12].value > 0">
+      <!-- <li class="sidebar-list" v-if="permission[12].name === 'lessons' && permission[12].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3"> Lessons</span>
         </router-link>
-      </li>
+      </li> -->
       <li class="sidebar-list" v-if="permission[13].name === 'groups' && permission[13].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/group">
@@ -131,13 +131,13 @@
           <span class="lan-3"> Parents</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[16].name === 'sessions' && permission[17].value > 0">
+      <!-- <li class="sidebar-list" v-if="permission[16].name === 'sessions' && permission[17].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
           <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> Session</span>
         </router-link>
-      </li>
+      </li> -->
       <li class="sidebar-list" v-if="permission[17].name === 'branches' && permission[17].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
@@ -145,13 +145,13 @@
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[18].name === 'rooms' && permission[18].value > 0">
+      <!-- <li class="sidebar-list" v-if="permission[18].name === 'rooms' && permission[18].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
           <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> rooms</span>
         </router-link>
-      </li>
+      </li> -->
       <li class="sidebar-list" v-if="permission[19].name === 'schedules' && permission[19].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/schedule">
