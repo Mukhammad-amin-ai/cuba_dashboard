@@ -68,60 +68,102 @@
           <span class="lan-3"> Role</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[6].name === 'roles' && permission[6].value > 0">
+      <li class="sidebar-list" v-if="permission[7].name === 'users' && permission[7].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/user'>
           <i class="icofont icofont-business-man "></i>
           <span class="lan-3"> Users</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[8].name === 'teachers' && permission[8].value > 0">
+      <li class="sidebar-list" v-if="permission[8].name === 'inactive_users' && permission[8].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/teachers">
+          <i class="icofont icofont-teacher"></i>
+          <span class="lan-3"> inactive users</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[9].name === 'teachers' && permission[9].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/teachers">
           <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> Teachers</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[9].name === 'courses' && permission[9].value > 0">
+      <li class="sidebar-list" v-if="permission[10].name === 'assistant_teachers' && permission[10].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/teachers">
+          <i class="icofont icofont-teacher"></i>
+          <span class="lan-3"> assistant teachers</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[11].name === 'courses' && permission[11].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/courses">
           <i class="icofont icofont-architecture-alt"></i>
           <span class="lan-3"> Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[11].name === 'groups' && permission[11].value > 0">
+      <li class="sidebar-list" v-if="permission[12].name === 'lessons' && permission[12].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/courses">
+          <i class="icofont icofont-architecture-alt"></i>
+          <span class="lan-3"> Lessons</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[13].name === 'groups' && permission[13].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/group">
           <i class="icofont icofont-group-students"></i>
           <span class="lan-3"> Group</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[12].name === 'students' && permission[12].value > 0">
+      <li class="sidebar-list" v-if="permission[14].name === 'students' && permission[14].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/student">
           <i class="icofont icofont-student-alt"></i>
           <span class="lan-3"> Students</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[15].name === 'branches' && permission[15].value > 0">
+      <li class="sidebar-list" v-if="permission[15].name === 'parents' && permission[15].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/student">
+          <i class="icofont icofont-student-alt"></i>
+          <span class="lan-3"> Parents</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[16].name === 'sessions' && permission[17].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to='/branches'>
+          <i class="icofont   icofont-building-alt"></i>
+          <span class="lan-3"> Session</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[17].name === 'branches' && permission[17].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to='/branches'>
           <i class="icofont   icofont-building-alt"></i>
           <span class="lan-3"> Branches</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[17].name === 'schedules' && permission[17].value > 0">
+      <li class="sidebar-list" v-if="permission[18].name === 'rooms' && permission[18].value > 0">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to='/branches'>
+          <i class="icofont   icofont-building-alt"></i>
+          <span class="lan-3"> rooms</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[19].name === 'schedules' && permission[19].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/schedule">
           <i class="icofont icofont-ui-calendar"></i>
           <span class="lan-3"> Schedule</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[18].name === 'cashiers' && permission[18].value > 0">
+      <li class="sidebar-list" v-if="permission[20].name === 'cashiers' && permission[20].value > 0">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
-          <span class="lan-3"> My Cards</span>
+          <span class="lan-3">Cashiers</span>
         </router-link>
       </li>
     </ul>
@@ -132,7 +174,7 @@ import { mapState } from 'vuex';
 import { layoutClasses } from '../../constants/layout';
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 let roleName = JSON.parse(localStorage.getItem("name"))
-// console.log();
+// console.log(permObj[17].name === 'schedules' && permObj[17].value > 0);
 // console.log(permObj);
 
 export default {

@@ -14,7 +14,7 @@ import payme from "./modules/payme";
 import role from "./modules/role";
 import lesson from "./modules/lesson";
 import inactiveUser from "./modules/inactiveUser";
-
+import user from "./modules/user";
 
 export default createStore({
   state: {
@@ -74,5 +74,6 @@ export default createStore({
     role,
     lesson,    
     inactiveUser,
+    user
   },
 });

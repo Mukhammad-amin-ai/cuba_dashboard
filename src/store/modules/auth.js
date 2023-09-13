@@ -126,7 +126,7 @@ const actions = {
       headers: { Authorization: "Bearer" + token },
     });
     localStorage.removeItem("token");
-    // localStorage.removeItem("permissions");
+    localStorage.removeItem("permissions");
     localStorage.removeItem("profile");
     localStorage.removeItem("name");
 

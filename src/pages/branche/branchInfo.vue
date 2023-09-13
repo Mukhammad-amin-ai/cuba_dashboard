@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    <div class="flex " >
+    <div class="flex ">
         <button type="button" class="btn btn-success" @click="changer">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
             <h6 v-else>Go From Edit</h6>
@@ -93,8 +93,8 @@
                                 <th scope="col">Session</th>
                                 <th scope="col">Room</th>
                                 <th scope="col">Weekday</th>
-                                <th scope="col" >Edit</th>
-                                <th scope="col" >Delete</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>

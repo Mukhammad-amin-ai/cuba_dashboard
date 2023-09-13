@@ -32,6 +32,13 @@ import myChildren from "@/pages/student/myChildren.vue";
 import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
 import user from "@/pages/user/user.vue";
+import userCrete from '@/pages/user/userCrete.vue'
+import userInfo from '@/pages/user/userInfo.vue'
+
+
+
+
+
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 
 const routes = [
@@ -253,6 +260,22 @@ const routes = [
       {
         path: "user",
         component: user,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+        },
+      },
+      {
+        path: "user/create",
+        component: userCrete,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+        },
+      },
+      {
+        path: "user/:id",
+        component: userInfo,
         meta: {
           requiredAuth: true,
           value: permObj && permObj.length > 0 ? permObj[6].value : null,

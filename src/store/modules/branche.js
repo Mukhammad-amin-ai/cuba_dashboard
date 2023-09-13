@@ -29,11 +29,8 @@ const actions = {
       let response = await axios.get(`${Api}/api/manage/branch`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data.data);
-      // if (response.data && response.data.data.data) {
-        commit("setBranch", response.data.data);
-      // }
-
+      // console.log(response.data.data);
+      commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });
     } catch (error) {
       console.error("error find", error);
@@ -48,7 +45,7 @@ const actions = {
       let response = await axios.get(`${Api}/api/manage/branch/${option}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data);
+      // console.log(response.data);
       commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });
     } catch (error) {
@@ -116,9 +113,12 @@ const actions = {
   async delete({ commit }, option) {
     if (window.confirm("O'chiraymi")) {
       try {
-        const response = await axios.delete(`${Api}/api/manage/branch/${option}`, {
-          headers: { Authorization: "Bearer " + token },
-        });
+        const response = await axios.delete(
+          `${Api}/api/manage/branch/${option}`,
+          {
+            headers: { Authorization: "Bearer " + token },
+          }
+        );
         console.log(response.data);
         if (response.data.message === "Branch deleted successfully") {
           window.location.href = "/branches";
@@ -130,9 +130,13 @@ const actions = {
   },
   async editBranch({ commit }, { id, option }) {
     try {
-      const response = await axios.put(`${Api}/api/manage/branch/${id}`, option, {
-        headers: { Authorization: "Bearer " + token },
-      });
+      const response = await axios.put(
+        `${Api}/api/manage/branch/${id}`,
+        option,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
       console.log(response.data);
       if (response.data.message === "Branch updated successfully") {
         window.location.href = "/branches";
