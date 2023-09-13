@@ -5,7 +5,6 @@
         <div class="container-fluid p-20 " style="gap: 20px;">
             <button type="button" class="btn btn-primary" @click="changePage" v-if="this.$store.state.role.choosed">Add NewRole</button>
         </div>
-       
         <div class="col-sm-12" v-if="this.$store.state.role.choosed">
             <div class="card">
                 <div class="card-header">
@@ -36,7 +35,7 @@
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-success" >
+                                    <button type="button" class="btn btn-success" @click="edit(roleArray[index].id)" >
                                         <i class="icofont icofont-pencil-alt-5"></i>
                                     </button>
                                 </td>
@@ -53,13 +52,15 @@
         </div>
         <addRoleFormsVue  />
         <permission :propsedId="idRole"/>
+        <editRole :propsedId="idRole"/>
     </div>
 </template>
 <script>
 import { mapState } from 'vuex';
 import addRoleFormsVue from './addRoleForms.vue';
 import spiner from '@/components/ui/spiner.vue';
-import permission from '@/pages/role/permission.vue'
+import permission from '@/pages/role/permission.vue';
+import editRole from './editRole.vue';
 export default {
     data() {
         return {
@@ -69,7 +70,8 @@ export default {
     components:{
         addRoleFormsVue,
         spiner,
-        permission
+        permission,
+        editRole
     },
     computed: {
         ...mapState("role", ['roleArray'])
@@ -91,8 +93,10 @@ export default {
             console.log(idofRole);
             this.idRole = idofRole
             this.$store.dispatch('role/showPermission')
+        },
+        edit(){
+            this.$store.dispatch('role/showEdit')
         }
-
     }
 }
 </script>

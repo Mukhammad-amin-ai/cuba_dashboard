@@ -18,7 +18,7 @@
                             <tr>
                                 <td>1</td>
                                 <td>Role</td>
-                                <td>{{ tableInfromation.roles }}</td>
+                                <td>{{ tableInfromation.name }}</td>
                             </tr>
                             <tr>
                                 <td>2</td>

@@ -176,8 +176,6 @@
     </form>
 </template>
 <script>
-import group from '@/store/modules/group';
-
 export default {
     data() {
         return {

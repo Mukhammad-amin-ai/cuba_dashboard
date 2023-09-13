@@ -7,15 +7,10 @@ let state = {
   roleArray: [],
   tableInfromation: [],
   myProfile: [],
-  // branches: true,
-  // courses: true,
-  // schedule: true,
-  // group: true,
-  // teachers: true,
-  // students: true,
   addRoleForm: false,
   choosed: true,
-  permission:false
+  permission:false,
+  edit:false
 };
 
 const mutations = {
@@ -25,21 +20,6 @@ const mutations = {
   setMyProfile(state, myProfile) {
     state.myProfile = myProfile;
   },
-  // setBrancheShow(state, branche) {
-  //   state.branches = branche;
-  // },
-  // setCourseShow(state, course) {
-  //   state.courses = course;
-  // },
-  // setGroupShow(state, group) {
-  //   state.group = group;
-  // },
-  // setTeacherShow(state, teacher) {
-  //   state.teachers = teacher;
-  // },
-  // setStudentShow(state, student) {
-  //   state.students = student;
-  // },
   setForm(state, addRoleForm) {
     state.addRoleForm = addRoleForm;
   },
@@ -51,6 +31,9 @@ const mutations = {
   },
   setPermissionSHow(state,permission){
     state.permission = permission
+  },
+  setshowEdit(state,showEdit){
+    state.edit = showEdit
   }
 
 };
@@ -148,6 +131,10 @@ const actions = {
     commit("setChosed", !state.choosed);
     // commit("setForm", !state.addRoleForm);
     commit('setPermissionSHow', !state.permission)
+  },
+  showEdit({commit}){
+    commit("setChosed", !state.choosed);
+    commit('setshowEdit',!state.edit)
   }
 };
 
