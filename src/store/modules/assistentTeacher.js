@@ -11,7 +11,7 @@ const mutations = {
   },
 };
 const actions = {
-  async getTeachers({ commit }) {
+  async getAssistTeachers({ commit }) {
     commit("setLoading", true, { root: true });
     try {
       const response = await axios.get(`${Api}/api/manage/teacher/assistant`, {
@@ -19,7 +19,7 @@ const actions = {
           Authorization: "Bearer " + token,
         },
       });
-        console.log(response.data.data);
+      console.log(response.data.data);
       if (response.data) {
         commit("setLoading", false, { root: true });
         commit("setAssistants", response.data.data);
@@ -32,14 +32,17 @@ const actions = {
       }
     }
   },
-  async getTeachersById({ commit }, option) {
+  async getAssistTeachersById({ commit }, option) {
     try {
-      const response = await axios.get(`${Api}/api/manage/teacher/${option}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-      // console.log(response.data);
+      const response = await axios.get(
+        `${Api}/api/manage/teacher/assistant/${option}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(response.data);
       if (response.data) {
         commit("setTeacher", response.data.data);
       }
@@ -50,14 +53,18 @@ const actions = {
       }
     }
   },
-  async createTeacher({ commit }, option) {
+  async createAssistanTeacher({ commit }, option) {
     try {
-      let responce = await axios.post(`${Api}/api/manage/teacher`, option, {
-        headers: { Authorization: "Bearer" + token },
-      });
+      let responce = await axios.post(
+        `${Api}/api/manage/teacher/assistant`,
+        option,
+        {
+          headers: { Authorization: "Bearer" + token },
+        }
+      );
       console.log(responce.data);
-      if (responce.data.message === "Teacher created successfully") {
-        window.location.href = "/teachers";
+      if (responce.data.name === "assistant_created ") {
+        window.location.href = "/assistant";
       }
     } catch (e) {
       console.error("problem with creating treacher", e);
@@ -66,15 +73,15 @@ const actions = {
   async editTeacher({ commit }, { id, option }) {
     try {
       const response = await axios.put(
-        `${Api}/api/manage/teacher/${id}`,
+        `${Api}/api/manage/teacher/assistant/${id}`,
         option,
         {
           headers: { Authorization: "Bearer " + token },
         }
       );
       console.log(response.data);
-      if (response.data.message === "Teacher updated successfully") {
-        window.location.href = "/teachers";
+      if (response.data.name === "assistant_updated") {
+        window.location.href = "/assistant";
       }
     } catch (error) {
       console.error("error find", error);
@@ -90,10 +97,8 @@ const actions = {
           }
         );
         console.log(response.data);
-        if (response.data.message === "success") {
-          window.location.href = "/teachers";
-        } else if (response.data.status === 400) {
-          window.location.href = `/group/${response.data.data[0].id}`;
+        if (response.data.name === "assistant_deleted") {
+          window.location.href = "/assistant";
         }
       } catch (e) {
         console.error("error of deleting teacher", e);

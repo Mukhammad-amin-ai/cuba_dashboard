@@ -15,6 +15,9 @@ import role from "./modules/role";
 import lesson from "./modules/lesson";
 import inactiveUser from "./modules/inactiveUser";
 import user from "./modules/user";
+import parent from "./modules/parent";
+import assistentTeacher from "./modules/assistentTeacher";
+
 
 export default createStore({
   state: {
@@ -74,6 +77,8 @@ export default createStore({
     role,
     lesson,    
     inactiveUser,
-    user
+    user,
+    parent,
+    assistentTeacher
   },
 });
