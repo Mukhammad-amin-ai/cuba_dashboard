@@ -12,23 +12,31 @@ const mutations = {
 };
 const actions = {
   async getInnactiveUsers({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(`${Api}/api/manage/user/inactive`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(response.data);
-      commit("setInnactive", response.data.data);
+      if (response.data.data) {
+        commit("setLoading", false, { root: true });
+        commit("setInnactive", response.data.data);
+      }
     } catch (e) {
       console.error("error in getting innactive users data", e);
     }
   },
   async getInnactiveUser({ commit }, id) {
+    commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(`${Api}/api/manage/user/inactive/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(response.data);
-      commit("setInnactive", response.data.data);
+      if (response.data.data) {
+        commit("setInnactive", response.data.data);
+        commit("setLoading", false, { root: true });
+      }
     } catch (e) {
       console.error("error in geting inactive user data", e);
     }
@@ -60,7 +68,7 @@ const actions = {
         }
       );
       // console.log(responce.data);
-      if (responce.data.name = "inactive_created") {
+      if ((responce.data.name = "inactive_created")) {
         window.location.href = "/inactive-user";
       }
     } catch (e) {

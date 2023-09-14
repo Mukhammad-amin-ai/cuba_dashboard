@@ -51,7 +51,7 @@ const actions = {
           headers: { Authorization: "Bearer" + token },
         }
       );
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       commit("setSchedule", responce.data);
     } catch (error) {
       console.error("there is problem ", error);

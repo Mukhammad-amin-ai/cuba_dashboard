@@ -1,5 +1,6 @@
 <template >
     <div class="container" v-if="this.$store.state.role.permission">
+        <spiner/>
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -95,7 +96,11 @@
 </template>
 <script>
 import { mapState } from 'vuex';
+import spiner from '@/components/ui/spiner.vue';
 export default {
+    components:{
+        spiner
+    },
     props: {
         propsedId: String
     },

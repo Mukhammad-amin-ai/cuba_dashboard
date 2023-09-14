@@ -32,18 +32,17 @@ import myChildren from "@/pages/student/myChildren.vue";
 import myGroups from "@/pages/group/myGroups.vue";
 import addrole from "@/pages/role/addRole.vue";
 import user from "@/pages/user/user.vue";
-import userCrete from '@/pages/user/userCrete.vue'
-import userInfo from '@/pages/user/userInfo.vue'
-import assistant from '@/pages/teachers/assistantTeachers/assistant.vue'
-import assistantCrete from '@/pages/teachers/assistantTeachers/assistantCrete'
-import assistantInfo from '@/pages/teachers/assistantTeachers/assistantInfo.vue'
+import userCrete from "@/pages/user/userCrete.vue";
+import userInfo from "@/pages/user/userInfo.vue";
+import assistant from "@/pages/teachers/assistantTeachers/assistant.vue";
+import assistantCrete from "@/pages/teachers/assistantTeachers/assistantCrete";
+import assistantInfo from "@/pages/teachers/assistantTeachers/assistantInfo.vue";
 import inactiveUser from "@/pages/user/inactiveUser/inactiveUser.vue";
 import incactiveUserInfoVue from "@/pages/user/inactiveUser/incactiveUserInfo.vue";
 import inactiveUserCreateVue from "@/pages/user/inactiveUser/inactiveUserCreate.vue";
-
-
-
-
+import parent from "@/pages/student/parents/parets.vue";
+import parentCreate from "@/pages/student/parents/parentsCreate.vue";
+import parentInfo from "@/pages/student/parents/parentsInfo.vue";
 
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 
@@ -70,7 +69,7 @@ const routes = [
         },
       },
       {
-        path: "statistics",
+        path: "/statistics",
         component: Default,
         meta: {
           requiredAuth: true,
@@ -176,6 +175,30 @@ const routes = [
       {
         path: "student/:id",
         component: studentInfo,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[12].value : null,
+        },
+      },
+      {
+        path: "parent",
+        component: parent,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[12].value : null,
+        },
+      },
+      {
+        path: "parent/create",
+        component: parentCreate,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[12].value : null,
+        },
+      },
+      {
+        path: "parent/:id",
+        component: parentInfo,
         meta: {
           requiredAuth: true,
           value: permObj && permObj.length > 0 ? permObj[12].value : null,

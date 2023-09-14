@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid p-20">
+        <spiner/>
         <div class="user-profile">
             <div class="row">
                 <div class="col-sm-12" v-if="this.$store.state.group.editHandler">
@@ -211,9 +212,11 @@
 <script>
 import { mapState } from "vuex"
 import TableOfStudents from '@/pages/group/TableOfStudents.vue'
+import spiner from '@/components/ui/spiner.vue'
 export default {
     components: {
-        TableOfStudents
+        TableOfStudents,
+        spiner
     },
     data() {
         return {
@@ -237,7 +240,7 @@ export default {
         ...mapState('teacher', ['teachers']),
         ...mapState('course', ['courseData']),
         ...mapState('student', ['students']),
-        ...mapState('teacher', ['assistants']),
+        // ...mapState('teacher', ['assistants']),
         ...mapState('group', ['groupStudents']),
 
 
@@ -256,10 +259,9 @@ export default {
     mounted() {
         this.getGroupById()
         this.getschedule()
-        this.getAssistants()
+        // this.getAssistants()
         this.getStudents()
         this.getGroupStudents()
-        // this.roleChecker()
     },
     methods: {
         concatination() {

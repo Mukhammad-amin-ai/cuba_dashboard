@@ -1,7 +1,7 @@
 <template >
     <Breadcrumbs title="Blog Detail" main="Users" />
     <div class="container-fluid p-20">
-        <spiner />
+        <spinerVue />
         <div class="row d-flex">
             <RouterLink to="inactive-user/create"> 
                 <div class="card social-profile p-10">
@@ -48,7 +48,11 @@
 </template>
 <script>
 import {mapState} from 'vuex'
+import spinerVue from '@/components/ui/spiner.vue'
 export default {
+    components:{
+        spinerVue
+    },
     computed:{
         ...mapState("inactiveUser",['inactiveUser'])
     },

@@ -1,6 +1,6 @@
 <template >
     <Breadcrumbs title="Teachers Page" main="Teachers Page" />
-
+    <spiner/>
     <div class="container-fluid">
         <div>
             <div class="row product-page-main p-0" v-if="isChanger">
@@ -37,8 +37,8 @@
                         </div>
                     </div>
                     <div class="d-flex  ">
-                        <button type="button" class="btn btn-success" @click="isChange" v-if="this.$store.state.role.update">Go To Edit</button>
-                        <button type="button" class="btn btn-danger" @click="deleteTeacher" v-if="this.$store.state.role.delete">Delete</button>
+                        <button type="button" class="btn btn-success" @click="isChange">Go To Edit</button>
+                        <button type="button" class="btn btn-danger" @click="deleteTeacher" >Delete</button>
                     </div>
                 </div>
             </div>
@@ -83,8 +83,11 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-
+import spiner from '@/components/ui/spiner.vue'
 export default {
+    components:{
+        spiner
+    },
     data() {
         return {
             id: this.$route.params.id,
@@ -115,7 +118,6 @@ export default {
     },
     mounted() {
         this.getTeacherByid()
-        // this.roleChecker()
     },
     methods: {
         getTeacherByid() {

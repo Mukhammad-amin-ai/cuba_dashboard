@@ -41,6 +41,7 @@ const actions = {
     }
   },
   async getTeachersById({ commit }, option) {
+    commit("setLoading", true, { root: true });
     try {
       const response = await axios.get(`${Api}/api/manage/teacher/${option}`, {
         headers: {
@@ -49,6 +50,7 @@ const actions = {
       });
       // console.log(response.data);
       if (response.data) {
+        commit("setLoading", false, { root: true });
         commit("setTeacher", response.data.data);
       }
     } catch (e) {

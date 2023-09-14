@@ -25,7 +25,7 @@ const actions = {
         commit("setAssistants", response.data.data);
       }
     } catch (e) {
-      commit("setLoading", false, { root: true });
+      // commit("setLoading", false, { root: true });
       console.error("teacher error", e);
       if (e.request.status === 401) {
         window.location.href = "/login";
@@ -33,6 +33,8 @@ const actions = {
     }
   },
   async getAssistTeachersById({ commit }, option) {
+    commit("setLoading", true, { root: true });
+
     try {
       const response = await axios.get(
         `${Api}/api/manage/teacher/assistant/${option}`,
@@ -44,6 +46,7 @@ const actions = {
       );
       // console.log(response.data);
       if (response.data) {
+        commit("setLoading", false, { root: true });
         commit("setAssistants", response.data.data);
       }
     } catch (e) {

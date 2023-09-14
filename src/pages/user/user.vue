@@ -48,7 +48,11 @@
 </template>
 <script>
 import {mapState} from 'vuex'
+import spiner from '@/components/ui/spiner.vue'
 export default {
+    components:{
+        spiner
+    },  
     computed:{
         ...mapState("user",['userData'])
     },

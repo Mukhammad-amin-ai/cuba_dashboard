@@ -1,88 +1,48 @@
 <template >
     <div class="container-fluid p-10">
+        <spiner />
         <div class="user-profile">
             <div class="row">
-                <div class="col-sm-12" v-if="this.$store.state.group.editHandler">
-                    <div class="card hovercard text-center">
-                        <div class="cardheader" style="background-size: cover;
-                                background-position: 10%;
-                                 height: 470px;"
-                            :style="{ backgroundImage: 'url(' + require('@/assets/images/Students-Wallpaper.jpg') + ')' }">
-                        </div>
-                        <div class="user-image">
-                            <div class="avatar">
-                                <img id="profile-tour" alt="" src="../../assets/images/avtar/7.jpg"
-                                    data-intro="This is Profile image">
-                            </div>
-                            <div class="icon-wrapper" @click="chenger">
-                                <i id="update-profile-tour" class="icofont icofont-pencil-alt-5"
-                                    data-intro="Change Profile image here" ></i>
+                <div class="row product-page-main p-0" v-if="this.$store.state.group.editHandler">
+                    <div class="col-xxl-4 col-md-6 box-col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="../../assets/images/avtar/16.jpg" alt="">
                             </div>
                         </div>
-                        <div class="info">
-                            <div class="row" data-intro="This is the your details" id="info-bar-tour">
-                                <div class="col-sm-6 col-lg-4 order-sm-1 order-xl-0">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="ttl-info text-start">
-                                                <h6><i class="fa fa-user"></i> Teacher</h6>
-                                                <span v-if="students && students.groups && students.groups[0]">
-                                                    {{ students.groups[0].teacher }}
-                                                </span>
-                                                <span v-else>Loading...</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="ttl-info text-start ttl-sm-mb-0">
-                                                <h6><i class="fa fa-book"></i> Completed lessons</h6>
-                                                <span v-if="students && students.groups && students.groups[0]">
-                                                    {{ students.groups[0].completed_lessons }}
-                                                </span>
-                                                <span v-else>Loading...</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="col-xxl-5 box-col-6 order-xxl-0 order-1">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="product-page-details">
+                                    <h3>{{ students.firstname }} {{ students.lastname }}</h3>
                                 </div>
-                                <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
-                                    <div class="user-designation">
-                                        <div class="title">
-                                            <a target="_blank" href="">{{ students.firstname }} {{ students.lastname }}</a>
-                                        </div>
-                                        <div class="desc mt-2">Teacher</div>
-                                    </div>
+                                <div class="product-price">
                                 </div>
-                                <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="ttl-info text-start ttl-xs-mt">
-                                                <h6><i class="fa fa-tasks"></i> Goup Number</h6>
-                                                <span v-if="students && students.groups && students.groups[0]">
-                                                    {{ students.groups[0].id }}
-                                                </span>
-                                                <span v-else>Loading...</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="ttl-info text-start ttl-sm-mb-0">
-                                                <h6><i class="fa fa-users"></i> Group name</h6>
-                                                <span v-if="students && students.groups && students.groups[0]">
-                                                    {{ students.groups[0].course }}
-                                                </span>
-                                                <span v-else>Loading...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ul class="product-color">
+                                    <li class="bg-primary"></li>
+                                    <li class="bg-secondary"></li>
+                                    <li class="bg-success"></li>
+                                    <li class="bg-warning"></li>
+                                    <li class="bg-danger"></li>
+                                </ul>
+                                Id: {{ students.id }}
+                                <hr />
+                                <p>
+                                    Email: {{ students.email }}
+                                </p>
+                                <hr />
+                                Contact number: {{ students.contact_no }}
+                                <hr />
                             </div>
-                            <hr>
-                            <!-- theere can be created table -->
-
-
-
-
+                        </div>
+                        <div class="d-flex  ">
+                            <button type="button" class="btn btn-success" @click="chenger">Go To Edit</button>
+                            <button type="button" class="btn btn-danger" @click="deleteStudent">Delete</button>
                         </div>
                     </div>
                 </div>
+
                 <div class="card p-20" v-else>
                     <h1>Edit Student</h1>
                     <form @submit.prevent="updateStudent">
@@ -104,14 +64,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password Confirm</label>
-                            <input type="password" class="form-control" id="password" required v-model="password_confirmation">
+                            <input type="password" class="form-control" id="password" required
+                                v-model="password_confirmation">
                         </div>
                         <div class="mb-3">
                             <label for="contact_no" class="form-label">Contact Number</label>
                             <input type="tel" class="form-control" id="contact_no" required v-model="contact_no">
                         </div>
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status</label> 
+                            <label for="status" class="form-label">Status</label>
                             <select class="form-select" id="status" v-model="status">
                                 <option :value="true">Active</option>
                                 <option :value="false">Inactive</option>
@@ -123,16 +84,18 @@
                         </div>
                     </form>
                 </div>
-                <button type="button" class="btn btn-danger" @click="deleteStudent">Delete User</button>
             </div>
         </div>
     </div>
 </template>
 <script>
 import { mapState } from 'vuex'
-
+import spiner from '@/components/ui/spiner.vue'
 
 export default {
+    components: {
+        spiner
+    },
     data() {
         return {
             id: this.$route.params.id,
@@ -140,7 +103,7 @@ export default {
             lastname: "",
             email: "",
             password: "",
-            password_confirmation:'',
+            password_confirmation: '',
             contact_no: "",
             status: Boolean
         }
@@ -148,20 +111,20 @@ export default {
     computed: {
         ...mapState('student', ['students'])
     },
-    watch:{
-        students:{
-            immediate:true,
-            handler(newStudents){
-                if(newStudents){
+    watch: {
+        students: {
+            immediate: true,
+            handler(newStudents) {
+                if (newStudents) {
                     this.firstname = newStudents.firstname,
-                    this.lastname = newStudents.lastname,
-                    this.email = newStudents.email,
-                    this.password = newStudents.password
+                        this.lastname = newStudents.lastname,
+                        this.email = newStudents.email,
+                        this.password = newStudents.password
                     this.password_confirmation = newStudents.password_confirmation,
-                    this.contact_no = newStudents.contact_no
+                        this.contact_no = newStudents.contact_no
                 }
             }
-        } 
+        }
     },
     mounted() {
         this.getById()
@@ -176,7 +139,7 @@ export default {
                 lastname: this.lastname,
                 email: this.email,
                 password: this.password,
-                password_confirmation:this.password_confirmation,
+                password_confirmation: this.password_confirmation,
                 contact_no: this.contact_no,
                 status: this.status
             }

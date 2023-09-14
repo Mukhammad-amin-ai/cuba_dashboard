@@ -8,7 +8,7 @@ const state = {
   mycourses: [],
   myChildren: [],
   allCourses: [],
-  noData:false
+  noData: false,
 };
 const mutations = {
   setStudent(state, students) {
@@ -23,11 +23,9 @@ const mutations = {
   setAllCourses(state, allCourses) {
     state.allCourses = allCourses;
   },
-  setNodata(state,noData){
-    state.noData = noData
-  }
-
-
+  setNodata(state, noData) {
+    state.noData = noData;
+  },
 };
 const actions = {
   async getStudent({ commit }) {
@@ -49,12 +47,17 @@ const actions = {
     }
   },
   async getStudentById({ commit }, option) {
+    commit("setLoading", true, { root: true });
+
     try {
       const responce = await axios.get(`${Api}/api/manage/student/${option}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(responce.data.data);
-      commit("setStudent", responce.data.data);
+      console.log(responce.data.data);
+      if (responce.data.data) {
+        commit("setLoading", false, { root: true });
+        commit("setStudent", responce.data.data);
+      }
     } catch (e) {
       console.error("error in get student", e);
       if (e.request.status === 401) {
@@ -138,8 +141,8 @@ const actions = {
       if (response.data.data) {
         commit("setLoading", false, { root: true });
       }
-      if(response.data.data.length ===0){
-        commit('setNodata',true)
+      if (response.data.data.length === 0) {
+        commit("setNodata", true);
       }
       commit("setMycourses", response.data.data);
     } catch (e) {

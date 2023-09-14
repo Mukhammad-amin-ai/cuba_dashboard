@@ -87,12 +87,16 @@ const actions = {
     }
   },
   async getRoleId({ commit }, id) {
+    commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(`${Api}/api/manage/role/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(response.data.data);
-      commit("setTableInfo", response.data.data);
+      if (response.data.data) {
+        commit("setLoading", false, { root: true });
+        commit("setTableInfo", response.data.data);
+      }
     } catch (e) {
       console.error("error in geting role by id", e);
     }

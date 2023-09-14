@@ -32,32 +32,27 @@ const actions = {
   async getCourseDataById({ commit }, option) {
     commit("setLoading", true, { root: true });
     try {
-      let responce = await axios.get(
-        `${Api}/api/manage/course/${option}`,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
+      let responce = await axios.get(`${Api}/api/manage/course/${option}`, {
+        headers: { Authorization: "Bearer " + token },
+      });
       // console.log(responce.data);
-      commit("setCourseData", responce.data.data);
-      commit("setLoading", false, { root: true });
+      if (responce.data.data) {
+        commit("setCourseData", responce.data.data);
+        commit("setLoading", false, { root: true });
+      }
     } catch (error) {
       commit("setLoading", false, { root: true });
       console.error("error find there", error);
-      if(error.request.status=== 401){
-        window.location.href='/login'
-        }
+      if (error.request.status === 401) {
+        window.location.href = "/login";
+      }
     }
   },
   async createCourse({ commit }, option) {
     try {
-      let response = await axios.post(
-        `${Api}/api/manage/course`,
-        option,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
+      let response = await axios.post(`${Api}/api/manage/course`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
       console.log(response.data);
       if (response.data.message === "Course created successfully") {
         window.location.href = "/courses";
@@ -101,7 +96,6 @@ const actions = {
       }
     }
   },
-  
 };
 export default {
   namespaced: true,

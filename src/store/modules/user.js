@@ -17,12 +17,14 @@ const mutations = {
 };
 const actions = {
   async getUsersData({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
       let responce = await axios.get(`${Api}/api/manage/user`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data.data);
       if (responce.data.data) {
+        commit("setLoading", false, { root: true });
         commit("setUserData", responce.data.data);
       }
     } catch (e) {
@@ -43,12 +45,14 @@ const actions = {
     }
   },
   async getUserById({ commit }, id) {
+    commit("setLoading", true, { root: true });
     try {
       let responce = await axios.get(`${Api}/api/manage/user/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data.data);
       if (responce.data.data) {
+        commit("setLoading", false, { root: true });
         commit("setUserData", responce.data.data);
       }
     } catch (e) {

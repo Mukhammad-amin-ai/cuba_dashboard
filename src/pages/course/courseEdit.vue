@@ -1,5 +1,6 @@
 <template >
     <Breadcrumbs title="Teachers Page" main="Course Page" />
+    <spiner/>
     <div class="container-fluid">
         <div>
             <div class="row product-page-main p-0" v-if="handler">
@@ -81,8 +82,11 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-
+import spiner  from '@/components/ui/spiner.vue'
 export default {
+    components:{
+        spiner
+    },
     data() {
         return {
             id: this.$route.params.id,

@@ -1,5 +1,6 @@
 <template >
     <div class="container-fluid p-10">
+        <spiner/>
         <div class="user-profile">
             <div class="row">
                 <div class="col-sm-12" v-if="this.$store.state.user.editHandler">
@@ -133,9 +134,12 @@
     </div>
 </template>
 <script>
-
+import spiner from '@/components/ui/spiner.vue';
 import { mapState } from 'vuex';
 export default {
+    components:{
+        spiner
+    },
     data() {
         return {
             firstname: "",
