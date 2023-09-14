@@ -7,18 +7,20 @@ let state = {
 };
 const mutations = {
   setPrentData(state, setPrentData) {
-    state.setPrentData = setPrentData;
+    state.parents = setPrentData;
   },
 };
 const actions = {
   async getParentsData({ commit }) {
+    commit("setLoading", true, { root: true });
     try {
       let responce = await axios.get(`${Api}/api/manage/parent`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       if (responce.data.data) {
         commit("setPrentData", responce.data.data);
+        commit("setLoading", false, { root: true });
       }
     } catch (e) {
       console.error("error find in getting parents data", e);
@@ -38,12 +40,14 @@ const actions = {
     }
   },
   async getParentById({ commit }, id) {
+    commit("setLoading", true, { root: true });
     try {
       let responce = await axios.get(`${Api}/api/manage/parent/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       if (responce.data.data) {
+        commit("setLoading", false, { root: true });
         commit("setPrentData", responce.data.data);
       }
     } catch (e) {

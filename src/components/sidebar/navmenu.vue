@@ -126,7 +126,7 @@
       </li>
       <li class="sidebar-list" v-if="permission[15].name === 'parents' && permission[15].value > 0">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/student">
+        <router-link class="sidebar-link sidebar-title hover" to="/parent">
           <i class="icofont icofont-student-alt"></i>
           <span class="lan-3"> Parents</span>
         </router-link>
