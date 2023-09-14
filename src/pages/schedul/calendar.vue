@@ -58,12 +58,11 @@ export default {
                 this.setCheck(false)
                 this.setSmallLoading(false)
             }
-            let option = {
-                branch_id: this.selectedBranch,
-                weekday_id: setId 
-            }
-            await this.$store.dispatch('schedule/getBranchSchedule', option)
-            console.log(this.selectedBranch);
+            // let option = {
+            //     weekday_id: setId 
+            // }
+            await this.$store.dispatch('schedule/getScheduleByFilter', option)
+            console.log(setId);
         },
     },
 };

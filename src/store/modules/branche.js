@@ -29,7 +29,7 @@ const actions = {
       let response = await axios.get(`${Api}/api/manage/branch`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(response.data.data);  
+      // console.log(response.data.data);
       commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });
     } catch (error) {
@@ -55,48 +55,6 @@ const actions = {
       }
     }
   },
-  // there is no rooms why ?
-  async getRoom({ commit }, option) {
-    commit("setLoading", true, { root: true });
-    try {
-      let response = await axios.get(
-        `${Api}/api/manage/branch/${option}/rooms`,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
-      // console.log(response.data.total);
-      commit("setTotal", response.data.total);
-      commit("setLoading", false, { root: true });
-    } catch (error) {
-      console.error("error find", error);
-      if (error.request.status === 401) {
-        window.location.href = "/login";
-      }
-    }
-  },
-  /////////////////////////
-  async getRoomFloor({ commit }, { id, option }) {
-    // commit("setLoading", true, { root: true });
-    try {
-      let response = await axios.get(
-        `${Api}/api/manage/branch/${id}/rooms?page=${option}`,
-        {
-          headers: { Authorization: "Bearer " + token },
-        }
-      );
-      console.log(response.data.data);
-      commit("setRoom", response.data);
-      console.log(option);
-      // commit("setLoading", false, { root: true });
-    } catch (error) {
-      console.error("error find", error);
-      if (error.request.status === 401) {
-        window.location.href = "/login";
-      }
-    }
-  },
-  ////////////////////////
   async createBreanch({ commit }, option) {
     try {
       const response = await axios.post(`${Api}/api/manage/branch`, option, {
@@ -138,7 +96,7 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data.message === "Branch updated successfully") {
+      if (response.data.name === "branch_updated") {
         window.location.href = "/branches";
       }
     } catch (error) {

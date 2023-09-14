@@ -26,10 +26,10 @@
             </div>
             <div class="mb-3">
                 <label for="room_id " class="form-label">Choose Room </label>
-                <p style="margin-top: 10px;" v-if="room.links && room.links.length >= 2">
+                <!-- <p style="margin-top: 10px;" v-if="room.links && room.links.length >= 2">
                     Floors : {{ room.links[1].label }} - {{ room.links[room.links.length - 2].label }}
-                </p>
-                <div class="d-flex " style="gap: 10px;">
+                </p> -->
+                <!-- <div class="d-flex " style="gap: 10px;">
                     <p>Floor: </p>
                     <input type="text" class="form-control " style="width: 100px;" id="room_id" v-model="floor"
                         @keyup="getRoom" />
@@ -37,7 +37,7 @@
                         <option :value="item.id" v-for="item in room.data" :key="item">{{ item.name }}
                         </option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <button type="submit" class="btn btn-primary" @click="createSchedule">Create schedule</button>
         <!-- </form> -->
@@ -93,12 +93,12 @@ export default {
     computed: {
         ...mapState('group', ['groupData']),
         ...mapState('session', ['sessionData']),
-        ...mapState("branche", ['room'])
+        // ...mapState("branche", ['room'])
     },
     mounted() {
         this.getGroup()
         this.getSession()
-        this.getRoom()
+        // this.getRoom()
     },
     methods: {
         getGroup() {
@@ -107,13 +107,13 @@ export default {
         getSession() {
             this.$store.dispatch('session/getSession')
         },
-        getRoom() {
-            let more = {
-                id: this.id,
-                option: this.floor
-            }
-            this.$store.dispatch("branche/getRoomFloor", more)
-        },
+        // getRoom() {
+        //     let more = {
+        //         id: this.id,
+        //         option: this.floor
+        //     }
+        //     this.$store.dispatch("branche/getRoomFloor", more)
+        // },
         createSchedule() {
             let option = {
                 group_id: this.choosedGroupId,

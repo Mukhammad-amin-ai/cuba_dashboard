@@ -45,12 +45,9 @@ const actions = {
   // },
   async getScheduleById({ commit }, option) {
     try {
-      const responce = await axios.get(
-        `${Api}/api/manage/schedule/${option}`,
-        {
-          headers: { Authorization: "Bearer" + token },
-        }
-      );
+      const responce = await axios.get(`${Api}/api/manage/schedule/${option}`, {
+        headers: { Authorization: "Bearer" + token },
+      });
       // console.log(responce.data.data);
       commit("setSchedule", responce.data);
     } catch (error) {
@@ -61,27 +58,25 @@ const actions = {
     }
   },
   // logic was not completed
-  async getBranchSchedule({ commit }, option) {
-    commit("setSmallLoading", true, { root: true });
-    try {
-      let response = await axios.post(
-        `${Api}/api/branch/schedule`,
-        option,
-        { headers: { Authorization: "Bearer " + token } }
-      );
-      console.log(response.data);
-      commit("setSchedule", response.data);
-      if (response.data) {
-        commit("setCheck", (state.checker = true));
-        commit("setSmallLoading", false, { root: true });
-      }
-      if (response.data.data >= 0) {
-        commit("setCheck", !state.checker);
-      }
-    } catch (e) {
-      console.error("error with getingBranchSchedul", e);
-    }
-  },
+  // async getBranchSchedule({ commit }, option) {
+  //   commit("setSmallLoading", true, { root: true });
+  //   try {
+  //     let response = await axios.post(`${Api}/api/branch/schedule`, option, {
+  //       headers: { Authorization: "Bearer " + token },
+  //     });
+  //     console.log(response.data);
+  //     commit("setSchedule", response.data);
+  //     if (response.data) {
+  //       commit("setCheck", (state.checker = true));
+  //       commit("setSmallLoading", false, { root: true });
+  //     }
+  //     if (response.data.data >= 0) {
+  //       commit("setCheck", !state.checker);
+  //     }
+  //   } catch (e) {
+  //     console.error("error with getingBranchSchedul", e);
+  //   }
+  // },
   /////////////////////////
   getIdofDay({ commit }, info) {
     commit("setChoose", false, { root: true });
@@ -89,11 +84,9 @@ const actions = {
   },
   async createSchedul({ commit }, option) {
     try {
-      let response = await axios.post(
-        `${Api}/api/manage/schedule`,
-        option,
-        { headers: { Authorization: "Bearer" + token } }
-      );
+      let response = await axios.post(`${Api}/api/manage/schedule`, option, {
+        headers: { Authorization: "Bearer" + token },
+      });
       console.log(response.data);
       if (response.data.message === "Schedule created successfully") {
         window.location.href = "/branches";
@@ -105,7 +98,7 @@ const actions = {
   async editSchedul({ commit }, { id, option }) {
     try {
       let response = await axios.post(
-        `${Api}/api/branch/schedule/${ id }`,
+        `${Api}/api/branch/schedule/${id}`,
         option,
         { headers: { Authorization: "Bearer" + token } }
       );
@@ -119,10 +112,9 @@ const actions = {
   },
   async deleteSchedul({ commit }, id) {
     try {
-      let response = await axios.delete(
-        `${Api}/api/branch/schedule/${id}`,
-        { headers: { Authorization: "Bearer" + token } }
-      );
+      let response = await axios.delete(`${Api}/api/branch/schedule/${id}`, {
+        headers: { Authorization: "Bearer" + token },
+      });
       console.log(response.data);
       if (response.data.message === "Schedul deleted successfully") {
         window.location.href = "/branche";
@@ -133,6 +125,27 @@ const actions = {
   },
   change({ commit }) {
     commit("setHandler", !state.handler);
+  },
+  async getScheduleByFilter({ commit }, option) {
+    commit("setSmallLoading", true, { root: true });
+    try {
+      let response = await axios.post(
+        `${Api}/api/manage/schedule/by-filter`,
+        option,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+      commit("setSchedule", response.data.data);
+      if (response.data) {
+        commit("setCheck", (state.checker = true));
+        commit("setSmallLoading", false, { root: true });
+      }
+      if (response.data.data >= 0) {
+        commit("setCheck", !state.checker);
+      }
+    } catch (e) {
+      console.error("error in geting schedule ", e);
+    }
   },
 };
 export default {

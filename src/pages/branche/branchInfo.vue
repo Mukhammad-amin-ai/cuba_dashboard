@@ -11,7 +11,7 @@
                             <ul class="blog-social">
                                 <li>10 August 2023</li>
                                 <li><i class="icofont icofont-user"></i>Muhammadamin <span>Ahmadov </span></li>
-                                <li><i class="icofont icofont-home"></i> Rooms:{{ total }}</li>
+                                <li><i class="icofont icofont-home"></i> </li>
                             </ul>
                             <h4>
                                 This branch located at the {{ branchData.name }} region
@@ -97,23 +97,25 @@
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
+                        <!--  -->
                         <tbody>
-                            <tr v-for='item in scheduleData.data' :key="item" v-if="this.$store.state.schedule.checker">
+                            <tr v-for='item in scheduleData' :key="item" v-if="this.$store.state.schedule.checker">
                                 <td>{{ item.group.name }}</td>
-                                <td>{{ item.session.duration }}</td>
+                                <td>{{ item.session.start }}{{ item.session.end }}</td>
                                 <td>{{ item.room.name }}</td>
                                 <td>{{ item.weekday.name }}</td>
-                                <td v-if="this.$store.state.role.update">
+                                <td>
                                     <button type="button" class="btn btn-primary" @click="change">
                                         <i class="icofont icofont-pencil-alt-5"></i>
                                     </button>
                                 </td>
-                                <td v-if="this.$store.state.role.deletee">
+                                <td>
                                     <button type="button" class="btn btn-danger" @click="deleteSchedule(item.id)">
                                         <i class="icofont icofont-ui-delete"></i>
                                     </button>
                                 </td>
                             </tr>
+                            <!-- -->
                             <tr v-else>
                                 <td>No data</td>
                                 <td></td>
@@ -143,6 +145,7 @@ import smallSpinner from "@/components/ui/smallSpinner.vue"
 import choose from "@/components/ui/choose.vue"
 import createSchedulVue from "../schedul/createSchedul.vue"
 import { mapState } from "vuex"
+
 export default {
     components: {
         spiner,
@@ -162,13 +165,11 @@ export default {
     },
     computed: {
         ...mapState('branche', ['branchData']),
-        ...mapState('branche', ['total']),
+        // ...mapState('branche', ['total']),
         ...mapState('schedule', ['scheduleData'])
     },
     mounted() {
         this.getbranch()
-        this.getRoom()
-        // this.roleChecker()
     },
     watch: {
         branchData: {
@@ -188,9 +189,6 @@ export default {
         getbranch() {
             this.$store.dispatch('branche/getBranche', this.id)
         },
-        getRoom() {
-            this.$store.dispatch('branche/getRoom', this.id)
-        },
         changer() {
             this.$store.dispatch('branche/handler')
         },
@@ -202,7 +200,8 @@ export default {
             this.$store.dispatch('branche/editBranch', { id: this.id, option: option })
         },
         change() {
-            this.$store.dispatch('schedule/change')
+            // console.log(this.scheduleData[0].group.name);
+            // this.$store.dispatch('schedule/change')
         },
         deleteSchedule(id) {
             this.$store.dispatch('schedule/deleteSchedul', id)

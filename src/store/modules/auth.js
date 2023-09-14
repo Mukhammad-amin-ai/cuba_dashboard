@@ -134,6 +134,15 @@ const actions = {
       window.location.href = "/login";
     }
   },
+  async getBranch({commit}){
+    try{
+      let response = ''
+    }catch(e){
+      console.error('error in geting branch',e);
+    }
+  }
+
+
 };
 export default {
   state,

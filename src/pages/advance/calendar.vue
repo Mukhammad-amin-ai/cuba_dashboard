@@ -56,10 +56,10 @@ export default {
                 this.setSmallLoading(false)
             }
             let option = {
-                branch_id: this.id,
                 weekday_id: setId 
             }
-            await this.$store.dispatch('schedule/getBranchSchedule', option)
+            // console.log(setId);
+            await this.$store.dispatch('schedule/getScheduleByFilter', option)
         },
     },
 };
