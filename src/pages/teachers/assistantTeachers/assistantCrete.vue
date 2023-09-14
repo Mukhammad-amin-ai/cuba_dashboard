@@ -24,6 +24,13 @@
                         <input type="tel" class="form-control" id="contact_no" placeholder="Enter contact number" required
                             v-model="contact_no">
                     </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" v-model="status">
+                            <option :value=true>Active</option>
+                            <option :value=false>Inactive</option>
+                        </select>
+                    </div>
                     <div class="container-fluid d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary" @click.prevent="creatingTeacher">Create
                             Teacher</button>
@@ -37,6 +44,7 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -44,18 +52,38 @@ export default {
             lastname: "",
             email: "",
             contact_no: "",
+            branches: [],
+            status:""
         }
     },
+    computed: {
+        ...mapState("branche", ['branchData'])
+    },
+    mounted() {
+        this.getCurrentBranch()
+    },
     methods: {
+        getCurrentBranch() {
+            this.$store.dispatch("branche/getBranches")
+        },
         creatingTeacher() {
+            this.getBranchAsArray()
             let option = {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
                 contact_no: this.contact_no,
+                branches: this.branches,
+                status:this.status
             }
             this.$store.dispatch('assistentTeacher/createAssistanTeacher', option)
-        }
+        },
+        getBranchAsArray() {
+            if (this.branchData) {
+                this.branches = [];
+                this.branches.push(...this.branchData.map(branch => branch.id));
+            };
+        },
     }
 
 }

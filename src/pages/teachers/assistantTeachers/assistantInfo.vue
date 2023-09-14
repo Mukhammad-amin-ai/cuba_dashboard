@@ -1,6 +1,6 @@
 <template >
     <Breadcrumbs title="Teachers Page" main="Teachers Page" />
-    <spiner/>
+    <spiner />
     <div class="container-fluid">
         <div>
             <div class="row product-page-main p-0" v-if="isChanger">
@@ -66,15 +66,15 @@
                             v-model="contact_no">
                     </div>
                     <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
+                        <label for="status" class="form-label">Assistant ?</label>
                         <select class="form-select" id="status" v-model="is_assistant">
                             <option :value=true>Active</option>
                             <option :value=false>Inactive</option>
                         </select>
                     </div>
-                    <div class="containerBtns-fluid d-flex " >
-                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher" >Editing Teacher</button>
-                        <button type="button" class="btn btn-danger" @click="isChange" >Go From Edit</button>
+                    <div class="containerBtns-fluid d-flex ">
+                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher">Editing Teacher</button>
+                        <button type="button" class="btn btn-danger" @click="isChange">Go From Edit</button>
                     </div>
                 </form>
             </div>
@@ -85,7 +85,7 @@
 import { mapState } from 'vuex';
 import spiner from '@/components/ui/spiner.vue';
 export default {
-    components:{
+    components: {
         spiner
     },
     data() {
@@ -96,29 +96,35 @@ export default {
             lastname: "",
             email: "",
             contact_no: "",
-            is_assistant: Boolean
+            is_assistant: Boolean,
+            branches: ""
         }
     },
+    computed: {
+        ...mapState('assistentTeacher', ['assistants']),
+        ...mapState("branche", ['branchData'])
+    },
     watch: {
-        teachers: {
+        assistants: {
             immediate: true,
-            handler(newTeachers) {
-                if (newTeachers) {
-                    this.firstname = newTeachers.firstname;
-                    this.lastname = newTeachers.lastname;
-                    this.email = newTeachers.email;
-                    this.contact_no = newTeachers.contact_no;
+            handler(newassistants) {
+                if (newassistants) {
+                    this.firstname = newassistants.firstname;
+                    this.lastname = newassistants.lastname;
+                    this.email = newassistants.email;
+                    this.contact_no = newassistants.contact_no;
                 }
             }
         },
     },
-    computed: {
-        ...mapState('assistentTeacher', ['assistants'])
-    },
     mounted() {
         this.getTeacherByid()
+        this.getCurrentBranch()
     },
     methods: {
+        getCurrentBranch() {
+            this.$store.dispatch("branche/getBranches")
+        },
         getTeacherByid() {
             this.$store.dispatch('assistentTeacher/getAssistTeachersById', this.id,)
         },
@@ -126,19 +132,27 @@ export default {
             this.isChanger = !this.isChanger
         },
         editTeacher() {
-            const option = {
+            this.getBranchAsArray()
+            let option = {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
                 contact_no: this.contact_no,
-                is_assistant: this.is_assistant
+                is_assistant: this.is_assistant,
+                branches: this.branches
             }
-            this.$store.dispatch('assistentTeacher/editTeacher',{id:this.id,option:option})
+            this.$store.dispatch('assistentTeacher/editTeacher', { id: this.id, option: option })
         },
-        deleteTeacher(){
-            this.$store.dispatch("assistentTeacher/deleteTeacher",this.id)
+        getBranchAsArray() {
+            if (this.branchData) {
+                this.branches = [];
+                this.branches.push(...this.branchData.map(branch => branch.id));
+            };
         },
-      
+        deleteTeacher() {
+            this.$store.dispatch("assistentTeacher/deleteTeacher", this.id)
+        },
+
     }
 
 

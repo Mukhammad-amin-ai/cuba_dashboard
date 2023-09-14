@@ -29,7 +29,7 @@ const actions = {
       let response = await axios.get(`${Api}/api/manage/branch`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(response.data.data);
+      // console.log(response.data.data);  
       commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });
     } catch (error) {

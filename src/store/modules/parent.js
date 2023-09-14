@@ -45,7 +45,7 @@ const actions = {
       let responce = await axios.get(`${Api}/api/manage/parent/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(responce.data.data);
+      console.log(responce.data);
       if (responce.data.data) {
         commit("setLoading", false, { root: true });
         commit("setPrentData", responce.data.data);

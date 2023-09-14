@@ -4,7 +4,7 @@
         <spiner />
         <div class="container-fluid ">
             <div class="row">
-                <div class="col-xl-6 set-col-12 box-col-12 " style="padding-bottom: 30px;">
+                <!-- <div class="col-xl-6 set-col-12 box-col-12 " style="padding-bottom: 30px;">
                     <RouterLink v-if="hasBranchData" :to="{ path: 'branchInfo/' + branchData[0].id }">
                         <div class="card  " style="height: 100%; ">
                             <div class="blog-box blog-shadow" style="height: 100%;">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     </RouterLink>
-                </div>
+                </div> -->
                 <div class="col-md-6 col-xl-3 box-col-6 " v-for='item in branchData' :key="item">
                     <RouterLink :to="{ path: 'branchInfo/' + item.id }">
 

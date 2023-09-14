@@ -71,15 +71,15 @@
                             <label for="contact_no" class="form-label">Contact Number</label>
                             <input type="tel" class="form-control" id="contact_no" required v-model="contact_no">
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
                             <select class="form-select" id="status" v-model="status">
                                 <option :value="true">Active</option>
                                 <option :value="false">Inactive</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="d-flex" style="justify-content: space-between;">
-                            <button type="submit" class="btn btn-primary" @click="editStudent">Update Student</button>
+                            <button type="submit" class="btn btn-primary" @click="editStudent">Update Parent</button>
                             <button type="button" class="btn btn-danger" @click="chenger">Back to profile </button>
                         </div>
                     </form>
@@ -105,7 +105,8 @@ export default {
             password: "",
             password_confirmation: '',
             contact_no: "",
-            status: Boolean
+            role_id: '',
+            students:[]
         }
     },
     computed: {
@@ -119,9 +120,11 @@ export default {
                     this.firstname = newparents.firstname,
                         this.lastname = newparents.lastname,
                         this.email = newparents.email,
-                        this.password = newparents.password
-                    this.password_confirmation = newparents.password_confirmation,
+                        this.password = newparents.password,
+                        this.password_confirmation = newparents.password_confirmation,
                         this.contact_no = newparents.contact_no
+                        this.role_id = newparents.role_id,
+                        this.students = newparents.students
                 }
             }
         }
@@ -141,7 +144,8 @@ export default {
                 password: this.password,
                 password_confirmation: this.password_confirmation,
                 contact_no: this.contact_no,
-                status: this.status
+                role_id: this.role_id,
+                students : this.students
             }
             this.$store.dispatch('parent/updateParent', { id: this.id, option: option })
         },

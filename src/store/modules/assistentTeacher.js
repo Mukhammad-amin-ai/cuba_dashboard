@@ -65,8 +65,8 @@ const actions = {
           headers: { Authorization: "Bearer" + token },
         }
       );
-      console.log(responce.data);
-      if (responce.data.name === "assistant_teacher_created ") {
+      // console.log(responce.data);
+      if (responce.data.name === "assistant_teacher_created" ) {
         window.location.href = "/assistant-teacher";
       }
     } catch (e) {

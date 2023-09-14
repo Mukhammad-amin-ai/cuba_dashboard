@@ -98,15 +98,6 @@
                             <label for="contact_no" class="form-label">Contact Number</label>
                             <input type="tel" class="form-control" id="contact_no" required v-model="contact_no">
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required v-model="password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password Confirm</label>
-                            <input type="password" class="form-control" id="password" required
-                                v-model="password_confirmation">
-                        </div> -->
                         <div class="mb-3">
                             <label for="status" class="form-label">Role </label>
                             <select class="form-select" id="status" v-model="role_id">
@@ -147,7 +138,6 @@ export default {
             contact_no: "",
             email: "",
             role_id: "",
-            // branch_id: "",
             status: "",
             branches: []
         }
@@ -161,7 +151,6 @@ export default {
         this.getUserById()
         this.getAllRole()
         this.getCurrentBranch()
-        // this.getBranchAsArray()
     },
     watch: {
         userData: {
@@ -193,8 +182,6 @@ export default {
         },
         updateUser() {
             this.getBranchAsArray()
-            // console.log(this.branches);
-
             let option = {
                 firstname: this.firstname,
                 lastname: this.lastname,
