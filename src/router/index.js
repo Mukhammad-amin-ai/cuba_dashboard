@@ -206,7 +206,7 @@ const routes = [
         },
       },
       {
-        path: "assistant",
+        path: "assistant-teacher",
         component: assistant,
         meta: {
           requiredAuth: true,
@@ -214,7 +214,7 @@ const routes = [
         },
       },
       {
-        path: "assistant/create",
+        path: "assistant-teacher/create",
         component: assistantCrete,
         meta: {
           requiredAuth: true,
@@ -222,7 +222,7 @@ const routes = [
         },
       },
       {
-        path: "assistant/:id",
+        path: "assistant-teacher/:id",
         component: assistantInfo,
         meta: {
           requiredAuth: true,

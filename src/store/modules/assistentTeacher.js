@@ -19,7 +19,7 @@ const actions = {
           Authorization: "Bearer " + token,
         },
       });
-      console.log(response.data.data);
+      // console.log(response.data.data);
       if (response.data) {
         commit("setLoading", false, { root: true });
         commit("setAssistants", response.data.data);
@@ -42,9 +42,9 @@ const actions = {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data) {
-        commit("setTeacher", response.data.data);
+        commit("setAssistants", response.data.data);
       }
     } catch (e) {
       console.error("teacher error", e);
@@ -63,8 +63,8 @@ const actions = {
         }
       );
       console.log(responce.data);
-      if (responce.data.name === "assistant_created ") {
-        window.location.href = "/assistant";
+      if (responce.data.name === "assistant_teacher_created ") {
+        window.location.href = "/assistant-teacher";
       }
     } catch (e) {
       console.error("problem with creating treacher", e);
@@ -80,8 +80,8 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data.name === "assistant_updated") {
-        window.location.href = "/assistant";
+      if (response.data.name === "assistant_teacher_updated") {
+        window.location.href = "/assistant-teacher";
       }
     } catch (error) {
       console.error("error find", error);
@@ -97,8 +97,8 @@ const actions = {
           }
         );
         console.log(response.data);
-        if (response.data.name === "assistant_deleted") {
-          window.location.href = "/assistant";
+        if (response.data.name === "assistant_teacher_deleted") {
+          window.location.href = "/assistant-teacher";
         }
       } catch (e) {
         console.error("error of deleting teacher", e);

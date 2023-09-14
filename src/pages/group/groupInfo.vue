@@ -270,9 +270,9 @@ export default {
         getGroupStudents() {
             this.$store.dispatch('group/getGroupStudents', this.id)
         },
-        getAssistants() {
-            this.$store.dispatch('teacher/getAssistants')
-        },
+        // getAssistants() {
+        //     this.$store.dispatch('teacher/getAssistants')
+        // },
         getGroupById() {
             this.$store.dispatch('group/getGroupDataWithId', this.id)
         },

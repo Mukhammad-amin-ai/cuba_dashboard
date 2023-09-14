@@ -91,7 +91,7 @@
       </li>
       <li class="sidebar-list" v-if="permission[10].name === 'assistant_teachers' && permission[10].value > 0">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/teachers">
+        <router-link class="sidebar-link sidebar-title hover" to="/assistant-teacher">
           <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> assistant teachers</span>
         </router-link>
