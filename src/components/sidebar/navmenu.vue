@@ -77,7 +77,7 @@
       </li>
       <li class="sidebar-list" v-if="permission[8].name === 'inactive_users' && permission[8].value > 0">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/teachers">
+        <router-link class="sidebar-link sidebar-title hover" to="/inactive-user">
           <i class="icofont icofont-teacher"></i>
           <span class="lan-3"> inactive users</span>
         </router-link>

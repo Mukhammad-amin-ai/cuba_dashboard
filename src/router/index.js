@@ -37,7 +37,9 @@ import userInfo from '@/pages/user/userInfo.vue'
 import assistant from '@/pages/teachers/assistantTeachers/assistant.vue'
 import assistantCrete from '@/pages/teachers/assistantTeachers/assistantCrete'
 import assistantInfo from '@/pages/teachers/assistantTeachers/assistantInfo.vue'
-
+import inactiveUser from "@/pages/user/inactiveUser/inactiveUser.vue";
+import incactiveUserInfoVue from "@/pages/user/inactiveUser/incactiveUserInfo.vue";
+import inactiveUserCreateVue from "@/pages/user/inactiveUser/inactiveUserCreate.vue";
 
 
 
@@ -304,6 +306,30 @@ const routes = [
       {
         path: "user/:id",
         component: userInfo,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+        },
+      },
+      {
+        path: "inactive-user",
+        component: inactiveUser,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+        },
+      },
+      {
+        path: "inactive-user/create",
+        component: inactiveUserCreateVue,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+        },
+      },
+      {
+        path: "inactive-user/:id",
+        component: incactiveUserInfoVue,
         meta: {
           requiredAuth: true,
           value: permObj && permObj.length > 0 ? permObj[6].value : null,
