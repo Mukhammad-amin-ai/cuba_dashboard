@@ -88,15 +88,30 @@ const actions = {
       console.error("problem with getting user profile ", e);
     }
   },
+  async getBranch({ commit }, token1) {
+    try {
+      let response = await axios.get(`${Api}/api/auth/branches`, {
+        headers: { Authorization: "Bearer " + token1 },
+      });
+      console.log(response.data.data);
+      localStorage.setItem("branch_token", JSON.stringify(response.data.data));
+    } catch (e) {
+      console.error("error in geting branch", e);
+    }
+  },
   async login({ commit, dispatch }, option) {
     try {
       const response = await axios.post(`${Api}/api/auth/login`, option);
       // console.log(response.data.data);
       let token = response.data.data.token;
+      await dispatch("getBranch", response.data.data.token);
       await dispatch("getMyProfile", response.data.data.token);
       localStorage.setItem("token", token);
       if (response.data.data.permissions) {
-        localStorage.setItem("permissions", JSON.stringify(response.data.data.permissions));
+        localStorage.setItem(
+          "permissions",
+          JSON.stringify(response.data.data.permissions)
+        );
         localStorage.setItem("name", JSON.stringify(response.data.data.name));
       }
       if (token) {
@@ -129,20 +144,12 @@ const actions = {
     localStorage.removeItem("permissions");
     localStorage.removeItem("profile");
     localStorage.removeItem("name");
-
+    localStorage.removeItem("branch_token");
     if (token) {
       window.location.href = "/login";
     }
   },
-  async getBranch({commit}){
-    try{
-      let response = ''
-    }catch(e){
-      console.error('error in geting branch',e);
-    }
-  }
-
-
+ 
 };
 export default {
   state,

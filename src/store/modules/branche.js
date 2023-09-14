@@ -1,7 +1,7 @@
 import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
-
+let branchToken = localStorage.getItem("from_token");
 let state = {
   branchData: [],
   handler: true,
@@ -25,10 +25,12 @@ const mutations = {
 const actions = {
   async getBranches({ commit }) {
     commit("setLoading", true, { root: true });
+    let headers = {
+      Authorization: "Bearer " + token,
+      "Branch-Id": branchToken,
+    };
     try {
-      let response = await axios.get(`${Api}/api/manage/branch`, {
-        headers: { Authorization: "Bearer " + token },
-      });
+      let response = await axios.get(`${Api}/api/manage/branch`, { headers });
       // console.log(response.data.data);
       commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });

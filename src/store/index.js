@@ -27,6 +27,7 @@ export default createStore({
     loading: false,
     smallLoading: false,
     choose: true,
+    branchToken:''
   },
   getters: {
     langIcon: (state) => {
@@ -55,6 +56,9 @@ export default createStore({
     setChoose(state, payload) {
       state.choose = payload;
     },
+    setBranchToken(state,payload){
+      state.branchToken = payload
+    }
   },
   actions: {
     setLang({ commit }, payload) {

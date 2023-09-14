@@ -1,6 +1,7 @@
 import axios from "axios";
 import Api from "./Base_Url";
 let token = localStorage.getItem("token");
+let branchToken = localStorage.getItem("from_token");
 
 const state = {
   groupData: [],
@@ -24,9 +25,13 @@ const actions = {
   },
   async getGroupData({ commit }) {
     commit("setLoading", true, { root: true });
+    let headers = {
+      Authorization: "Bearer " + token,
+      "Branch-Id": branchToken,
+    };
     try {
       let responce = await axios.get(`${Api}/api/manage/group`, {
-        headers: { Authorization: "Bearer" + token },
+        headers
       });
       // console.log(responce.data);
       commit("setLoading", false, { root: true });

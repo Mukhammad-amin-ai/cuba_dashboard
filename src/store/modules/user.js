@@ -1,5 +1,6 @@
 import axios from "axios";
 import Api from "./Base_Url";
+let branchToken = localStorage.getItem("from_token");
 
 let token = localStorage.getItem("token");
 
@@ -18,9 +19,13 @@ const mutations = {
 const actions = {
   async getUsersData({ commit }) {
     commit("setLoading", true, { root: true });
+    let headers = {
+      Authorization: "Bearer " + token,
+      "Branch-Id": branchToken,
+    };
     try {
       let responce = await axios.get(`${Api}/api/manage/user`, {
-        headers: { Authorization: "Bearer " + token },
+        headers,
       });
       // console.log(responce.data.data);
       if (responce.data.data) {

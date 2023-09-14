@@ -1,6 +1,7 @@
 import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
+let branchToken = localStorage.getItem("from_token");
 
 const state = {
   inactiveUser: [],
@@ -13,9 +14,13 @@ const mutations = {
 const actions = {
   async getInnactiveUsers({ commit }) {
     commit("setLoading", true, { root: true });
+    let headers = {
+      Authorization: "Bearer " + token,
+      "Branch-Id": branchToken,
+    };
     try {
       let response = await axios.get(`${Api}/api/manage/user/inactive`, {
-        headers: { Authorization: "Bearer " + token },
+        headers
       });
       // console.log(response.data);
       if (response.data.data) {

@@ -1,16 +1,18 @@
 <template >
     <!-- <div class="btn"> -->
-        <li class="profile-nav onhover-dropdown pe-0 py-0">
-            <div class="media profile-media">
-                <div class="media-body">
-                    <p class="mb-0 font-roboto">
-                        Branch <i class="middle fa fa-angle-down"></i>
-                    </p>
-                </div>
+    <li class="profile-nav onhover-dropdown pe-0 py-0">
+        <div class="media profile-media">
+            <div class="media-body">
+                <p class="mb-0 font-roboto">
+                    Branch <i class="middle fa fa-angle-down"></i>
+                </p>
             </div>
-            <ul class="profile-dropdown onhover-show-div">
-                loading...
-                <!-- <router-link to="/profile">
+        </div>
+        <ul class="profile-dropdown onhover-show-div">
+            <!-- loading... -->
+            <li v-for="branch2 in branchlar" :key="branch2" @click="sendBranch(branch2.branch)">{{ branch2.branch_name }}
+            </li>
+            <!-- <router-link to="/profile">
                     <li>
                         <vue-feather type="user"></vue-feather><span>Account </span>
                     </li>
@@ -29,13 +31,27 @@
                         <vue-feather type="log-in"></vue-feather><span>Log out</span>
                     </button>
                 </li> -->
-            </ul>
-        </li>
+        </ul>
+    </li>
     <!-- </div> -->
 </template>
 <script>
-export default {
 
+let branches = JSON.parse(localStorage.getItem('branch_token',))
+
+// console.log(branches);
+export default {
+    data() {
+        return {
+            branchlar: branches
+        }
+    },
+    methods: {
+        sendBranch(option) {
+            localStorage.setItem('from_token', option)
+            window.location.reload()
+        }
+    }
 }
 </script>
 <style scoped>

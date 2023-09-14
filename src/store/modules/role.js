@@ -2,6 +2,7 @@ import axios from "axios";
 import Api from "./Base_Url";
 
 let token = localStorage.getItem("token");
+let branchToken = localStorage.getItem("from_token");
 
 let state = {
   roleArray: [],
@@ -39,9 +40,13 @@ const mutations = {
 const actions = {
   async getRole({ commit }) {
     commit("setLoading", true, { root: true });
+    let headers = {
+      Authorization: "Bearer " + token,
+      "Branch-Id": branchToken,
+    };
     try {
       let responce = await axios.get(`${Api}/api/manage/role`, {
-        headers: { Authorization: "Bearer" + token },
+        headers
       });
       if (responce.data.data) {
         commit("setLoading", false, { root: true });

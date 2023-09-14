@@ -2,6 +2,7 @@ import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
 let nameObj = JSON.parse(localStorage.getItem("name"));
+let branchToken = localStorage.getItem("from_token");
 
 const state = {
   students: [],
@@ -29,10 +30,14 @@ const mutations = {
 };
 const actions = {
   async getStudent({ commit }) {
+    let headers = {
+      Authorization: "Bearer " + token,
+      "Branch-Id": branchToken,
+    };
     commit("setLoading", true, { root: true });
     try {
       const responce = await axios.get(`${Api}/api/manage/student`, {
-        headers: { Authorization: "Bearer " + token },
+        headers,
       });
       // console.log(responce.data.data);
       commit("setLoading", false, { root: true });
@@ -53,7 +58,7 @@ const actions = {
       const responce = await axios.get(`${Api}/api/manage/student/${option}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(responce.data.data);
+      // console.log(responce.data.data);
       if (responce.data.data) {
         commit("setLoading", false, { root: true });
         commit("setStudent", responce.data.data);
