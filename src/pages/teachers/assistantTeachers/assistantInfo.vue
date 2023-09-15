@@ -32,13 +32,15 @@
                                 Email: {{ assistants.email }}
                             </p>
                             <hr />
-                            Contact number: {{ assistants.contact_no }}
+                            Contact number: {{ assistants.contact }}
                             <hr />
                         </div>
                     </div>
-                    <div class="d-flex  ">
-                        <button type="button" class="btn btn-success" @click="isChange">Go To Edit</button>
-                        <button type="button" class="btn btn-danger" @click="deleteTeacher">Delete</button>
+                    <div class="d-flex  justify-content-between ">
+                        <button type="button" class="btn btn-success" @click="isChange" v-if="this.$store.state.update">Go
+                            To Edit</button>
+                        <button type="button" class="btn btn-danger" @click="deleteTeacher"
+                            v-if="this.$store.state.delete">Delete</button>
                     </div>
                 </div>
             </div>
@@ -120,6 +122,7 @@ export default {
     mounted() {
         this.getTeacherByid()
         this.getCurrentBranch()
+        this.roleCheck()
     },
     methods: {
         getCurrentBranch() {
@@ -152,7 +155,9 @@ export default {
         deleteTeacher() {
             this.$store.dispatch("assistentTeacher/deleteTeacher", this.id)
         },
-
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '10')
+        }
     }
 
 

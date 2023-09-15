@@ -75,7 +75,7 @@ export default {
             this.$store.dispatch('parent/getParentsData')
         },
         roleCheck() {
-            this.$store.dispatch('permittionCheck', '17')
+            this.$store.dispatch('permittionCheck', '15')
         }
     }
 }

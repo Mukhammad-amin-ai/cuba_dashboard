@@ -1,6 +1,6 @@
 <template >
     <div class="container-fluid p-10">
-        <spiner/>
+        <spiner />
         <div class="user-profile">
             <div class="row">
                 <div class="col-sm-12" v-if="this.$store.state.user.editHandler">
@@ -15,7 +15,7 @@
                                 <img id="profile-tour" alt="" src="../../../assets/images/avtar/7.jpg"
                                     data-intro="This is Profile image">
                             </div>
-                            <div class="icon-wrapper" @click="changeToUpdate">
+                            <div class="icon-wrapper" @click="changeToUpdate" v-if="this.$store.state.update">
                                 <i id="update-profile-tour" class="icofont icofont-pencil-alt-5"
                                     data-intro="Change Profile image here"></i>
                             </div>
@@ -36,8 +36,8 @@
                                         <div class="col-md-6">
                                             <div class="ttl-info text-start ttl-sm-mb-0">
                                                 <h6><i class="fa fa-book"></i> Contact number</h6>
-                                                <span v-if="inactiveUser && inactiveUser.contact_no">
-                                                    {{ inactiveUser.contact_no }}
+                                                <span v-if="inactiveUser && inactiveUser.contact">
+                                                    {{ inactiveUser.contact }}
                                                 </span>
                                                 <span v-else>Loading...</span>
                                             </div>
@@ -47,7 +47,8 @@
                                 <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
                                     <div class="user-designation">
                                         <div class="title">
-                                            <a target="_blank" href="">{{ inactiveUser.firstname }} {{ inactiveUser.lastname }}</a>
+                                            <a target="_blank" href="">{{ inactiveUser.firstname }} {{ inactiveUser.lastname
+                                            }}</a>
                                         </div>
                                         <div class="desc mt-2">Innactive</div>
                                     </div>
@@ -128,7 +129,8 @@
                         </div>
                     </form>
                 </div>
-                <button type="button" class="btn btn-danger" @click="deleteUser">Delete User</button>
+                <button type="button" class="btn btn-danger" @click="deleteUser" v-if="this.$store.state.delete">Delete
+                    User</button>
             </div>
         </div>
     </div>
@@ -137,7 +139,7 @@
 import spiner from '@/components/ui/spiner.vue'
 import { mapState } from 'vuex';
 export default {
-    components:{
+    components: {
         spiner
     },
     data() {
@@ -153,7 +155,7 @@ export default {
         }
     },
     computed: {
-        ...mapState("inactiveUser",['inactiveUser']),
+        ...mapState("inactiveUser", ['inactiveUser']),
         ...mapState('role', ['roleArray']),
         ...mapState("branche", ['branchData'])
     },
@@ -161,6 +163,7 @@ export default {
         this.getUserById()
         this.getAllRole()
         this.getCurrentBranch()
+        this.roleCheck()
     },
     watch: {
         userData: {
@@ -212,6 +215,9 @@ export default {
                 this.branches = [];
                 this.branches.push(...this.branchData.map(branch => branch.id));
             };
+        },
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '8')
         }
     }
 }

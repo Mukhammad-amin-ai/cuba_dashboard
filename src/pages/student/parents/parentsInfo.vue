@@ -32,13 +32,15 @@
                                     Email: {{ parents.email }}
                                 </p>
                                 <hr />
-                                Contact number: {{ parents.contact_no }}
+                                Contact number: {{ parents.contact }}
                                 <hr />
                             </div>
                         </div>
-                        <div class="d-flex  ">
-                            <button type="button" class="btn btn-success" @click="chenger">Go To Edit</button>
-                            <button type="button" class="btn btn-danger" @click="deleteStudent">Delete</button>
+                        <div class="d-flex justify-content-between ">
+                            <button type="button" class="btn btn-success" @click="chenger"
+                                v-if="this.$store.state.update">Go To Edit</button>
+                            <button type="button" class="btn btn-danger" @click="deleteStudent"
+                                v-if="this.$store.state.delete">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -69,18 +71,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="contact_no" class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" id="contact_no" required v-model="contact_no">
+                            <input type="tel" class="form-control" id="contact_no" required v-model="contact">
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select" id="status" v-model="status">
-                                <option :value="true">Active</option>
-                                <option :value="false">Inactive</option>
-                            </select>
-                        </div> -->
-                        <div class="d-flex" style="justify-content: space-between;">
-                            <button type="submit" class="btn btn-primary" @click="editStudent">Update Parent</button>
-                            <button type="button" class="btn btn-danger" @click="chenger">Back to profile </button>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary" @click="editStudent"
+                                v-if="this.$store.state.update">Update Parent</button>
+                            <button type="button" class="btn btn-danger" @click="chenger"
+                                v-if="this.$store.state.update">Back to profile </button>
                         </div>
                     </form>
                 </div>
@@ -104,9 +101,9 @@ export default {
             email: "",
             password: "",
             password_confirmation: '',
-            contact_no: "",
+            contact: "",
             role_id: '',
-            students:[]
+            students: []
         }
     },
     computed: {
@@ -122,8 +119,8 @@ export default {
                         this.email = newparents.email,
                         this.password = newparents.password,
                         this.password_confirmation = newparents.password_confirmation,
-                        this.contact_no = newparents.contact_no
-                        this.role_id = newparents.role_id,
+                        this.contact = newparents.contact
+                    this.role_id = newparents.role_id,
                         this.students = newparents.students
                 }
             }
@@ -131,6 +128,7 @@ export default {
     },
     mounted() {
         this.getById()
+        this.roleCheck()
     },
     methods: {
         getById() {
@@ -143,9 +141,9 @@ export default {
                 email: this.email,
                 password: this.password,
                 password_confirmation: this.password_confirmation,
-                contact_no: this.contact_no,
+                contact: this.contact,
                 role_id: this.role_id,
-                students : this.students
+                students: this.students
             }
             this.$store.dispatch('parent/updateParent', { id: this.id, option: option })
         },
@@ -155,6 +153,9 @@ export default {
         chenger() {
             this.$store.dispatch('group/editHandler')
         },
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '15')
+        }
     }
 }
 </script>

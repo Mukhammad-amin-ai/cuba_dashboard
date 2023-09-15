@@ -1,7 +1,7 @@
 <template >
     <Breadcrumbs title="Teachers Page" main="Course Page" />
-    <spiner/>
-    <div class="container-fluid">
+    <spiner />
+    <div class="container-fluid p-20">
         <div>
             <div class="row product-page-main p-0" v-if="handler">
                 <div class="col-xxl-4 col-md-6 box-col-12">
@@ -70,21 +70,19 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="card-fluid d-flex justify-content-between">
-                <button type="button" class="btn btn-success" @click="display">Edit</button>
-                <button type="button" class="btn btn-danger" @click="deleteId">Delete</button>
+                <button type="button" class="btn btn-success" @click="display" v-if="this.$store.state.update">Edit</button>
+                <button type="button" class="btn btn-danger" @click="deleteId"
+                    v-if="this.$store.state.delete">Delete</button>
             </div>
         </div>
     </div>
 </template>
 <script>
 import { mapState } from 'vuex';
-import spiner  from '@/components/ui/spiner.vue'
+import spiner from '@/components/ui/spiner.vue'
 export default {
-    components:{
+    components: {
         spiner
     },
     data() {
@@ -111,7 +109,7 @@ export default {
     },
     mounted() {
         this.getCourseById()
-        // this.roleChecker()
+        this.roleCheck()
     },
     methods: {
         getCourseById() {
@@ -130,6 +128,9 @@ export default {
         display() {
             this.handler = !this.handler
         },
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '11')
+        }
 
 
     }

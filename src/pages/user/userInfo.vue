@@ -15,7 +15,7 @@
                                 <img id="profile-tour" alt="" src="../../assets/images/avtar/7.jpg"
                                     data-intro="This is Profile image">
                             </div>
-                            <div class="icon-wrapper" @click="changeToUpdate">
+                            <div class="icon-wrapper" @click="changeToUpdate" v-if="this.$store.state.update">
                                 <i id="update-profile-tour" class="icofont icofont-pencil-alt-5"
                                     data-intro="Change Profile image here"></i>
                             </div>
@@ -36,8 +36,8 @@
                                         <div class="col-md-6">
                                             <div class="ttl-info text-start ttl-sm-mb-0">
                                                 <h6><i class="fa fa-book"></i> Contact number</h6>
-                                                <span v-if="userData && userData.contact_no">
-                                                    {{ userData.contact_no }}
+                                                <span v-if="userData && userData.contact">
+                                                    {{ userData.contact }}
                                                 </span>
                                                 <span v-else>Loading...</span>
                                             </div>
@@ -119,7 +119,7 @@
                         </div>
                     </form>
                 </div>
-                <button type="button" class="btn btn-danger" @click="deleteUser">Delete User</button>
+                <button type="button" class="btn btn-danger" @click="deleteUser" v-if="this.$store.state.delete">Delete User</button>
             </div>
         </div>
     </div>
@@ -151,6 +151,7 @@ export default {
         this.getUserById()
         this.getAllRole()
         this.getCurrentBranch()
+        this.roleCheck()
     },
     watch: {
         userData: {
@@ -201,6 +202,9 @@ export default {
                 this.branches = [];
                 this.branches.push(...this.branchData.map(branch => branch.id));
             };
+        },
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '7')
         }
     }
 }

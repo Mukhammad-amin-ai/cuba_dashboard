@@ -62,7 +62,7 @@ const actions = {
       let responce = await axios.get(`${Api}/api/manage/user/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(responce.data.data);
+      console.log(responce.data.data);
       if (responce.data.data) {
         commit("setLoading", false, { root: true });
         commit("setUserData", responce.data.data);

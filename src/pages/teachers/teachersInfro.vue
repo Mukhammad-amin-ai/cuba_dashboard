@@ -1,7 +1,7 @@
 <template >
     <Breadcrumbs title="Teachers Page" main="Teachers Page" />
-    <spiner/>
-    <div class="container-fluid">
+    <spiner />
+    <div class="container-fluid p-20">
         <div>
             <div class="row product-page-main p-0" v-if="isChanger">
                 <div class="col-xxl-4 col-md-6 box-col-12">
@@ -32,13 +32,15 @@
                                 Email: {{ teachers.email }}
                             </p>
                             <hr />
-                            Contact number: {{ teachers.contact_no }}
+                            Contact number: {{ teachers.contact }}
                             <hr />
                         </div>
                     </div>
-                    <div class="d-flex  ">
-                        <button type="button" class="btn btn-success" @click="isChange">Go To Edit</button>
-                        <button type="button" class="btn btn-danger" @click="deleteTeacher" >Delete</button>
+                    <div class="d-flex  justify-content-between">
+                        <button type="button" class="btn btn-success" @click="isChange" v-if="this.$store.state.update">Go
+                            To Edit</button>
+                        <button type="button" class="btn btn-danger" @click="deleteTeacher"
+                            v-if="this.$store.state.delete">Delete</button>
                     </div>
                 </div>
             </div>
@@ -63,7 +65,7 @@
                     <div class="mb-3">
                         <label for="contact_no" class="form-label">Contact Number</label>
                         <input type="tel" class="form-control" id="contact_no" placeholder="Enter contact number" required
-                            v-model="contact_no">
+                            v-model="contact">
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
@@ -72,9 +74,9 @@
                             <option :value=false>Inactive</option>
                         </select>
                     </div>
-                    <div class="containerBtns-fluid d-flex " >
-                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher" >Editing Teacher</button>
-                        <button type="button" class="btn btn-danger" @click="isChange" >Go From Edit</button>
+                    <div class="containerBtns-fluid d-flex ">
+                        <button type="submit" class="btn btn-primary" @click.prevent="editTeacher">Editing Teacher</button>
+                        <button type="button" class="btn btn-danger" @click="isChange">Go From Edit</button>
                     </div>
                 </form>
             </div>
@@ -85,7 +87,7 @@
 import { mapState } from 'vuex';
 import spiner from '@/components/ui/spiner.vue'
 export default {
-    components:{
+    components: {
         spiner
     },
     data() {
@@ -95,7 +97,7 @@ export default {
             firstname: "",
             lastname: "",
             email: "",
-            contact_no: "",
+            contact: "",
             is_assistant: Boolean
         }
     },
@@ -107,7 +109,7 @@ export default {
                     this.firstname = newTeachers.firstname;
                     this.lastname = newTeachers.lastname;
                     this.email = newTeachers.email;
-                    this.contact_no = newTeachers.contact_no;
+                    this.contact = newTeachers.contact;
                     this.is_assistant = newTeachers.is_assistant;
                 }
             }
@@ -118,6 +120,7 @@ export default {
     },
     mounted() {
         this.getTeacherByid()
+        this.roleCheck()
     },
     methods: {
         getTeacherByid() {
@@ -131,15 +134,17 @@ export default {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
-                contact_no: this.contact_no,
+                contact: this.contact,
                 is_assistant: this.is_assistant
             }
-            this.$store.dispatch('teacher/editTeacher',{id:this.id,option:option})
+            this.$store.dispatch('teacher/editTeacher', { id: this.id, option: option })
         },
-        deleteTeacher(){
-            this.$store.dispatch("teacher/deleteTeacher",this.id)
+        deleteTeacher() {
+            this.$store.dispatch("teacher/deleteTeacher", this.id)
         },
-      
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '9')
+        }
     }
 
 
