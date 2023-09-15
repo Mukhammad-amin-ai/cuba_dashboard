@@ -37,13 +37,13 @@
 </template>
 <script>
 
-// let branches = JSON.parse(localStorage.getItem('branch_token',))
+let branches = JSON.parse(localStorage.getItem('branch_token',))
 
 // console.log(branches);
 export default {
     data() {
         return {
-            // branchlar: branches
+            branchlar: branches
         }
     },
     methods: {

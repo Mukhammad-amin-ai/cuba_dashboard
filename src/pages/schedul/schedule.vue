@@ -13,61 +13,59 @@
         </div>
       </div> -->
       <div class="container-fluid d-flex p-10">
-        
-        <calendar  :selectedBranch="choosedBranch" />
+
+        <calendar :selectedBranch="choosedBranch" />
         <div class="col-sm-12" style="width: 50%; ">
-            <div class="card">
-                <smallSpinner />
-                <choose />
-                <div class="card-header">
-                    <h3>Table of Schedule</h3>
-                    <p>{{ this.$store.state.schedule.day }}</p>
-                </div>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr class="border-bottom-primary">
-                                <th scope="col">Group</th>
-                                <th scope="col">Session</th>
-                                <th scope="col">Room</th>
-                                <th scope="col">Weekday</th>
-                                <!-- <th scope="col">Edit</th>
-                                <th scope="col">Delete</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for='item in scheduleData.data' :key="item" v-if="this.$store.state.schedule.checker">
-                                <td>{{ item.group.name }}</td>
-                                <td>{{ item.session.duration }}</td>
-                                <td>{{ item.room.name }}</td>
-                                <td>{{ item.weekday.name }}</td>
-                                <!-- <td>
-                                    <button type="button" class="btn btn-primary" @click="change">
-                                        <i class="icofont icofont-pencil-alt-5"></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger" @click="deleteSchedule(item.id)">
-                                        <i class="icofont icofont-ui-delete"></i>
-                                    </button>
-                                </td> -->
-                            </tr>
-                            <tr v-else>
-                                <td>No data</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+          <div class="card">
+            <smallSpinner />
+            <choose />
+            <div class="card-header">
+              <h3>Table of Schedule</h3>
+              <p>{{ this.$store.state.schedule.day }}</p>
             </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="border-bottom-primary">
+                    <th scope="col">Group</th>
+                    <th scope="col">Session</th>
+                    <th scope="col">Room</th>
+                    <th scope="col">Weekday</th>
+                    <!-- <th scope="col">Edit</th>
+                    <th scope="col">Delete</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for='item in scheduleData' :key="item" v-if="this.$store.state.schedule.checker">
+                    <td>{{ item.group.name }}</td>
+                    <td>{{ item.session.start }} {{ item.session.end }}</td>
+                    <td>{{ item.room.name }}</td>
+                    <td>{{ item.weekday.name }}</td>
+                    <!-- <td>
+                      <button type="button" class="btn btn-primary" @click="change">
+                        <i class="icofont icofont-pencil-alt-5"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-danger" @click="deleteSchedule(item.id)">
+                        <i class="icofont icofont-ui-delete"></i>
+                      </button>
+                    </td> -->
+                  </tr>
+                  <tr v-else>
+                    <td>No data</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
-
-
 </template>
 <script>
 // import spiner from '@/components/ui/spiner.vue'
@@ -80,10 +78,10 @@ export default {
 
   data() {
     return {
-      choosedBranch:""
+      choosedBranch: ""
     }
   },
-  components:{
+  components: {
     calendar,
     smallSpinner,
     choose

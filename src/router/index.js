@@ -331,7 +331,7 @@ const routes = [
         component: user,
         meta: {
           requiredAuth: true,
-          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+          value: permObj && permObj.length > 0 ? permObj[7].value : null,
         },
       },
       {
@@ -339,7 +339,7 @@ const routes = [
         component: userCrete,
         meta: {
           requiredAuth: true,
-          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+          value: permObj && permObj.length > 0 ? permObj[7].value : null,
         },
       },
       {
@@ -347,7 +347,7 @@ const routes = [
         component: userInfo,
         meta: {
           requiredAuth: true,
-          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+          value: permObj && permObj.length > 0 ? permObj[7].value : null,
         },
       },
       {
@@ -355,7 +355,7 @@ const routes = [
         component: inactiveUser,
         meta: {
           requiredAuth: true,
-          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+          value: permObj && permObj.length > 0 ? permObj[8].value : null,
         },
       },
       {
@@ -363,7 +363,7 @@ const routes = [
         component: inactiveUserCreateVue,
         meta: {
           requiredAuth: true,
-          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+          value: permObj && permObj.length > 0 ? permObj[8].value : null,
         },
       },
       {
@@ -371,7 +371,7 @@ const routes = [
         component: incactiveUserInfoVue,
         meta: {
           requiredAuth: true,
-          value: permObj && permObj.length > 0 ? permObj[6].value : null,
+          value: permObj && permObj.length > 0 ? permObj[8].value : null,
         },
       },
     ],

@@ -26,8 +26,8 @@ export default {
         FullCalendar,
     },
     props: {
-    selectedBranch: String, // Define selectedBranch as a prop
-  },
+        selectedBranch: String, // Define selectedBranch as a prop
+    },
     data() {
         return {
             calendarOptions: {
@@ -47,22 +47,23 @@ export default {
         }
     },
     methods: {
-        ...mapMutations('schedule',['setCheck']),
+        ...mapMutations('schedule', ['setCheck']),
         ...mapMutations(['setSmallLoading']),
 
         async handleDateClick(info) {
             this.$store.dispatch('schedule/getIdofDay', info)
             const selectedDate = new Date(info.date);
             const setId = selectedDate.getDay();
-            if(setId === 0){
+            if (setId === 0) {
                 this.setCheck(false)
                 this.setSmallLoading(false)
             }
-            // let option = {
-            //     weekday_id: setId 
-            // }
+            let option = {
+                weekday_id: setId
+            }
+            // console.log(setId);
             await this.$store.dispatch('schedule/getScheduleByFilter', option)
-            console.log(setId);
+            // console.log(setId);
         },
     },
 };
