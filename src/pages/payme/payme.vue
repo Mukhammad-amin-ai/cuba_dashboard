@@ -126,7 +126,14 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid bg" v-else>
+    <div class="container-fluid justify-content-between  d-flex bg" v-else>
+        <div class="left-side">
+            <div class="side-box">
+                Product:
+            </div>
+            <button type="button" class="btn btn-success full">
+              Buy</button>
+        </div>
         <div class="right-side">
             <div class="card">
                 <div class="card-header head">
@@ -427,6 +434,19 @@ input::-webkit-inner-spin-button {
 
 .bg {
     align-items: end;
+}
+.left-side {
+    width: 60%;
+    height: 40vh;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    
+}
+
+.side-box {
+    width: 100%;
+    height: 80%;
 }
 
 .right-side {

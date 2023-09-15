@@ -43,7 +43,9 @@ import inactiveUserCreateVue from "@/pages/user/inactiveUser/inactiveUserCreate.
 import parent from "@/pages/student/parents/parets.vue";
 import parentCreate from "@/pages/student/parents/parentsCreate.vue";
 import parentInfo from "@/pages/student/parents/parentsInfo.vue";
-import courseStudentInfo from '@/pages/course/courseStudentInfo.vue'
+import courseStudentInfo from "@/pages/course/courseStudentInfo.vue";
+import test from "@/pages/advance/test.vue";
+
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 
 const routes = [
@@ -76,6 +78,14 @@ const routes = [
           value: permObj && permObj.length > 0 ? permObj[0].value : null,
         },
       },
+      // {
+      //   path: "test",
+      //   component: test,
+      //   meta: {
+      //     requiredAuth: true,
+      //     value: true,
+      //   },
+      // },
       {
         path: "courses",
         component: courses,
@@ -105,7 +115,7 @@ const routes = [
         component: courseStudentInfo,
         meta: {
           requiredAuth: true,
-          value:  permObj && permObj.length > 0 ? permObj[5].value : null,
+          value: permObj && permObj.length > 0 ? permObj[5].value : null,
         },
       },
       {
@@ -113,7 +123,7 @@ const routes = [
         component: courseStudentInfo,
         meta: {
           requiredAuth: true,
-          value:  permObj && permObj.length > 0 ? permObj[5].value : null,
+          value: permObj && permObj.length > 0 ? permObj[5].value : null,
         },
       },
       {
@@ -270,6 +280,11 @@ const routes = [
       },
       {
         path: "payme",
+        component: payme,
+        meta: { requiredAuth: true, value: true },
+      },
+      {
+        path: "payme/:id",
         component: payme,
         meta: { requiredAuth: true, value: true },
       },

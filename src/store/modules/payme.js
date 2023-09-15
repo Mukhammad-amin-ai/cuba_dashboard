@@ -1,6 +1,14 @@
 import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
+let nameR = localStorage.getItem("name");
+// console.log(nameR);
+if (nameR) {
+  nameR = nameR.replace(/^"|"$/g, '');
+  // console.log(nameR);
+} else {
+  console.log("Name not found in local storage");
+}
 const state = {
   showHide: true,
   showVerify: true,
@@ -37,7 +45,7 @@ const mutations = {
 const actions = {
   async getCashiersId({ commit }) {
     try {
-      let responce = await axios.get(`${Api}/api/payment/cashier`, {
+      let responce = await axios.get(`${Api}/api/${nameR}/cashier`, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(responce.data);
@@ -130,7 +138,7 @@ const actions = {
   async payForCourse({ commit }, option) {
     try {
       let response = await axios.post(
-        `${Api}/api/student/pay-for-course`,
+        `${Api}/api/${nameR}/pay-for-course`,
         option,
         { headers: { Authorization: "Bearer " + token } }
       );
@@ -142,7 +150,7 @@ const actions = {
   async getMyCards({ commit }) {
     commit("setLoading", true, { root: true });
     try {
-      let response = await axios.get(`${Api}/api/student/my-cards`, {
+      let response = await axios.get(`${Api}/api/${nameR}/my-cards`, {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);
@@ -160,6 +168,17 @@ const actions = {
       }
     } catch (e) {
       console.error("error in geting my card", e);
+    }
+  },
+  async deleteCard({ commit }, id) {
+    try {
+      let response = await axios.delete(
+        `${Api}/api/${nameR}/delete-card/${id}`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data.data);
+    } catch (e) {
+      console.error("error find in deleting card", e);
     }
   },
 };
