@@ -1,9 +1,9 @@
 <template >
     <Breadcrumbs title="Blog Detail" main="Parents" />
     <div class="container-fluid p-20">
-        <spiner/>
+        <spiner />
         <div class="row d-flex">
-            <RouterLink to="parent/create" class="select">
+            <RouterLink to="parent/create" class="select" v-if="this.$store.state.create">
                 <div class="card social-profile ">
                     <div class="card-body">
                         <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
@@ -51,7 +51,7 @@
 import { mapState } from 'vuex'
 import spiner from '@/components/ui/spiner.vue'
 export default {
-    components:{
+    components: {
         spiner
     },
     computed: {
@@ -59,11 +59,15 @@ export default {
     },
     mounted() {
         this.getParent()
+        this.roleCheck()
     },
     methods: {
         getParent() {
             this.$store.dispatch('parent/getParentsData')
         },
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '17')
+        }
     }
 }
 </script>
@@ -76,6 +80,7 @@ export default {
     transition: .3s all linear;
     transform: scale(1);
 }
+
 .select:hover {
     transform: scale(1.050);
 }

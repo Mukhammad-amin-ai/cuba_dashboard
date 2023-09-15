@@ -1,8 +1,8 @@
 <template >
     <Breadcrumbs title="Blog Detail" main="Groups" />
     <div class="container">
-        <spiner/>
-        <RouterLink to="group/create">
+        <spiner />
+        <RouterLink to="group/create" v-if="this.$store.state.create">
             <div class="card mb-3 hover" style="width: 100%;">
                 <div class="row g-0" style="text-align: center; padding: 30px;">
                     <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
@@ -35,7 +35,7 @@
 import { mapState } from 'vuex'
 import spiner from '@/components/ui/spiner.vue'
 export default {
-    components:{
+    components: {
         spiner
     },
     computed: {
@@ -43,12 +43,15 @@ export default {
     },
     mounted() {
         this.getGroup()
+        this.roleCheck()
     },
     methods: {
         getGroup() {
             this.$store.dispatch('group/getGroupData')
         },
-
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '13')
+        }
     }
 }
 </script>

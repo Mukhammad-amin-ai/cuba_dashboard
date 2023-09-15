@@ -85,6 +85,7 @@ export default createStore({
       if (permObj[name].value === "1") {
         commit("setRead", true);
       } else if (permObj[name].value === "2") {
+        // console.log(permObj);
         commit("setRead", true);
         commit("setCreate", true);
       } else if (permObj[name].value === "3") {
