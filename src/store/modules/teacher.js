@@ -7,6 +7,7 @@ const state = {
   teachers: [],
   assistants: [],
   myGroups: [],
+  noData:true
 };
 const mutations = {
   setTeacher(state, teachers) {
@@ -18,6 +19,9 @@ const mutations = {
   setMyGroups(state, myGroups) {
     state.myGroups = myGroups;
   },
+  setNodata(state,noData){
+    state.noData = noData
+  }
 };
 const actions = {
   async getTeachers({ commit }) {
@@ -139,6 +143,9 @@ const actions = {
       // console.log(response.data);
       if (response.data) {
         commit("setLoading", false, { root: true });
+      }
+      if (response.data.data.length === 0) {
+        commit("setNodata", false);
       }
       commit("setMyGroups", response.data.data);
     } catch (e) {

@@ -1,6 +1,6 @@
 <template>
     <Breadcrumbs title="Blog Detail" main="My Groups" />
-    <div class="container">
+    <div class="container" v-if="this.$store.state.teacher.noData">
         <spiner />
         <RouterLink :to="{ path: 'group/' + item.id }" v-for="item in myGroups" :key="item">
             <div class="card mb-3" style="max-width: 100vw;">
@@ -21,6 +21,11 @@
                 </div>
             </div>
         </RouterLink>
+    </div>
+    <div v-else>
+        <center>
+            No Data
+        </center>
     </div>
 </template>
 <script>

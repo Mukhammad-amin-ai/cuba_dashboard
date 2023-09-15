@@ -43,7 +43,7 @@ import inactiveUserCreateVue from "@/pages/user/inactiveUser/inactiveUserCreate.
 import parent from "@/pages/student/parents/parets.vue";
 import parentCreate from "@/pages/student/parents/parentsCreate.vue";
 import parentInfo from "@/pages/student/parents/parentsInfo.vue";
-
+import courseStudentInfo from '@/pages/course/courseStudentInfo.vue'
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 
 const routes = [
@@ -98,6 +98,22 @@ const routes = [
         meta: {
           requiredAuth: true,
           value: permObj && permObj.length > 0 ? permObj[9].value : null,
+        },
+      },
+      {
+        path: "coursestudentInfo/:id",
+        component: courseStudentInfo,
+        meta: {
+          requiredAuth: true,
+          value:  permObj && permObj.length > 0 ? permObj[5].value : null,
+        },
+      },
+      {
+        path: "courseteacherInfo/:id",
+        component: courseStudentInfo,
+        meta: {
+          requiredAuth: true,
+          value:  permObj && permObj.length > 0 ? permObj[5].value : null,
         },
       },
       {

@@ -2,7 +2,7 @@
     <Breadcrumbs title="Blog Detail" main="My Children" />
     <div class="container-fluid p-20">
         <spiner/>
-        <div class=" p-20 ">
+        <div class=" p-20 " v-if="this.$store.state.student.noData">
             <div class="row ">
                 <div class="col-12 col-sm-6 col-lg-3" v-for="item in myChildren" :key="item.id">
                     <RouterLink :to="{ path: 'teachers/' + item.id }">
@@ -23,6 +23,11 @@
                     </RouterLink>
                 </div>
             </div>
+        </div>
+        <div v-else>
+            <center>
+                no data 
+            </center>
         </div>
     </div>
 </template>

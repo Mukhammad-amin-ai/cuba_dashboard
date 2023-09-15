@@ -4,7 +4,7 @@
         <spiner />
         <div class="row " style="gap: 40px;">
             <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in allCourses " :key="item">
-                <RouterLink :to="{ path: 'courseInfo/' + item.id }">
+                <!-- <RouterLink :to="{ path: 'coursestudentInfo/' + item.id }"> -->
                     <div class="card " style="width: 18rem;">
                         <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
                         <div class="card-body">
@@ -13,7 +13,7 @@
                             <a href="#" class="btn btn-primary">About course</a>
                         </div>
                     </div>
-                </RouterLink>
+                <!-- </RouterLink> -->
             </div>
         </div>
     </div>

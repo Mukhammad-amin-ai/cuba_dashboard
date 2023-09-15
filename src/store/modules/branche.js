@@ -80,7 +80,7 @@ const actions = {
           }
         );
         console.log(response.data);
-        if (response.data.message === "Branch deleted successfully") {
+        if (response.data.name === "branch_deleted") {
           window.location.href = "/branches";
         }
       } catch (error) {

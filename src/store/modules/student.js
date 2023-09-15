@@ -9,7 +9,7 @@ const state = {
   mycourses: [],
   myChildren: [],
   allCourses: [],
-  noData: false,
+  noData: true,
 };
 const mutations = {
   setStudent(state, students) {
@@ -147,7 +147,7 @@ const actions = {
         commit("setLoading", false, { root: true });
       }
       if (response.data.data.length === 0) {
-        commit("setNodata", true);
+        commit("setNodata", false);
       }
       commit("setMycourses", response.data.data);
     } catch (e) {
@@ -161,9 +161,12 @@ const actions = {
       let response = await axios.get(`${Api}/api/parent/my-children`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(response.data.data);
+      console.log(response.data.data);
       if (response.data) {
         commit("setLoading", false, { root: true });
+      }
+      if (response.data.data.length === 0) {
+        commit("setNodata", false);
       }
       commit("setMyChildren", response.data.data);
     } catch (e) {
@@ -177,11 +180,11 @@ const actions = {
       let response = await axios.get(`${Api}/api/${nameObj}/all-courses`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(response.data.data.data);
+      // console.log(response.data.data);
       if (response.data.data) {
         commit("setLoading", false, { root: true });
       }
-      commit("setAllCourses", response.data.data.data);
+      commit("setAllCourses", response.data.data);
     } catch (e) {
       // commit("setLoading", false, { root: true });
       console.error("error in getting all courses", e);
