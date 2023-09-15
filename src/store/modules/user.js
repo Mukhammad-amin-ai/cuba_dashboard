@@ -7,6 +7,7 @@ let token = localStorage.getItem("token");
 let state = {
   userData: [],
   editHandler: true,
+  pagination: true,
 };
 const mutations = {
   setUserData(state, userData) {
@@ -14,6 +15,9 @@ const mutations = {
   },
   setUserEditHandler(state, editHandler) {
     state.editHandler = editHandler;
+  },
+  setPagination(state, payload) {
+    state.pagination = payload;
   },
 };
 const actions = {
@@ -31,6 +35,9 @@ const actions = {
       if (responce.data.data) {
         commit("setLoading", false, { root: true });
         commit("setUserData", responce.data.data);
+      }
+      if (responce.data.pagination.total >= 1) {
+        commit("setPagination", false);
       }
     } catch (e) {
       console.error("error find in getting users", e);

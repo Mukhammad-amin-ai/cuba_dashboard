@@ -59,7 +59,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-success" @click="editBranch">edit</button>
+                            <button type="button" class="btn btn-success" @click="editBranch"
+                                v-if="this.$store.state.update">edit</button>
                         </div>
                     </div>
                 </div>
@@ -67,11 +68,11 @@
         </div>
     </div>
     <div class="flex ">
-        <button type="button" class="btn btn-success" @click="changer">
+        <button type="button" class="btn btn-success" @click="changer" v-if="this.$store.state.update">
             <h6 v-if="this.$store.state.branche.handler">Go To Edit</h6>
             <h6 v-else>Go From Edit</h6>
         </button>
-        <button type="button" class="btn btn-danger" @click="deleteBranch">
+        <button type="button" class="btn btn-danger" @click="deleteBranch" v-if="this.$store.state.delete">
             <h6>Delete</h6>
         </button>
     </div>
@@ -93,8 +94,8 @@
                                 <th scope="col">Session</th>
                                 <th scope="col">Room</th>
                                 <th scope="col">Weekday</th>
-                                <th scope="col">Edit</th>
-                                <th scope="col">Delete</th>
+                                <!-- <th scope="col">Edit</th>
+                                <th scope="col">Delete</th> -->
                             </tr>
                         </thead>
                         <!--  -->
@@ -104,7 +105,7 @@
                                 <td>{{ item.session.start }}{{ item.session.end }}</td>
                                 <td>{{ item.room.name }}</td>
                                 <td>{{ item.weekday.name }}</td>
-                                <td>
+                                <!-- <td>
                                     <button type="button" class="btn btn-primary" @click="change">
                                         <i class="icofont icofont-pencil-alt-5"></i>
                                     </button>
@@ -113,7 +114,7 @@
                                     <button type="button" class="btn btn-danger" @click="deleteSchedule(item.id)">
                                         <i class="icofont icofont-ui-delete"></i>
                                     </button>
-                                </td>
+                                </td> -->
                             </tr>
                             <!-- -->
                             <tr v-else>
@@ -126,8 +127,8 @@
                     </table>
                 </div>
             </div>
-            <button type="button" class="btn btn-success" @click="change">Create
-                Schedule</button>
+            <!-- <button type="button" class="btn btn-success" @click="change">Create
+                Schedule</button> -->
         </div>
     </div>
     <div class="container-fluid  height" v-else>
@@ -170,6 +171,7 @@ export default {
     },
     mounted() {
         this.getbranch()
+        this.roleCheck()
     },
     watch: {
         branchData: {
@@ -199,13 +201,16 @@ export default {
             }
             this.$store.dispatch('branche/editBranch', { id: this.id, option: option })
         },
-        change() {
-            // console.log(this.scheduleData[0].group.name);
-            // this.$store.dispatch('schedule/change')
-        },
+        // change() {
+        //     // console.log(this.scheduleData[0].group.name);
+        //     // this.$store.dispatch('schedule/change')
+        // },
         deleteSchedule(id) {
             this.$store.dispatch('schedule/deleteSchedul', id)
         },
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '17')
+        }
     }
 
 }

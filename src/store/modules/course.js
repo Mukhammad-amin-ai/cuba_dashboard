@@ -5,10 +5,14 @@ let branchToken = localStorage.getItem("from_token");
 const token = localStorage.getItem("token");
 let state = {
   courseData: [],
+  pagination: true,
 };
 const mutations = {
   setCourseData(state, courseData) {
     state.courseData = courseData;
+  },
+  setPagination(state, payload) {
+    state.pagination = payload;
   },
 };
 const actions = {
@@ -25,6 +29,9 @@ const actions = {
       // console.log(responce.data.data);
       commit("setCourseData", responce.data.data);
       commit("setLoading", false, { root: true });
+      if (responce.data.pagination.total >= 1) {
+        commit("setPagination", false);
+      }
     } catch (error) {
       commit("setLoading", false, { root: true });
       console.error("error find there", error);

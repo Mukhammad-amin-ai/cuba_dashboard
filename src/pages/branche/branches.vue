@@ -97,8 +97,8 @@
                         </div>
                     </RouterLink>
                 </div>
-               
-                <div class="col-md-6 col-xl-3 box-col-6  select"  v-if="this.$store.state.create">
+
+                <div class="col-md-6 col-xl-3 box-col-6  select" v-if="this.$store.state.create">
                     <RouterLink to="branch/create">
                         <div class="card">
                             <div class="blog-box blog-grid text-center hover">
@@ -107,6 +107,15 @@
                         </div>
                     </RouterLink>
                 </div>
+                <nav aria-label="Page navigation example" v-if="this.$store.state.branche.pagination">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@ let state = {
   handler: true,
   room: [],
   total: "",
+  pagination: true,
 };
 const mutations = {
   setBranch(state, branchData) {
@@ -21,6 +22,9 @@ const mutations = {
   setTotal(state, total) {
     state.total = total;
   },
+  setPagination(state, payload) {
+    state.pagination = payload;
+  },
 };
 const actions = {
   async getBranches({ commit }) {
@@ -34,6 +38,9 @@ const actions = {
       // console.log(response.data.data);
       commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });
+      if (response  .data.pagination.total >= 1) {
+        commit("setPagination", false);
+      }
     } catch (error) {
       console.error("error find", error);
       if (error.request.status === 401) {
