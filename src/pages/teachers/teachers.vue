@@ -1,9 +1,9 @@
 <template >
     <Breadcrumbs title="Blog Detail" main="Teachers" />
     <div class="container-fluid p-20">
-        <spiner/>
+        <spiner />
         <div class="card p-20 ">
-            <RouterLink to="teachers/create" class="select" >
+            <RouterLink to="teachers/create" class="select" v-if="this.$store.state.create">
                 <div class="card social-profile  ">
                     <div class="card-body">
                         <i style="font-size: 50px;" class='bx bx-plus-circle'></i>
@@ -41,7 +41,7 @@
 import { mapState } from 'vuex';
 import spiner from '@/components/ui/spiner.vue';
 export default {
-    components:{
+    components: {
         spiner
     },
     computed: {
@@ -57,12 +57,16 @@ export default {
     },
     mounted() {
         this.getTeachers()
+        this.roleCheck()
     },
     methods: {
         getTeachers() {
             this.$store.dispatch('teacher/getTeachers')
         },
-      
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '9')
+        }
+
     }
 }
 </script>

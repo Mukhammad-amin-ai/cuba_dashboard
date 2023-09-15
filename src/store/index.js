@@ -18,6 +18,7 @@ import user from "./modules/user";
 import parent from "./modules/parent";
 import assistentTeacher from "./modules/assistentTeacher";
 
+let permObj = JSON.parse(localStorage.getItem("permissions"));
 
 export default createStore({
   state: {
@@ -27,7 +28,11 @@ export default createStore({
     loading: false,
     smallLoading: false,
     choose: true,
-    branchToken:''
+    branchToken: "",
+    read: false,
+    create: false,
+    update: false,
+    delete: false,
   },
   getters: {
     langIcon: (state) => {
@@ -56,15 +61,44 @@ export default createStore({
     setChoose(state, payload) {
       state.choose = payload;
     },
-    setBranchToken(state,payload){
-      state.branchToken = payload
-    }
+    setBranchToken(state, payload) {
+      state.branchToken = payload;
+    },
+    setRead(state, payload) {
+      state.read = payload;
+    },
+    setCreate(state, payload) {
+      state.create = payload;
+    },
+    setUpdate(state, payload) {
+      state.update = payload;
+    },
+    setDelete(state, payload) {
+      state.delete = payload;
+    },
   },
   actions: {
     setLang({ commit }, payload) {
       commit("changeLang", payload);
     },
-   
+    permittionCheck({ commit }, name) {
+      if (permObj[name].value === "1") {
+        commit("setRead", true);
+      } else if (permObj[name].value === "2") {
+        commit("setRead", true);
+        commit("setCreate", true);
+      } else if (permObj[name].value === "3") {
+        commit("setRead", true);
+        commit("setCreate", true);
+        commit("setUpdate", true);
+      } else if (permObj[name].value === "4") {
+        // console.log(permObj);
+        commit("setRead", true);
+        commit("setCreate", true);
+        commit("setUpdate", true);
+        commit("setDelete", true);
+      }
+    },
   },
   modules: {
     layout,
@@ -79,10 +113,10 @@ export default createStore({
     session,
     payme,
     role,
-    lesson,    
+    lesson,
     inactiveUser,
     user,
     parent,
-    assistentTeacher
+    assistentTeacher,
   },
 });

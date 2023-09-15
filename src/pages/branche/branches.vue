@@ -97,7 +97,8 @@
                         </div>
                     </RouterLink>
                 </div>
-                <div class="col-md-6 col-xl-3 box-col-6  select">
+               
+                <div class="col-md-6 col-xl-3 box-col-6  select"  v-if="this.$store.state.create">
                     <RouterLink to="branch/create">
                         <div class="card">
                             <div class="blog-box blog-grid text-center hover">
@@ -129,13 +130,15 @@ export default {
     },
     mounted() {
         this.branch()
-
+        this.roleCheck()
     },
     methods: {
         branch() {
             this.$store.dispatch('branche/getBranches')
         },
-
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '17')
+        }
     }
 }
 </script>
@@ -155,4 +158,5 @@ export default {
 
 .select:hover {
     transform: scale(1.050);
-}</style>
+}
+</style>
