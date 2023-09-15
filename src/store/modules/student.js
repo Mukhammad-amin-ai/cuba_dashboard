@@ -39,7 +39,7 @@ const actions = {
       const responce = await axios.get(`${Api}/api/manage/student`, {
         headers,
       });
-      // console.log(responce.data.data);
+      // console.log(responce.data);
       commit("setLoading", false, { root: true });
       commit("setStudent", responce.data.data);
     } catch (e) {
@@ -58,7 +58,7 @@ const actions = {
       const responce = await axios.get(`${Api}/api/manage/student/${option}`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(responce.data.data);
+      console.log(responce.data.data);
       if (responce.data.data) {
         commit("setLoading", false, { root: true });
         commit("setStudent", responce.data.data);

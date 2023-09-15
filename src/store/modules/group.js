@@ -7,6 +7,7 @@ const state = {
   groupData: [],
   groupStudents: [],
   editHandler: true,
+  pagination: true,
 };
 const mutations = {
   setGroup(state, groupData) {
@@ -17,6 +18,9 @@ const mutations = {
   },
   setEditHnadler(state, editHandler) {
     state.editHandler = editHandler;
+  },
+  setPagination(state, pagination) {
+    state.pagination = pagination;
   },
 };
 const actions = {
@@ -31,11 +35,14 @@ const actions = {
     };
     try {
       let responce = await axios.get(`${Api}/api/manage/group`, {
-        headers
+        headers,
       });
       // console.log(responce.data);
       commit("setLoading", false, { root: true });
       commit("setGroup", responce.data.data);
+      if (responce.data.pagination.total >= 1) {
+        commit("setPagination", false);
+      }
     } catch (error) {
       commit("setLoading", false, { root: true });
       console.error("there is problem ", error);
@@ -49,7 +56,7 @@ const actions = {
       let responce = await axios.get(`${Api}/api/manage/group/${option}`, {
         headers: { Authorization: "Bearer" + token },
       });
-      // console.log(responce.data.data);
+      console.log(responce.data.data);
       commit("setGroup", responce.data.data);
     } catch (error) {
       console.error("there is problem ", error);

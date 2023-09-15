@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid p-20">
-        <spiner/>
+        <spiner />
         <div class="user-profile">
             <div class="row">
                 <div class="col-sm-12" v-if="this.$store.state.group.editHandler">
@@ -11,7 +11,7 @@
                             :style="{ backgroundImage: 'url(' + require('@/assets/images/Students-Wallpaper.jpg') + ')' }">
                         </div>
                         <div class="user-image">
-                            <div class="icon-wrapper" v-if="this.$store.state.role.update">
+                            <div class="icon-wrapper" v-if="this.$store.state.update">
                                 <i id="update-profile-tour" class="icofont icofont-pencil-alt-5" @click="chenger"
                                     data-intro="Change Profile image here"></i>
                             </div>
@@ -167,45 +167,14 @@
                             </div>
                         </div>
                         <button type="button" class="btn btn-danger" @click="chenger">Close Edit</button>
-                        <button type="button" class="btn btn-success" @click="editGroup">Edit student</button>
+                        <button type="button" class="btn btn-success" v-if="this.$store.state.update"
+                            @click="editGroup">Edit student</button>
                     </div>
                 </div>
-                <!-- <div class="col-sm-12" style="width: 100%;" v-if="scheTeble">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Schedul</h3>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr class="border-bottom-primary">
-                                        <th scope="col">Group</th>
-                                        <th scope="col">Session</th>
-                                        <th scope="col">Room</th>
-                                        <th scope="col">Weekday</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="item in scheduleData.data" :key="item" v-if="this.$store.state.schedule.checker">
-                                        <td>{{ item.group.name }}</td>
-                                        <td>{{ item.session.duration }}</td>
-                                        <td>{{ item.room.name }}</td>
-                                        <td>{{ item.weekday.name }}</td>
-                                    </tr>
-                                    <tr v-else>    
-                                        <td>
-                                            No data 
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div> -->
                 <TableOfStudents :scheTeble="scheTeble" />
             </div>
         </div>
-        <button type="button" class="btn btn-danger" @click="deleteGroup" >Delete
+        <button type="button" class="btn btn-danger" v-if="this.$store.state.delete" @click="deleteGroup">Delete
             Group</button>
     </div>
 </template>
@@ -259,7 +228,7 @@ export default {
     mounted() {
         this.getGroupById()
         this.getschedule()
-        // this.getAssistants()
+        this.roleCheck()
         this.getStudents()
         this.getGroupStudents()
     },
@@ -328,7 +297,10 @@ export default {
             this.choosedStudents.splice(index, 1)
             this.studentsList.splice(index, 1)
         },
-       
+        roleCheck() {
+            this.$store.dispatch('permittionCheck', '13')
+        }
+
     }
 }
 </script>

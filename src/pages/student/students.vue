@@ -32,7 +32,7 @@
                                 <ul class="social-follow d-flex" style="justify-content: space-between;">
                                     <li class=" d-grid ">
                                         <h5 class="mb-0">Contact</h5>
-                                        <span class="f-light">{{ item.contact_no }}</span>
+                                        <span class="f-light">{{ item.contact }}</span>
                                     </li>
                                     <li class=" d-grid">
                                         <h5 class="mb-0">Email</h5>
@@ -44,6 +44,15 @@
                     </div>
                 </RouterLink>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 </template>
