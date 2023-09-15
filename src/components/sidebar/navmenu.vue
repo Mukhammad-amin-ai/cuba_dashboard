@@ -47,13 +47,7 @@
           <span class="lan-3">My Courses</span>
         </router-link>
       </li>
-      <li class="sidebar-list" v-if="permission[4].name === 'my-cards' && permission[4].value === true">
-        <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/payme">
-          <i class="icofont icofont-bill-alt"></i>
-          <span class="lan-3"> My Cards</span>
-        </router-link>
-      </li>
+
       <li class="sidebar-list" v-if="permission[5].name === 'all-courses' && permission[5].value === true">
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/all-courses">
@@ -164,6 +158,13 @@
         <router-link class="sidebar-link sidebar-title hover" to="/payme">
           <i class="icofont icofont-bill-alt"></i>
           <span class="lan-3">Cashiers</span>
+        </router-link>
+      </li>
+      <li class="sidebar-list" v-if="permission[4].name === 'my-cards' && permission[4].value === true">
+        <label class="badge badge-light-primary"></label>
+        <router-link class="sidebar-link sidebar-title hover" to="/payme">
+          <i class="icofont icofont-bill-alt"></i>
+          <span class="lan-3"> My Cards</span>
         </router-link>
       </li>
     </ul>

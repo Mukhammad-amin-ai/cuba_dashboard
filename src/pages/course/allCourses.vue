@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">Price : {{ item.price }} SUM</p>
-                            <a href="#" class="btn btn-primary">About course</a>
+                            <!-- <a href="#" class="btn btn-primary">About course</a> -->
                         </div>
                     </div>
                 <!-- </RouterLink> -->

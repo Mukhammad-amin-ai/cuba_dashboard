@@ -4,9 +4,11 @@ const token = localStorage.getItem("token");
 const state = {
   showHide: true,
   showVerify: true,
-  addCardComponent: true,
+  addCardComponent: false,
   cashierId: "",
   showInput: false,
+  noCardText: "",
+  myCard: [],
 };
 const mutations = {
   setShow(state, showHide) {
@@ -23,6 +25,12 @@ const mutations = {
   },
   setShowIput(state, showInput) {
     state.showInput = showInput;
+  },
+  stAlert(state, payload) {
+    state.noCardText = payload;
+  },
+  setMycard(state, payload) {
+    state.myCard = payload;
   },
 };
 
@@ -117,6 +125,41 @@ const actions = {
       console.log(response.data);
     } catch (e) {
       console.error("error in buy product", e);
+    }
+  },
+  async payForCourse({ commit }, option) {
+    try {
+      let response = await axios.post(
+        `${Api}/api/student/pay-for-course`,
+        option,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error(`error in buy course`, e);
+    }
+  },
+  async getMyCards({ commit }) {
+    commit("setLoading", true, { root: true });
+    try {
+      let response = await axios.get(`${Api}/api/student/my-cards`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      if (response.data.data) {
+        commit("setLoading", false, { root: true });
+        commit("setMycard", response.data.data);
+      }
+      if (response.data.data.length === 0) {
+        commit("setAlert", true, { root: true });
+        commit("cardComponent", true);
+        commit("stAlert", "You don't have a card");
+      } else {
+        commit("setAlert", false, { root: true });
+        commit("cardComponent", false);
+      }
+    } catch (e) {
+      console.error("error in geting my card", e);
     }
   },
 };

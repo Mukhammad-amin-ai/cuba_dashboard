@@ -33,6 +33,7 @@ export default createStore({
     create: false,
     update: false,
     delete: false,
+    alert:false
   },
   getters: {
     langIcon: (state) => {
@@ -76,6 +77,9 @@ export default createStore({
     setDelete(state, payload) {
       state.delete = payload;
     },
+    setAlert(state,payload){
+      state.alert = payload
+    }
   },
   actions: {
     setLang({ commit }, payload) {

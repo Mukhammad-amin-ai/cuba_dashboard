@@ -1,5 +1,7 @@
 <template>
     <Breadcrumbs title="Blog Single" main="Pay me" />
+    <spiner/>
+    <alert :text="noCardText"/>
     <div class="container-fluid p-10 " v-if="this.$store.state.payme.addCardComponent">
         <div class="wrap">
             <div class="inner">
@@ -111,7 +113,8 @@
                             <label for="numeric-input no-spinners">Verification Code</label>
                             <h5 v-if="!sentVerify"> {{ minutes }}:{{ seconds }}</h5>
                         </div>
-                        <input type="text" class="form-control" maxlength="16" id="numeric-input" v-if="this.$store.state.payme.showInput" v-model="verification" />
+                        <input type="text" class="form-control" maxlength="16" id="numeric-input"
+                            v-if="this.$store.state.payme.showInput" v-model="verification" />
                     </div>
                     <div class="d-flex gap" v-if="sentVerify">
                         <h6>Press button to sent verification code</h6>
@@ -186,7 +189,6 @@
                     </div>
                     <div class="info-end">
                         <button type="button" class="btn btn-danger full">
-
                             Delete Card</button>
                     </div>
                 </div>
@@ -195,9 +197,14 @@
     </div>
 </template>
 <script>
-import { mapMutations } from 'vuex';
-
+import { mapMutations,mapState } from 'vuex';
+import alert from '@/components/ui/alert.vue';
+import spiner from '@/components/ui/spiner.vue';
 export default {
+    components: {
+        alert,
+        spiner
+    },
     data() {
         return {
             expirationDate: "",
@@ -212,9 +219,12 @@ export default {
             minutes: 1,
             seconds: 0,
             intervalId: null,
+            
         };
     },
+
     computed: {
+        ...mapState('payme',['noCardText']),
         uppercaseText() {
             return this.firstname.toUpperCase();
         },
@@ -225,8 +235,11 @@ export default {
             return this.number.replace(/\s/g, "").replace(/(\d{4})(?=\d)/g, "$1 ");
         },
     },
+    mounted() {
+        this.getMycard()
+    },
     methods: {
-        ...mapMutations('payme',['setShowIput']),
+        ...mapMutations('payme', ['setShowIput']),
         updateExpirationDate() {
             this.expirationDate = this.formattedExpirationDate.replace(/\//g, '');
             this.formattedExpirationDate = this.formattedExpirationDate.replace(/\D/g, '');
@@ -256,7 +269,6 @@ export default {
             this.setShowIput(true)
             this.sentVerify = !this.sentVerify
             this.timer = setInterval(this.updateTimer, 1000)
-            
         },
         updateTimer() {
             if (this.minutes === 0 && this.seconds === 0) {
@@ -286,8 +298,11 @@ export default {
                 id: 1,
                 payment_token: localStorage.getItem('tokenPayme'),
             }
-             this.$store.dispatch("payme/sendToken", secondoption)
+            this.$store.dispatch("payme/sendToken", secondoption)
 
+        },
+        getMycard() {
+            this.$store.dispatch("payme/getMyCards")
         }
     },
 
@@ -398,7 +413,7 @@ input::-webkit-inner-spin-button {
     width: 561px;
     height: 160px;
     flex-shrink: 0;
- 
+
 }
 
 .inner3 {

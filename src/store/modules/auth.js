@@ -1,11 +1,14 @@
 import axios from "axios";
 
+let token = localStorage.getItem("token");
+
 import Api from "./Base_Url";
-const state = {
+let state = {
   email: "",
   changer: true,
   error: false,
   text: "",
+  changeProfile: true,
 };
 const mutations = {
   setEmail(state, newemail) {
@@ -19,6 +22,9 @@ const mutations = {
   },
   setText(state, text) {
     state.text = text;
+  },
+  setChange(state, change) {
+    state.changeProfile = change;
   },
 };
 const actions = {
@@ -88,6 +94,22 @@ const actions = {
       console.error("problem with getting user profile ", e);
     }
   },
+  async updateMyProfile({ commit, dispatch }, option) {
+    try {
+      let response = await axios.put(`${Api}/api/auth/update`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+      if (response.data.data) {
+        await dispatch("getMyProfile", token);
+      }
+      if (response.data.name === "user_updated") {
+        window.location.href = "/profile";
+      }
+    } catch (e) {
+      console.error("error in updating profile", e);
+    }
+  },
   async getBranch({ commit }, token1) {
     try {
       let response = await axios.get(`${Api}/api/auth/branches`, {
@@ -149,7 +171,9 @@ const actions = {
       window.location.href = "/login";
     }
   },
- 
+  changer({ commit }) {
+    commit("setChange", !state.changeProfile);
+  },
 };
 export default {
   state,

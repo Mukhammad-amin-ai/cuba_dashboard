@@ -44,7 +44,6 @@ const actions = {
       commit("setStudent", responce.data.data);
     } catch (e) {
       commit("setLoading", false, { root: true });
-
       console.error("error in get student", e);
       if (e.request.status === 401) {
         window.location.href = "/login";
@@ -53,7 +52,6 @@ const actions = {
   },
   async getStudentById({ commit }, option) {
     commit("setLoading", true, { root: true });
-
     try {
       const responce = await axios.get(`${Api}/api/manage/student/${option}`, {
         headers: { Authorization: "Bearer " + token },
@@ -142,7 +140,7 @@ const actions = {
       let response = await axios.get(`${Api}/api/student/my-courses`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data.data.length === 0);
+      // console.log(response.data.data.length === 0);
       if (response.data.data) {
         commit("setLoading", false, { root: true });
       }

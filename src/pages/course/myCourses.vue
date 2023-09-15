@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ item.course.name }}</h5>
                             <p class="card-text">Payed in : {{ item.pay_time }} </p>
-                            <a href="#" class="btn btn-primary">About course</a>
+                            <!-- <a href="#" class="btn btn-primary">About course</a> -->
                         </div>
                     </div>
                 <!-- </RouterLink>x -->
@@ -44,9 +44,9 @@ export default {
 }
 </script>
 <style scoped>
-.card:hover {
+/* .card:hover {
     transform: scale(1.050)
-}
+} */
 
 .card {
     display: flex;
