@@ -14,12 +14,13 @@
       </div>
     </div>
     <div class="logo-icon-wrapper">
-      <router-link to="/">
+      <!-- <router-link to="/"> -->
         <img
           class="img-fluid"
           src="../../assets/images/logo/logo-icon.png"
           alt=""
-      /></router-link>
+      />
+    <!-- </router-link> -->
     </div>
     <Nav />
   </div>

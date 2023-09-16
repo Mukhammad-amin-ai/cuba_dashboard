@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/">
+  <!-- <router-link to="/"> -->
     <img
       class="img-fluid for-light"
       src="../../assets/images/logo/logo.png"
@@ -9,7 +9,7 @@
       src="../../assets/images/logo/logo_dark.png"
       alt=""
     />
-  </router-link>
+  <!-- </router-link> -->
 </template>
 <script>
 

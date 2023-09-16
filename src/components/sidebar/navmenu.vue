@@ -3,8 +3,9 @@
     <ul class="sidebar-links custom-scrollbar" id="myDIV"
       :style="[layoutobject.split(' ').includes('horizontal-wrapper') ? layout.settings.layout_type == 'rtl' ? { '  -right': margin + 'px' } : { 'margin-left': margin + 'px' } : { margin: '0px' }]">
       <li class="back-btn">
-        <router-link to="/">
-          <img class="img-fluid" src="../../assets/images/logo/logo-icon.png" alt="" /></router-link>
+        <!-- <router-link to="/"> -->
+        <img class="img-fluid" src="../../assets/images/logo/logo-icon.png" alt="#" />
+        <!-- </router-link> -->
         <div class="mobile-back text-end">
           <span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
         </div>
