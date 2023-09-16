@@ -203,6 +203,16 @@ const actions = {
       console.error("error in paying to course", e);
     }
   },
+  async getStudentIdAllcard({ commit }, id) {
+    try {
+      let response = await axios.get(`${Api}/api/manage/${nameR}/${id}/card`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting student'card", e);
+    }
+  },
 };
 
 export default {

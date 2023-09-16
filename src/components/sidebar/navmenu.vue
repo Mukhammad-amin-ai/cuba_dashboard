@@ -16,7 +16,7 @@
       </li>
       <li class="sidebar-list" v-if="permission[0].name === 'statistics' && permission[0].value > 0">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title" to="/">
+        <router-link class="sidebar-link sidebar-title" to="/statistics">
           <svg class="stroke-icon">
             <use href="@/assets/svg/icon-sprite.svg#stroke-home"></use>
           </svg>

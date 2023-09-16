@@ -11,6 +11,7 @@
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">Price : {{ item.price }} SUM</p>
                             <!-- <a href="#" class="btn btn-primary">About course</a> -->
+                            <button type="button" class="btn btn-success">Buy</button>
                         </div>
                     </div>
                 </RouterLink>
@@ -42,7 +43,7 @@ export default {
 }
 </script>
 <style scoped>
-.card:hover {
+.btn:hover {
     transform: scale(1.050)
 }
 
