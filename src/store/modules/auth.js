@@ -124,11 +124,13 @@ const actions = {
   async login({ commit, dispatch }, option) {
     try {
       const response = await axios.post(`${Api}/api/auth/login`, option);
-      // console.log(response.data.data);
-      let token = response.data.data.token;
-      await dispatch("getBranch", response.data.data.token);
-      await dispatch("getMyProfile", response.data.data.token);
-      localStorage.setItem("token", token);
+      // console.log(response.data);
+      // if (response.data.token) {
+        let token = response.data.data.token;
+        await dispatch("getBranch", response.data.data.token);
+        await dispatch("getMyProfile", response.data.data.token);
+        localStorage.setItem("token", token);
+      // }
       if (response.data.data.permissions) {
         localStorage.setItem(
           "permissions",
@@ -141,19 +143,25 @@ const actions = {
       }
     } catch (error) {
       console.error(error);
-      if (error.response.data.data.error === "Unauthorized") {
+      if (error.message === "Network Error") {
         commit("setError", true);
-        commit(
-          "setText",
-          "Sorry, wrong email address or password. Please try again"
-        );
+        commit("setText", "Internet is not Connected");
       }
-      if (error.request.status === 422) {
-        commit("setError", true);
-        commit(
-          "setText",
-          "Sorry, wrong email address or password. Please try again"
-        );
+      if (error.response) {
+        if (error.response.data.data.error === "Unauthorized") {
+          commit("setError", true);
+          commit(
+            "setText",
+            "Sorry, wrong email address or password. Please try again"
+          );
+        }
+        if (error.request.status === 422) {
+          commit("setError", true);
+          commit(
+            "setText",
+            "Sorry, wrong email address or password. Please try again"
+          );
+        }
       }
     }
   },

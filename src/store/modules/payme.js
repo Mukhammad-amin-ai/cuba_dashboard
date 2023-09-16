@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 let nameR = localStorage.getItem("name");
 // console.log(nameR);
 if (nameR) {
-  nameR = nameR.replace(/^"|"$/g, '');
+  nameR = nameR.replace(/^"|"$/g, "");
   // console.log(nameR);
 } else {
   console.log("Name not found in local storage");
@@ -179,6 +179,28 @@ const actions = {
       console.log(response.data.data);
     } catch (e) {
       console.error("error find in deleting card", e);
+    }
+  },
+  async getUserCashier({ commit }) {
+    try {
+      let response = await axios.get(`${Api}/api/user/cashier`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data.data);
+    } catch (e) {
+      console.error("error in user cashier id ", e);
+    }
+  },
+  async userPayForCourse({ commit }, option) {
+    try {
+      let response = await axios.post(
+        `${Api}/api/user/pay-for-course`,
+        option,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in paying to course", e);
     }
   },
 };

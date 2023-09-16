@@ -155,9 +155,9 @@
       </li>
       <li class="sidebar-list" v-if="permission[20].name === 'cashiers' && permission[20].value > 0">
         <label class="badge badge-light-primary"></label>
-        <router-link class="sidebar-link sidebar-title hover" to="/payme">
+        <router-link class="sidebar-link sidebar-title hover" to="/pay-for-course">
           <i class="icofont icofont-bill-alt"></i>
-          <span class="lan-3">Cashiers</span>
+          <span class="lan-3"> Pay for Course</span>
         </router-link>
       </li>
       <li class="sidebar-list" v-if="permission[4].name === 'my-cards' && permission[4].value === true">

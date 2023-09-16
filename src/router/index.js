@@ -45,6 +45,7 @@ import parentCreate from "@/pages/student/parents/parentsCreate.vue";
 import parentInfo from "@/pages/student/parents/parentsInfo.vue";
 import courseStudentInfo from "@/pages/course/courseStudentInfo.vue";
 import test from "@/pages/advance/test.vue";
+import payerVue from "@/pages/payme/payer.vue";
 
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 
@@ -281,12 +282,26 @@ const routes = [
       {
         path: "payme",
         component: payme,
-        meta: { requiredAuth: true, value: true },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[4].value : null,
+        },
+      },
+      {
+        path: "pay-for-course",
+        component: payerVue,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[20].value : null,
+        },
       },
       {
         path: "payme/:id",
         component: payme,
-        meta: { requiredAuth: true, value: true },
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[4].value : null,
+        },
       },
       {
         path: "live",
