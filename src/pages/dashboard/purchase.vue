@@ -1,8 +1,8 @@
 <template>
-    <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-6">
-        <div class="row">
+    <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-6 he">
+        <div class="row d-flex">
             <!-- -->
-            <div class="col-xl-12" >
+            <div class="col-xl-10">
                 <div class="card widget-1">
                     <div class="card-body">
                         <div class="widget-content">
@@ -74,27 +74,18 @@
 </template>
     
 <script>
-// import {
-//     puechaseSalesDetails1,
-//     puechaseSalesDetails2,
-//     puechaseSalesDetails3
-// } from "../../data/default"
-// import {
-//     apexDashboard
-// } from "../../data/common";
 import { mapState } from 'vuex';
 export default {
+    props: {
+        statisticsOfBranch: String
+    },
     data() {
         return {
-            // puechaseSalesDetails1: puechaseSalesDetails1,
-            // puechaseSalesDetails2: puechaseSalesDetails2,
-            // puechaseSalesDetails3: puechaseSalesDetails3,
-            // apexDashboard: apexDashboard,
 
         }
     },
-    computed:{
-        ...mapState("user",['statistics'])
+    computed: {
+        ...mapState("user", ['statistics'])
     },
     mounted() {
         // this.getStat()
@@ -106,3 +97,9 @@ export default {
     },
 }
 </script>
+<style scoped>
+.he{
+    height: 10%;
+}
+
+</style>

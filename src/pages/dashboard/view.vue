@@ -5,7 +5,7 @@
             <div class="row widget-grid">
                 <WelcomeCard />
                 <thisBranch :nameOfBranch="branch" />
-                <PurchaseSaleCard />
+                <PurchaseSaleCard :statisticsOfBranch="statictics"/>
             </div>
         </div>
     </div>
@@ -23,7 +23,8 @@ export default {
     },
     data() {
         return {
-            branch: ''
+            branch: '',
+            statictics:""
         }
     },
     computed: {
@@ -34,7 +35,8 @@ export default {
             immediate: true,
             handler(newstatistics) {
                 if(newstatistics){
-                    this.branch = newstatistics.branch
+                    this.branch = newstatistics.branch,
+                    this.statictics = newstatistics.statistics
                 }
             }
         }

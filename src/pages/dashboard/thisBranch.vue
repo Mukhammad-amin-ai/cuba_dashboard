@@ -1,26 +1,18 @@
 <template >
-    <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-6">
-        <div class="row">
-            <!-- -->
-            <div class="col-xl-12">
-                <div class="card widget-1">
-                    <div class="card-body">
-                        <div class="widget-content">
-                            <div class="widget-round primary">
-                                <div class="bg-round">
-                                    <svg class="svg-fill">
-                                        <use :xlink:href="require('@/assets/svg/icon-sprite.svg') + `#stroke-home`">
-                                        </use>
-                                    </svg>
-                                </div>
-                            </div>
-                            Branch name: <span v-if="nameOfBranch">
-                                {{ nameOfBranch.name }}</span>
-                            <span v-else> Loading...</span>
+    <div class="col-xxl-4 col-sm-6 box-col-6">
+        <div class="card profile-box">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <div class="greeting-user">
+                            <h4 class="f-w-600 mb-0">Branch</h4>
+                            <p v-if="nameOfBranch">
+                                {{ nameOfBranch.name }}
+                            </p>
                         </div>
-
                     </div>
                 </div>
+                <div class="badge f-10 p-50" id="txt"></div>
             </div>
         </div>
     </div>
@@ -32,4 +24,10 @@ export default {
     }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.media{
+    padding: 56px;
+}
+
+
+</style>
