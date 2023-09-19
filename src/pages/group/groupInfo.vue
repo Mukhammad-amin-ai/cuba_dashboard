@@ -23,7 +23,10 @@
                                         <div class="col-md-6">
                                             <div class="ttl-info text-start">
                                                 <h6><i class="fa fa-user"></i> Assistent</h6>
-                                                <span>{{ groupData.assistant_teacher }}</span>
+                                                <span v-if="groupData && groupData.assistant_teacher">{{
+                                                    groupData.assistant_teacher.firstname }}
+                                                    {{ groupData.assistant_teacher.lastname }}</span>
+                                                <span v-else> loading</span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -37,7 +40,9 @@
                                 <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
                                     <div class="user-designation">
                                         <div class="title">
-                                            <a target="_blank" href="">{{ groupData.teacher }}</a>
+                                            <a v-if="groupData && groupData.teacher">{{
+                                                groupData.teacher.firstname }} {{ groupData.teacher.lastname }}</a>
+                                            <a v-else> loading</a>
                                         </div>
                                         <div class="desc mt-2">Teacher</div>
                                     </div>

@@ -127,7 +127,7 @@
         </div>
     </div>
     <div class="container-fluid justify-content-between  d-flex bg" v-else>
-        <div class="left-side">
+        <div class="left-side" >
             <div class="side-box">
                 Product:
             </div>

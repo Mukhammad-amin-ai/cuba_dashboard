@@ -56,7 +56,7 @@ const actions = {
       let responce = await axios.get(`${Api}/api/manage/group/${option}`, {
         headers: { Authorization: "Bearer" + token },
       });
-      console.log(responce.data.data);
+      console.log(responce.data);
       commit("setGroup", responce.data.data);
     } catch (error) {
       console.error("there is problem ", error);

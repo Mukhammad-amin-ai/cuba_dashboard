@@ -9,7 +9,6 @@
                 </div>
             </div>
         </RouterLink>
-
         <RouterLink :to="{ path: 'group/' + item.id }" v-for="item in groupData" :key="item">
             <div class="card mb-3" style="max-width: 100vw;">
                 <div class="row g-0">
@@ -20,10 +19,17 @@
                         <div class="card-body">
                             <h5 class="card-title">Group No/{{ item.id }}</h5>
                             <p> Group name : {{ item.name }}</p>
-                            <p> Teacher : <span class="red"> {{ item.teacher }}</span> Assistent-teacher : <span
-                                    class="red">{{
-                                        item.assistant_teacher }} </span> </p>
-                            <p>Course name :<span class="green">{{ item.course }}</span></p>
+                            <p> Teacher : <span class="red" v-if="item && item.teacher">
+                                    {{ item.teacher.firstname }} {{ item.teacher.lastname }} </span>
+                                <span v-else>Loading...</span>
+                                Assistent-teacher : <span class="red" v-if="item && item.assistant_teacher">
+                                    {{ item.assistant_teacher.firstname }} {{ item.assistant_teacher.lastname }} </span>
+                                <span v-else> Loading...</span>
+                            </p>
+                            <p>Course name : <span class="green" v-if="item && item.course">
+                                    {{ item.course.name }}</span>
+                                <span v-else>Loading...</span>
+                            </p>
                         </div>
                     </div>
                 </div>

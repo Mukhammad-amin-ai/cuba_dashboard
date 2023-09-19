@@ -19,7 +19,7 @@
                                 <td>{{ item.firstname }}</td>
                                 <td>{{ item.lastname }}</td>
                                 <td>{{ item.email }}</td>
-                                <td>{{ item.contact_no }}</td>
+                                <td>{{ item.contact }}</td>
                             </tr>
                         </tbody>
                     </table>
