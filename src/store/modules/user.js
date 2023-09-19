@@ -8,6 +8,7 @@ let state = {
   userData: [],
   editHandler: true,
   pagination: true,
+  statistics: [],
 };
 const mutations = {
   setUserData(state, userData) {
@@ -18,6 +19,9 @@ const mutations = {
   },
   setPagination(state, payload) {
     state.pagination = payload;
+  },
+  setStat(state, statistics) {
+    state.statistics = statistics;
   },
 };
 const actions = {
@@ -101,6 +105,21 @@ const actions = {
   },
   changeToEdit({ commit }) {
     commit("setUserEditHandler", !state.editHandler);
+  },
+  async getStatistics({ commit }) {
+    let headers = {
+      Authorization: "Bearer " + token,
+      "Branch-Id": branchToken,
+    };
+    try {
+      let responce = await axios.get(`${Api}/api/user/statistics`, { headers });
+      console.log(responce.data.data);
+      if (responce.data.status === 200) {
+        commit("setStat", responce.data.data);
+      }
+    } catch (e) {
+      console.error("error in geting statistics ", e);
+    }
   },
 };
 
