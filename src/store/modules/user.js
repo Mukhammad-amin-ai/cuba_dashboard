@@ -107,6 +107,7 @@ const actions = {
     commit("setUserEditHandler", !state.editHandler);
   },
   async getStatistics({ commit }) {
+    // commit("setLoading", true, { root: true });
     let headers = {
       Authorization: "Bearer " + token,
       "Branch-Id": branchToken,
@@ -115,6 +116,7 @@ const actions = {
       let responce = await axios.get(`${Api}/api/user/statistics`, { headers });
       console.log(responce.data.data);
       if (responce.data.status === 200) {
+        // commit("setLoading", false, { root: true });
         commit("setStat", responce.data.data);
       }
     } catch (e) {
