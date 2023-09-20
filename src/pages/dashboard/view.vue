@@ -28,6 +28,7 @@
                 <statisticsVue :statisticsOfBranch="statictics ? statictics.stparents : 'Loading...'" nameOf="Parents"
                     link2="https://img.freepik.com/premium-photo/3d-cartoon-father-son-holding-balloons_567739-6558.jpg?w=900" />
             </div>
+            <chart/>
         </div>
     </div>
 </template>
@@ -37,6 +38,7 @@ import PurchaseSaleCard from "./purchase.vue";
 import thisBranch from "./thisBranch.vue";
 import spiner from "@/components/ui/spiner.vue";
 import statisticsVue from "./statistics.vue";
+import chart from '@/pages/dashboard/chart.vue'
 import { mapState } from "vuex";
 export default {
     components: {
@@ -44,7 +46,8 @@ export default {
         PurchaseSaleCard,
         thisBranch,
         spiner,
-        statisticsVue
+        chart,
+        statisticsVue,
     },
     data() {
         return {

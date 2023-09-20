@@ -4,7 +4,6 @@
             <div class="left-text">
                 <h4>{{ statisticsOfBranch }}</h4>
                 <span class="f-light">
-                    <!-- {{ puechaseSales.title }} -->
                     {{ nameOf }}
                 </span>
             </div>
