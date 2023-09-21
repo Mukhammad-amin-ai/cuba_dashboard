@@ -12,10 +12,18 @@
                         <div class="card-body">
                             <h5 class="card-title">Group No/{{ item.id }}</h5>
                             <p> Group name : {{ item.name }}</p>
-                            <p> Teacher : <span class="red"> {{ item.teacher }}</span> Assistent-teacher : <span
-                                    class="red">{{
-                                        item.assistant_teacher }} </span> </p>
-                            <p>Course name :<span class="green">{{ item.course }}</span></p>
+                            <p> Teacher : <span class="red" v-if="item.teacher">
+                                    {{ item.teacher.firstname }} {{ item.teacher.lastname }}
+                                </span>
+                                <span v-else>Loading...</span>
+                                Assistent-teacher : <span class="red" v-if="item.assistant_teacher">
+                                    {{ item.assistant_teacher.firstname }} {{ item.assistant_teacher.lastname }}</span>
+                                <span v-else></span>
+                            </p>
+                            <p>Course name :<span class="green" v-if="item.course">
+                                    {{ item.course.name }}</span>
+                                <span v-else>Loading...</span>
+                            </p>
                         </div>
                     </div>
                 </div>

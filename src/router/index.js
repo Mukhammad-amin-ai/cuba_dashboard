@@ -341,6 +341,14 @@ const routes = [
         },
       },
       {
+        path: "marking",
+        component: myGroups,
+        meta: {
+          requiredAuth: true,
+          value: permObj && permObj.length > 0 ? permObj[1].value : null,
+        },
+      },
+      {
         path: "my-children",
         component: myChildren,
         meta: {

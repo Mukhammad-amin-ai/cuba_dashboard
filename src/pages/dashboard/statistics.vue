@@ -29,7 +29,13 @@ export default {
     height: 100px;
     border-radius: 10px;
     margin-bottom: 10px;
+    transition: all .3s linear;
+    /* transform: scale(1); */
 }
+.cover:hover{
+    transform: scale(1.1);
+}
+
 
 .card2 {
     width: 100%;

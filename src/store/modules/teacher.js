@@ -140,7 +140,7 @@ const actions = {
       let response = await axios.get(`${Api}/api/teacher/my-groups`, {
         headers: { Authorization: "Bearer " + token },
       });
-      // console.log(response.data);
+      console.log(response.data.data);
       if (response.data) {
         commit("setLoading", false, { root: true });
       }

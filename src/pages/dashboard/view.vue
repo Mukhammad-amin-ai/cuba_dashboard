@@ -8,7 +8,7 @@
                 <thisBranch :nameOfBranch="branch" />
                 <PurchaseSaleCard :statisticsOfBranch="statictics" />
                 <div class="col">
-                    <button type="button" class="btn btn-success">Day</button>
+                    <button type="button" class="btn btn-success" @click="getDay">Day</button>
                     <button type="button" class="btn btn-success">Week</button>
                     <button type="button" class="btn btn-success">Month</button>
                 </div>
@@ -28,7 +28,10 @@
                 <statisticsVue :statisticsOfBranch="statictics ? statictics.stparents : 'Loading...'" nameOf="Parents"
                     link2="https://img.freepik.com/premium-photo/3d-cartoon-father-son-holding-balloons_567739-6558.jpg?w=900" />
             </div>
-            <chart/>
+            <div class="container-fluid p-20">
+                <chart />
+
+            </div>
         </div>
     </div>
 </template>
@@ -53,7 +56,8 @@ export default {
         return {
             branch: '',
             statictics: "",
-            link: '../../assets/images/dashboard-3/bg.jpg'
+            link: '../../assets/images/dashboard-3/bg.jpg',
+            data:""
         }
     },
     computed: {
@@ -75,8 +79,21 @@ export default {
     },
     methods: {
         getStat() {
-            this.$store.dispatch("user/getStatistics")
+            this.$store.dispatch("user/getStatistics",this.data)
         },
+        getDay(){
+            this.data = '/?filter=day'
+            // window.location.reload()
+        },
+        getmonth(){
+            this.data = '/?filter=moth',
+            window.location.reload()
+
+        },
+        getYear(){
+            this.data='/filter=year',
+            window.location.reload()
+        }
 
     },
 
