@@ -1,7 +1,7 @@
-const verify = "http://tulibayev.uz/api/auth/emailverification";
-const login = "http://tulibayev.uz/api/auth/login";
-// const verify = "http://192.168.0.137:8000/api/auth/login";
-// const login = "http://192.168.0.137:8000/api/auth/login";
+// const verify = "http://tulibayev.uz/api/auth/emailverification";
+// const login = "http://tulibayev.uz/api/auth/login";
+const verify = "http://192.168.0.135:8000/api/auth/login";
+const login = "http://192.168.0.135:8000/api/auth/login";
 
 const token = localStorage.getItem("token");
 

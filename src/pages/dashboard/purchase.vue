@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h5 v-if="statisticsOfBranch">{{ statisticsOfBranch.payments }} $</h5>
+                                <h5 v-if="statisticsOfBranch">{{ statisticsOfBranch.payments }} UZS</h5>
                                 <h5 v-else>Loading...</h5>
                                 <span class="f-light">
                                     <!-- {{ puechaseSales.title }} -->

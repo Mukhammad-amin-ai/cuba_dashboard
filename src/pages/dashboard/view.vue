@@ -9,8 +9,10 @@
                 <PurchaseSaleCard :statisticsOfBranch="statictics" />
                 <div class="col">
                     <button type="button" class="btn btn-success" @click="getDay">Day</button>
-                    <button type="button" class="btn btn-success">Week</button>
-                    <button type="button" class="btn btn-success">Month</button>
+                    <button type="button" class="btn btn-success" @click="getweek">Week</button>
+                    <button type="button" class="btn btn-success" @click="getmonth">Month</button>
+                    <button type="button" class="btn btn-success" @click="getYear">Year</button>
+
                 </div>
             </div>
             <div class="container-fluid d-flex">
@@ -30,7 +32,6 @@
             </div>
             <div class="container-fluid p-20">
                 <chart />
-
             </div>
         </div>
     </div>
@@ -57,7 +58,7 @@ export default {
             branch: '',
             statictics: "",
             link: '../../assets/images/dashboard-3/bg.jpg',
-            data:""
+            data: ""
         }
     },
     computed: {
@@ -79,20 +80,23 @@ export default {
     },
     methods: {
         getStat() {
-            this.$store.dispatch("user/getStatistics",this.data)
+            this.$store.dispatch("user/getStatistics", this.data)
         },
-        getDay(){
+        getDay() {
             this.data = '/?filter=day'
-            // window.location.reload()
+            this.getStat()
         },
-        getmonth(){
-            this.data = '/?filter=moth',
-            window.location.reload()
-
+        getweek() {
+            this.data = '/?filter=week'
+            this.getStat()
         },
-        getYear(){
-            this.data='/filter=year',
-            window.location.reload()
+        getmonth() {
+            this.data = '/?filter=month'
+            this.getStat()
+        },
+        getYear() {
+            this.data = '/?filter=year'
+            this.getStat()
         }
 
     },

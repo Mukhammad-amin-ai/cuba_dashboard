@@ -102,7 +102,7 @@
         <label class="badge badge-light-primary"></label>
         <router-link class="sidebar-link sidebar-title hover" to="/marking">
           <i class="icofont icofont-architecture-alt"></i>
-          <span class="lan-3"> Marking</span>
+          <span class="lan-3"> Marks</span>
         </router-link>
       </li>
       <!-- <li class="sidebar-list" v-if="permission[12].name === 'lessons' && permission[12].value > 0">

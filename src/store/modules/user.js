@@ -107,22 +107,39 @@ const actions = {
     commit("setUserEditHandler", !state.editHandler);
   },
   async getStatistics({ commit },option) {
-    // commit("setLoading", true, { root: true });
+    commit("setLoading", true, { root: true });
     let headers = {
       Authorization: "Bearer " + token,
       "Branch-Id": branchToken,
     };
     try {
       let responce = await axios.get(`${Api}/api/user/statistics${option}`, { headers });
-      console.log(responce.data.data);
-      if (responce.data.status === 200) {
-        // commit("setLoading", false, { root: true });
+      // console.log(responce.data);
+      if (responce.data.success) {
+        commit("setLoading", false, { root: true });
         commit("setStat", responce.data.data);
       }
     } catch (e) {
       console.error("error in geting statistics ", e);
     }
   },
+  // async getStatisticsDay({ commit }) {
+  //   // commit("setLoading", true, { root: true });
+  //   let headers = {
+  //     Authorization: "Bearer " + token,
+  //     "Branch-Id": branchToken,
+  //   };
+  //   try {
+  //     let responce = await axios.get(`${Api}/api/user/statistics/?filter=day`, { headers });
+  //     console.log(responce.data.data);
+  //     if (responce.data.status === 200) {
+  //       // commit("setLoading", false, { root: true });
+  //       commit("setStat", responce.data.data);
+  //     }
+  //   } catch (e) {
+  //     console.error("error in geting statistics ", e);
+  //   }
+  // },
 
 
 

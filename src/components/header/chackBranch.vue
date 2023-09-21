@@ -1,6 +1,6 @@
 <template >
     <!-- <div class="btn"> -->
-    <li class="profile-nav onhover-dropdown pe-0 py-0">
+    <li class="profile-nav onhover-dropdown pe-0 py-0" v-if="chack[17].value > 0">
         <div class="media profile-media">
             <div class="media-body">
                 <p class="mb-0 font-roboto">
@@ -38,12 +38,14 @@
 <script>
 
 let branches = JSON.parse(localStorage.getItem('branch_token',))
-
+let perm = JSON.parse(localStorage.getItem('permissions'))
+// console.log(perm[17].value);
 // console.log(branches);
 export default {
     data() {
         return {
-            branchlar: branches
+            branchlar: branches,
+            chack: perm
         }
     },
     methods: {

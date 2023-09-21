@@ -1,6 +1,6 @@
 <template >
     <div id="chart">
-        <apexchart type="area" height="350" :options="chartOptions" :series="series"></apexchart>
+        <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
     </div>
 </template>
 <script>
@@ -8,63 +8,35 @@ export default {
     data() {
         return {
             series: [{
-                name: 'XYZ MOTORS',
-                data: [10,20,30]
+                name: "Desktops",
+                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
             }],
             chartOptions: {
                 chart: {
-                    type: 'area',
-                    stacked: false,
                     height: 350,
+                    type: 'line',
                     zoom: {
-                        type: 'x',
-                        enabled: true,
-                        autoScaleYaxis: true
-                    },
-                    toolbar: {
-                        autoSelected: 'zoom'
+                        enabled: false
                     }
                 },
                 dataLabels: {
                     enabled: false
                 },
-                markers: {
-                    size: 0,
+                stroke: {
+                    curve: 'straight'
                 },
                 title: {
-                    text: 'Profit',
+                    text: 'Profit analytics',
                     align: 'left'
                 },
-                fill: {
-                    type: 'gradient',
-                    gradient: {
-                        shadeIntensity: 1,
-                        inverseColors: false,
-                        opacityFrom: 0.5,
-                        opacityTo: 0,
-                        stops: [0, 90, 100]
-                    },
-                },
-                yaxis: {
-                    labels: {
-                        formatter: function (val) {
-                            return (val / 1000000).toFixed(0);
-                        },
-                    },
-                    title: {
-                        text: 'Income'
+                grid: {
+                    row: {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
                     },
                 },
                 xaxis: {
-                    type: 'datetime',
-                },
-                tooltip: {
-                    shared: false,
-                    y: {
-                        formatter: function (val) {
-                            return (val / 1000000).toFixed(0)
-                        }
-                    }
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
                 }
             }
         }
