@@ -88,7 +88,7 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(responce.data);
-      if (responce.data.message === "Group created successfully") {
+      if (responce.data.success) {
         window.location.href = "/group";
       }
     } catch (e) {

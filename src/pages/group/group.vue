@@ -1,4 +1,5 @@
 <template >
+    
     <Breadcrumbs title="Blog Detail" main="Groups" />
     <div class="container">
         <spiner />

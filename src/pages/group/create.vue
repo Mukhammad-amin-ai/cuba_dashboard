@@ -155,8 +155,9 @@ export default {
         ...mapState('teacher', ['teachers']),
         ...mapState('course', ['courseData']),
         ...mapState("student", ['students']),
-        ...mapState('teacher', ['assistants'])
+        ...mapState('assistentTeacher', ['assistants'])
     },
+
     mounted() {
         this.getTeachers()
         this.getCourse()
@@ -201,7 +202,7 @@ export default {
 
         },
         getAssistants() {
-            this.$store.dispatch('teacher/getAssistants')
+            this.$store.dispatch('assistentTeacher/getAssistTeachers')
         },
         addStudent(index) {
             if (this.showAddedList === false) {

@@ -90,17 +90,17 @@ export default createStore({
       commit("changeLang", payload);
     },
     permittionCheck({ commit }, name) {
-      if (permObj[name].value === "1") {
+      if (permObj[name].value === 1) {
         commit("setRead", true);
-      } else if (permObj[name].value === "2") {
+      } else if (permObj[name].value === 2) {
         // console.log(permObj);
         commit("setRead", true);
         commit("setCreate", true);
-      } else if (permObj[name].value === "3") {
+      } else if (permObj[name].value === 3) {
         commit("setRead", true);
         commit("setCreate", true);
         commit("setUpdate", true);
-      } else if (permObj[name].value === "4") {
+      } else if (permObj[name].value === 4) {
         // console.log(permObj);
         commit("setRead", true);
         commit("setCreate", true);
@@ -109,6 +109,7 @@ export default createStore({
       }
     },
   },
+
   modules: {
     layout,
     menu,

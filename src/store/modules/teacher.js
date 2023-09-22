@@ -7,7 +7,7 @@ const state = {
   teachers: [],
   assistants: [],
   myGroups: [],
-  noData:true
+  noData: true,
 };
 const mutations = {
   setTeacher(state, teachers) {
@@ -19,16 +19,16 @@ const mutations = {
   setMyGroups(state, myGroups) {
     state.myGroups = myGroups;
   },
-  setNodata(state,noData){
-    state.noData = noData
-  }
+  setNodata(state, noData) {
+    state.noData = noData;
+  },
 };
 const actions = {
   async getTeachers({ commit }) {
     commit("setLoading", true, { root: true });
     let headers = {
       Authorization: "Bearer " + token,
-      "Branch-Id": branchToken,
+      // "Branch-Id": branchToken,
     };
     try {
       const response = await axios.get(`${Api}/api/manage/teacher`, {
@@ -117,23 +117,6 @@ const actions = {
       }
     }
   },
-  // async getAssistants({ commit }) {
-  //   try {
-  //     const response = await axios.get(
-  //       `${Api}/api/manage/teacher?role=assistant`,
-  //       {
-  //         headers: { Authorization: "Bearer" + token },
-  //       }
-  //     );
-  //     // console.log(response.data);
-  //     commit("setAssistants", response.data.data);
-  //   } catch (e) {
-  //     console.error("error with getting assistants", e);
-  //     if (e.request.status === 401) {
-  //       window.location.href = "/login";
-  //     }
-  //   }
-  // },
   async getMyGroups({ commit }) {
     commit("setLoading", true, { root: true });
     try {
@@ -151,6 +134,17 @@ const actions = {
     } catch (e) {
       commit("setLoading", false, { root: true });
       console.error("error in getting my groups", e);
+    }
+  },
+  async getMyGroupStudents({ commit }, id) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/manage/teacher/my-groups/${id}/students`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getting students", e);
     }
   },
 };
