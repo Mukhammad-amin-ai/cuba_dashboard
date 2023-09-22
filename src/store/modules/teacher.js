@@ -8,6 +8,8 @@ const state = {
   assistants: [],
   myGroups: [],
   noData: true,
+  myGroupStudetns: [],
+  myGroupLesson:[]
 };
 const mutations = {
   setTeacher(state, teachers) {
@@ -22,13 +24,19 @@ const mutations = {
   setNodata(state, noData) {
     state.noData = noData;
   },
+  setMyStudents(state, payload) {
+    state.myGroupStudetns = payload;
+  },
+  setMyGroupLesson(state,payload){
+    state.myGroupLesson = payload
+  }
 };
 const actions = {
   async getTeachers({ commit }) {
     commit("setLoading", true, { root: true });
     let headers = {
       Authorization: "Bearer " + token,
-      // "Branch-Id": branchToken,
+      "Branch-Id": branchToken,
     };
     try {
       const response = await axios.get(`${Api}/api/manage/teacher`, {
@@ -123,7 +131,7 @@ const actions = {
       let response = await axios.get(`${Api}/api/teacher/my-groups`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data.data);
+      // console.log(response.data.data);
       if (response.data) {
         commit("setLoading", false, { root: true });
       }
@@ -139,12 +147,29 @@ const actions = {
   async getMyGroupStudents({ commit }, id) {
     try {
       let response = await axios.get(
-        `${Api}/api/manage/teacher/my-groups/${id}/students`,
+        `${Api}/api/teacher/my-groups/${id}/students`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      // console.log(response.data);
+      if (response.data.success) {
+        commit("setMyStudents", response.data.data);
+      }
+    } catch (e) {
+      console.error("error in getting students", e);
+    }
+  },
+  async getMyGroupLessons({ commi }, id) {
+    try {
+      let response = await axios.get(
+        `${Api}api/teacher/my-groups/${id}/lessons`,
         { headers: { Authorization: "Bearer " + token } }
       );
       console.log(response.data);
+      if(response.data.success){
+        commi("setMyGroupLesson",response.data.data)
+      }
     } catch (e) {
-      console.error("error in getting students", e);
+      console.error("error in geting my group lesson", e);
     }
   },
 };
