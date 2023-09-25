@@ -1,102 +1,39 @@
 <template>
-    <!-- <div>
-        <div class="wrapper">
-            <select class="form-select" aria-label="Default select example" v-model="selectedGroup">
-                <option :value="item.id" v-for="item in myGroups" :key="item">
-                    {{ item.name }}
-                </option>
-            </select>
-            <button type="button" class="btn btn-primary" @click="getStudents"> Primary</button>
-        </div>
-        <div class="container-fluid p-20">
-            <div class="card">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Name
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="student in myGroupStudetns" :key="student" >
-                            <td >
-                                {{ student.firstname }} {{ student.lastname }}
-                            </td>
-                        </tr>
-                     
-                    </tbody>
-                </table>
-            </div>
-            <div class="box">
-                <div class="lesson">
-
-                </div>
-                <div class="marki">
-
-                </div>
-            </div>
-
-
-        </div>
-
-
-    </div> -->
-    <div class="wrapper">
+    <div class="wrapper ">
         <select class="form-select" aria-label="Default select example" v-model="selectedGroup">
             <option :value="item.id" v-for="item in myGroups" :key="item">
                 {{ item.name }}
             </option>
         </select>
-        <button type="button" class="btn btn-primary" @click="getStudents"> Primary</button>
+        <button type="button" class="btn btn-primary" @click="getStudents"> Choose</button>
     </div>
     <div class="container-fluid">
-
-        <div class="listOf">
-            <div class="head">
-                Name
-            </div>
-            <div class="studet" v-for="student in myGroupStudetns" :key="student"> {{ student.firstname }} </div>
-            <!-- <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div>
-            <div class="studet"> muhammad</div> -->
-        </div>
         <div class="box-mark">
             <div class="lessons">
                 <div class="boxLesson">
-                    <p>lesson</p>
+                    <p>name</p>
                 </div>
-                <div class="boxLesson">
-                    <p>lesson</p>
+                <div class="boxLesson" v-for="lesson in myGroupLesson" :key="lesson">
+                    <p>{{ lesson.name }}</p>
                 </div>
-                <div class="boxLesson">
-                    <p>lesson</p>
+            </div>
+            <div class="marklist">
+                <div class="list">
+                    <div class="marks" v-for="student in myGroupStudetns" :key="student">
+                        {{ student.firstname }}
+                    </div>
                 </div>
-                <div class="boxLesson">
-                    <p>lesson</p>
-                </div>
-                <div class="boxLesson">
-                    <p>lesson</p>
-                </div>
-                <div class="boxLesson">
-                    <p>lesson</p>
-                </div>
-                <div class="boxLesson">
-                    <p>lesson</p>
-                </div>
-                <div class="boxLesson">
-                    <p>lesson</p>
+                <div class="marking">
+                    <div v-for="lesson in myGroupLesson" :key="lesson.id">
+                        <div v-for="student in myGroupStudetns" :key="student.id">
+                            <div class="markBox" @click="toggleInput(lesson.id, student.id)">
+                                <!-- <button type="button" class="btn btn-success"
+                                    @click="">Success</button> -->
+                                <input type="text"
+                                    :style="{ display: isInputVisible(lesson.id, student.id) ? 'block' : 'none' }">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,15 +41,19 @@
 </template>
 <script>
 import { mapState } from 'vuex';
+import { ref, computed } from 'vue';
 export default {
     data() {
         return {
-            selectedGroup: ''
+            selectedGroup: '',
+            inputVisibility: {},
+
         }
     },
     computed: {
         ...mapState('teacher', ['myGroups']),
-        ...mapState('teacher', ['myGroupStudetns'])
+        ...mapState('teacher', ['myGroupStudetns']),
+        ...mapState('teacher', ['myGroupLesson'])
     },
     mounted() {
         this.getGroups()
@@ -123,64 +64,101 @@ export default {
         },
         getGroups() {
             this.$store.dispatch("teacher/getMyGroups")
-        }
+        },
+    },
+    setup() {
+        // Create a ref to track input visibility
+        const inputVisibility = ref({});
+
+        // Method to toggle the input visibility
+        const toggleInput = (lessonId, studentId) => {
+            const key = `${lessonId}-${studentId}`;
+            inputVisibility.value[key] = !inputVisibility.value[key];
+        };
+
+        // Computed property to check if the input should be visible
+        const isInputVisible = (lessonId, studentId) => {
+            const key = `${lessonId}-${studentId}`;
+            return inputVisibility.value[key];
+        };
+
+        return {
+            toggleInput,
+            isInputVisible,
+        };
     }
+
 }
 </script>
 <style scoped>
+input[type='text'] {
+    width: 70px;
+}
 
-.boxLesson{
+
+.markBox {
+    width: 100px !important;
+    height: 70px !important;
+    border: 1px solid #000;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marking {
+    width: auto;
+    height: 70px;
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.marklist {
+    width: auto;
+    height: 95%;
+    display: flex;
+}
+
+.list {
     width: 100px;
     height: 100%;
+    display: block;
+}
+
+.boxLesson {
+    width: 100px !important;
+    height: 100%;
     background-color: yellow;
-    border: 3px solid #000;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
 }
-.lessons{
-    width: 100%;
-    height: 70px;
+
+.marks {
+    width: 100px !important;
+    height: 70px !important;
     background-color: red;
-    display: flex;
-    gap: 3px;
-    /* align-items: center; */
+    border: 1px solid #000;
 }
-.box-mark{
-    width: 75%;
+
+.lessons {
+    width: 100%;
+    height: 70px !important;
+    /* background-color: red; */
+    display: inline-flex;
+}
+
+.box-mark {
+    width: 100%;
     height: 100%;
     background-color: aqua;
-    
-    /* overflow-x: scroll; */
+    overflow-x: scroll;
+    white-space: nowrap;
 }
 
 
-.studet {
-    width: 100%;
-    height: 70px;
-    text-align: center;
-    background-color: red;
-    border: 3px solid aqua;
-
-}
-
-.head {
-    width: 100%;
-    height: 70px;
-    /* background-color: green; */
-    position: sticky;
-    top: 0
-}
-
-.listOf {
-    width: 25%;
-    height: 100%;
-    /* background-color: aqua; */
-    overflow-y: scroll;
-    position: relative;
-}
-
-.listOf::-webkit-scrollbar {
-    width: 0.1em;
-    background-color: transparent;
-}
 
 .container-fluid {
     height: 100vh;
@@ -188,73 +166,6 @@ export default {
     /* background-color: aqua; */
 }
 
-.card {
-    width: 30%;
-    height: 100%;
-    overflow: scroll;
-}
-
-.card::-webkit-scrollbar {
-    width: 0.1em;
-    background-color: transparent;
-}
-
-.box {
-    width: 70%;
-    height: 100%;
-    /* background-color: red; */
-    display: flex;
-    flex-direction: column;
-    overflow-x: scroll;
-    border-radius: 10px;
-}
-
-.lesson {
-    width: auto;
-    height: 71px;
-    /* background-color: aqua; */
-}
-
-.marki {
-    width: 110%;
-    height: 90%;
-    /* background-color: green; */
-}
-
-table {
-    width: 100%;
-    height: 100%;
-    border: 1px solid;
-
-}
-
-thead {
-    width: 100%;
-    height: 70px;
-    /* display: flex; */
-    /* justify-content: center; */
-    text-align: center;
-}
-
-tbody {
-    width: 100%;
-    height: 70px;
-    /* border: 1px solid; */
-
-
-}
-
-td,
-th {
-    width: 100%;
-    /* height: 70px !important; */
-    padding: 5px;
-    border: 1px solid;
-}
-
-/* tr {
-    border: 1px solid;
-} */
 
 .wrapper {
     width: 95%;
@@ -263,6 +174,7 @@ th {
     justify-content: flex-start;
     align-items: center;
     margin-left: 2%;
+    gap: 10px;
 }
 
 .wrapper select {

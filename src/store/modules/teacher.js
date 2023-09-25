@@ -9,7 +9,7 @@ const state = {
   myGroups: [],
   noData: true,
   myGroupStudetns: [],
-  myGroupLesson:[]
+  myGroupLesson: [],
 };
 const mutations = {
   setTeacher(state, teachers) {
@@ -27,9 +27,9 @@ const mutations = {
   setMyStudents(state, payload) {
     state.myGroupStudetns = payload;
   },
-  setMyGroupLesson(state,payload){
-    state.myGroupLesson = payload
-  }
+  setMyGroupLesson(state, payload) {
+    state.myGroupLesson = payload;
+  },
 };
 const actions = {
   async getTeachers({ commit }) {
@@ -144,7 +144,7 @@ const actions = {
       console.error("error in getting my groups", e);
     }
   },
-  async getMyGroupStudents({ commit }, id) {
+  async getMyGroupStudents({ commit,dispatch }, id) {
     try {
       let response = await axios.get(
         `${Api}/api/teacher/my-groups/${id}/students`,
@@ -153,23 +153,90 @@ const actions = {
       // console.log(response.data);
       if (response.data.success) {
         commit("setMyStudents", response.data.data);
+        dispatch('getMyGroupLessons',id)
       }
     } catch (e) {
       console.error("error in getting students", e);
     }
   },
-  async getMyGroupLessons({ commi }, id) {
+  async getMyGroupLessons({ commit, }, id) {
     try {
       let response = await axios.get(
-        `${Api}api/teacher/my-groups/${id}/lessons`,
+        `${Api}/api/teacher/my-groups/${id}/lessons`,
         { headers: { Authorization: "Bearer " + token } }
       );
-      console.log(response.data);
-      if(response.data.success){
-        commi("setMyGroupLesson",response.data.data)
+      // console.log(response.data);
+      if (response.data.success) {
+        commit("setMyGroupLesson", response.data.data);
+       
       }
     } catch (e) {
       console.error("error in geting my group lesson", e);
+    }
+  },
+  async setMark({ commit }, option) {
+    try {
+      let response = await axios.post(`${Api}/api/teacher/set-mark`, option, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in seting mark", e);
+    }
+  },
+  async getMyGroupExams({ commit }, id) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/teacher/my-groups/${id}/exams`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting goup exams", e);
+    }
+  },
+  async getMarksLesson({ commit }, group, lesson) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/teacher/my-groups/${group}/lesson/${lesson}/get-mark`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getting mark lesson", e);
+    }
+  },
+  async getMarksExam({ commit }, group, exam) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/teacher/my-groups/${group}/exam/${exam}/get-mark`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getting mark exam", e);
+    }
+  },
+  async getMarkForLesson({ commit }, mark) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/teacher/get-mark/${mark}/lesson`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting mark lesson", e);
+    }
+  },
+  async getMarkForExam({ commit }, mark) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/teacher/get-mark/${mark}/exam`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in geting mark exam", e);
     }
   },
 };
