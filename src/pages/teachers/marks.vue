@@ -1,4 +1,8 @@
 <template>
+    <div class="alert alert-success d-flex justify-content-between" role="alert" v-if="this.$store.state.teacher.alertMark">
+        The student was successfully evaluated.
+        <button type="button" class="btn-close" aria-label="Close" @click="hideAlert"></button>
+    </div>
     <div class="wrapper ">
         <select class="form-select" aria-label="Default select example" v-model="selectedGroup">
             <option :value="item.id" v-for="item in myGroups" :key="item">
@@ -17,6 +21,7 @@
                     <p>{{ lesson.name }}</p>
                 </div>
             </div>
+            {{ inputValue }}
             <div class="marklist">
                 <div class="list">
                     <div class="marks" v-for="student in myGroupStudetns" :key="student">
@@ -24,27 +29,29 @@
                     </div>
                 </div>
                 <div class="marking">
-                    <div v-for="lesson in myGroupLesson" :key="lesson.id">
-                        <div v-for="student in myGroupStudetns" :key="student.id">
+                    <div v-for="lesson in  myGroupLesson " :key="lesson.id">
+                        <div v-for="student in  myGroupStudetns " :key="student.id">
                             <div class="markBox" @click="toggleInput(lesson.id, student.id)">
-                                <!-- <button type="button" class="btn btn-success"
-                                    @click="">Success</button> -->
-                                <input type="text"
-                                    :style="{ display: isInputVisible(lesson.id, student.id) ? 'block' : 'none' }">
+                                <input type="number" :style="{ display: getInputDisplay(lesson.id, student.id) }"
+                                    @click.stop @keydown="hideInput(lesson.id, student.id,)" v-model="inputValue"
+                                    @input="validateNumber">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
-<script>
+<script >
 import { mapState } from 'vuex';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
+import store from '@/store';
 export default {
     data() {
         return {
+            inputValue: "",
             selectedGroup: '',
             inputVisibility: {},
 
@@ -65,36 +72,56 @@ export default {
         getGroups() {
             this.$store.dispatch("teacher/getMyGroups")
         },
+        hideAlert() {
+            this.$store.dispatch("teacher/hideAlert")
+        },
+        validateNumber() {
+            if (this.inputValue > 100) {
+                this.inputValue = +String(this.inputValue).slice(0, -1)
+            }
+        },
+        getInputDisplay(lessonId, studentId) {
+            const key = `${lessonId}-${studentId}`;
+            return this.inputVisibility[key] || 'none';
+        },
+        toggleInput(lessonId, studentId) {
+            const key = `${lessonId}-${studentId}`;
+            if (!this.inputVisibility[key]) {
+                this.inputVisibility[key] = 'block';
+            }
+        },
+        hideInput(lessonId, studentId) {
+            // console.log(this.inputValue);
+            if (event.keyCode === 13) {
+                const key = `${lessonId}-${studentId}`;
+                this.inputVisibility[key] = 'none';
+                let option = {
+                    value: this.inputValue,
+                    student_id: studentId,
+                    type: "lesson",
+                    id: lessonId,
+                    comment: "There is no bugs"
+                }
+                store.dispatch("teacher/setMark", option)
+            }
+            if (event.keyCode === 38 || event.keyCode === 40) {
+                event.preventDefault();
+            }
+
+        }
     },
-    setup() {
-        // Create a ref to track input visibility
-        const inputVisibility = ref({});
-
-        // Method to toggle the input visibility
-        const toggleInput = (lessonId, studentId) => {
-            const key = `${lessonId}-${studentId}`;
-            inputVisibility.value[key] = !inputVisibility.value[key];
-        };
-
-        // Computed property to check if the input should be visible
-        const isInputVisible = (lessonId, studentId) => {
-            const key = `${lessonId}-${studentId}`;
-            return inputVisibility.value[key];
-        };
-
-        return {
-            toggleInput,
-            isInputVisible,
-        };
-    }
-
 }
 </script>
 <style scoped>
-input[type='text'] {
+input[type='number'] {
     width: 70px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 .markBox {
     width: 100px !important;
@@ -128,7 +155,8 @@ input[type='text'] {
 .boxLesson {
     width: 100px !important;
     height: 100%;
-    background-color: yellow;
+    /* background-color: yellow; */
+    text-align: center;
     flex: 0 0 auto;
     margin: 0;
     padding: 0;
@@ -139,7 +167,8 @@ input[type='text'] {
 .marks {
     width: 100px !important;
     height: 70px !important;
-    background-color: red;
+    /* background-color: red; */
+    text-align: center;
     border: 1px solid #000;
 }
 
@@ -153,7 +182,7 @@ input[type='text'] {
 .box-mark {
     width: 100%;
     height: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
     overflow-x: scroll;
     white-space: nowrap;
 }

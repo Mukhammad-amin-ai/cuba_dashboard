@@ -10,6 +10,7 @@ const state = {
   noData: true,
   myGroupStudetns: [],
   myGroupLesson: [],
+  alertMark: false,
 };
 const mutations = {
   setTeacher(state, teachers) {
@@ -29,6 +30,9 @@ const mutations = {
   },
   setMyGroupLesson(state, payload) {
     state.myGroupLesson = payload;
+  },
+  setAlertMark(state, payload) {
+    state.alertMark = payload;
   },
 };
 const actions = {
@@ -144,7 +148,7 @@ const actions = {
       console.error("error in getting my groups", e);
     }
   },
-  async getMyGroupStudents({ commit,dispatch }, id) {
+  async getMyGroupStudents({ commit, dispatch }, id) {
     try {
       let response = await axios.get(
         `${Api}/api/teacher/my-groups/${id}/students`,
@@ -153,13 +157,13 @@ const actions = {
       // console.log(response.data);
       if (response.data.success) {
         commit("setMyStudents", response.data.data);
-        dispatch('getMyGroupLessons',id)
+        dispatch("getMyGroupLessons", id);
       }
     } catch (e) {
       console.error("error in getting students", e);
     }
   },
-  async getMyGroupLessons({ commit, }, id) {
+  async getMyGroupLessons({ commit }, id) {
     try {
       let response = await axios.get(
         `${Api}/api/teacher/my-groups/${id}/lessons`,
@@ -168,7 +172,6 @@ const actions = {
       // console.log(response.data);
       if (response.data.success) {
         commit("setMyGroupLesson", response.data.data);
-       
       }
     } catch (e) {
       console.error("error in geting my group lesson", e);
@@ -180,6 +183,9 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);
+      if (response.data.success) {
+        commit("setAlertMark", true);
+      }
     } catch (e) {
       console.error("error in seting mark", e);
     }
@@ -238,6 +244,9 @@ const actions = {
     } catch (e) {
       console.error("error in geting mark exam", e);
     }
+  },
+  hideAlert({ commit }) {
+    commit("setAlertMark", !state.alertMark);
   },
 };
 
