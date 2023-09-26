@@ -35,6 +35,7 @@
                                 <input type="number" :style="{ display: getInputDisplay(lesson.id, student.id) }"
                                     @click.stop @keydown="hideInput(lesson.id, student.id,)" v-model="inputValue"
                                     @input="validateNumber">
+                                <p :style="{ display: hidep(lesson.id, student.id) }">-</p>
                             </div>
                         </div>
                     </div>
@@ -54,7 +55,7 @@ export default {
             inputValue: "",
             selectedGroup: '',
             inputVisibility: {},
-
+            pvissible: {}
         }
     },
     computed: {
@@ -89,6 +90,7 @@ export default {
             if (!this.inputVisibility[key]) {
                 this.inputVisibility[key] = 'block';
             }
+            this.hidep()
         },
         hideInput(lessonId, studentId) {
             // console.log(this.inputValue);
@@ -108,6 +110,13 @@ export default {
                 event.preventDefault();
             }
 
+        },
+        hidep(lessonId, studentId) {
+            const key = `${lessonId}-${studentId}`
+            // if (!this.inputVisibility[key]) {
+            //     this.inputVisibility[key] = 'block';
+            // }
+            this.pvissible[key] || 'none'
         }
     },
 }
