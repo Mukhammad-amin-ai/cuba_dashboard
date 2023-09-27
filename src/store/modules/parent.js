@@ -48,7 +48,7 @@ const actions = {
     };
     try {
       let responce = await axios.get(`${Api}/api/manage/parent/${id}`, {
-        headers
+        headers,
       });
       console.log(responce.data);
       if (responce.data.data) {
@@ -85,6 +85,28 @@ const actions = {
       } catch (e) {
         console.error("error in deleting parent", e);
       }
+    }
+  },
+  async getStudentCourses({ commit }, student_id) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/parent/my-children/${student_id}/courses`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getStudentCourse", e);
+    }
+  },
+  async getStudentLesson({ commit }, {student_id,course_id}) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/parent/my-children/${student_id}/courses/${course_id}/lessons`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getStudentLesson", e);
     }
   },
 };

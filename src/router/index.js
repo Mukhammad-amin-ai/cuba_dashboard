@@ -44,12 +44,10 @@ import parent from "@/pages/student/parents/parets.vue";
 import parentCreate from "@/pages/student/parents/parentsCreate.vue";
 import parentInfo from "@/pages/student/parents/parentsInfo.vue";
 import courseStudentInfo from "@/pages/course/courseStudentInfo.vue";
-import test from "@/pages/advance/test.vue";
+// import test from "@/pages/advance/test.vue";
 import payerVue from "@/pages/payme/payer.vue";
-import marks from '@/pages/teachers/marks.vue' 
-
-
-
+// import marks from "@/pages/teachers/marks.vue";
+import assignment from "@/pages/teachers/assignment.vue";
 
 let permObj = JSON.parse(localStorage.getItem("permissions"));
 
@@ -346,7 +344,7 @@ const routes = [
       },
       {
         path: "marking",
-        component: marks,
+        component: assignment,
         meta: {
           requiredAuth: true,
           value: permObj && permObj.length > 0 ? permObj[1].value : null,

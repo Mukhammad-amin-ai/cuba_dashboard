@@ -11,7 +11,7 @@
         </select>
         <button type="button" class="btn btn-primary" @click="getStudents"> Choose</button>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" v-if="true">
         <div class="box-mark">
             <div class="lessons">
                 <div class="boxLesson">
@@ -35,7 +35,7 @@
                                 <input type="number" :style="{ display: getInputDisplay(lesson.id, student.id) }"
                                     @click.stop @keydown="hideInput(lesson.id, student.id,)" v-model="inputValue"
                                     @input="validateNumber">
-                                <p :style="{ display: hidep(lesson.id, student.id) }">-</p>
+                                <p :style="{ display: hidep(lesson.id, student.id) }">0</p>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,6 @@
 </template>
 <script >
 import { mapState } from 'vuex';
-import { ref } from 'vue';
 import store from '@/store';
 export default {
     data() {
@@ -89,11 +88,18 @@ export default {
             const key = `${lessonId}-${studentId}`;
             if (!this.inputVisibility[key]) {
                 this.inputVisibility[key] = 'block';
+                console.log(key === key);
+                if (key === key) {
+                    this.inputVisibility[key] = 'block';
+                } else {
+                    this.inputVisibility[key] = 'none'
+                }
             }
-            this.hidep()
+            if (!this.pvissible[key]) {
+                this.pvissible[key] = 'none';
+            }
         },
         hideInput(lessonId, studentId) {
-            // console.log(this.inputValue);
             if (event.keyCode === 13) {
                 const key = `${lessonId}-${studentId}`;
                 this.inputVisibility[key] = 'none';
@@ -105,18 +111,23 @@ export default {
                     comment: "There is no bugs"
                 }
                 store.dispatch("teacher/setMark", option)
+                console.log(lessonId);
+                this.getMark(this.selectedGroup, lessonId)
+
             }
             if (event.keyCode === 38 || event.keyCode === 40) {
                 event.preventDefault();
             }
 
+
         },
         hidep(lessonId, studentId) {
-            const key = `${lessonId}-${studentId}`
-            // if (!this.inputVisibility[key]) {
-            //     this.inputVisibility[key] = 'block';
-            // }
-            this.pvissible[key] || 'none'
+            const key = `${lessonId}-${studentId}`;
+            return this.pvissible[key] || 'block';
+        },
+        getMark(groupId, lessonId) {
+
+            this.$store.dispatch("teacher/getMarksLesson", { group: groupId, lesson: lessonId })
         }
     },
 }

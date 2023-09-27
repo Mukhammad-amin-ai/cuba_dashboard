@@ -188,6 +188,50 @@ const actions = {
       console.error("error in getting all courses", e);
     }
   },
+  async getCourseLesson({ commit }, id) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/student/course/${id}/lessons`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error find in getting course lesson", e);
+    }
+  },
+  async getCourseExam({ commit }, id) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/student/course/${id}/exams`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error find in getting course exam", e);
+    }
+  },
+  async getMarkLesson({ commit }, id) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/student/get-mark/${id}/lesson`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error find in getting get-mark lesson", e);
+    }
+  },
+  async getMarkExam({ commit }, id) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/student/get-mark/${id}/exam`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error find in getting get-mark exam", e);
+    }
+  },
 };
 
 export default {

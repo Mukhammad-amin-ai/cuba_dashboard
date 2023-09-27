@@ -201,7 +201,7 @@ const actions = {
       console.error("error in geting goup exams", e);
     }
   },
-  async getMarksLesson({ commit }, group, lesson) {
+  async getMarksLesson({ commit },{ group, lesson}) {
     try {
       let response = await axios.get(
         `${Api}/api/teacher/my-groups/${group}/lesson/${lesson}/get-mark`,
