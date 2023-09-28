@@ -126,13 +126,30 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid  bg" v-else>
-        <div class="left-side" v-if="this.idOfProduct === !undefined">
-            <div class="side-box">
-                Product:
-            </div>
-            <button type="button" class="btn btn-success full">
-                Buy</button>
+    <div class="containerr-fluid  bg" v-else>
+        <div class="left-side" v-if="this.$store.state.payme.buyCourse">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Buy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><span v-if="basket">{{ basket.name }}</span>
+                            <span v-else>Loading...</span>
+                        </td>
+                        <td> <span v-if="basket">{{ basket.price }}</span> <span v-else>Loading...</span></td>
+                        <td>
+                            <button type="button" class="btn btn-success" @click="buyCoures(basket.id)">Buy</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="left-side" v-else>
             <div class="noProduct">
@@ -199,7 +216,7 @@
                         </ul>
                     </div>
                     <div class="info-end">
-                        <button type="button" class="btn btn-danger full">
+                        <button type="button" class="btn btn-danger full" @click="deleteCard">
                             Delete Card</button>
                     </div>
                 </div>
@@ -213,7 +230,7 @@ import alert from '@/components/ui/alert.vue';
 import spiner from '@/components/ui/spiner.vue';
 
 let profile_Obj = JSON.parse(localStorage.getItem("profile"))
-
+let buyyed = JSON.parse(localStorage.getItem("buyedCourse"))
 
 export default {
     components: {
@@ -234,7 +251,8 @@ export default {
             minutes: 1,
             seconds: 0,
             intervalId: null,
-            idOfProduct: this.$route.params.id
+            basket: buyyed,
+
         };
     },
 
@@ -256,6 +274,7 @@ export default {
     },
     methods: {
         ...mapMutations('payme', ['setShowIput']),
+        ...mapMutations('payme', ['setBuyCourse']),
         updateExpirationDate() {
             this.expirationDate = this.formattedExpirationDate.replace(/\//g, '');
             this.formattedExpirationDate = this.formattedExpirationDate.replace(/\D/g, '');
@@ -315,11 +334,26 @@ export default {
                 card_token: localStorage.getItem('tokenPayme'),
             }
             this.$store.dispatch("payme/sendToken", secondoption)
-
+            window.location.reload()
         },
         getMycard() {
-            console.log(this.idOfProduct === undefined);
+            // console.log(this.myCard);
+            if (typeof (buyyed) === 'object') {
+                this.setBuyCourse(true)
+            }
             this.$store.dispatch("payme/getMyCards")
+        },
+        buyCoures(courseId) {
+            // console.log(courseId);
+            // console.log(this.myCard[0].id);
+            let option = {
+                course_id: courseId,
+                card_id: this.myCard[0].id
+            }
+            this.$store.dispatch('payme/buyProduct', option)
+        },
+        deleteCard() {
+            this.$store.dispatch('payme/deleteCard', this.myCard[0].id)
         }
     },
 
@@ -331,10 +365,18 @@ export default {
 .container-fluid {
     height: auto !important;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.containerr-fluid {
+    height: auto !important;
+    display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 30px;
-    /* flex-direction: column; */
 }
 
 .wrap {

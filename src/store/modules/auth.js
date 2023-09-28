@@ -126,16 +126,17 @@ const actions = {
       const response = await axios.post(`${Api}/api/auth/login`, option);
       // console.log(response.data);
       // if (response.data.token) {
-        let token = response.data.data.token;
-        await dispatch("getBranch", response.data.data.token);
-        await dispatch("getMyProfile", response.data.data.token);
-        localStorage.setItem("token", token);
+      let token = response.data.data.token;
+      await dispatch("getBranch", response.data.data.token);
+      await dispatch("getMyProfile", response.data.data.token);
+      localStorage.setItem("token", token);
       // }
       if (response.data.data.permissions) {
         localStorage.setItem(
           "permissions",
           JSON.stringify(response.data.data.permissions)
         );
+        localStorage.setItem("buyedCourse", JSON.stringify("undefined"));
         localStorage.setItem("name", JSON.stringify(response.data.data.name));
       }
       if (token) {

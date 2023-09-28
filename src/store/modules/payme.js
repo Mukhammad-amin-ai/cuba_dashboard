@@ -4,8 +4,9 @@ const token = localStorage.getItem("token");
 let nameR = localStorage.getItem("name");
 if (nameR) {
   nameR = nameR.replace(/^"|"$/g, "");
-} 
-const state = {
+}
+// console.log(nameR);
+let state = {
   showHide: true,
   showVerify: true,
   addCardComponent: false,
@@ -36,6 +37,9 @@ const mutations = {
   },
   setMycard(state, payload) {
     state.myCard = payload;
+  },
+  setBuyCourse(state, payload) {
+    state.buyCourse = payload;
   },
 };
 
@@ -113,16 +117,22 @@ const actions = {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(responce.data);
-      commit("cardComponent", false);
+      if (responce.data.success) {
+        commit("cardComponent", false);
+      }
     } catch (e) {
       console.error("error in sending token ", e);
     }
   },
   async buyProduct({ commit }, option) {
     try {
-      let response = await axios.post(`${Api}/api/payment/pay`, option, {
-        headers: { Authorization: "Bearer " + token },
-      });
+      let response = await axios.post(
+        `${Api}/api/${nameR}/pay-for-course`,
+        option,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
       console.log(response.data);
     } catch (e) {
       console.error("error in buy product", e);
@@ -170,6 +180,9 @@ const actions = {
         { headers: { Authorization: "Bearer " + token } }
       );
       console.log(response.data.data);
+      if (response.data.success) {
+        commit("cardComponent", true);
+      }
     } catch (e) {
       console.error("error find in deleting card", e);
     }
@@ -205,6 +218,9 @@ const actions = {
     } catch (e) {
       console.error("error in geting student'card", e);
     }
+  },
+  changeBuyProduct({ commit }) {
+    commit("setBuyCourse", !state.buyCourse);
   },
 };
 

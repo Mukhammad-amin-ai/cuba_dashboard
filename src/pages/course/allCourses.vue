@@ -11,7 +11,7 @@
                         <p class="card-text">Price : {{ item.price }} SUM</p>
                         <!-- <a href="#" class="btn btn-primary">About course</a> -->
                         <RouterLink :to="{ path: 'payme/' + item.id }">
-                            <button type="button" class="btn btn-success">Buy</button>
+                            <button type="button" class="btn btn-success" @click="cluck(item)">Buy</button>
                         </RouterLink>
                     </div>
                 </div>
@@ -37,7 +37,11 @@ export default {
         course() {
             this.$store.dispatch('student/getAllCourses')
         },
-
+        cluck(item) {
+            this.$store.dispatch('payme/changeBuyProduct')
+            // console.log(this.$store.state.payme.buyCourse);
+            localStorage.setItem('buyedCourse', JSON.stringify(item))
+        }
     }
 
 }
