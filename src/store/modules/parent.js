@@ -98,7 +98,7 @@ const actions = {
       console.error("error in getStudentCourse", e);
     }
   },
-  async getStudentLesson({ commit }, {student_id,course_id}) {
+  async getStudentLesson({ commit }, { student_id, course_id }) {
     try {
       let response = await axios.get(
         `${Api}/api/parent/my-children/${student_id}/courses/${course_id}/lessons`,
@@ -107,6 +107,39 @@ const actions = {
       console.log(response.data);
     } catch (e) {
       console.error("error in getStudentLesson", e);
+    }
+  },
+  async getStudentExam({ commit }, { student_id, course_id }) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/parent/my-children/${student_id}/course/${course_id}/exams`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getStudentExam", e);
+    }
+  },
+  async getMarkForLesson({ commit }, { student_id, lesson_id }) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/parent/my-children/${student_id}/get-mark/${lesson_id}/lesson`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getting mark lesson", e);
+    }
+  },
+  async getMarkForExam({ commit }, { student_id, lesson_id }) {
+    try {
+      let response = await axios.get(
+        `${Api}/api/parent/my-children/${student_id}/get-mark/${lesson_id}/exam`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error("error in getting mark exam", e);
     }
   },
 };
