@@ -49,8 +49,8 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(responce.data);
-      if (responce.data.cashier_id) {
-        commit("getId", responce.data.cashier_id);
+      if (responce.data.data.cashier_id) {
+        commit("getId", responce.data.data.cashier_id);
       }
     } catch (e) {
       console.error("problem with getting id", e);
@@ -113,7 +113,7 @@ const actions = {
   async sendToken({ commit }, option) {
     try {
       let responce = await axios.post(
-        "http://tulibayev.uz/api/payment/addcard",
+        `${Api}/api/${nameR}/add-card`,
         option,
         {
           headers: { Authorization: "Bearer" + token },
@@ -147,6 +147,7 @@ const actions = {
       console.error(`error in buy course`, e);
     }
   },
+
   async getMyCards({ commit }) {
     commit("setLoading", true, { root: true });
     try {

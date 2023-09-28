@@ -4,6 +4,7 @@
     <alert :text="noCardText"/>
     <div class="container-fluid p-10 " v-if="this.$store.state.payme.addCardComponent">
         <div class="wrap">
+
             <div class="inner">
                 <div class="header">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="38" viewBox="0 0 50 38" fill="none">
@@ -301,9 +302,9 @@ export default {
             }
             await this.$store.dispatch("payme/verify", option)
             let secondoption = {
-                type: "student",
-                id: 1,
-                payment_token: localStorage.getItem('tokenPayme'),
+                card_number:this.number ,
+                card_expiration: this.expirationDate,
+                card_token: localStorage.getItem('tokenPayme'),
             }
             this.$store.dispatch("payme/sendToken", secondoption)
 

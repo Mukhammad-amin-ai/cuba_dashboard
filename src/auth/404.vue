@@ -24,8 +24,7 @@ export default {
 }
 </script> -->
 <style scoped >
-    .font-danger{
-        color: #6573f9 !important;
-    }
-
+.font-danger {
+  color: #6573f9 !important;
+}
 </style>

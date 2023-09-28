@@ -108,6 +108,9 @@ export default createStore({
         commit("setDelete", true);
       }
     },
+    showHideAlert({commit}){
+      commit('setAlert',!this.state.alert)
+    }
   },
 
   modules: {
