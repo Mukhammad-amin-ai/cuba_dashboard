@@ -2,13 +2,9 @@ import axios from "axios";
 import Api from "./Base_Url";
 const token = localStorage.getItem("token");
 let nameR = localStorage.getItem("name");
-// console.log(nameR);
 if (nameR) {
   nameR = nameR.replace(/^"|"$/g, "");
-  // console.log(nameR);
-} else {
-  console.log("Name not found in local storage");
-}
+} 
 const state = {
   showHide: true,
   showVerify: true,
@@ -17,6 +13,7 @@ const state = {
   showInput: false,
   noCardText: "",
   myCard: [],
+  buyCourse: false,
 };
 const mutations = {
   setShow(state, showHide) {
@@ -112,13 +109,9 @@ const actions = {
   },
   async sendToken({ commit }, option) {
     try {
-      let responce = await axios.post(
-        `${Api}/api/${nameR}/add-card`,
-        option,
-        {
-          headers: { Authorization: "Bearer" + token },
-        }
-      );
+      let responce = await axios.post(`${Api}/api/${nameR}/add-card`, option, {
+        headers: { Authorization: "Bearer" + token },
+      });
       console.log(responce.data);
       commit("cardComponent", false);
     } catch (e) {
@@ -147,15 +140,14 @@ const actions = {
       console.error(`error in buy course`, e);
     }
   },
-
   async getMyCards({ commit }) {
     commit("setLoading", true, { root: true });
     try {
       let response = await axios.get(`${Api}/api/${nameR}/my-cards`, {
         headers: { Authorization: "Bearer " + token },
       });
-      console.log(response.data);
-      if (response.data.data) {
+      // console.log(response.data);
+      if (response.data.success) {
         commit("setLoading", false, { root: true });
         commit("setMycard", response.data.data);
       }

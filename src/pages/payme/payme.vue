@@ -1,10 +1,9 @@
 <template>
     <Breadcrumbs title="Blog Single" main="Pay me" />
-    <spiner/>
-    <alert :text="noCardText"/>
+    <spiner />
+    <alert :text="noCardText" />
     <div class="container-fluid p-10 " v-if="this.$store.state.payme.addCardComponent">
         <div class="wrap">
-
             <div class="inner">
                 <div class="header">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="38" viewBox="0 0 50 38" fill="none">
@@ -127,13 +126,18 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid justify-content-between  d-flex bg" v-else>
-        <div class="left-side" >
+    <div class="container-fluid  bg" v-else>
+        <div class="left-side" v-if="this.idOfProduct === !undefined">
             <div class="side-box">
                 Product:
             </div>
             <button type="button" class="btn btn-success full">
-              Buy</button>
+                Buy</button>
+        </div>
+        <div class="left-side" v-else>
+            <div class="noProduct">
+                <h5>No Product in the list</h5>
+            </div>
         </div>
         <div class="right-side">
             <div class="card">
@@ -170,6 +174,7 @@
                         </defs>
                     </svg>
                 </div>
+
                 <div class="information">
                     <div class="info-body">
                         <ul class="list-group list-group-flush">
@@ -182,17 +187,15 @@
                                 <span class="p-1"> {{ uppercaseTextTo }}</span>
                             </li>
                             <li class="list-group-item d-flex">
-                                <h5> <b> Card number: </b> </h5>
-                                <span class="p-1"> {{ formattedNumber }}</span>
+                                <h6> <b> Card number: </b> </h6>
+                                <span class="p-1" v-if="myCard && myCard[0]"> {{ myCard[0].card_number }}</span>
+                                <span class="p-1" v-else>Loading...</span>
                             </li>
                             <li class="list-group-item d-flex">
-                                <h5> <b> Experition date : </b> </h5>
-                                <span class="p-1"> {{ formattedExpirationDate }}</span>
+                                <h6> <b> Experition date : </b> </h6>
+                                <span class="p-1" v-if="myCard && myCard[0]"> {{ myCard[0].card_expiration }}</span>
+                                <span class="p-1" v-else>Loading...</span>
                             </li>
-                            <!-- <li class="list-group-item d-flex">
-                                <h4>First name : </h4>
-                                <span class="p-1"> Muhammad</span>
-                            </li> -->
                         </ul>
                     </div>
                     <div class="info-end">
@@ -205,9 +208,13 @@
     </div>
 </template>
 <script>
-import { mapMutations,mapState } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 import alert from '@/components/ui/alert.vue';
 import spiner from '@/components/ui/spiner.vue';
+
+let profile_Obj = JSON.parse(localStorage.getItem("profile"))
+
+
 export default {
     components: {
         alert,
@@ -218,8 +225,8 @@ export default {
             expirationDate: "",
             number: "",
             password: "",
-            firstname: "",
-            lastname: "",
+            firstname: profile_Obj.firstname,
+            lastname: profile_Obj.lastname,
             numberwithoutspace: "",
             verification: "",
             formattedExpirationDate: "",
@@ -227,12 +234,13 @@ export default {
             minutes: 1,
             seconds: 0,
             intervalId: null,
-            
+            idOfProduct: this.$route.params.id
         };
     },
 
     computed: {
-        ...mapState('payme',['noCardText']),
+        ...mapState('payme', ['noCardText']),
+        ...mapState('payme', ['myCard']),
         uppercaseText() {
             return this.firstname.toUpperCase();
         },
@@ -302,7 +310,7 @@ export default {
             }
             await this.$store.dispatch("payme/verify", option)
             let secondoption = {
-                card_number:this.number ,
+                card_number: this.number,
                 card_expiration: this.expirationDate,
                 card_token: localStorage.getItem('tokenPayme'),
             }
@@ -310,6 +318,7 @@ export default {
 
         },
         getMycard() {
+            console.log(this.idOfProduct === undefined);
             this.$store.dispatch("payme/getMyCards")
         }
     },
@@ -322,10 +331,10 @@ export default {
 .container-fluid {
     height: auto !important;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 30px;
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 
 .wrap {
@@ -434,15 +443,17 @@ input::-webkit-inner-spin-button {
 
 
 .bg {
-    align-items: end;
+    align-items: flex-start;
 }
+
 .left-side {
     width: 60%;
     height: 40vh;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
-    
+    /* background-color: aqua; */
+
 }
 
 .side-box {
@@ -481,5 +492,14 @@ input::-webkit-inner-spin-button {
 
 .full {
     width: 100%;
+}
+
+.noProduct {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
 }
 </style>

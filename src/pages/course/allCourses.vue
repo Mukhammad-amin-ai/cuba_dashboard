@@ -4,17 +4,17 @@
         <spiner />
         <div class="row " style="gap: 40px;">
             <div class="col-md-6 col-xl-3 box-col-6 " v-for="item in allCourses " :key="item">
-                <RouterLink :to="{ path: 'payme/' + item.id }">
-                    <div class="card " style="width: 18rem;">
-                        <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ item.name }}</h5>
-                            <p class="card-text">Price : {{ item.price }} SUM</p>
-                            <!-- <a href="#" class="btn btn-primary">About course</a> -->
+                <div class="card " style="width: 18rem;">
+                    <img src="@/assets/images/it-course.jpg" class="card-img-top" alt="#">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">Price : {{ item.price }} SUM</p>
+                        <!-- <a href="#" class="btn btn-primary">About course</a> -->
+                        <RouterLink :to="{ path: 'payme/' + item.id }">
                             <button type="button" class="btn btn-success">Buy</button>
-                        </div>
+                        </RouterLink>
                     </div>
-                </RouterLink>
+                </div>
             </div>
         </div>
     </div>
