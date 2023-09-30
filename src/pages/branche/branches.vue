@@ -78,7 +78,6 @@
                 </div> -->
                 <div class="col-md-6 col-xl-3 box-col-6 " v-for='item in branchData' :key="item">
                     <RouterLink :to="{ path: 'branchInfo/' + item.id }">
-
                         <div class="card">
                             <div class="blog-box blog-grid text-center">
                                 <div class="blog-wrraper">
@@ -97,7 +96,6 @@
                         </div>
                     </RouterLink>
                 </div>
-
                 <div class="col-md-6 col-xl-3 box-col-6  select" v-if="this.$store.state.create">
                     <RouterLink to="branch/create">
                         <div class="card">

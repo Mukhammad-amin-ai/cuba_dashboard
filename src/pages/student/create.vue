@@ -20,9 +20,9 @@
                             v-model="email">
                     </div>
                     <div class="mb-3">
-                        <label for="contact_no" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="contact_no" placeholder="Enter contact number" required
-                            v-model="contact_no">
+                        <label for="contact" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" id="contact" placeholder="Enter contact number" required
+                            v-model="contact">
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
@@ -57,9 +57,9 @@
                                 required v-model="parents[0].email">
                         </div>
                         <div class="mb-3">
-                            <label for="parent_contact_no" class="form-label">Parent Contact Number</label>
-                            <input type="tel" class="form-control" id="parent_contact_no"
-                                placeholder="Enter parent's contact number" required v-model="parents[0].contact_no">
+                            <label for="parent_contact" class="form-label">Parent Contact Number</label>
+                            <input type="tel" class="form-control" id="parent_contact"
+                                placeholder="Enter parent's contact number" required v-model="parents[0].contact">
                         </div>
                     </div>
                     <div class="contaner" v-if="setShow">
@@ -80,8 +80,8 @@
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label for="parent_contact_no" class="form-label">Parent Contact Number</label>
-                            <input type="tel" class="form-control" id="parent_contact_no"
+                            <label for="parent_contact" class="form-label">Parent Contact Number</label>
+                            <input type="tel" class="form-control" id="parent_contact"
                                 placeholder="Enter parent's contact number" required>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ export default {
             firstname: "",
             lastname: "",
             email: "",
-            contact_no: "",
+            contact: "",
             status: Boolean,
             group_id: null,
             parents: [
@@ -108,7 +108,7 @@ export default {
                     firstname: "",
                     lastname: "",
                     email: "",
-                    contact_no: ""
+                    contact: ""
                 },
             ],
             exist_parents: [
@@ -122,7 +122,7 @@ export default {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
-                contact_no: this.contact_no,
+                contact: this.contact,
                 status: this.status,
                 group_id: this.group_id,
                 parents: [
@@ -130,7 +130,7 @@ export default {
                         firstname: this.parents[0].firstname,
                         lastname: this.parents[0].lastname,
                         email: this.parents[0].email,
-                        contact_no: this.parents[0].contact_no
+                        contact: this.parents[0].contact
                     },
                 ],
                 exist_parents: this.exist_parents
@@ -143,7 +143,7 @@ export default {
                 firstname: "",
                 lastname: "",
                 email: "",
-                contact_no: ""
+                contact: ""
             }
             this.parents.push(a)
         }

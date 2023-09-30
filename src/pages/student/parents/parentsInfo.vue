@@ -70,8 +70,8 @@
                                 v-model="password_confirmation">
                         </div>
                         <div class="mb-3">
-                            <label for="contact_no" class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" id="contact_no" required v-model="contact">
+                            <label for="contact" class="form-label">Contact Number</label>
+                            <input type="tel" class="form-control" id="contact" required v-model="contact">
                         </div>
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary" @click="editStudent"

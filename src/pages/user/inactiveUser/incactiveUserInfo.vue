@@ -96,8 +96,8 @@
                             <input type="email" class="form-control" id="email" required v-model="email">
                         </div>
                         <div class="mb-3">
-                            <label for="contact_no" class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" id="contact_no" required v-model="contact_no">
+                            <label for="contact" class="form-label">Contact Number</label>
+                            <input type="tel" class="form-control" id="contact" required v-model="contact">
                         </div>
                         <!-- <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -146,7 +146,7 @@ export default {
         return {
             firstname: "",
             lastname: "",
-            contact_no: "",
+            contact: "",
             email: "",
             role_id: "",
             // branch_id: "",
@@ -172,7 +172,7 @@ export default {
                 if (newuserData) {
                     this.firstname = newuserData.firstname,
                         this.lastname = newuserData.lastname,
-                        this.contact_no = newuserData.contact_no,
+                        this.contact = newuserData.contact,
                         this.email = newuserData.email,
                         this.role_id = newuserData.role_id,
                         this.status = newuserData.status
@@ -199,7 +199,7 @@ export default {
             let option = {
                 firstname: this.firstname,
                 lastname: this.lastname,
-                contact_no: this.contact_no,
+                contact: this.contact,
                 email: this.email,
                 role_id: this.role_id,
                 branches: this.branches,

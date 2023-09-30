@@ -42,7 +42,7 @@
                   </div>
                <div class="form-group">
                  <label class="col-form-label">Contact Number</label>
-                 <input class="form-control" type="text" required=""  v-model='contact_no'>
+                 <input class="form-control" type="text" required=""  v-model='contact'>
                </div>
                <div class="form-group">
                  <label class="col-form-label">Email Address</label>
@@ -130,7 +130,7 @@ export default {
       firstname: "",
       lastname: "",
       email: "",
-      contact_no: "",
+      contact: "",
       password: "",
       password_confirmation: ""
     }
@@ -151,7 +151,7 @@ export default {
         email: this.email,
         password: this.password,
         password_confirmation: this.password_confirmation,
-        contact_no: this.contact_no
+        contact: this.contact
       }
       await this.$store.dispatch('register', option)
     },

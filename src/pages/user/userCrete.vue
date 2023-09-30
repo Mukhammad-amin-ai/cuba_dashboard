@@ -20,9 +20,9 @@
                             v-model="email">
                     </div>
                     <div class="mb-3">
-                        <label for="contact_no" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="contact_no" placeholder="Enter contact number" required
-                            v-model="contact_no">
+                        <label for="contact" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" id="contact" placeholder="Enter contact number" required
+                            v-model="contact">
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Role </label>
@@ -54,7 +54,7 @@ export default {
             firstname: "",
             lastname: "",
             email: "",
-            contact_no: "",
+            contact: "",
             role_id: "",
             status: "",
             branches: []
@@ -81,7 +81,7 @@ export default {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
-                contact_no: this.contact_no,
+                contact: this.contact,
                 role_id: this.role_id,
                 status: this.status,
                 branches: this.branches

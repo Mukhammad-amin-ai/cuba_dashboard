@@ -69,8 +69,8 @@
                                 v-model="password_confirmation">
                         </div>
                         <div class="mb-3">
-                            <label for="contact_no" class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" id="contact_no" required v-model="contact">
+                            <label for="contact" class="form-label">Contact Number</label>
+                            <input type="tel" class="form-control" id="contact" required v-model="contact">
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
@@ -124,7 +124,7 @@ export default {
                         this.email = newStudents.email,
                         this.password = newStudents.password
                     this.password_confirmation = newStudents.password_confirmation,
-                        this.contact_no = newStudents.contact_no
+                        this.contact = newStudents.contact
                 }
             }
         }
@@ -144,7 +144,7 @@ export default {
                 email: this.email,
                 password: this.password,
                 password_confirmation: this.password_confirmation,
-                contact_no: this.contact,
+                contact: this.contact,
                 status: this.status
             }
             this.$store.dispatch('student/editStudent', { id: this.id, option: option })

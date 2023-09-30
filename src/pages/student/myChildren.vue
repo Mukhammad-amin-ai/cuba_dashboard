@@ -17,7 +17,7 @@
                             <div class="single_advisor_details_info">
                                 <h6>{{ item.firstname }} {{ item.lastname }}</h6>
                                 <p class="designation">{{ item.email }}</p>
-                                <p class="designation">{{ item.contact_no }}</p>
+                                <p class="designation">{{ item.contact }}</p>
                             </div>
                         </div>
                     </RouterLink>

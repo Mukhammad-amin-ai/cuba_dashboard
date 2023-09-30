@@ -31,7 +31,7 @@
                                 <ul class="social-follow d-flex" style="justify-content: space-between;">
                                     <li class=" d-grid ">
                                         <h5 class="mb-0">Contact</h5>
-                                        <span class="f-light">{{ item.contact_no }}</span>
+                                        <span class="f-light">{{ item.contact }}</span>
                                     </li>
                                     <li class=" d-grid">
                                         <h5 class="mb-0">Email</h5>

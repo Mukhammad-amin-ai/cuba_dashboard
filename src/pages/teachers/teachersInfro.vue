@@ -63,8 +63,8 @@
                             v-model="email">
                     </div>
                     <div class="mb-3">
-                        <label for="contact_no" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="contact_no" placeholder="Enter contact number" required
+                        <label for="contact" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" id="contact" placeholder="Enter contact number" required
                             v-model="contact">
                     </div>
                     <div class="mb-3">
