@@ -9,10 +9,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ item.name }}</h5>
                         <p class="card-text">Price : {{ item.price }} SUM</p>
-                        <!-- <a href="#" class="btn btn-primary">About course</a> -->
-                        <RouterLink :to="{ path: 'payme/' + item.id }">
+                        <!-- <RouterLink :to="{ path: 'payme/' + item.id }"> -->
                             <button type="button" class="btn btn-success" @click="cluck(item)">Buy</button>
-                        </RouterLink>
+                        <!-- </RouterLink> -->
                     </div>
                 </div>
             </div>
@@ -27,6 +26,11 @@ export default {
     components: {
         spiner,
     },
+    data() {
+        return {
+            arrayData: []
+        }
+    },
     computed: {
         ...mapState('student', ['allCourses'])
     },
@@ -39,8 +43,12 @@ export default {
         },
         cluck(item) {
             this.$store.dispatch('payme/changeBuyProduct')
-            // console.log(this.$store.state.payme.buyCourse);
-            localStorage.setItem('buyedCourse', JSON.stringify(item))
+            // console.log(item);
+            if (typeof (item) === 'object') {
+                this.arrayData.push(item)
+            }
+            localStorage.setItem('buyedCourse', JSON.stringify(this.arrayData))
+
         }
     }
 

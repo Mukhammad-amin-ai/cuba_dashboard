@@ -34,7 +34,7 @@ export default createStore({
     update: false,
     delete: false,
     alert: false,
-    resultOfStudentRerch: false,
+    resultOfStudentRerch: true,
   },
   getters: {
     langIcon: (state) => {

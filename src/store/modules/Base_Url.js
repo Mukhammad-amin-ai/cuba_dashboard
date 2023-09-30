@@ -1,4 +1,4 @@
 // const Api = 'http://tulibayev.uz'
-const Api = "http://192.168.0.137:5000";
+const Api = "http://127.0.0.1:8000";
 
 export default Api;

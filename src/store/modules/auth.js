@@ -124,12 +124,12 @@ const actions = {
   async login({ commit, dispatch }, option) {
     try {
       const response = await axios.post(`${Api}/api/auth/login`, option);
-      // console.log(response.data);
-      // if (response.data.token) {
-      let token = response.data.data.token;
-      await dispatch("getBranch", response.data.data.token);
-      await dispatch("getMyProfile", response.data.data.token);
-      localStorage.setItem("token", token);
+      console.log(response.data.data.token);
+      // if (response.data.data.token) {
+        let token = response.data.data.token;
+        await dispatch("getBranch", response.data.data.token);
+        await dispatch("getMyProfile", response.data.data.token);
+        localStorage.setItem("token", token);
       // }
       if (response.data.data.permissions) {
         localStorage.setItem(

@@ -125,7 +125,7 @@ const actions = {
           headers: { Authorization: "Bearer" + token },
         }
       );
-      // console.log(responce.data);
+      console.log(responce.data);
       commit("setStudent", responce.data.data);
     } catch (e) {
       console.error("problem in searching student", e);

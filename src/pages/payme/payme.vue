@@ -135,17 +135,24 @@
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Buy</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td><span v-if="basket">{{ basket.name }}</span>
+                    <tr v-for="(buyyed, index) in basket" :key="buyyed">
+                        <th scope="row">{{ index + 1 }}</th>
+                        <td><span v-if="buyyed">{{ buyyed.name }}</span>
                             <span v-else>Loading...</span>
                         </td>
-                        <td> <span v-if="basket">{{ basket.price }}</span> <span v-else>Loading...</span></td>
+                        <td><span v-if="buyyed">{{ buyyed.price }}</span>
+                            <span v-else>Loading...</span>
+                        </td>
                         <td>
-                            <button type="button" class="btn btn-success" @click="buyCoures(basket.id)">Buy</button>
+                            <button type="button" class="btn btn-success" @click="buyCoures(index)">Buy</button>
+
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" @click="deleteCoures(index)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -337,7 +344,7 @@ export default {
             window.location.reload()
         },
         getMycard() {
-            // console.log(this.myCard);
+            // console.log(typeof (buyyed) === 'object');
             if (typeof (buyyed) === 'object') {
                 this.setBuyCourse(true)
             }
@@ -354,6 +361,11 @@ export default {
         },
         deleteCard() {
             this.$store.dispatch('payme/deleteCard', this.myCard[0].id)
+        },
+        deleteCoures(buyId) {
+            buyyed.splice(buyId, 1)
+            localStorage.setItem("buyedCourse", JSON.stringify(buyyed));
+            window.location.reload()
         }
     },
 
@@ -361,6 +373,11 @@ export default {
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+
+th {
+    text-align: center;
+}
+
 
 .container-fluid {
     height: auto !important;
