@@ -9,6 +9,7 @@ let state = {
   editHandler: true,
   pagination: true,
   statistics: [],
+  currentBranch:[]
 };
 const mutations = {
   setUserData(state, userData) {
@@ -23,6 +24,9 @@ const mutations = {
   setStat(state, statistics) {
     state.statistics = statistics;
   },
+  setCurent(state,currentBranch){
+    state.currentBranch = currentBranch
+  }
 };
 const actions = {
   async getUsersData({ commit }) {
@@ -53,7 +57,7 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data);
-      if ((responce.data.data = "user_created")) {
+      if ((responce.data.success)) {
         window.location.href = "/user";
       }
     } catch (e) {
@@ -81,7 +85,7 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data);
-      if (responce.data.name === "user_updated") {
+      if (responce.data.success) {
         window.location.href = "/user";
       }
     } catch (e) {
@@ -95,7 +99,7 @@ const actions = {
           headers: { Authorization: "Bearer " + token },
         });
         // console.log(responce.data);
-        if (responce.data.message === "user_deleted") {
+        if (responce.data.success) {
           window.location.href = "/user";
         }
       } catch (e) {
@@ -114,10 +118,11 @@ const actions = {
     };
     try {
       let responce = await axios.get(`${Api}/api/user/statistics${option}`, { headers });
-      // console.log(responce.data);
+      console.log(responce.data);
       if (responce.data.success) {
         commit("setLoading", false, { root: true });
         commit("setStat", responce.data.data);
+        commit('setCurent',responce.data.data.branch)
       }
     } catch (e) {
       console.error("error in geting statistics ", e);

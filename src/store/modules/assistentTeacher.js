@@ -66,7 +66,7 @@ const actions = {
         }
       );
       // console.log(responce.data);
-      if (responce.data.name === "assistant_teacher_created" ) {
+      if (responce.data.success) {
         window.location.href = "/assistant-teacher";
       }
     } catch (e) {

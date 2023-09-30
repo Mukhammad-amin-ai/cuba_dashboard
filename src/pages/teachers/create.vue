@@ -26,12 +26,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
-                        <select class="form-select" id="status" v-model="is_assistant">
+                        <select class="form-select" id="status" v-model="status">
                             <option :value=true>Active</option>
                             <option :value=false>Inactive</option>
                         </select>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Is Assistant</label>
+                        <select class="form-select" id="status" v-model="is_assistant">
+                            <option :value=true>Yes</option>
+                            <option :value=false>No</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary" @click.prevent="creatingTeacher">Create Teacher</button>
                 </form>
             </div>
@@ -39,6 +45,7 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -46,19 +53,33 @@ export default {
             lastname: "",
             email: "",
             contact: "",
-            is_assistant: Boolean
+            status: Boolean,
+            is_assistant: Boolean,
+            stat: '/?filter=day'
         }
+    },
+    computed: {
+        ...mapState("user", ['currentBranch'])
+    },
+    mounted() {
+        this.getCurrentBranch()
     },
     methods: {
         creatingTeacher() {
+            // console.log(this.currentBranch);
             const option = {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
                 contact: this.contact,
-                is_assistant: this.is_assistant
+                status: this.status,
+                is_assistant: this.is_assistant,
+                branches: [this.currentBranch.id]
             }
-            this.$store.dispatch('teacher/createTeacher',option)
+            this.$store.dispatch('teacher/createTeacher', option)
+        },
+        getCurrentBranch() {
+            this.$store.dispatch('user/getStatistics', this.stat)
         }
     }
 

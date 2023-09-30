@@ -65,7 +65,7 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);
-      if (response.data.message === "Course created successfully") {
+      if (response.data.success) {
         window.location.href = "/courses";
       }
     } catch (error) {
@@ -82,7 +82,7 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data.message === "Course updated successfully") {
+      if (response.data.success) {
         window.location.href = "/courses";
       }
     } catch (error) {
@@ -99,7 +99,7 @@ const actions = {
           }
         );
         console.log(response.data);
-        if (response.data.message === "Course deleted successfully") {
+        if (response.data.success) {
           window.location.href = "/courses";
         }
       } catch (error) {

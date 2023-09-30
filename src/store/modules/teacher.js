@@ -85,7 +85,7 @@ const actions = {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(responce.data);
-      if (responce.data.message === "Teacher created successfully") {
+      if (responce.data.status) {
         window.location.href = "/teachers";
       }
     } catch (e) {
@@ -102,7 +102,7 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data.message === "Teacher updated successfully") {
+      if (response.data.success) {
         window.location.href = "/teachers";
       }
     } catch (error) {
@@ -119,7 +119,7 @@ const actions = {
           }
         );
         console.log(response.data);
-        if (response.data.message === "success") {
+        if (response.data.success) {
           window.location.href = "/teachers";
         } else if (response.data.status === 400) {
           window.location.href = `/group/${response.data.data[0].id}`;

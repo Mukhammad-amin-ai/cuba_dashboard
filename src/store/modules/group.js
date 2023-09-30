@@ -101,7 +101,7 @@ const actions = {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(response.data);
-      if (response.data.message === "Group updated successfully") {
+      if (response.data.success) {
         window.location.href = "/group";
       }
     } catch (e) {
@@ -115,7 +115,7 @@ const actions = {
           headers: { Authorization: "Bearer" + token },
         });
         console.log(responce.data);
-        if (responce.data.message === "Group deleted successfully") {
+        if (responce.data.success) {
           window.location.href = "/group";
         }
       } catch (error) {

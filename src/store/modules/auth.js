@@ -34,7 +34,7 @@ const actions = {
     try {
       const response = await axios.post(`${Api}/api/user/register`, option);
       console.log(response.data);
-      if (response.data.message === "Email sent") {
+      if (response.data.success) {
         commit("setLoading", false, { root: true });
       }
       const a = JSON.parse(response.config.data);

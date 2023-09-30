@@ -89,7 +89,7 @@ const actions = {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(response.data);
-      if (response.data.message === "Schedule created successfully") {
+      if (response.data.success) {
         window.location.href = "/branches";
       }
     } catch (e) {
@@ -104,7 +104,7 @@ const actions = {
         { headers: { Authorization: "Bearer" + token } }
       );
       console.log(response.data);
-      if (response.data.message === "Schedule updated successfully") {
+      if (response.data.success) {
         window.location.href = "/schedul";
       }
     } catch (e) {
@@ -117,7 +117,7 @@ const actions = {
         headers: { Authorization: "Bearer" + token },
       });
       console.log(response.data);
-      if (response.data.message === "Schedul deleted successfully") {
+      if (response.data.success) {
         window.location.href = "/branche";
       }
     } catch (e) {

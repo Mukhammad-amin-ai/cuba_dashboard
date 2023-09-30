@@ -79,7 +79,7 @@ const actions = {
           headers: { Authorization: "Bearer " + token },
         });
         // console.log(responce.data);
-        if (responce.data.message === "parent_deleted") {
+        if (responce.data.success) {
           window.location.href = "/parent";
         }
       } catch (e) {

@@ -38,7 +38,7 @@ const actions = {
       // console.log(response.data.data);
       commit("setBranch", response.data.data);
       commit("setLoading", false, { root: true });
-      if (response  .data.pagination.total >= 1) {
+      if (response.data.pagination.total >= 1) {
         commit("setPagination", false);
       }
     } catch (error) {
@@ -70,7 +70,7 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       console.log(response.data);
-      if (response.data.message === "Branch created successfully") {
+      if (response.data.success) {
         window.location.href = "/branches";
       }
     } catch (error) {

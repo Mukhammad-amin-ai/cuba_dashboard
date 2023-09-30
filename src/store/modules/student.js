@@ -74,7 +74,7 @@ const actions = {
         headers: { Authorization: "Bearer " + token },
       });
       // console.log(responce.data);
-      if (responce.data.message === "Student created successfully") {
+      if (responce.data.success) {
         window.location.href = "/student";
       }
     } catch (e) {
@@ -91,7 +91,7 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data.message === "Student updated successfully") {
+      if (response.data.success) {
         window.location.href = "/student";
       }
     } catch (error) {
@@ -108,7 +108,7 @@ const actions = {
           }
         );
         console.log(response.data);
-        if (response.data.message === "Student deleted successfully") {
+        if (response.data.success) {
           window.location.href = "/student";
         }
       } catch (error) {
