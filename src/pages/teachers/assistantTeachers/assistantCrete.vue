@@ -57,33 +57,38 @@ export default {
         }
     },
     computed: {
-        ...mapState("branche", ['branchData'])
+        // ...mapState("branche", ['branchData'])
+        ...mapState('user', ['currentBranch'])
+
     },
     mounted() {
-        this.getCurrentBranch()
+        // this.getCurrentBranch()
     },
     methods: {
         getCurrentBranch() {
             this.$store.dispatch("branche/getBranches")
         },
         creatingTeacher() {
-            this.getBranchAsArray()
+            // this.getBranchAsArray()
             let option = {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
                 contact: this.contact,
-                branches: this.branches,
+                branches: [his.currentBranch.id],
                 status:this.status
             }
             this.$store.dispatch('assistentTeacher/createAssistanTeacher', option)
         },
-        getBranchAsArray() {
-            if (this.branchData) {
-                this.branches = [];
-                this.branches.push(...this.branchData.map(branch => branch.id));
-            };
-        },
+        // getBranchAsArray() {
+        //     if (this.branchData) {
+        //         this.branches = [];
+        //         this.branches.push(...this.branchData.map(branch => branch.id));
+        //     };
+        // },
+        getCurrentBranch() {
+            this.$store.dispatch("user/getStatistics", '/?filter=day')
+        }
     }
 
 }

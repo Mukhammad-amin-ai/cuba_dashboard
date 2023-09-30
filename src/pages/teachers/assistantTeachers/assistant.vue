@@ -12,7 +12,6 @@
             </RouterLink>
             <div class="row ">
                 <div class="col-12 col-sm-6 col-lg-3" v-for="item in assistants" :key="item.id">
-                    <!-- <template  v-if="item.id"> -->
                     <RouterLink :to="{ path: 'assistant-teacher/' + item.id }">
                         <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s"
                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
@@ -29,8 +28,6 @@
                             </div>
                         </div>
                     </RouterLink>
-                    <!-- </template> -->
-
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
@@ -54,14 +51,6 @@ export default {
     },
     computed: {
         ...mapState('assistentTeacher', ['assistants']),
-        // validTeachers() {
-        //     if (Array.isArray(this.teachers)) {
-        //         return this.teachers.filter(item => item && item.id);
-        //     } else {
-        //         return [];
-        //     }
-        // }
-
     },
     mounted() {
         this.getTeachers()

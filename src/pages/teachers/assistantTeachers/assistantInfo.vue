@@ -74,7 +74,14 @@
                             <option :value=false>Inactive</option>
                         </select>
                     </div>
-                    <div class="containerBtns-fluid d-flex ">
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status ?</label>
+                        <select class="form-select" id="status" v-model="status">
+                            <option :value=true>Active</option>
+                            <option :value=false>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="containerBtns-fluid d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary" @click.prevent="editTeacher">Editing Teacher</button>
                         <button type="button" class="btn btn-danger" @click="isChange">Go From Edit</button>
                     </div>
@@ -98,13 +105,14 @@ export default {
             lastname: "",
             email: "",
             contact: "",
+            status: Boolean,
             is_assistant: Boolean,
             branches: ""
         }
     },
     computed: {
         ...mapState('assistentTeacher', ['assistants']),
-        ...mapState("branche", ['branchData'])
+        ...mapState('user', ['currentBranch'])
     },
     watch: {
         assistants: {
@@ -114,6 +122,7 @@ export default {
                     this.firstname = newassistants.firstname;
                     this.lastname = newassistants.lastname;
                     this.email = newassistants.email;
+                    this.status = newassistants.status
                     this.contact = newassistants.contact;
                 }
             }
@@ -121,13 +130,13 @@ export default {
     },
     mounted() {
         this.getTeacherByid()
-        this.getCurrentBranch()
+        // this.getCurrentBranch()
         this.roleCheck()
     },
     methods: {
-        getCurrentBranch() {
-            this.$store.dispatch("branche/getBranches")
-        },
+        // getCurrentBranch() {
+        //     this.$store.dispatch("branche/getBranches")
+        // },
         getTeacherByid() {
             this.$store.dispatch('assistentTeacher/getAssistTeachersById', this.id,)
         },
@@ -135,28 +144,32 @@ export default {
             this.isChanger = !this.isChanger
         },
         editTeacher() {
-            this.getBranchAsArray()
+            // this.getBranchAsArray()
             let option = {
                 firstname: this.firstname,
                 lastname: this.lastname,
                 email: this.email,
                 contact: this.contact,
+                status: this.status,
                 is_assistant: this.is_assistant,
-                branches: this.branches
+                branches: [this.currentBranch.id]
             }
             this.$store.dispatch('assistentTeacher/editTeacher', { id: this.id, option: option })
         },
-        getBranchAsArray() {
-            if (this.branchData) {
-                this.branches = [];
-                this.branches.push(...this.branchData.map(branch => branch.id));
-            };
-        },
+        // getBranchAsArray() {
+        //     if (this.branchData) {
+        //         this.branches = [];
+        //         this.branches.push(...this.branchData.map(branch => branch.id));
+        //     };
+        // },
         deleteTeacher() {
             this.$store.dispatch("assistentTeacher/deleteTeacher", this.id)
         },
         roleCheck() {
             this.$store.dispatch('permittionCheck', '10')
+        },
+        getCurrentBranch() {
+            this.$store.dispatch("user/getStatistics", '/?filter=day')
         }
     }
 

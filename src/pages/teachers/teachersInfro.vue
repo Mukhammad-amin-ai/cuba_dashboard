@@ -69,12 +69,19 @@
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" v-model="status">
+                            <option :value=true>Active</option>
+                            <option :value=false>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Assistant</label>
                         <select class="form-select" id="status" v-model="is_assistant">
                             <option :value=true>Active</option>
                             <option :value=false>Inactive</option>
                         </select>
                     </div>
-                    <div class="containerBtns-fluid d-flex ">
+                    <div class="containerBtns-fluid d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary" @click.prevent="editTeacher">Editing Teacher</button>
                         <button type="button" class="btn btn-danger" @click="isChange">Go From Edit</button>
                     </div>
@@ -98,6 +105,7 @@ export default {
             lastname: "",
             email: "",
             contact: "",
+            status: "",
             is_assistant: Boolean
         }
     },
@@ -110,17 +118,20 @@ export default {
                     this.lastname = newTeachers.lastname;
                     this.email = newTeachers.email;
                     this.contact = newTeachers.contact;
+                    this.status = newTeachers.status
                     this.is_assistant = newTeachers.is_assistant;
                 }
             }
         },
     },
     computed: {
-        ...mapState('teacher', ['teachers'])
+        ...mapState('teacher', ['teachers']),
+        ...mapState('user',['currentBranch'])
     },
     mounted() {
         this.getTeacherByid()
         this.roleCheck()
+        this.getCurrentBranch()
     },
     methods: {
         getTeacherByid() {
@@ -135,7 +146,9 @@ export default {
                 lastname: this.lastname,
                 email: this.email,
                 contact: this.contact,
-                is_assistant: this.is_assistant
+                status: this.status,
+                is_assistant: this.is_assistant,
+                branches:[this.currentBranch.id]
             }
             this.$store.dispatch('teacher/editTeacher', { id: this.id, option: option })
         },
@@ -144,7 +157,11 @@ export default {
         },
         roleCheck() {
             this.$store.dispatch('permittionCheck', '9')
+        },
+        getCurrentBranch(){
+            this.$store.dispatch("user/getStatistics",'/?filter=day')
         }
+
     }
 
 

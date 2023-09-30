@@ -90,11 +90,13 @@ export default {
             id: this.$route.params.id,
             handler: true,
             name: '',
-            price: ''
+            price: '',
+            branches: []
         }
     },
     computed: {
-        ...mapState('course', ['courseData'])
+        ...mapState('course', ['courseData']),
+        ...mapState('user', ['currentBranch'])
     },
     watch: {
         courseData: {
@@ -108,17 +110,21 @@ export default {
         }
     },
     mounted() {
+        this.getCurrentBranch()
         this.getCourseById()
         this.roleCheck()
+
     },
     methods: {
         getCourseById() {
             this.$store.dispatch('course/getCourseDataById', this.id)
         },
         setEdit() {
+            // this.getBranchAsArray()
             let option = {
                 name: this.name,
-                price: this.price
+                price: this.price,
+                branches: [this.currentBranch.id]
             }
             this.$store.dispatch('course/editCourse', { id: this.id, option: option })
         },
@@ -130,6 +136,15 @@ export default {
         },
         roleCheck() {
             this.$store.dispatch('permittionCheck', '11')
+        },
+        // getBranchAsArray() {
+        //     if (this.branchData) {
+        //         this.branches = [];
+        //         this.branches.push(...this.branchData.map(branch => branch.id));
+        //     };
+        // },
+        getCurrentBranch() {
+            this.$store.dispatch("user/getStatistics", '/?filter=day')
         }
 
 

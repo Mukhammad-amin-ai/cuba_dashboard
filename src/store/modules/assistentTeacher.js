@@ -83,7 +83,7 @@ const actions = {
         }
       );
       console.log(response.data);
-      if (response.data.name === "assistant_teacher_updated") {
+      if (response.data.success) {
         window.location.href = "/assistant-teacher";
       }
     } catch (error) {
@@ -100,7 +100,7 @@ const actions = {
           }
         );
         console.log(response.data);
-        if (response.data.name === "assistant_teacher_deleted") {
+        if (response.data.success) {
           window.location.href = "/assistant-teacher";
         }
       } catch (e) {
