@@ -50,8 +50,8 @@ const actions = {
       let responce = await axios.get(`${Api}/api/manage/parent/${id}`, {
         headers,
       });
-      console.log(responce.data);
-      if (responce.data.data) {
+      // console.log(responce.data);
+      if (responce.data.success) {
         commit("setLoading", false, { root: true });
         commit("setPrentData", responce.data.data);
       }

@@ -73,6 +73,26 @@
                             <label for="contact" class="form-label">Contact Number</label>
                             <input type="tel" class="form-control" id="contact" required v-model="contact">
                         </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Role</label>
+                            <select class="form-select" id="status" v-model="users">
+                                <option :value=0>Nothing</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="col-form-label">Search Student</label>
+                            <input class="form-control" type="text" placeholder="Search Student"
+                                aria-label="default input example" v-model="searchStudent" @keypress.enter="studentSearch">
+                        </div>
+                        <div class="input-group mb-3" v-if="this.$store.state.resultOfStudentRerch"
+                            v-for="student in students" :key="student">
+                            <input type="text" class="form-control" :placeholder="student.fullname"
+                                aria-describedby="basic-addon1" disabled readonly>
+                            <span class="input-group-text check" id="basic-addon1" @click="findCard(student.id)">
+                                <i class="icofont icofont-ui-check"></i>
+                            </span>
+                        </div>
+
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary" @click="editStudent"
                                 v-if="this.$store.state.update">Update Parent</button>
@@ -119,8 +139,8 @@ export default {
                         this.email = newparents.email,
                         this.password = newparents.password,
                         this.password_confirmation = newparents.password_confirmation,
-                        this.contact = newparents.contact
-                    this.role_id = newparents.role_id,
+                        this.contact = newparents.contact,
+                        this.role_id = newparents.role_id,
                         this.students = newparents.students
                 }
             }
